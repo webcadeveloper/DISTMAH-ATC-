@@ -25,9 +25,9 @@ export default function EditCourseInfoPage() {
                     title: course?.title,
                     slug: course?.slug,
                     description: course?.description,
-                    // @ts-ignore - Enum mismatch in mock data vs schema
+                    // @ts-expect-error - Enum mismatch in mock data vs schema
                     category: course?.category,
-                    // @ts-ignore
+                    // @ts-expect-error
                     level: course?.level,
                     version: course?.version,
                     price: course?.price,

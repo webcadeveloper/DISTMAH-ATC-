@@ -48,9 +48,9 @@ async function main() {
                 title: courseData.title,
                 slug: courseData.slug,
                 description: courseData.description,
-                // @ts-ignore - Enum mismatch in mock data vs schema
+                // @ts-expect-error - Enum mismatch in mock data vs schema
                 category: courseData.category,
-                // @ts-ignore
+                // @ts-expect-error
                 level: courseData.level,
                 price: courseData.price,
                 version: courseData.version,
@@ -65,7 +65,7 @@ async function main() {
 
             for (let i = 0; i < courseData.syllabus.length; i++) {
                 const moduleData = courseData.syllabus[i];
-                const module = await prisma.module.create({
+                const courseModule = await prisma.module.create({
                     data: {
                         title: moduleData.title,
                         order: i,
@@ -81,7 +81,7 @@ async function main() {
                             order: j,
                             duration: lessonData.duration,
                             type: 'VIDEO', // Default to VIDEO
-                            moduleId: module.id,
+                            moduleId: courseModule.id,
                             content: '<p>Contenido de ejemplo para la lección.</p>',
                         },
                     });
@@ -90,26 +90,6 @@ async function main() {
         }
     }
 
-    console.log('✅ Courses and content seeded');
-
-    // 4. Enroll Student in AutoCAD
-    const autocad = await prisma.course.findUnique({ where: { slug: 'autocad-2d-2026' } });
-    if (autocad) {
-        await prisma.enrollment.upsert({
-            where: {
-                userId_courseId: {
-                    userId: student.id,
-                    courseId: autocad.id,
-                },
-            },
-            update: {},
-            create: {
-                userId: student.id,
-                courseId: autocad.id,
-            },
-        });
-        console.log('✅ Student enrolled in AutoCAD');
-    }
 
     console.log('🌱 Seeding finished.');
 }
