@@ -20,10 +20,17 @@ export default function TestAnimationsPage() {
         {/* 1. AnimatedLogo Test */}
         <section className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
           <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-            1. AnimatedLogo (mount trigger)
+            1. AnimatedLogo - Logo Real DISTMAH (mount trigger)
           </h2>
-          <div className="flex justify-center">
-            <AnimatedLogo size="lg" animated={true} />
+          <div className="space-y-8">
+            <div className="flex flex-col items-center gap-4">
+              <p className="text-sm text-gray-500">Variant: full (logo principal)</p>
+              <AnimatedLogo size="lg" animated={true} variant="full" />
+            </div>
+            <div className="flex flex-col items-center gap-4">
+              <p className="text-sm text-gray-500">Variant: footer (logo pie de página)</p>
+              <AnimatedLogo size="md" animated={true} variant="footer" />
+            </div>
           </div>
         </section>
 
