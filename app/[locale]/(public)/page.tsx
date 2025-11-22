@@ -15,18 +15,20 @@ export default function LandingPage() {
         <div className="flex flex-col min-h-screen">
             {/* HERO SECTION */}
             <section className="relative pt-20 pb-32 overflow-hidden bg-neutral-900">
-                <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10" />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-neutral-900" />
+                {/* Video Background */}
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover opacity-30"
+                >
+                    <source src="/video/Nov_22__1157_22s_202511221212_7b7br.mp4" type="video/mp4" />
+                </video>
+
+                <div className="absolute inset-0 bg-gradient-to-b from-neutral-900/50 to-neutral-900" />
 
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-500/10 border border-primary-500/20 text-primary-400 mb-8 animate-fade-in">
-                        <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-500"></span>
-                        </span>
-                        <span className="text-sm font-medium">Autodesk Authorized Training Center</span>
-                    </div>
-
                     <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight animate-slide-up">
                         {t('heroTitle')}
                     </h1>
