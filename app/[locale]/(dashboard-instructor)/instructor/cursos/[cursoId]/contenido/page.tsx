@@ -2,182 +2,116 @@
 
 import { useState } from 'react';
 import { useParams } from 'next/navigation';
-import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ModulesList } from '@/components/cms/CourseEditor/ModulesList';
-import { LessonsList } from '@/components/cms/CourseEditor/LessonsList';
-import { ArrowLeft, Plus, Settings } from 'lucide-react';
+import { Plus, ArrowLeft, GripVertical, FileText, Video, MoreVertical } from 'lucide-react';
+import Link from 'next/link';
 import { COURSES_2026 } from '@/lib/courses-catalog-2026';
-import { toast } from 'sonner';
-
-// Mock data generator
-const getMockModules = (courseId: string) => {
-    const course = COURSES_2026.find(c => c.id === courseId);
-    return course?.syllabus || [];
-};
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from '@/components/ui/accordion';
+import { Badge } from '@/components/ui/badge';
 
 export default function CourseContentPage() {
     const params = useParams();
-    const courseId = params.cursoId as string;
-    const course = COURSES_2026.find(c => c.id === courseId);
+    const cursoId = params.cursoId as string;
+    const course = COURSES_2026.find(c => c.id === cursoId);
 
-    const [modules, setModules] = useState(getMockModules(courseId));
-
-    // Handlers (Mock implementation)
-    const handleReorderModules = (newModules: any[]) => {
-        setModules(newModules);
-        toast.success('Orden de módulos actualizado');
-    };
-
-    const handleReorderLessons = (moduleId: string, newLessons: any[]) => {
-        setModules(modules.map(m =>
-            m.id === moduleId ? { ...m, lessons: newLessons } : m
-        ));
-        toast.success('Orden de lecciones actualizado');
-    };
-
-    const handleAddModule = () => {
-        const newModule = {
-            id: `new-mod-${Date.now()}`,
-            number: modules.length + 1,
-            title: 'Nuevo Módulo',
-            description: '',
-            duration: 0,
-            lessons: [],
-            order: modules.length + 1
-        };
-        setModules([...modules, newModule]);
-        toast.success('Módulo creado');
-    };
-
-    const handleDeleteModule = (id: string) => {
-        if (confirm('¿Estás seguro de eliminar este módulo?')) {
-            setModules(modules.filter(m => m.id !== id));
-            toast.success('Módulo eliminado');
-        }
-    };
+    if (!course) return <div className="p-8">Curso no encontrado</div>;
 
     return (
         <div className="p-8 max-w-5xl mx-auto">
             <div className="mb-8">
-                <Link href="/instructor/cursos" className="text-sm text-neutral-500 hover:text-neutral-900 flex items-center gap-1 mb-4">
-                    <ArrowLeft className="w-4 h-4" /> Volver a mis cursos
+                <Link href="/instructor/dashboard" className="text-sm text-neutral-500 hover:text-neutral-900 flex items-center gap-1 mb-4">
+                    <ArrowLeft className="w-4 h-4" /> Volver al Dashboard
                 </Link>
-
                 <div className="flex justify-between items-start">
                     <div>
-                        <h1 className="text-3xl font-bold text-neutral-900 mb-2">{course?.title || 'Curso no encontrado'}</h1>
+                        <h1 className="text-3xl font-bold text-neutral-900 mb-2">{course.title}</h1>
                         <p className="text-neutral-600">Gestiona la estructura y contenido del curso.</p>
                     </div>
-                    <div className="flex gap-3">
-                        <Link href={`/instructor/cursos/${courseId}/editar`}>
-                            <Button variant="outline">
-                                <Settings className="w-4 h-4 mr-2" /> Configuración
-                            </Button>
-                        </Link>
-                        <Link href={`/cursos/${course?.slug}`} target="_blank">
-                            <Button>Vista Previa</Button>
-                        </Link>
-                    </div>
+                    <Button className="bg-primary-600 hover:bg-primary-700">
+                        <Plus className="w-4 h-4 mr-2" /> Nuevo Módulo
+                    </Button>
                 </div>
             </div>
 
-            <div className="bg-white rounded-xl border border-neutral-200 shadow-sm p-6">
-                <div className="flex justify-between items-center mb-6 pb-6 border-b border-neutral-100">
-                    <h2 className="text-xl font-semibold">Estructura del Curso</h2>
-                    <Button onClick={handleAddModule} className="bg-primary-600 hover:bg-primary-700">
-                        <Plus className="w-4 h-4 mr-2" /> Agregar Módulo
-                    </Button>
-                </div>
-
-                <div className="space-y-6">
-                    {modules.map((module) => (
-                        <div key={module.id} className="bg-neutral-50 rounded-lg border border-neutral-200 overflow-hidden">
-                            <div className="p-4 bg-white border-b border-neutral-200">
-                                <ModulesList
-                                    modules={[{
-                                        id: module.id,
-                                        title: module.title,
-                                        lessonsCount: module.lessons.length
-                                    }]}
-                                    // Actually ModulesList expects array of modules. 
-                                    // I should refactor ModulesList to handle the list, and render LessonsList inside.
-                                    // But ModulesList implementation I wrote handles the list.
-                                    // So I should render ModulesList ONCE with all modules.
-                                    // Wait, my ModulesList implementation renders SortableModuleItem.
-                                    // I need to modify ModulesList to accept children or render LessonsList inside SortableModuleItem.
-                                    // Or better, I will use the ModulesList component I created which handles the list, 
-                                    // but I need to inject the LessonsList into it.
-                                    // The current ModulesList implementation doesn't support expanding/lessons.
-                                    // I should probably rewrite this part to be more integrated.
-                                    // For now, I will render the ModulesList component which handles reordering modules.
-                                    // AND I need a way to show lessons.
-
-                                    // Let's use the ModulesList component I created, but I need to modify it to show lessons?
-                                    // No, the ModulesList I created is just a list of modules.
-                                    // I should probably create a "CourseContentEditor" component that uses ModulesList and LessonsList.
-
-                                    // Let's try to render the list manually here to have full control, 
-                                    // or update ModulesList to support lessons.
-
-                                    // Given the complexity, I'll stick to a simpler approach:
-                                    // Render the modules list here, and inside each module render the lessons list.
-                                    // But I need drag and drop for modules too.
-
-                                    // I'll use the ModulesList component I created, but I'll modify it to accept a 'renderExtra' prop or similar?
-                                    // Or just copy the logic here since it's the main page.
-
-                                    // Actually, the ModulesList component I created is self-contained.
-                                    // I will use it for reordering modules.
-                                    // But for editing lessons, I need to click "Edit" on the module or have an expand button.
-
-                                    // Let's assume clicking "Edit" on module goes to a module detail page?
-                                    // No, the prompt implies a single page editor "CMS EDITOR - Gestionar módulos/lecciones".
-
-                                    // I will render the ModulesList, and I'll modify ModulesList.tsx to render LessonsList inside it if expanded.
-                                    // But I can't modify ModulesList.tsx easily from here without another tool call.
-
-                                    // I'll just render the structure here manually using the components I have as building blocks if possible,
-                                    // or just render the ModulesList and assume it's for reordering, 
-                                    // and provide a separate view for lessons?
-                                    // No, that's bad UX.
-
-                                    // I will rewrite this page to implement the full editor logic, 
-                                    // reusing the LessonsList component.
-                                    // I will skip using ModulesList component for now and implement the module list logic directly here 
-                                    // to allow nesting LessonsList.
-
-                                    onReorder={handleReorderModules}
-                                    onEdit={(id) => console.log('Edit module', id)}
-                                    onDelete={handleDeleteModule}
-                                    onAdd={handleAddModule}
-                                />
-                            </div>
-
-                            {/* Lessons for this module */}
-                            <div className="bg-neutral-50">
-                                {/* This is where I would render LessonsList if I could inject it into ModulesList */}
-                                {/* Since I can't easily, I will just render it below for now, which is a bit weird but works for MVP */}
-                                <div className="p-4 pl-12">
-                                    <LessonsList
-                                        moduleId={module.id}
-                                        lessons={module.lessons as any}
-                                        onReorder={(newLessons) => handleReorderLessons(module.id, newLessons)}
-                                        onEdit={(lessonId) => window.location.href = `/instructor/cursos/${courseId}/contenido/editar-leccion/${lessonId}`}
-                                        onDelete={(lessonId) => toast.success('Lección eliminada')}
-                                        onAdd={() => window.location.href = `/instructor/cursos/${courseId}/contenido/crear-leccion/${module.id}`}
-                                    />
+            <div className="space-y-4">
+                <Accordion type="multiple" defaultValue={course.syllabus.map(m => m.id)} className="w-full space-y-4">
+                    {course.syllabus.map((module, index) => (
+                        <AccordionItem key={module.id} value={module.id} className="border border-neutral-200 rounded-lg bg-white px-4">
+                            <div className="flex items-center py-4">
+                                <GripVertical className="w-5 h-5 text-neutral-400 mr-2 cursor-move" />
+                                <AccordionTrigger className="hover:no-underline py-0 flex-grow">
+                                    <div className="flex flex-col items-start text-left">
+                                        <span className="text-sm font-medium text-neutral-500">Módulo {index + 1}</span>
+                                        <span className="text-lg font-semibold text-neutral-900">{module.title}</span>
+                                    </div>
+                                </AccordionTrigger>
+                                <div className="flex items-center gap-2 ml-4">
+                                    <Button variant="outline" size="sm">
+                                        <Plus className="w-4 h-4 mr-2" /> Lección
+                                    </Button>
+                                    <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                                        <MoreVertical className="w-4 h-4" />
+                                    </Button>
                                 </div>
                             </div>
-                        </div>
-                    ))}
 
-                    {modules.length === 0 && (
-                        <div className="text-center py-12 text-neutral-500">
-                            No hay módulos creados. Comienza agregando uno.
-                        </div>
-                    )}
-                </div>
+                            <AccordionContent className="pt-0 pb-4 pl-10 pr-4">
+                                <div className="space-y-2 mt-2">
+                                    {module.lessons.length > 0 ? (
+                                        module.lessons.map((lesson) => (
+                                            <div key={lesson.id} className="flex items-center justify-between p-3 bg-neutral-50 rounded border border-neutral-100 group hover:border-neutral-300 transition-colors">
+                                                <div className="flex items-center gap-3">
+                                                    <GripVertical className="w-4 h-4 text-neutral-300 cursor-move opacity-0 group-hover:opacity-100" />
+                                                    <div className="w-8 h-8 rounded bg-white flex items-center justify-center border border-neutral-200">
+                                                        {lesson.type === 'video' ? (
+                                                            <Video className="w-4 h-4 text-blue-500" />
+                                                        ) : (
+                                                            <FileText className="w-4 h-4 text-orange-500" />
+                                                        )}
+                                                    </div>
+                                                    <div>
+                                                        <p className="font-medium text-neutral-900">{lesson.title}</p>
+                                                        <div className="flex items-center gap-2 text-xs text-neutral-500">
+                                                            <span>{lesson.duration} min</span>
+                                                            {lesson.type === 'video' && <Badge variant="secondary" className="text-[10px] h-4 px-1">VIDEO</Badge>}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                    <Link href={`/instructor/cursos/${course.id}/contenido/editar-leccion/${lesson.id}`}>
+                                                        <Button variant="ghost" size="sm">Editar</Button>
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <div className="text-center py-6 border-2 border-dashed border-neutral-200 rounded bg-neutral-50/50">
+                                            <p className="text-sm text-neutral-500 mb-2">Este módulo no tiene lecciones</p>
+                                            <Button variant="outline" size="sm">
+                                                <Plus className="w-3 h-3 mr-2" /> Agregar primera lección
+                                            </Button>
+                                        </div>
+                                    )}
+                                </div>
+                            </AccordionContent>
+                        </AccordionItem>
+                    ))}
+                </Accordion>
+
+                {course.syllabus.length === 0 && (
+                    <div className="text-center py-12 border-2 border-dashed border-neutral-200 rounded-lg bg-neutral-50">
+                        <h3 className="text-lg font-medium text-neutral-900 mb-2">El curso está vacío</h3>
+                        <p className="text-neutral-500 mb-6">Comienza creando la estructura de módulos basada en el manual.</p>
+                        <Button>
+                            <Plus className="w-4 h-4 mr-2" /> Crear Primer Módulo
+                        </Button>
+                    </div>
+                )}
             </div>
         </div>
     );

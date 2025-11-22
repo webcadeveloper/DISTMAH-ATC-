@@ -1,121 +1,140 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Users, BookOpen, Clock, Award } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+'use client';
+
 import Link from 'next/link';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { PlusCircle, BookOpen, Users, BarChart3, Edit, MoreVertical } from 'lucide-react';
+import { COURSES_2026 } from '@/lib/courses-catalog-2026';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
 
 export default function InstructorDashboard() {
+    // Mock data for instructor's courses (filtering from catalog)
+    const myCourses = COURSES_2026.slice(0, 3); // Showing first 3 as example
+
     return (
         <div className="p-8 max-w-7xl mx-auto">
             <div className="flex justify-between items-center mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-neutral-900">Hola, Instructor</h1>
-                    <p className="text-neutral-600">Bienvenido al panel de control de DISTMAH.</p>
+                    <h1 className="text-3xl font-bold text-neutral-900">Panel del Instructor</h1>
+                    <p className="text-neutral-600">Gestiona tus cursos y estudiantes.</p>
                 </div>
-                <Link href="/instructor/cursos/crear-curso">
+                <Link href="/instructor/cursos/crear">
                     <Button className="bg-primary-600 hover:bg-primary-700">
-                        + Crear Nuevo Curso
+                        <PlusCircle className="w-4 h-4 mr-2" /> Crear Nuevo Curso
                     </Button>
                 </Link>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <StatsCard
-                    title="Estudiantes Activos"
-                    value="1,234"
-                    icon={<Users className="w-5 h-5 text-blue-600" />}
-                    trend="+12% vs mes anterior"
-                />
-                <StatsCard
-                    title="Cursos Publicados"
-                    value="8"
-                    icon={<BookOpen className="w-5 h-5 text-orange-600" />}
-                />
-                <StatsCard
-                    title="Horas Enseñadas"
-                    value="156h"
-                    icon={<Clock className="w-5 h-5 text-green-600" />}
-                />
-                <StatsCard
-                    title="Certificados Emitidos"
-                    value="450"
-                    icon={<Award className="w-5 h-5 text-purple-600" />}
-                />
+            {/* Stats Overview */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                <Card>
+                    <CardContent className="p-6 flex items-center gap-4">
+                        <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
+                            <BookOpen className="w-6 h-6" />
+                        </div>
+                        <div>
+                            <p className="text-sm font-medium text-neutral-500">Cursos Activos</p>
+                            <h3 className="text-2xl font-bold text-neutral-900">{myCourses.length}</h3>
+                        </div>
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardContent className="p-6 flex items-center gap-4">
+                        <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                            <Users className="w-6 h-6" />
+                        </div>
+                        <div>
+                            <p className="text-sm font-medium text-neutral-500">Estudiantes Totales</p>
+                            <h3 className="text-2xl font-bold text-neutral-900">1,245</h3>
+                        </div>
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardContent className="p-6 flex items-center gap-4">
+                        <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-600">
+                            <BarChart3 className="w-6 h-6" />
+                        </div>
+                        <div>
+                            <p className="text-sm font-medium text-neutral-500">Calificación Promedio</p>
+                            <h3 className="text-2xl font-bold text-neutral-900">4.8/5.0</h3>
+                        </div>
+                    </CardContent>
+                </Card>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div className="lg:col-span-2">
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Cursos Recientes</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <div className="space-y-4">
-                                {[1, 2, 3].map((i) => (
-                                    <div key={i} className="flex items-center justify-between p-4 border rounded-lg hover:bg-neutral-50 transition-colors">
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-12 h-12 bg-neutral-200 rounded-md" />
-                                            <div>
-                                                <h4 className="font-medium text-neutral-900">AutoCAD 2D 2026 - Grupo {i}</h4>
-                                                <p className="text-sm text-neutral-500">Actualizado hace 2 días</p>
-                                            </div>
-                                        </div>
-                                        <div className="flex items-center gap-4">
-                                            <div className="text-right">
-                                                <p className="text-sm font-medium text-neutral-900">24 Estudiantes</p>
-                                                <p className="text-xs text-green-600">Activo</p>
-                                            </div>
-                                            <Button variant="outline" size="sm">Gestionar</Button>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </CardContent>
-                    </Card>
-                </div>
+            {/* Courses List */}
+            <div className="space-y-6">
+                <h2 className="text-xl font-bold text-neutral-900">Mis Cursos</h2>
 
-                <div>
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Próximas Clases</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <div className="space-y-4">
-                                {[1, 2, 3].map((i) => (
-                                    <div key={i} className="flex gap-3 items-start pb-4 border-b last:border-0 last:pb-0">
-                                        <div className="flex flex-col items-center bg-primary-50 text-primary-700 rounded p-2 min-w-[3rem]">
-                                            <span className="text-xs font-bold">NOV</span>
-                                            <span className="text-lg font-bold">{20 + i}</span>
-                                        </div>
-                                        <div>
-                                            <h4 className="text-sm font-medium text-neutral-900">Sesión de Preguntas y Respuestas</h4>
-                                            <p className="text-xs text-neutral-500 mb-1">AutoCAD 2D 2026</p>
-                                            <p className="text-xs text-neutral-400">10:00 AM - 11:30 AM</p>
-                                        </div>
+                <div className="grid gap-6">
+                    {myCourses.map((course) => (
+                        <Card key={course.id} className="overflow-hidden hover:shadow-md transition-shadow">
+                            <div className="flex flex-col md:flex-row">
+                                <div className="w-full md:w-48 h-32 bg-neutral-200 relative">
+                                    {/* Placeholder for image */}
+                                    <div className="absolute inset-0 flex items-center justify-center text-neutral-400 bg-neutral-100">
+                                        <BookOpen className="w-8 h-8" />
                                     </div>
-                                ))}
+                                </div>
+                                <div className="flex-grow p-6 flex flex-col justify-between">
+                                    <div className="flex justify-between items-start">
+                                        <div>
+                                            <div className="flex items-center gap-2 mb-1">
+                                                <span className="text-xs font-semibold px-2 py-0.5 rounded bg-blue-100 text-blue-800">
+                                                    {course.version}
+                                                </span>
+                                                <span className="text-xs font-medium text-neutral-500">
+                                                    {course.category}
+                                                </span>
+                                            </div>
+                                            <h3 className="text-lg font-bold text-neutral-900 mb-1">{course.title}</h3>
+                                            <p className="text-sm text-neutral-500 line-clamp-1">{course.subtitle}</p>
+                                        </div>
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger asChild>
+                                                <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                                                    <MoreVertical className="w-4 h-4" />
+                                                </Button>
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent align="end">
+                                                <DropdownMenuItem>
+                                                    <Link href={`/instructor/cursos/${course.id}/contenido`} className="w-full">
+                                                        Editar Contenido
+                                                    </Link>
+                                                </DropdownMenuItem>
+                                                <DropdownMenuItem>Ver Estudiantes</DropdownMenuItem>
+                                                <DropdownMenuItem className="text-red-600">Archivar Curso</DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
+                                    </div>
+
+                                    <div className="flex items-center gap-6 mt-4 pt-4 border-t border-neutral-100">
+                                        <div className="flex items-center gap-2 text-sm text-neutral-600">
+                                            <Users className="w-4 h-4" />
+                                            <span>0 estudiantes</span>
+                                        </div>
+                                        <div className="flex items-center gap-2 text-sm text-neutral-600">
+                                            <BookOpen className="w-4 h-4" />
+                                            <span>{course.syllabus?.length || 0} módulos</span>
+                                        </div>
+                                        <div className="flex-grow"></div>
+                                        <Link href={`/instructor/cursos/${course.id}/contenido`}>
+                                            <Button variant="outline" size="sm">
+                                                <Edit className="w-4 h-4 mr-2" /> Gestionar Contenido
+                                            </Button>
+                                        </Link>
+                                    </div>
+                                </div>
                             </div>
-                            <Button variant="ghost" className="w-full mt-4 text-primary-600">Ver Calendario Completo</Button>
-                        </CardContent>
-                    </Card>
+                        </Card>
+                    ))}
                 </div>
             </div>
         </div>
-    );
-}
-
-function StatsCard({ title, value, icon, trend }: { title: string; value: string; icon: React.ReactNode; trend?: string }) {
-    return (
-        <Card>
-            <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                    <p className="text-sm font-medium text-neutral-500">{title}</p>
-                    <div className="p-2 bg-neutral-50 rounded-full">{icon}</div>
-                </div>
-                <div className="flex items-end justify-between">
-                    <h3 className="text-2xl font-bold text-neutral-900">{value}</h3>
-                    {trend && <span className="text-xs text-green-600 font-medium bg-green-50 px-2 py-1 rounded-full">{trend}</span>}
-                </div>
-            </CardContent>
-        </Card>
     );
 }

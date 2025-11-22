@@ -32,7 +32,7 @@ export default function StudentDashboard() {
                             </div>
                             <Progress value={45} className="h-2 bg-neutral-700 mb-6" />
 
-                            <Link href="/cursos/autocad-2d-2026/leccion/leccion-1">
+                            <Link href="/cursos/autocad-2d-2026/leccion/lec-1-1">
                                 <Button className="bg-blue-600 hover:bg-blue-700 text-white border-none">
                                     <PlayCircle className="w-4 h-4 mr-2" /> Continuar Lección
                                 </Button>
