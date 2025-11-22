@@ -3,6 +3,27 @@ import { COURSES_2026 } from '../lib/courses-catalog-2026';
 
 const prisma = new PrismaClient();
 
+// Mapping functions
+function mapCategory(category: string): string {
+    const mapping: Record<string, string> = {
+        'AutoCAD': 'AUTOCAD',
+        'Revit': 'REVIT',
+        'Civil3D': 'CIVIL3D',
+        'Navisworks': 'NAVISWORKS',
+        'BIM360': 'BIM360',
+    };
+    return mapping[category] || 'AUTOCAD';
+}
+
+function mapLevel(level: string): string {
+    const mapping: Record<string, string> = {
+        'Básico': 'BASICO',
+        'Intermedio': 'INTERMEDIO',
+        'Avanzado': 'AVANZADO',
+    };
+    return mapping[level] || 'BASICO';
+}
+
 async function main() {
     console.log('🌱 Starting database seeding...');
 
@@ -40,6 +61,7 @@ async function main() {
     console.log('✅ Users created/verified');
 
     // 2. Seed Courses from Catalog
+    console.log(`Seeding ${COURSES_2026.length} courses...`);
     for (const courseData of COURSES_2026) {
         const course = await prisma.course.upsert({
             where: { slug: courseData.slug },
@@ -48,16 +70,18 @@ async function main() {
                 title: courseData.title,
                 slug: courseData.slug,
                 description: courseData.description,
-                // @ts-expect-error - Enum mismatch in mock data vs schema
-                category: courseData.category,
-                // @ts-expect-error
-                level: courseData.level,
+                category: mapCategory(courseData.category) as any,
+                level: mapLevel(courseData.level) as any,
                 price: courseData.price,
                 version: courseData.version,
-                published: true,
+                software: courseData.software || `AutoCAD ${courseData.version}`,
+                duration: courseData.duration || 40,
+                sessions: courseData.sessions || 10,
+                status: 'PUBLISHED',
                 instructorId: instructor.id,
             },
         });
+        console.log(`  ✅ ${course.title}`);
 
         // 3. Seed Modules and Lessons for the first course (AutoCAD 2D)
         if (courseData.slug === 'autocad-2d-2026') {
@@ -68,7 +92,10 @@ async function main() {
                 const courseModule = await prisma.module.create({
                     data: {
                         title: moduleData.title,
+                        number: i + 1,
                         order: i,
+                        duration: moduleData.duration || 2,
+                        description: moduleData.description || '',
                         courseId: course.id,
                     },
                 });
@@ -78,14 +105,18 @@ async function main() {
                     await prisma.lesson.create({
                         data: {
                             title: lessonData.title,
+                            number: j + 1,
                             order: j,
                             duration: lessonData.duration,
-                            type: 'VIDEO', // Default to VIDEO
+                            type: 'VIDEO',
                             moduleId: courseModule.id,
-                            content: '<p>Contenido de ejemplo para la lección.</p>',
+                            richText: '<p>Contenido de ejemplo para la lección.</p>',
+                            description: lessonData.description || '',
+                            published: true,
                         },
                     });
                 }
+                console.log(`    ✅ Module ${i + 1}: ${moduleData.title} (${moduleData.lessons.length} lessons)`);
             }
         }
     }

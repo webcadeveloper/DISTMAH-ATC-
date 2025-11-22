@@ -21,7 +21,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 const lessonSchema = z.object({
     title: z.string().min(1, 'Título requerido'),
     description: z.string().optional(),
-    duration: z.coerce.number().min(1, 'Duración mínima 1 minuto'),
+    duration: z.number().min(1, 'Duración mínima 1 minuto'),
     type: z.enum(['video', 'reading', 'exercise', 'live-class', 'quiz'] as const),
     richText: z.string().optional(),
     videoUrl: z.string().url().optional().or(z.literal('')),

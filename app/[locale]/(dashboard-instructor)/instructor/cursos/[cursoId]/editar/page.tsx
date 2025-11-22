@@ -3,7 +3,8 @@
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import { CourseInfoEditor } from '@/components/cms/CourseEditor/CourseInfoEditor';
+// POSTPONED: CourseInfoEditor - Phase 6 (CMS Development)
+// import { CourseInfoEditor } from '@/components/cms/CourseEditor/CourseInfoEditor';
 import { COURSES_2026 } from '@/lib/courses-catalog-2026';
 
 export default function EditCourseInfoPage() {
@@ -20,14 +21,24 @@ export default function EditCourseInfoPage() {
                 <h1 className="text-3xl font-bold text-neutral-900">Editar Información del Curso</h1>
             </div>
 
+            {/* POSTPONED: CourseInfoEditor - Phase 6 (CMS Development) */}
+            <div className="p-8 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
+                <h2 className="text-xl font-semibold mb-2">Editor de Curso - En Desarrollo</h2>
+                <p className="text-gray-600">
+                    Esta funcionalidad será implementada en Phase 6 (CMS Development).
+                </p>
+                <p className="text-sm text-gray-500 mt-4">
+                    Curso seleccionado: <strong>{course?.title}</strong>
+                </p>
+            </div>
+
+            {/*
             <CourseInfoEditor
                 initialData={{
                     title: course?.title,
                     slug: course?.slug,
                     description: course?.description,
-                    // @ts-expect-error - Enum mismatch in mock data vs schema
                     category: course?.category,
-                    // @ts-expect-error
                     level: course?.level,
                     version: course?.version,
                     price: course?.price,
@@ -37,6 +48,7 @@ export default function EditCourseInfoPage() {
                     window.history.back();
                 }}
             />
+            */}
         </div>
     );
 }

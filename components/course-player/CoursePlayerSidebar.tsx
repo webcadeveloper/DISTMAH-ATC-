@@ -60,7 +60,7 @@ export function CoursePlayerSidebar() {
                                                         <CheckCircle className="w-4 h-4 text-green-500" />
                                                     ) : isLocked ? (
                                                         <Lock className="w-4 h-4 text-neutral-300" />
-                                                    ) : lesson.type === 'VIDEO' ? (
+                                                    ) : lesson.type === 'video' ? (
                                                         <PlayCircle className={cn("w-4 h-4", isActive ? "text-primary-600" : "text-neutral-400")} />
                                                     ) : (
                                                         <FileText className={cn("w-4 h-4", isActive ? "text-primary-600" : "text-neutral-400")} />
