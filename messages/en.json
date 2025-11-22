@@ -1,0 +1,33 @@
+{
+    "Common": {
+        "login": "Log In",
+        "register": "Register",
+        "dashboard": "Dashboard",
+        "profile": "Profile",
+        "logout": "Log Out",
+        "loading": "Loading..."
+    },
+    "Navbar": {
+        "courses": "Courses",
+        "certifications": "Certifications",
+        "companies": "Companies",
+        "about": "About Us"
+    },
+    "Landing": {
+        "heroTitle": "Master the Future of Design with Autodesk",
+        "heroSubtitle": "The leading educational platform for architecture, engineering, and construction professionals.",
+        "ctaStart": "Get Started",
+        "ctaCatalog": "View Catalog",
+        "statsStudents": "Students",
+        "statsCourses": "Courses",
+        "statsInstructors": "Instructors",
+        "featuredCourses": "Featured Courses 2026",
+        "viewAllCourses": "View all courses"
+    },
+    "Footer": {
+        "rights": "All rights reserved.",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service",
+        "contact": "Contact"
+    }
+}

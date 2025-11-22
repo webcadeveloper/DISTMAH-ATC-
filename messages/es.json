@@ -1,0 +1,33 @@
+{
+    "Common": {
+        "login": "Iniciar Sesión",
+        "register": "Registrarse",
+        "dashboard": "Panel de Control",
+        "profile": "Perfil",
+        "logout": "Cerrar Sesión",
+        "loading": "Cargando..."
+    },
+    "Navbar": {
+        "courses": "Cursos",
+        "certifications": "Certificaciones",
+        "companies": "Empresas",
+        "about": "Nosotros"
+    },
+    "Landing": {
+        "heroTitle": "Domina el Futuro del Diseño con Autodesk",
+        "heroSubtitle": "La plataforma educativa líder para profesionales de arquitectura, ingeniería y construcción.",
+        "ctaStart": "Empezar Ahora",
+        "ctaCatalog": "Ver Catálogo",
+        "statsStudents": "Estudiantes",
+        "statsCourses": "Cursos",
+        "statsInstructors": "Instructores",
+        "featuredCourses": "Cursos Destacados 2026",
+        "viewAllCourses": "Ver todos los cursos"
+    },
+    "Footer": {
+        "rights": "Todos los derechos reservados.",
+        "privacy": "Política de Privacidad",
+        "terms": "Términos de Servicio",
+        "contact": "Contacto"
+    }
+}
