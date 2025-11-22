@@ -53,39 +53,39 @@ export function Navbar() {
             ref={navRef}
             className={`w-full border-b sticky top-0 z-50 transition-all duration-300 ${
                 scrolled
-                    ? 'bg-white/95 backdrop-blur-md border-neutral-200 shadow-lg'
-                    : 'bg-white border-neutral-200'
+                    ? 'bg-white/98 backdrop-blur-lg border-neutral-200 shadow-xl'
+                    : 'bg-white border-neutral-100'
             }`}
         >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-                <Link href="/" className="nav-item">
-                    <LogoDistmah variant="horizontal" className="scale-90" />
+            <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-20 flex items-center justify-between">
+                <Link href="/" className="nav-item flex-shrink-0">
+                    <LogoDistmah variant="horizontal" />
                 </Link>
 
-                <div className="hidden md:flex items-center gap-8">
-                    <Link href="/cursos" className="nav-item text-sm font-medium text-neutral-600 hover:text-primary-600 transition-colors">
+                <div className="hidden md:flex items-center gap-10">
+                    <Link href="/cursos" className="nav-item text-base font-semibold text-neutral-700 hover:text-primary-600 transition-colors">
                         {t('courses')}
                     </Link>
-                    <Link href="/certificaciones" className="nav-item text-sm font-medium text-neutral-600 hover:text-primary-600 transition-colors">
+                    <Link href="/certificaciones" className="nav-item text-base font-semibold text-neutral-700 hover:text-primary-600 transition-colors">
                         {t('certifications')}
                     </Link>
-                    <Link href="/empresas" className="nav-item text-sm font-medium text-neutral-600 hover:text-primary-600 transition-colors">
+                    <Link href="/empresas" className="nav-item text-base font-semibold text-neutral-700 hover:text-primary-600 transition-colors">
                         {t('companies')}
                     </Link>
-                    <Link href="/nosotros" className="nav-item text-sm font-medium text-neutral-600 hover:text-primary-600 transition-colors">
+                    <Link href="/nosotros" className="nav-item text-base font-semibold text-neutral-700 hover:text-primary-600 transition-colors">
                         {t('about')}
                     </Link>
                 </div>
 
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                     <LanguageSwitcher />
-                    <Link href="/instructor/dashboard" className="nav-item">
-                        <Button variant="ghost" className="text-neutral-600">
+                    <Link href="/instructor/dashboard" className="nav-item hidden lg:block">
+                        <Button variant="ghost" className="text-neutral-700 font-medium hover:bg-neutral-100">
                             {tCommon('login')}
                         </Button>
                     </Link>
                     <Link href="/estudiante/dashboard" className="nav-item">
-                        <Button className="bg-primary-600 hover:bg-primary-700 text-white shadow-lg shadow-primary-600/20">
+                        <Button className="bg-primary-600 hover:bg-primary-700 text-white font-semibold shadow-lg shadow-primary-600/25 px-6">
                             {tCommon('register')}
                         </Button>
                     </Link>

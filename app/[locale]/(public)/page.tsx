@@ -21,7 +21,7 @@ export default function LandingPage() {
                     loop
                     muted
                     playsInline
-                    className="absolute inset-0 w-full h-full object-cover opacity-30"
+                    className="absolute inset-0 w-full h-full object-cover opacity-15"
                 >
                     <source src="/video/Nov_22__1157_22s_202511221212_7b7br.mp4" type="video/mp4" />
                 </video>
@@ -44,14 +44,14 @@ export default function LandingPage() {
                             </Button>
                         </Link>
                         <Link href="/catalogo">
-                            <Button size="lg" variant="outline" className="border-neutral-700 text-neutral-300 hover:bg-neutral-800 hover:text-white px-8 h-14 text-lg">
+                            <Button size="lg" variant="outline" className="border-2 border-white/30 text-white bg-white/10 backdrop-blur-sm hover:bg-white hover:text-neutral-900 px-8 h-14 text-lg font-semibold shadow-lg">
                                 {t('ctaCatalog')}
                             </Button>
                         </Link>
                     </div>
 
                     {/* STATS */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-10 border-t border-neutral-800 animate-fade-in delay-300">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-10 border-t border-white/20 animate-fade-in delay-300">
                         {[
                             { label: t('statsStudents'), value: "5,000+", icon: Users },
                             { label: t('statsCourses'), value: "120+", icon: BookOpen },
@@ -59,11 +59,11 @@ export default function LandingPage() {
                             { label: "Certificaciones", value: "100%", icon: CheckCircle2 },
                         ].map((stat, i) => (
                             <div key={i} className="flex flex-col items-center">
-                                <div className="p-3 bg-neutral-800 rounded-full mb-3 text-primary-500">
-                                    <stat.icon className="w-6 h-6" />
+                                <div className="p-5 bg-white/20 backdrop-blur-md rounded-full mb-4 shadow-2xl ring-2 ring-white/30">
+                                    <stat.icon className="w-10 h-10 text-white drop-shadow-lg" />
                                 </div>
-                                <div className="text-3xl font-bold text-white mb-1">{stat.value}</div>
-                                <div className="text-sm text-neutral-500 font-medium uppercase tracking-wider">{stat.label}</div>
+                                <div className="text-4xl md:text-5xl font-bold text-white mb-2 drop-shadow-2xl">{stat.value}</div>
+                                <div className="text-sm text-white/90 font-bold uppercase tracking-wider drop-shadow-md">{stat.label}</div>
                             </div>
                         ))}
                     </div>
