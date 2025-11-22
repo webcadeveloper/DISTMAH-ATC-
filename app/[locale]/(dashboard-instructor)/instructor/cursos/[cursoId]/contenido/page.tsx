@@ -95,7 +95,11 @@ export default function CourseContentPage() {
                         <div key={module.id} className="bg-neutral-50 rounded-lg border border-neutral-200 overflow-hidden">
                             <div className="p-4 bg-white border-b border-neutral-200">
                                 <ModulesList
-                                    modules={[module]} // Passing single module to reuse component logic or refactor needed
+                                    modules={[{
+                                        id: module.id,
+                                        title: module.title,
+                                        lessonsCount: module.lessons.length
+                                    }]}
                                     // Actually ModulesList expects array of modules. 
                                     // I should refactor ModulesList to handle the list, and render LessonsList inside.
                                     // But ModulesList implementation I wrote handles the list.
@@ -157,7 +161,7 @@ export default function CourseContentPage() {
                                 <div className="p-4 pl-12">
                                     <LessonsList
                                         moduleId={module.id}
-                                        lessons={module.lessons}
+                                        lessons={module.lessons as any}
                                         onReorder={(newLessons) => handleReorderLessons(module.id, newLessons)}
                                         onEdit={(lessonId) => window.location.href = `/instructor/cursos/${courseId}/contenido/editar-leccion/${lessonId}`}
                                         onDelete={(lessonId) => toast.success('Lección eliminada')}
