@@ -1,0 +1,669 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// USUARIOS
+model User {
+  id                String   @id @default(uuid())
+  email             String   @unique
+  name              String
+  azureAdId         String?  @unique // ID de Azure AD
+  role              Role     @default(STUDENT)
+  emailVerified     Boolean  @default(false)
+  phoneNumber       String?
+  country           String?
+  city              String?
+  
+  // Profile info
+  bio               String?
+  avatar            String?  // URL OneDrive
+  linkedIn          String?
+  github            String?
+  
+  // Academic info (estudiantes)
+  institution       String?  // Universidad/empresa
+  profession        String?  // Arquitecto, Ingeniero Civil, etc.
+  yearsExperience   Int?
+  
+  // Preferences
+  language          String   @default("es") // es, en
+  timezone          String   @default("America/Caracas")
+  notifications     Boolean  @default(true)
+  newsletter        Boolean  @default(true)
+  
+  // Timestamps
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  lastLoginAt       DateTime?
+  
+  // Relations
+  enrollments       Enrollment[]
+  submissions       AssignmentSubmission[]
+  examAttempts      ExamAttempt[]
+  certificates      Certificate[]
+  forumPosts        ForumPost[]
+  messages          Message[]
+  
+  // Instructor relations
+  taughtCourses     Course[] @relation("CourseInstructor")
+  
+  @@map("users")
+}
+
+enum Role {
+  STUDENT
+  INSTRUCTOR
+  ADMIN
+}
+
+// CURSOS
+model Course {
+  id                String   @id @default(uuid())
+  slug              String   @unique
+  version           String   // "2026", "2027"
+  software          String   // "AutoCAD 2026", "Revit 2026"
+  
+  title             String
+  subtitle          String?
+  description       String   @db.Text
+  category          CourseCategory
+  level             CourseLevel
+  
+  duration          Int      // horas totales
+  sessions          Int      // número de sesiones
+  
+  objectives        String[] // Array de objetivos
+  prerequisites     String[] // Array de prerequisitos
+  skills            String[] // Skills a adquirir
+  tags              String[] // Tags para búsqueda
+  
+  // Certificación
+  certification     String?
+  
+  // Precios
+  price             Decimal  @db.Decimal(10, 2) // USD
+  priceVEF          Decimal? @db.Decimal(12, 2) // Bolívares
+  
+  // Media
+  image             String?  // URL imagen hero
+  thumbnail         String?  // URL thumbnail
+  videoIntro        String?  // URL video intro
+  
+  // Status
+  status            CourseStatus @default(DRAFT)
+  featured          Boolean  @default(false)
+  popular           Boolean  @default(false)
+  
+  // Stats
+  enrollmentCount   Int      @default(0)
+  rating            Decimal? @db.Decimal(2, 1)
+  reviewsCount      Int      @default(0)
+  
+  // Instructor
+  instructorId      String
+  instructor        User     @relation("CourseInstructor", fields: [instructorId], references: [id])
+  
+  // Dates
+  releaseDate       DateTime? // Fecha lanzamiento Autodesk
+  lastUpdated       DateTime  @default(now())
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  
+  // Relations
+  modules           Module[]
+  enrollments       Enrollment[]
+  assignments       Assignment[]
+  exams             Exam[]
+  certificates      Certificate[]
+  forumCategories   ForumCategory[]
+  
+  @@index([category])
+  @@index([level])
+  @@index([version])
+  @@index([status])
+  @@map("courses")
+}
+
+enum CourseCategory {
+  AUTOCAD
+  REVIT
+  CIVIL3D
+  NAVISWORKS
+  BIM360
+}
+
+enum CourseLevel {
+  BASICO
+  INTERMEDIO
+  AVANZADO
+}
+
+enum CourseStatus {
+  DRAFT       // Borrador (no visible)
+  PUBLISHED   // Publicado (visible, inscripciones abiertas)
+  ARCHIVED    // Archivado (visible pero no inscripciones)
+}
+
+// MÓDULOS (dentro de un curso)
+model Module {
+  id                String   @id @default(uuid())
+  courseId          String
+  course            Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  
+  number            Int      // 1, 2, 3...
+  title             String
+  description       String?  @db.Text
+  duration          Int      // horas
+  order             Int      // Para drag & drop reordering
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  // Relations
+  lessons           Lesson[]
+  
+  @@unique([courseId, number])
+  @@index([courseId])
+  @@map("modules")
+}
+
+// LECCIONES (dentro de un módulo)
+model Lesson {
+  id                String   @id @default(uuid())
+  moduleId          String
+  module            Module   @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+  
+  number            Int      // 1, 2, 3...
+  title             String
+  description       String?  @db.Text
+  duration          Int      // minutos
+  type              LessonType
+  order             Int      // Para reordering
+  
+  // Contenido (editable desde CMS)
+  richText          String?  @db.Text // HTML del editor TipTap
+  videoUrl          String?  // Microsoft Stream URL
+  videoStreamId     String?  // Stream video ID
+  videoEmbed        String?  @db.Text // Embed code
+  
+  // Archivos adjuntos
+  files             Json?    // Array de {id, title, url, type, size}
+  
+  // Status
+  published         Boolean  @default(false)
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  // Relations
+  progress          LessonProgress[]
+  
+  @@unique([moduleId, number])
+  @@index([moduleId])
+  @@map("lessons")
+}
+
+enum LessonType {
+  VIDEO           // Video lección
+  READING         // Lectura (texto/PDF)
+  EXERCISE        // Ejercicio práctico
+  LIVE_CLASS      // Clase en vivo (Teams)
+  QUIZ            // Quiz rápido
+}
+
+// PROGRESO DE LECCIONES
+model LessonProgress {
+  id                String   @id @default(uuid())
+  lessonId          String
+  lesson            Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  userId            String
+  
+  completed         Boolean  @default(false)
+  completedAt       DateTime?
+  timeSpent         Int?     // segundos
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@unique([lessonId, userId])
+  @@index([userId])
+  @@map("lesson_progress")
+}
+
+// INSCRIPCIONES (estudiante inscrito en curso)
+model Enrollment {
+  id                String   @id @default(uuid())
+  userId            String
+  user              User     @relation(fields: [userId], references: [id])
+  courseId          String
+  course            Course   @relation(fields: [courseId], references: [id])
+  
+  status            EnrollmentStatus @default(ACTIVE)
+  
+  // Payment info
+  paymentMethod     String?  // "stripe", "paypal", "zelle", "transferencia"
+  paymentId         String?  // Stripe payment intent ID
+  amount            Decimal  @db.Decimal(10, 2)
+  currency          String   // "USD", "VEF"
+  
+  // Progress
+  progressPercent   Int      @default(0) // 0-100
+  
+  // Dates
+  enrolledAt        DateTime @default(now())
+  startedAt         DateTime?
+  completedAt       DateTime?
+  expiresAt         DateTime? // Si curso tiene expiración
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@unique([userId, courseId])
+  @@index([userId])
+  @@index([courseId])
+  @@map("enrollments")
+}
+
+enum EnrollmentStatus {
+  PENDING     // Pendiente de pago
+  ACTIVE      // Activo
+  COMPLETED   // Completado
+  EXPIRED     // Expirado
+  CANCELLED   // Cancelado
+}
+
+// TAREAS
+model Assignment {
+  id                String   @id @default(uuid())
+  courseId          String
+  course            Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  moduleId          String?  // Opcional: asociar a módulo específico
+  
+  title             String
+  description       String   @db.Text
+  instructions      String   @db.Text // HTML
+  
+  // Config
+  maxScore          Int      @default(100)
+  allowLateSubmission Boolean @default(true)
+  maxAttempts       Int      @default(1)
+  
+  // Dates
+  availableFrom     DateTime
+  dueDate           DateTime
+  
+  // Files
+  attachments       Json?    // Array de archivos de referencia
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  // Relations
+  submissions       AssignmentSubmission[]
+  
+  @@index([courseId])
+  @@map("assignments")
+}
+
+// ENTREGAS DE TAREAS
+model AssignmentSubmission {
+  id                String   @id @default(uuid())
+  assignmentId      String
+  assignment        Assignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+  userId            String
+  user              User     @relation(fields: [userId], references: [id])
+  
+  // Content
+  comments          String?  @db.Text
+  files             Json     // Array de archivos subidos
+  
+  // Grading
+  score             Int?
+  feedback          String?  @db.Text
+  gradedAt          DateTime?
+  gradedBy          String?  // Instructor ID
+  
+  // Status
+  status            SubmissionStatus @default(SUBMITTED)
+  attemptNumber     Int      @default(1)
+  
+  submittedAt       DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@index([assignmentId])
+  @@index([userId])
+  @@map("assignment_submissions")
+}
+
+enum SubmissionStatus {
+  DRAFT       // Borrador (no enviado aún)
+  SUBMITTED   // Enviado
+  GRADED      // Calificado
+  RETURNED    // Devuelto para corrección
+}
+
+// EXÁMENES
+model Exam {
+  id                String   @id @default(uuid())
+  courseId          String
+  course            Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  
+  title             String
+  description       String?  @db.Text
+  instructions      String?  @db.Text
+  
+  // Config
+  duration          Int      // minutos
+  passingScore      Int      // porcentaje para aprobar (ej: 70)
+  maxAttempts       Int      @default(3)
+  shuffleQuestions  Boolean  @default(true)
+  showResults       Boolean  @default(true) // Mostrar resultados al terminar
+  
+  // Dates
+  availableFrom     DateTime
+  availableUntil    DateTime?
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  // Relations
+  questions         ExamQuestion[]
+  attempts          ExamAttempt[]
+  
+  @@index([courseId])
+  @@map("exams")
+}
+
+// PREGUNTAS DE EXAMEN
+model ExamQuestion {
+  id                String   @id @default(uuid())
+  examId            String
+  exam              Exam     @relation(fields: [examId], references: [id], onDelete: Cascade)
+  
+  type              QuestionType
+  question          String   @db.Text
+  points            Int      @default(1)
+  order             Int
+  
+  // Para multiple choice / true-false
+  options           Json?    // Array de opciones
+  correctAnswer     Json?    // Respuesta correcta (string, array, etc.)
+  
+  // Para essay/file upload
+  rubric            String?  @db.Text
+  
+  explanation       String?  @db.Text // Explicación de respuesta correcta
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@index([examId])
+  @@map("exam_questions")
+}
+
+enum QuestionType {
+  MULTIPLE_CHOICE  // Opción múltiple
+  TRUE_FALSE       // Verdadero/Falso
+  SHORT_ANSWER     // Respuesta corta
+  ESSAY            // Ensayo/desarrollo
+  FILE_UPLOAD      // Subir archivo (ej: archivo CAD)
+}
+
+// INTENTOS DE EXAMEN
+model ExamAttempt {
+  id                String   @id @default(uuid())
+  examId            String
+  exam              Exam     @relation(fields: [examId], references: [id], onDelete: Cascade)
+  userId            String
+  user              User     @relation(fields: [userId], references: [id])
+  
+  attemptNumber     Int      // 1, 2, 3...
+  
+  // Answers
+  answers           Json     // Array de respuestas
+  
+  // Results
+  score             Int?     // Puntos obtenidos
+  maxScore          Int      // Puntos máximos
+  percentage        Int?     // Porcentaje
+  passed            Boolean?
+  
+  // Timing
+  startedAt         DateTime @default(now())
+  submittedAt       DateTime?
+  timeSpent         Int?     // segundos
+  
+  updatedAt         DateTime @updatedAt
+  
+  @@index([examId])
+  @@index([userId])
+  @@map("exam_attempts")
+}
+
+// CERTIFICADOS
+model Certificate {
+  id                String   @id @default(uuid())
+  userId            String
+  user              User     @relation(fields: [userId], references: [id])
+  courseId          String
+  course            Course   @relation(fields: [courseId], references: [id])
+  
+  certificateNumber String   @unique // DIST-ATC-2026-0001
+  
+  // Content
+  studentName       String
+  courseName        String
+  instructorName    String
+  completionDate    DateTime
+  
+  // PDF
+  pdfUrl            String?  // URL del PDF generado
+  
+  // Verification
+  verificationCode  String   @unique
+  verified          Boolean  @default(false)
+  
+  createdAt         DateTime @default(now())
+  
+  @@index([userId])
+  @@index([courseId])
+  @@map("certificates")
+}
+
+// FORO (por curso)
+model ForumCategory {
+  id                String   @id @default(uuid())
+  courseId          String
+  course            Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  
+  name              String
+  description       String?
+  order             Int
+  
+  createdAt         DateTime @default(now())
+  
+  // Relations
+  posts             ForumPost[]
+  
+  @@index([courseId])
+  @@map("forum_categories")
+}
+
+model ForumPost {
+  id                String   @id @default(uuid())
+  categoryId        String
+  category          ForumCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  userId            String
+  user              User     @relation(fields: [userId], references: [id])
+  
+  title             String
+  content           String   @db.Text
+  
+  // Status
+  pinned            Boolean  @default(false)
+  locked            Boolean  @default(false)
+  solved            Boolean  @default(false)
+  
+  // Stats
+  views             Int      @default(0)
+  repliesCount      Int      @default(0)
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  // Relations
+  replies           ForumReply[]
+  
+  @@index([categoryId])
+  @@index([userId])
+  @@map("forum_posts")
+}
+
+model ForumReply {
+  id                String   @id @default(uuid())
+  postId            String
+  post              ForumPost @relation(fields: [postId], references: [id], onDelete: Cascade)
+  userId            String
+  
+  content           String   @db.Text
+  
+  // Best answer
+  isAnswer          Boolean  @default(false)
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@index([postId])
+  @@map("forum_replies")
+}
+
+// MENSAJES DIRECTOS
+model Message {
+  id                String   @id @default(uuid())
+  senderId          String
+  sender            User     @relation(fields: [senderId], references: [id])
+  recipientId       String
+  
+  subject           String?
+  content           String   @db.Text
+  
+  read              Boolean  @default(false)
+  readAt            DateTime?
+  
+  createdAt         DateTime @default(now())
+  
+  @@index([senderId])
+  @@index([recipientId])
+  @@map("messages")
+}
+
+// CLASES EN VIVO (Teams meetings)
+model LiveClass {
+  id                String   @id @default(uuid())
+  courseId          String
+  moduleId          String?
+  
+  title             String
+  description       String?  @db.Text
+  
+  // Teams meeting info
+  meetingUrl        String
+  meetingId         String?
+  joinUrl           String?
+  
+  // Schedule
+  scheduledStart    DateTime
+  scheduledEnd      DateTime
+  actualStart       DateTime?
+  actualEnd         DateTime?
+  
+  // Recording
+  recordingUrl      String?
+  recordingStreamId String?
+  
+  // Stats
+  attendeesCount    Int      @default(0)
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@index([courseId])
+  @@map("live_classes")
+}
+
+// BIBLIOTECA MULTIMEDIA (archivos subidos)
+model MediaFile {
+  id                String   @id @default(uuid())
+  uploadedBy        String   // User ID
+  
+  filename          String
+  originalName      String
+  mimeType          String
+  size              Int      // bytes
+  
+  // Storage
+  storageProvider   String   // "onedrive", "sharepoint", "local"
+  storageUrl        String   // URL completa
+  storageId         String?  // ID en provider
+  
+  // Metadata
+  type              MediaType
+  thumbnail         String?
+  duration          Int?     // Para videos, en segundos
+  dimensions        Json?    // {width, height} para imágenes
+  
+  // Organization
+  folder            String?  // "courses/autocad", "assignments", etc.
+  tags              String[]
+  
+  // Usage
+  usageCount        Int      @default(0)
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@index([uploadedBy])
+  @@index([type])
+  @@map("media_files")
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+  PDF
+  DWG       // AutoCAD
+  RVT       // Revit
+  NWD       // Navisworks
+  ZIP
+  DOCUMENT
+  OTHER
+}
+
+// VERSIONES DE SOFTWARE AUTODESK
+model SoftwareVersion {
+  id                String   @id @default(uuid())
+  software          String   // "AutoCAD", "Revit", "Civil3D"
+  version           String   // "2026", "2027"
+  
+  releaseDate       DateTime
+  endOfSupport      DateTime?
+  
+  // Features
+  features          String[] // Nuevas características
+  changelog         String?  @db.Text
+  
+  // Status
+  current           Boolean  @default(false)
+  archived          Boolean  @default(false)
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  
+  @@unique([software, version])
+  @@map("software_versions")
+}
