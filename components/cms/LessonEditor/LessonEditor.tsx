@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import { LessonType } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -21,7 +22,7 @@ const lessonSchema = z.object({
     title: z.string().min(1, 'Título requerido'),
     description: z.string().optional(),
     duration: z.coerce.number().min(1, 'Duración mínima 1 minuto'),
-    type: z.enum(['VIDEO', 'READING', 'EXERCISE', 'LIVE_CLASS', 'QUIZ']),
+    type: z.enum(['video', 'reading', 'exercise', 'live-class', 'quiz'] as const),
     richText: z.string().optional(),
     videoUrl: z.string().url().optional().or(z.literal('')),
     files: z.array(z.object({
@@ -60,7 +61,7 @@ export function LessonEditor({
             title: initialData?.title || '',
             description: initialData?.description || '',
             duration: initialData?.duration || 30,
-            type: initialData?.type || 'VIDEO',
+            type: initialData?.type || 'video',
             videoUrl: initialData?.videoUrl || '',
             ...initialData
         },
@@ -159,11 +160,11 @@ export function LessonEditor({
                                                         </SelectTrigger>
                                                     </FormControl>
                                                     <SelectContent>
-                                                        <SelectItem value="VIDEO">Video Lección</SelectItem>
-                                                        <SelectItem value="READING">Lectura/Texto</SelectItem>
-                                                        <SelectItem value="EXERCISE">Ejercicio Práctico</SelectItem>
-                                                        <SelectItem value="LIVE_CLASS">Clase en Vivo (Teams)</SelectItem>
-                                                        <SelectItem value="QUIZ">Quiz</SelectItem>
+                                                        <SelectItem value="video">Video Lección</SelectItem>
+                                                        <SelectItem value="reading">Lectura/Texto</SelectItem>
+                                                        <SelectItem value="exercise">Ejercicio Práctico</SelectItem>
+                                                        <SelectItem value="live-class">Clase en Vivo (Teams)</SelectItem>
+                                                        <SelectItem value="quiz">Quiz</SelectItem>
                                                     </SelectContent>
                                                 </Select>
                                                 <FormMessage />
@@ -195,7 +196,7 @@ export function LessonEditor({
                             <Tabs defaultValue="content" className="w-full">
                                 <TabsList className="mb-4">
                                     <TabsTrigger value="content">📝 Contenido</TabsTrigger>
-                                    {lessonType === 'VIDEO' && (
+                                    {lessonType === 'video' && (
                                         <TabsTrigger value="video">🎥 Video</TabsTrigger>
                                     )}
                                     <TabsTrigger value="files">📎 Archivos Adjuntos</TabsTrigger>
@@ -222,7 +223,7 @@ export function LessonEditor({
                                 </TabsContent>
 
                                 {/* TAB: Video (si es lección tipo VIDEO) */}
-                                {lessonType === 'VIDEO' && (
+                                {lessonType === 'video' && (
                                     <TabsContent value="video" className="space-y-4">
                                         <div>
                                             <FormLabel className="mb-2 block">Video de la Lección</FormLabel>

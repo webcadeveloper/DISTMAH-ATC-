@@ -13,7 +13,7 @@ export default function EditLessonPage() {
         title: 'Lección Ejemplo',
         description: 'Descripción de prueba',
         duration: 45,
-        type: 'VIDEO' as const,
+        type: 'video' as const,
         richText: '<p>Contenido de prueba...</p>',
     };
 

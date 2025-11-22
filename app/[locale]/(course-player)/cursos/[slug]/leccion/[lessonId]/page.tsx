@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ChevronLeft, ChevronRight, Download, MessageSquare, ThumbsUp } from 'lucide-react';
-import { COURSES_2026 } from '@/lib/courses-catalog-2026';
+import { COURSES_2026, type Lesson } from '@/lib/courses-catalog-2026';
 
 export default function LessonPage() {
     const params = useParams();
@@ -13,21 +13,19 @@ export default function LessonPage() {
     const lessonId = params.lessonId as string;
 
     const course = COURSES_2026.find(c => c.slug === slug);
-    // Find lesson in syllabus
-    let lesson = null;
-    let moduleTitle = '';
 
-    course?.syllabus.forEach(m => {
-        const found = m.lessons.find(l => l.id === lessonId);
-        if (found) {
-            lesson = found;
-            moduleTitle = m.title;
-        }
-    });
+    // Find lesson in syllabus using flatMap for better type inference
+    const allLessons = course?.syllabus.flatMap(m =>
+        m.lessons.map(l => ({ ...l, moduleTitle: m.title }))
+    ) || [];
 
-    if (!lesson) {
+    const lessonWithModule = allLessons.find(l => l.id === lessonId);
+
+    if (!lessonWithModule) {
         return <div className="p-8">Lección no encontrada</div>;
     }
+
+    const { moduleTitle, ...lesson } = lessonWithModule;
 
     return (
         <div className="flex flex-col h-screen">
