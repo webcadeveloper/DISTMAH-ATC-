@@ -5,14 +5,27 @@ import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Button } from '@/components/ui/button';
 import { Clock, BookOpen, Star } from 'lucide-react';
 import { Course } from '@/lib/courses-catalog-2026';
+import { AnimatedElement } from '@/components/animations/AnimatedElement';
 
 interface CourseCardProps {
     course: Course;
+    index?: number;
 }
 
-export function CourseCard({ course }: CourseCardProps) {
+export function CourseCard({ course, index = 0 }: CourseCardProps) {
     return (
-        <Card className="overflow-hidden hover:shadow-hover transition-all duration-300 group h-full flex flex-col border-neutral-200">
+        <AnimatedElement
+            animation={{
+                translateY: [50, 0],
+                opacity: [0, 1],
+                scale: [0.95, 1],
+                duration: 600,
+                ease: 'outExpo',
+            }}
+            delay={index * 100}
+            trigger="scroll"
+        >
+            <Card className="overflow-hidden hover:shadow-hover transition-all duration-300 group h-full flex flex-col border-neutral-200">
             <div className="relative h-48 w-full overflow-hidden">
                 {/* Image placeholder if no image provided */}
                 <div className="absolute inset-0 bg-neutral-200 animate-pulse" />
@@ -88,5 +101,6 @@ export function CourseCard({ course }: CourseCardProps) {
                 </div>
             </CardFooter>
         </Card>
+        </AnimatedElement>
     );
 }
