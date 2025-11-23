@@ -1,0 +1,106 @@
+{
+  "id": "autocad-2026-basico",
+  "titulo": "AutoCAD 2026 Básico",
+  "descripcion": "Curso completo de AutoCAD 2026 nivel básico. Aprende a crear, editar y gestionar dibujos técnicos 2D con las herramientas más recientes de AutoCAD.",
+  "duracion": "30 horas",
+  "nivel": "Básico",
+  "categoria": "CAD",
+  "software": "AutoCAD 2026",
+  "prerequisitos": [
+    "Conocimientos básicos de computación",
+    "Familiaridad con Windows",
+    "AutoCAD 2026 instalado"
+  ],
+  "objetivos": [
+    "Navegar eficientemente en la interfaz de AutoCAD 2026",
+    "Crear y gestionar dibujos técnicos 2D precisos",
+    "Utilizar capas para organizar información de diseño",
+    "Aplicar comandos básicos de dibujo y edición",
+    "Implementar Object Snap para precisión en el dibujo",
+    "Crear anotaciones y dimensiones básicas",
+    "Configurar y guardar archivos de dibujo"
+  ],
+  "publico_objetivo": [
+    "Principiantes sin experiencia previa en AutoCAD",
+    "Estudiantes de ingeniería, arquitectura y diseño",
+    "Profesionales que desean iniciar su transición al diseño CAD",
+    "Técnicos que necesitan habilidades básicas de dibujo técnico"
+  ],
+  "modulos": [
+    {
+      "numero": 1,
+      "titulo": "Introducción a AutoCAD 2026",
+      "duracion": "4-5 horas",
+      "carpeta": "modulo-1-introduccion",
+      "descripcion": "Introducción a la interfaz, configuración inicial, sistemas de coordenadas, gestión de archivos y navegación básica."
+    },
+    {
+      "numero": 2,
+      "titulo": "Construcción Básica",
+      "duracion": "8-10 horas",
+      "carpeta": "modulo-2-construccion-basica",
+      "descripcion": "Trabajo con capas, comandos Arc, Circle, Ellipse, Object Snap, y técnicas de navegación avanzadas con Zoom y Pan."
+    },
+    {
+      "numero": 3,
+      "titulo": "Comandos de Dibujo Fundamentales",
+      "duracion": "6-7 horas",
+      "carpeta": "modulo-3-comandos-dibujo",
+      "descripcion": "Comandos LINE, POLYLINE, RECTANGLE, POLYGON, SPLINE y POINT para creación de geometría básica."
+    },
+    {
+      "numero": 4,
+      "titulo": "Edición Básica de Objetos",
+      "duracion": "6-7 horas",
+      "carpeta": "modulo-4-edicion-basica",
+      "descripcion": "Selección de objetos, comandos ERASE, MOVE, COPY, ROTATE, SCALE, MIRROR, TRIM y EXTEND."
+    },
+    {
+      "numero": 5,
+      "titulo": "Anotaciones Básicas",
+      "duracion": "5-6 horas",
+      "carpeta": "modulo-5-anotaciones-basicas",
+      "descripcion": "Texto de una línea (DTEXT), texto multilínea (MTEXT), dimensiones básicas, estilos de dimensión y leaders."
+    }
+  ],
+  "certificacion": {
+    "disponible": true,
+    "nombre": "Certificado de Finalización: AutoCAD 2026 Básico",
+    "requisitos": [
+      "Asistencia mínima del 80%",
+      "Completar todos los ejercicios prácticos",
+      "Aprobar evaluaciones con mínimo 70%",
+      "Presentar proyecto final"
+    ]
+  },
+  "metodologia": {
+    "teoria": "40%",
+    "practica": "60%",
+    "evaluaciones": true,
+    "proyecto_final": true
+  },
+  "materiales": [
+    "Manual digital del estudiante",
+    "Archivos de ejercicios (.dwg)",
+    "Video tutoriales de apoyo",
+    "Quick Reference Cards",
+    "Plantillas de dibujo (templates)"
+  ],
+  "preparacion_siguiente_nivel": [
+    "AutoCAD 2026 Avanzado (30 horas adicionales)",
+    "Especialización en diseño arquitectónico",
+    "Especialización en diseño mecánico",
+    "Certificación Autodesk oficial"
+  ],
+  "instructor": {
+    "certificacion": "Autodesk Certified",
+    "experiencia": [
+      "Diseño CAD profesional",
+      "Enseñanza de AutoCAD",
+      "Aplicaciones industriales reales"
+    ]
+  },
+  "version": "1.0",
+  "fecha_actualizacion": "2025-11-22",
+  "institucion": "DISTMAH Universidad Autodesk - ATC"
+}

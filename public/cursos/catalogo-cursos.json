@@ -1,0 +1,131 @@
+{
+  "institucion": "DISTMAH Universidad Autodesk - ATC",
+  "version": "1.0",
+  "fecha_actualizacion": "2025-11-22",
+  "total_cursos": 2,
+  "total_horas": 60,
+  "cursos": [
+    {
+      "id": "autocad-2026-basico",
+      "titulo": "AutoCAD 2026 Básico",
+      "slug": "autocad-2026-basico",
+      "nivel": "Básico",
+      "duracion": "30 horas",
+      "categoria": "CAD",
+      "subcategoria": "AutoCAD",
+      "modulos": 5,
+      "lecciones": 35,
+      "ejercicios": 70,
+      "prerequisitos": [],
+      "siguiente_curso": "autocad-2026-avanzado",
+      "activo": true,
+      "destacado": true,
+      "descripcion_corta": "Aprende AutoCAD 2026 desde cero. Crea dibujos técnicos 2D precisos con herramientas profesionales.",
+      "imagen_portada": "/cursos/autocad-2026-basico/portada.jpg",
+      "precio": null,
+      "certificacion": true,
+      "instructor": "Instructor Certificado Autodesk",
+      "calificacion": null,
+      "estudiantes": 0,
+      "tags": [
+        "AutoCAD",
+        "CAD",
+        "Dibujo Técnico",
+        "2D",
+        "Básico",
+        "Autodesk",
+        "2026"
+      ]
+    },
+    {
+      "id": "autocad-2026-avanzado",
+      "titulo": "AutoCAD 2026 Avanzado",
+      "slug": "autocad-2026-avanzado",
+      "nivel": "Avanzado",
+      "duracion": "30 horas",
+      "categoria": "CAD",
+      "subcategoria": "AutoCAD",
+      "modulos": 5,
+      "lecciones": 40,
+      "ejercicios": 80,
+      "prerequisitos": ["autocad-2026-basico"],
+      "siguiente_curso": null,
+      "activo": true,
+      "destacado": true,
+      "descripcion_corta": "Domina AutoCAD 2026 con técnicas avanzadas, bloques dinámicos, IA y características profesionales.",
+      "imagen_portada": "/cursos/autocad-2026-avanzado/portada.jpg",
+      "precio": null,
+      "certificacion": true,
+      "instructor": "Instructor Certificado Autodesk Professional",
+      "calificacion": null,
+      "estudiantes": 0,
+      "tags": [
+        "AutoCAD",
+        "CAD",
+        "Avanzado",
+        "Bloques Dinámicos",
+        "AI",
+        "Smart Blocks",
+        "Autodesk",
+        "2026",
+        "Profesional"
+      ],
+      "caracteristicas_especiales": [
+        "Inteligencia Artificial integrada",
+        "Smart Blocks",
+        "Connected Support Files",
+        "Autodesk Assistant",
+        "ArcGIS Basemaps"
+      ]
+    }
+  ],
+  "rutas_aprendizaje": [
+    {
+      "nombre": "Ruta Completa AutoCAD 2026",
+      "descripcion": "Domina AutoCAD 2026 desde nivel básico hasta avanzado con características de IA",
+      "duracion_total": "60 horas",
+      "cursos": [
+        "autocad-2026-basico",
+        "autocad-2026-avanzado"
+      ],
+      "certificaciones": 2,
+      "nivel_final": "Avanzado"
+    }
+  ],
+  "estadisticas": {
+    "total_modulos": 10,
+    "total_lecciones": 75,
+    "total_ejercicios": 150,
+    "total_horas_teoria": 24,
+    "total_horas_practica": 36
+  },
+  "requisitos_sistema": {
+    "software": "AutoCAD 2026",
+    "sistema_operativo": "Windows 10/11 (64-bit)",
+    "procesador": "2.5-2.9 GHz (recomendado 3+ GHz)",
+    "memoria_ram": "8 GB (recomendado 16 GB)",
+    "tarjeta_grafica": "1 GB GPU con DirectX 11 (recomendado 4 GB)",
+    "disco": "10 GB de espacio libre",
+    "resolucion": "1920 x 1080 (recomendado)",
+    "internet": "Requerido para características de nube y IA"
+  },
+  "licencias": {
+    "autocad_2026": {
+      "tipo": "Suscripción",
+      "opciones": [
+        "Suscripción mensual",
+        "Suscripción anual",
+        "Licencia educativa (estudiantes)",
+        "Trial 30 días"
+      ],
+      "url": "https://www.autodesk.com/products/autocad"
+    }
+  },
+  "soporte": {
+    "email": "soporte@distmah.com.ve",
+    "telefono": "+58 (contacto)",
+    "horario": "Lunes a Viernes, 8:00 AM - 6:00 PM",
+    "faq_url": "/soporte/faq",
+    "documentacion_url": "/docs"
+  }
+}
