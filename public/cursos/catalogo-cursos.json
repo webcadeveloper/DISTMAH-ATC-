@@ -1,9 +1,9 @@
 {
   "institucion": "DISTMAH Universidad Autodesk - ATC",
-  "version": "1.0",
+  "version": "2.0",
   "fecha_actualizacion": "2025-11-22",
-  "total_cursos": 2,
-  "total_horas": 60,
+  "total_cursos": 6,
+  "total_horas": 146,
   "cursos": [
     {
       "id": "autocad-2026-basico",
@@ -27,15 +27,7 @@
       "instructor": "Instructor Certificado Autodesk",
       "calificacion": null,
       "estudiantes": 0,
-      "tags": [
-        "AutoCAD",
-        "CAD",
-        "Dibujo Técnico",
-        "2D",
-        "Básico",
-        "Autodesk",
-        "2026"
-      ]
+      "tags": ["AutoCAD", "CAD", "Dibujo Técnico", "2D", "Básico", "Autodesk", "2026"]
     },
     {
       "id": "autocad-2026-avanzado",
@@ -59,23 +51,132 @@
       "instructor": "Instructor Certificado Autodesk Professional",
       "calificacion": null,
       "estudiantes": 0,
-      "tags": [
-        "AutoCAD",
-        "CAD",
-        "Avanzado",
-        "Bloques Dinámicos",
-        "AI",
-        "Smart Blocks",
-        "Autodesk",
-        "2026",
-        "Profesional"
-      ],
+      "tags": ["AutoCAD", "CAD", "Avanzado", "Bloques Dinámicos", "AI", "Smart Blocks", "Autodesk", "2026", "Profesional"],
+      "caracteristicas_especiales": ["Inteligencia Artificial integrada", "Smart Blocks", "Connected Support Files", "Autodesk Assistant", "ArcGIS Basemaps"]
+    },
+    {
+      "id": "revit-2026-architecture",
+      "titulo": "Revit Architecture 2026",
+      "slug": "revit-2026-architecture",
+      "nivel": "Básico a Avanzado",
+      "duracion": "30 horas",
+      "categoria": "BIM",
+      "subcategoria": "Revit",
+      "modulos": 6,
+      "lecciones": 36,
+      "ejercicios": 48,
+      "prerequisitos": [],
+      "siguiente_curso": null,
+      "activo": true,
+      "destacado": true,
+      "descripcion_corta": "Curso completo de Revit Architecture 2026. Modelado BIM desde fundamentos hasta técnicas avanzadas con todas las características 2026.",
+      "imagen_portada": "/cursos/revit-2026-architecture/portada.jpg",
+      "precio": 390,
+      "certificacion": true,
+      "instructor": "Instructor Certificado Autodesk BIM",
+      "calificacion": null,
+      "estudiantes": 0,
+      "tags": ["Revit", "BIM", "Architecture", "Modelado 3D", "Autodesk", "2026", "Toposolid", "Twinmotion"],
       "caracteristicas_especiales": [
-        "Inteligencia Artificial integrada",
-        "Smart Blocks",
-        "Connected Support Files",
-        "Autodesk Assistant",
-        "ArcGIS Basemaps"
+        "Accelerated Graphics",
+        "Wall Creation Enhancements",
+        "Toposolid Improvements",
+        "Twinmotion Integration",
+        "Reality Capture Support",
+        "Save Position for Views"
+      ]
+    },
+    {
+      "id": "revit-2026-mep-mecanicas",
+      "titulo": "Revit MEP 2026 - Instalaciones Mecánicas (HVAC)",
+      "slug": "revit-2026-mep-mecanicas",
+      "nivel": "Intermedio a Avanzado",
+      "duracion": "24 horas",
+      "categoria": "BIM",
+      "subcategoria": "Revit MEP",
+      "modulos": 5,
+      "lecciones": 25,
+      "ejercicios": 40,
+      "prerequisitos": ["revit-2026-architecture"],
+      "prerequisitos_recomendados": true,
+      "siguiente_curso": null,
+      "activo": true,
+      "destacado": true,
+      "descripcion_corta": "Especialización en sistemas mecánicos (HVAC) con Revit MEP 2026. Climatización, ventilación y análisis de cargas térmicas.",
+      "imagen_portada": "/cursos/revit-2026-mep-mecanicas/portada.jpg",
+      "precio": 415,
+      "certificacion": true,
+      "instructor": "Ingeniero MEP Certificado Autodesk",
+      "calificacion": null,
+      "estudiantes": 0,
+      "tags": ["Revit", "MEP", "HVAC", "Mechanical", "BIM", "Climatización", "Autodesk", "2026"],
+      "caracteristicas_especiales": [
+        "Enhanced System Zones",
+        "HVAC Zone improvements",
+        "Color schemes for zones",
+        "Improved analytical models"
+      ]
+    },
+    {
+      "id": "revit-2026-mep-electricas",
+      "titulo": "Revit MEP 2026 - Instalaciones Eléctricas",
+      "slug": "revit-2026-mep-electricas",
+      "nivel": "Intermedio",
+      "duracion": "16 horas",
+      "categoria": "BIM",
+      "subcategoria": "Revit MEP",
+      "modulos": 4,
+      "lecciones": 18,
+      "ejercicios": 25,
+      "prerequisitos": ["revit-2026-architecture"],
+      "prerequisitos_recomendados": true,
+      "siguiente_curso": null,
+      "activo": true,
+      "destacado": false,
+      "descripcion_corta": "Sistemas eléctricos con Revit MEP 2026. Circuitos, paneles, iluminación y todas las nuevas características eléctricas.",
+      "imagen_portada": "/cursos/revit-2026-mep-electricas/portada.jpg",
+      "precio": 225,
+      "certificacion": true,
+      "instructor": "Ingeniero Eléctrico Certificado Autodesk",
+      "calificacion": null,
+      "estudiantes": 0,
+      "tags": ["Revit", "MEP", "Electrical", "Eléctrico", "BIM", "Circuitos", "Autodesk", "2026"],
+      "caracteristicas_especiales": [
+        "Customizable Conductors",
+        "Panel Schedule Organization",
+        "Improved Circuit Routing",
+        "New Equipment Schedule Fields"
+      ]
+    },
+    {
+      "id": "revit-2026-mep-sanitarias",
+      "titulo": "Revit MEP 2026 - Instalaciones Sanitarias",
+      "slug": "revit-2026-mep-sanitarias",
+      "nivel": "Intermedio",
+      "duracion": "16 horas",
+      "categoria": "BIM",
+      "subcategoria": "Revit MEP",
+      "modulos": 4,
+      "lecciones": 18,
+      "ejercicios": 25,
+      "prerequisitos": ["revit-2026-architecture"],
+      "prerequisitos_recomendados": true,
+      "siguiente_curso": null,
+      "activo": true,
+      "destacado": false,
+      "descripcion_corta": "Sistemas de plomería con Revit MEP 2026. Agua potable, drenaje, sanitarios y protección contra incendios.",
+      "imagen_portada": "/cursos/revit-2026-mep-sanitarias/portada.jpg",
+      "precio": 225,
+      "certificacion": true,
+      "instructor": "Ingeniero Sanitario Certificado Autodesk",
+      "calificacion": null,
+      "estudiantes": 0,
+      "tags": ["Revit", "MEP", "Plumbing", "Sanitarias", "BIM", "Plomería", "Autodesk", "2026"],
+      "caracteristicas_especiales": [
+        "Enhanced pipe routing",
+        "Improved sloped piping",
+        "Better fixture families",
+        "Coordination improvements"
       ]
     }
   ],
@@ -84,47 +185,139 @@
       "nombre": "Ruta Completa AutoCAD 2026",
       "descripcion": "Domina AutoCAD 2026 desde nivel básico hasta avanzado con características de IA",
       "duracion_total": "60 horas",
-      "cursos": [
-        "autocad-2026-basico",
-        "autocad-2026-avanzado"
-      ],
+      "cursos": ["autocad-2026-basico", "autocad-2026-avanzado"],
       "certificaciones": 2,
-      "nivel_final": "Avanzado"
+      "nivel_final": "Avanzado",
+      "precio_total": null
+    },
+    {
+      "nombre": "Arquitecto BIM Completo",
+      "descripcion": "Formación completa en Revit Architecture y todos los sistemas MEP para arquitectos BIM profesionales",
+      "duracion_total": "86 horas",
+      "cursos": [
+        "revit-2026-architecture",
+        "revit-2026-mep-mecanicas",
+        "revit-2026-mep-electricas",
+        "revit-2026-mep-sanitarias"
+      ],
+      "certificaciones": 4,
+      "nivel_final": "Avanzado",
+      "precio_total": 1255,
+      "precio_descuento": 1099,
+      "ahorro": 156
+    },
+    {
+      "nombre": "Ingeniero MEP Completo",
+      "descripcion": "Especialización completa en sistemas MEP (Mecánicas, Eléctricas, Sanitarias) con Revit 2026",
+      "duracion_total": "56 horas",
+      "prerequisito": "revit-2026-architecture",
+      "cursos": [
+        "revit-2026-mep-mecanicas",
+        "revit-2026-mep-electricas",
+        "revit-2026-mep-sanitarias"
+      ],
+      "certificaciones": 3,
+      "nivel_final": "Avanzado",
+      "precio_total": 865,
+      "precio_descuento": 750,
+      "ahorro": 115
+    },
+    {
+      "nombre": "Revit Architecture Profesional",
+      "descripcion": "Solo arquitectura BIM con Revit 2026",
+      "duracion_total": "30 horas",
+      "cursos": ["revit-2026-architecture"],
+      "certificaciones": 1,
+      "nivel_final": "Avanzado",
+      "precio_total": 390
+    }
+  ],
+  "paquetes_descuento": [
+    {
+      "nombre": "Paquete Completo BIM",
+      "descripcion": "Los 4 cursos de Revit 2026 (Architecture + 3 MEP)",
+      "cursos_incluidos": 4,
+      "precio_normal": 1255,
+      "precio_paquete": 1099,
+      "descuento_porcentaje": 12,
+      "ahorro": 156
+    },
+    {
+      "nombre": "Paquete MEP Completo",
+      "descripcion": "Los 3 cursos MEP (Mecánicas, Eléctricas, Sanitarias)",
+      "cursos_incluidos": 3,
+      "precio_normal": 865,
+      "precio_paquete": 750,
+      "descuento_porcentaje": 13,
+      "ahorro": 115
+    },
+    {
+      "nombre": "Paquete Doble MEP",
+      "descripcion": "2 cursos MEP a elección",
+      "cursos_incluidos": 2,
+      "precio_normal": 450,
+      "precio_paquete": 400,
+      "descuento_porcentaje": 11,
+      "ahorro": 50
     }
   ],
   "estadisticas": {
-    "total_modulos": 10,
-    "total_lecciones": 75,
-    "total_ejercicios": 150,
-    "total_horas_teoria": 24,
-    "total_horas_practica": 36
+    "total_modulos": 29,
+    "total_lecciones": 170,
+    "total_ejercicios": 288,
+    "total_horas_autocad": 60,
+    "total_horas_revit": 86,
+    "total_horas_teoria": 58,
+    "total_horas_practica": 88
   },
   "requisitos_sistema": {
-    "software": "AutoCAD 2026",
-    "sistema_operativo": "Windows 10/11 (64-bit)",
-    "procesador": "2.5-2.9 GHz (recomendado 3+ GHz)",
-    "memoria_ram": "8 GB (recomendado 16 GB)",
-    "tarjeta_grafica": "1 GB GPU con DirectX 11 (recomendado 4 GB)",
-    "disco": "10 GB de espacio libre",
-    "resolucion": "1920 x 1080 (recomendado)",
-    "internet": "Requerido para características de nube y IA"
+    "autocad_2026": {
+      "software": "AutoCAD 2026",
+      "sistema_operativo": "Windows 10/11 (64-bit)",
+      "procesador": "2.5-2.9 GHz (recomendado 3+ GHz)",
+      "memoria_ram": "8 GB (recomendado 16 GB)",
+      "tarjeta_grafica": "1 GB GPU con DirectX 11 (recomendado 4 GB)",
+      "disco": "10 GB de espacio libre",
+      "resolucion": "1920 x 1080 (recomendado)",
+      "internet": "Requerido para características de nube y IA"
+    },
+    "revit_2026": {
+      "software": "Autodesk Revit 2026",
+      "sistema_operativo": "Windows 10/11 (64-bit)",
+      "procesador": "Intel i7 o AMD Ryzen 7 (3+ GHz)",
+      "memoria_ram": "16 GB mínimo (32 GB recomendado)",
+      "tarjeta_grafica": "4 GB VRAM DirectX 11",
+      "disco": "50 GB espacio libre (SSD recomendado)",
+      "resolucion": "1920 x 1080 mínimo",
+      "internet": "Banda ancha para descargas y colaboración"
+    }
   },
   "licencias": {
     "autocad_2026": {
       "tipo": "Suscripción",
-      "opciones": [
-        "Suscripción mensual",
-        "Suscripción anual",
-        "Licencia educativa (estudiantes)",
-        "Trial 30 días"
-      ],
+      "opciones": ["Suscripción mensual", "Suscripción anual", "Licencia educativa (estudiantes)", "Trial 30 días"],
       "url": "https://www.autodesk.com/products/autocad"
+    },
+    "revit_2026": {
+      "tipo": "Suscripción",
+      "opciones": ["Suscripción mensual", "Suscripción anual", "Licencia educativa (estudiantes)", "Trial 30 días"],
+      "url": "https://www.autodesk.com/products/revit"
     }
+  },
+  "modalidades": {
+    "disponibles": [
+      "Mañanas (8:00 AM - 12:00 PM)",
+      "Tardes (2:00 PM - 6:00 PM)",
+      "Noches (6:00 PM - 10:00 PM)",
+      "Sábados (9:00 AM - 5:00 PM)",
+      "Intensivo (Lunes a Viernes)"
+    ],
+    "formato": "Clases en vivo por videoconferencia, grabaciones disponibles, plataforma LMS"
   },
   "soporte": {
     "email": "soporte@distmah.com.ve",
     "telefono": "+58 (contacto)",
-    "horario": "Lunes a Viernes, 8:00 AM - 6:00 PM",
+    "horario": "Lunes a Viernes, 8:00 AM - 6:00 PM; Sábados 9:00 AM - 1:00 PM",
     "faq_url": "/soporte/faq",
     "documentacion_url": "/docs"
   }
