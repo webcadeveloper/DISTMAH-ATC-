@@ -1,0 +1,192 @@
+{
+  "id": "revit-2026-mep-electricas",
+  "titulo": "Revit MEP 2026 - Instalaciones Eléctricas",
+  "descripcion": "Curso profesional enfocado en sistemas eléctricos con Autodesk Revit MEP 2026. Incluye circuitos, paneles, iluminación y todas las nuevas características eléctricas de 2026 como conductores personalizables y panel schedules organizados.",
+  "instructor": "Ing. Roberto Díaz",
+  "precio": 225,
+  "moneda": "USD",
+  "duracion": "16 horas",
+  "nivel": "Intermedio",
+  "categoria": "MEP",
+  "subcategoria": "Instalaciones Eléctricas",
+  "version": "2026",
+  "idioma": "Español",
+  "prerequisitos": [
+    "Revit Architecture 2026 (recomendado)",
+    "Conocimientos básicos de electricidad",
+    "Comprensión de circuitos eléctricos",
+    "Manejo básico de AutoCAD (deseable)"
+  ],
+  "objetivos": [
+    "Dominar electrical settings y configuraciones MEP",
+    "Diseñar tableros y switchboards profesionales",
+    "Crear y enrutar circuitos eléctricos complejos",
+    "Utilizar conductores y cables personalizables 2026",
+    "Diseñar sistemas de iluminación con análisis lumínico",
+    "Balancear cargas eléctricas correctamente",
+    "Calcular demandas y capacidades de paneles",
+    "Generar diagramas unifilares profesionales",
+    "Crear panel schedules y circuit schedules",
+    "Coordinar instalaciones eléctricas con otras disciplinas MEP"
+  ],
+  "incluye": [
+    "16 lecciones completas con contenido profesional",
+    "Ejercicios prácticos por módulo",
+    "Familias MEP eléctricas (.rfa)",
+    "Plantillas de proyecto eléctrico (.rte)",
+    "Tablas de cálculo de cargas",
+    "Material descargable en PDF",
+    "Acceso a plataforma LMS 24/7",
+    "Certificado digital al finalizar",
+    "Soporte por instructor",
+    "Acceso de por vida",
+    "Actualizaciones gratuitas"
+  ],
+  "modulos": [
+    {
+      "numero": 1,
+      "titulo": "Fundamentos Eléctricos en Revit MEP",
+      "duracion": "4 horas",
+      "lecciones": 4,
+      "descripcion": "Introducción completa a Revit MEP para diseño eléctrico. Interface especializada, electrical settings, conductores personalizables 2026, sistemas de voltaje y distribución.",
+      "temas": [
+        "Interface MEP para sistemas eléctricos",
+        "Electrical Settings y configuración de proyecto",
+        "NUEVO 2026: Conductores y cables personalizables",
+        "Definición de materiales, diámetros y aislamiento",
+        "Sistemas de voltaje (120V, 208V, 277V, 480V)",
+        "Sistemas de distribución eléctrica",
+        "Familias eléctricas básicas",
+        "Navegación en modelos eléctricos"
+      ]
+    },
+    {
+      "numero": 2,
+      "titulo": "Equipos y Circuitos Eléctricos",
+      "duracion": "5 horas",
+      "lecciones": 5,
+      "descripcion": "Diseño completo de sistemas de distribución eléctrica. Tableros, switchboards, transformadores, creación de circuitos con routing mejorado 2026 y cálculo profesional de cargas.",
+      "temas": [
+        "Tableros de distribución (panelboards)",
+        "Switchboards y equipos principales",
+        "NUEVO 2026: Organización de panel schedules en Project Browser",
+        "Transformadores y subestaciones",
+        "Creación de circuitos eléctricos",
+        "NUEVO 2026: Routing mejorado de circuitos",
+        "Cálculo de cargas conectadas y demandadas",
+        "NUEVO 2026: Nuevos campos en Equipment Schedules",
+        "Factores de demanda y diversidad"
+      ]
+    },
+    {
+      "numero": 3,
+      "titulo": "Iluminación y Sistemas de Fuerza",
+      "duracion": "4 horas",
+      "lecciones": 4,
+      "descripcion": "Diseño de sistemas de iluminación y fuerza. Colocación de luminarias, análisis lumínico, contactos, receptáculos, iluminación de emergencia y balanceo de circuitos.",
+      "temas": [
+        "Colocación inteligente de luminarias",
+        "Análisis de iluminación (lux/fc)",
+        "Circuitos de iluminación",
+        "Contactos y receptáculos (tomacorrientes)",
+        "Iluminación de emergencia y salida",
+        "Balanceo de circuitos entre fases",
+        "Sistemas de fuerza e iluminación normal",
+        "Sistemas de respaldo (UPS, planta eléctrica)"
+      ]
+    },
+    {
+      "numero": 4,
+      "titulo": "Documentación Eléctrica",
+      "duracion": "3 horas",
+      "lecciones": 3,
+      "descripcion": "Generación de documentación técnica completa. Panel schedules, circuit schedules, diagramas unifilares, símbolos eléctricos y coordinación multidisciplinaria 2026.",
+      "temas": [
+        "Panel schedules profesionales",
+        "Circuit schedules y leyendas",
+        "Diagramas unifilares (single line diagrams)",
+        "Símbolos y etiquetas eléctricas",
+        "Anotaciones y dimensiones eléctricas",
+        "Coordinación con arquitectura y otras disciplinas",
+        "Clash detection para sistemas eléctricos",
+        "Exportación a AutoCAD y otros formatos",
+        "Preparación de planos de construcción"
+      ]
+    }
+  ],
+  "certificacion": {
+    "nombre": "Revit MEP Electrical Systems 2026 Specialist",
+    "requisitos": [
+      "Completar las 16 lecciones",
+      "Aprobar ejercicios prácticos de cada módulo",
+      "Presentar proyecto final integrador",
+      "Mínimo 80% de asistencia (modalidad en vivo)"
+    ],
+    "validez": "Permanente",
+    "verificable": true
+  },
+  "requisitos_tecnicos": {
+    "software": [
+      "Autodesk Revit 2026 (licencia requerida)",
+      "Windows 10/11 de 64 bits"
+    ],
+    "hardware": {
+      "procesador": "Intel i7 o AMD Ryzen 7 (3+ GHz)",
+      "ram": "16 GB mínimo (32 GB recomendado)",
+      "grafica": "4 GB VRAM DirectX 11",
+      "disco": "50 GB espacio libre (SSD recomendado)",
+      "resolucion": "1920x1080 mínimo"
+    },
+    "conectividad": "Internet de banda ancha"
+  },
+  "novedades_2026": [
+    "Conductores y cables personalizables (materiales, diámetros, aislamiento)",
+    "Organización de Panel Schedules en Project Browser",
+    "Routing mejorado de circuitos para sistemas complejos",
+    "Nuevos campos en Equipment Schedules (Part Type, Distribution System)",
+    "Mejor soporte internacional de calibres (no solo AWG)",
+    "Modelado de distribución de carga mejorado",
+    "Accelerated Graphics para navegación rápida",
+    "Coordination Model improvements"
+  ],
+  "modalidades": [
+    "En vivo por videoconferencia",
+    "Acceso a grabaciones",
+    "Plataforma LMS con ejercicios",
+    "Soporte asíncrono"
+  ],
+  "horarios_disponibles": [
+    "Mañanas: 8:00 AM - 12:00 PM",
+    "Tardes: 2:00 PM - 6:00 PM",
+    "Noches: 6:00 PM - 10:00 PM",
+    "Sábados: 9:00 AM - 5:00 PM",
+    "Intensivo: Lunes a Viernes"
+  ],
+  "competencias_profesionales": [
+    "Modelado BIM de instalaciones eléctricas completas",
+    "Diseño de sistemas de distribución eléctrica",
+    "Diseño de circuitos de iluminación y fuerza",
+    "Cálculo de cargas y dimensionamiento de paneles",
+    "Balanceo de cargas entre fases",
+    "Generación de documentación técnica profesional",
+    "Coordinación multidisciplinaria MEP",
+    "Detección y resolución de interferencias",
+    "Preparación de modelos para construcción"
+  ],
+  "posiciones_laborales": [
+    "BIM Modeler MEP (Electrical)",
+    "Ingeniero Eléctrico BIM",
+    "Diseñador de Instalaciones Eléctricas",
+    "Coordinador BIM MEP",
+    "Revit MEP Specialist (Electrical)",
+    "MEP Engineer"
+  ],
+  "actualizacion": "2025-11-22",
+  "vigencia": "2026",
+  "contacto": {
+    "institucion": "DISTMAH Universidad Autodesk - ATC",
+    "web": "www.distmah.com.ve",
+    "email": "cursos@distmah.com.ve",
+    "whatsapp": "+58 XXX-XXXXXXX"
+  }
+}
