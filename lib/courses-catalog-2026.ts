@@ -353,136 +353,232 @@ export const COURSES_2026: Course[] = [
 
   // REVIT ARCHITECTURE 2026
   {
-    id: 'revit-architecture-2026',
-    slug: 'revit-architecture-2026',
+    id: 'revit-2026-architecture',
+    slug: 'revit-2026-architecture',
     version: '2026',
     software: 'Revit 2026',
-    title: 'Revit Architecture 2026 - BIM Avanzado',
-    subtitle: 'Metodología BIM con las últimas innovaciones de Revit 2026',
+    title: 'Revit Architecture 2026 - Curso Completo Profesional',
+    subtitle: 'Domina Autodesk Revit Architecture 2026 desde cero hasta nivel avanzado',
     category: 'Revit',
-    level: 'Intermedio',
+    level: 'Básico a Avanzado',
     duration: 30,
-    sessions: 10,
-    description: `Curso completo de Revit Architecture 2026. Novedades principales:
-    • Generative Design integrado
-    • Nuevas familias paramétricas inteligentes
-    • Colaboración en tiempo real mejorada
-    • Performance optimizada (2x más rápido)
-    • Integración nativa con ACC (Autodesk Construction Cloud)
-    • AI-powered automation tools
-    • Enhanced rendering con Autodesk Cloud`,
+    sessions: 6,
+    description: `Curso profesional completo de Autodesk Revit Architecture 2026 que cubre desde los fundamentos hasta técnicas avanzadas de modelado BIM. Aprende a crear proyectos arquitectónicos completos, generar documentación técnica profesional, y dominar todas las nuevas herramientas de la versión 2026.
+
+    Nuevas características 2026:
+    • Accelerated Graphics (Tech Preview) - Navegación 3D mejorada con aceleración GPU
+    • Wall Creation Enhancements - Creación automática de muros desde áreas cerradas
+    • Toposolid Improvements - Subdivisión y valores negativos para vialidades
+    • Save Position for Views on Sheets - Guarda posiciones de vistas en láminas
+    • Twinmotion Integration - Sustitución automática de assets
+    • Reality Capture Support - Integración de nubes de puntos y mesh
+    • Room Tags Auto-center - Etiquetas de habitaciones auto-centradas
+
+    Incluye modelado 3D, visualización con Twinmotion, coordinación BIM, familias paramétricas y flujos de trabajo colaborativos.`,
     objectives: [
-      'Dominar metodología BIM con Revit 2026',
-      'Utilizar nuevas herramientas de Generative Design',
-      'Crear familias paramétricas avanzadas',
-      'Colaborar en proyectos con Autodesk Construction Cloud',
-      'Producir documentación BIM completa',
-      'Prepararse para certificación Revit Architecture Professional',
+      'Dominar la interfaz de Revit Architecture 2026',
+      'Crear modelos arquitectónicos completos en 3D',
+      'Utilizar herramientas de creación automática de muros',
+      'Trabajar con Toposolid para modelado de terrenos',
+      'Generar documentación técnica completa',
+      'Crear renderizados con Twinmotion',
+      'Trabajar con modelos de coordinación',
+      'Integrar nubes de puntos y Reality Capture',
+      'Crear familias paramétricas personalizadas',
+      'Implementar flujos de trabajo BIM colaborativos',
     ],
     prerequisites: [
-      'Conocimientos de arquitectura',
-      'AutoCAD básico (recomendado)',
-      'Computadora con 16GB RAM mínimo',
+      'Conocimientos básicos de AutoCAD (recomendado)',
+      'Computadora con Revit 2026 instalado',
+      'Conocimientos básicos de arquitectura',
+      'Windows 10/11 con mínimo 16GB RAM',
+      'Tarjeta gráfica DirectX 11 compatible',
     ],
-    certification: 'Autodesk Certified Professional - Revit Architecture 2026',
-    instructor: 'Arq. [Nombre] - Revit Expert',
-    price: 499,
-    priceVEF: 18000,
-    image: '/images/courses/revit-2026-architecture.jpg',
-    thumbnail: '/images/courses/revit-2026-arch-thumb.jpg',
+    certification: 'Certificado Digital - Revit Architecture 2026',
+    instructor: 'A definir - Arquitecto BIM Manager',
+    price: 390,
+    priceVEF: 14300,
+    image: '/cursos/revit-2026-architecture/imagenes/portada-revit-2026.png',
+    thumbnail: '/cursos/revit-2026-architecture/imagenes/promo-revit-2026.png',
     featured: true,
     popular: true,
     enrollmentCount: 0,
     rating: 0,
     reviewsCount: 0,
-    skills: ['Revit', 'BIM', 'Arquitectura', 'Modelado BIM', 'ACC'],
-    tags: ['Revit', '2026', 'BIM', 'Arquitectura', 'Certificación', 'Nuevo'],
-    lastUpdated: '2026-01-15T00:00:00Z',
-    releaseDate: '2025-11-01T00:00:00Z',
+    skills: ['Revit', 'BIM', 'Arquitectura', 'Modelado BIM', 'Twinmotion', 'Toposolid', 'Reality Capture'],
+    tags: ['Revit', '2026', 'BIM', 'Arquitectura', 'Twinmotion', 'Toposolid', 'Familias', 'Nuevo'],
+    lastUpdated: '2025-11-22T00:00:00Z',
+    releaseDate: '2025-11-22T00:00:00Z',
     syllabus: [],
   },
 
-  // REVIT STRUCTURE 2026
+  // REVIT MEP - INSTALACIONES MECÁNICAS (HVAC) 2026
   {
-    id: 'revit-structure-2026',
-    slug: 'revit-structure-2026',
+    id: 'revit-2026-mep-mecanicas',
+    slug: 'revit-2026-mep-mecanicas',
     version: '2026',
     software: 'Revit 2026',
-    title: 'Revit Structure 2026 - BIM Estructural',
-    subtitle: 'Diseño estructural BIM con Revit 2026',
+    title: 'Revit MEP 2026 - Instalaciones Mecánicas (HVAC)',
+    subtitle: 'Especialización en sistemas mecánicos, climatización y ventilación',
     category: 'Revit',
-    level: 'Avanzado',
-    duration: 30,
-    sessions: 10,
-    description: `Modelado estructural con Revit 2026. Incluye:
-    • Nuevas herramientas de análisis estructural
-    • Integración directa con Robot Structural Analysis
-    • Detallado de conexiones mejorado
-    • Cuantificación automática de acero`,
+    level: 'Intermedio a Avanzado',
+    duration: 24,
+    sessions: 5,
+    description: `Curso especializado en sistemas mecánicos (HVAC) con Revit MEP 2026. Cubre climatización, ventilación, análisis de cargas térmicas y coordinación MEP.
+
+    Nuevas características 2026:
+    • Enhanced System Zones - Límites por sketch o espacios
+    • HVAC Zones mejoradas - Fusión con System Zones
+    • Color schemes y scheduling para zonas
+    • Modelos de coordinación mejorados
+    • Mejores capacidades de modelo analítico
+
+    Aprende a diseñar sistemas de climatización completos, realizar análisis de cargas térmicas, dimensionar ductos, y coordinar con otras disciplinas MEP. Incluye sistemas de difusores, rejillas, UMA, cajas VAV, y fundamentos de fabricación MEP.`,
     objectives: [
-      'Modelar sistemas estructurales completos',
-      'Analizar estructuras con herramientas integradas',
-      'Generar planos estructurales',
-      'Coordinar con modelo arquitectónico',
+      'Dominar la interfaz MEP para sistemas mecánicos',
+      'Diseñar sistemas de climatización (HVAC) completos',
+      'Realizar análisis de cargas térmicas con System Zones',
+      'Dimensionar ductos y seleccionar equipos',
+      'Diseñar sistemas de ventilación mecánica',
+      'Coordinar instalaciones mecánicas con otras disciplinas',
+      'Generar documentación técnica de sistemas HVAC',
+      'Aplicar fundamentos de fabricación MEP',
     ],
-    prerequisites: ['Conocimientos de ingeniería estructural', 'Revit básico'],
-    certification: 'Autodesk Certified Professional - Revit Structure',
-    instructor: 'Ing. [Nombre] - Structural Engineer',
-    price: 499,
-    priceVEF: 18000,
-    image: '/images/courses/revit-2026-structure.jpg',
-    thumbnail: '/images/courses/revit-2026-struct-thumb.jpg',
+    prerequisites: [
+      'Revit Architecture 2026 (recomendado)',
+      'Conocimientos básicos de HVAC',
+      'Comprensión de sistemas mecánicos',
+      'Windows 10/11 con mínimo 16GB RAM',
+    ],
+    certification: 'Certificado Digital - Revit MEP Mechanical Systems 2026 Specialist',
+    instructor: 'Ing. MEP - Especialista en Sistemas Mecánicos',
+    price: 415,
+    priceVEF: 15200,
+    image: '/cursos/revit-2026-mep-mecanicas/imagenes/portada-mep-mecanicas.png',
+    thumbnail: '/cursos/revit-2026-mep-mecanicas/imagenes/promo-mep-mecanicas.png',
     featured: true,
-    popular: false,
+    popular: true,
     enrollmentCount: 0,
     rating: 0,
     reviewsCount: 0,
-    skills: ['Revit', 'BIM', 'Estructuras', 'Ingeniería'],
-    tags: ['Revit', '2026', 'BIM', 'Estructuras', 'Ingeniería'],
-    lastUpdated: '2026-01-15T00:00:00Z',
-    releaseDate: '2025-11-01T00:00:00Z',
+    skills: ['Revit', 'BIM', 'MEP', 'HVAC', 'Climatización', 'System Zones', 'Ductos'],
+    tags: ['Revit', '2026', 'MEP', 'HVAC', 'Mecánicas', 'Climatización', 'Nuevo'],
+    lastUpdated: '2025-11-22T00:00:00Z',
+    releaseDate: '2025-11-22T00:00:00Z',
     syllabus: [],
   },
 
-  // REVIT MEP 2026
+  // REVIT MEP - INSTALACIONES ELÉCTRICAS 2026
   {
-    id: 'revit-mep-2026',
-    slug: 'revit-mep-2026',
+    id: 'revit-2026-mep-electricas',
+    slug: 'revit-2026-mep-electricas',
     version: '2026',
     software: 'Revit 2026',
-    title: 'Revit MEP 2026 - Instalaciones BIM',
-    subtitle: 'Diseño de instalaciones mecánicas, eléctricas y sanitarias',
+    title: 'Revit MEP 2026 - Instalaciones Eléctricas',
+    subtitle: 'Especialización en sistemas eléctricos, circuitos y paneles',
     category: 'Revit',
-    level: 'Avanzado',
-    duration: 30,
-    sessions: 10,
-    description: `Instalaciones MEP con Revit 2026. Novedades:
-    • Cálculo hidráulico automatizado
-    • Routing de ductos inteligente
-    • Análisis energético mejorado
-    • Integración con fabricación (MEP Fabrication)`,
+    level: 'Intermedio',
+    duration: 16,
+    sessions: 4,
+    description: `Curso enfocado en sistemas eléctricos con Revit MEP 2026. Incluye circuitos, paneles, iluminación y todas las nuevas características eléctricas de 2026.
+
+    Nuevas características 2026:
+    • Conductores y cables personalizables - Materiales, diámetros, aislamiento
+    • Organización de Panel Schedules en Project Browser
+    • Routing mejorado de circuitos para sistemas complejos
+    • Nuevos campos en Equipment Schedules (Part Type, Distribution System)
+    • Mejor soporte internacional (no solo AWG)
+    • Modelado de distribución de carga mejorado
+
+    Aprende a diseñar instalaciones eléctricas completas, crear circuitos, balancear cargas, diseñar sistemas de iluminación y generar documentación técnica profesional.`,
     objectives: [
-      'Modelar sistemas MEP completos',
-      'Realizar cálculos de instalaciones',
-      'Coordinar sistemas con arquitectura y estructura',
-      'Generar documentación de construcción',
+      'Dominar electrical settings y configuraciones',
+      'Diseñar tableros y switchboards con panel schedules organizados',
+      'Crear y enrutar circuitos eléctricos complejos',
+      'Utilizar conductores personalizables',
+      'Diseñar sistemas de iluminación con análisis',
+      'Balancear cargas y calcular demandas',
+      'Generar diagramas unifilares y documentación',
+      'Coordinar instalaciones eléctricas con otras disciplinas',
     ],
-    prerequisites: ['Conocimientos de instalaciones', 'Revit básico'],
-    certification: 'Autodesk Certified Professional - Revit MEP',
-    instructor: 'Ing. [Nombre] - MEP Specialist',
-    price: 499,
-    priceVEF: 18000,
-    image: '/images/courses/revit-2026-mep.jpg',
-    thumbnail: '/images/courses/revit-2026-mep-thumb.jpg',
+    prerequisites: [
+      'Revit Architecture 2026 (recomendado)',
+      'Conocimientos básicos de electricidad',
+      'Comprensión de circuitos eléctricos',
+      'Windows 10/11 con mínimo 16GB RAM',
+    ],
+    certification: 'Certificado Digital - Revit MEP Electrical Systems 2026 Specialist',
+    instructor: 'Ing. Eléctrico - Especialista en Sistemas Eléctricos',
+    price: 225,
+    priceVEF: 8250,
+    image: '/cursos/revit-2026-mep-electricas/imagenes/portada-mep-electricas.png',
+    thumbnail: '/cursos/revit-2026-mep-electricas/imagenes/promo-mep-electricas.png',
     featured: false,
     popular: false,
     enrollmentCount: 0,
     rating: 0,
     reviewsCount: 0,
-    skills: ['Revit', 'BIM', 'MEP', 'Instalaciones'],
-    tags: ['Revit', '2026', 'MEP', 'Instalaciones'],
-    lastUpdated: '2026-01-15T00:00:00Z',
-    releaseDate: '2025-11-01T00:00:00Z',
+    skills: ['Revit', 'BIM', 'MEP', 'Eléctrico', 'Circuitos', 'Paneles', 'Iluminación'],
+    tags: ['Revit', '2026', 'MEP', 'Eléctrico', 'Circuitos', 'Paneles', 'Nuevo'],
+    lastUpdated: '2025-11-22T00:00:00Z',
+    releaseDate: '2025-11-22T00:00:00Z',
+    syllabus: [],
+  },
+
+  // REVIT MEP - INSTALACIONES SANITARIAS 2026
+  {
+    id: 'revit-2026-mep-sanitarias',
+    slug: 'revit-2026-mep-sanitarias',
+    version: '2026',
+    software: 'Revit 2026',
+    title: 'Revit MEP 2026 - Instalaciones Sanitarias',
+    subtitle: 'Especialización en plomería, agua potable y drenaje',
+    category: 'Revit',
+    level: 'Intermedio',
+    duration: 16,
+    sessions: 4,
+    description: `Curso especializado en sistemas de plomería (sanitarios, agua potable, drenaje) con Revit MEP 2026. Incluye sistemas de agua, drenaje y protección contra incendios.
+
+    Características 2026:
+    • Accelerated Graphics para navegación rápida
+    • Controles mejorados de Coordination Model
+    • Routing mejorado de tuberías
+    • Mejores familias de fixtures
+    • Manejo mejorado de tuberías con pendiente
+    • Mejores capacidades analíticas
+
+    Aprende a diseñar sistemas de agua potable, drenaje sanitario, drenaje pluvial, sistemas contra incendios y coordinar con otras disciplinas MEP. Incluye dimensionamiento de tuberías, cálculos hidráulicos y generación de dibujos isométricos.`,
+    objectives: [
+      'Dominar plumbing settings y configuración de tuberías',
+      'Diseñar sistemas de agua potable (fría y caliente)',
+      'Diseñar sistemas de drenaje sanitario y pluvial',
+      'Dimensionar tuberías y calcular demandas hidráulicas',
+      'Diseñar sistemas contra incendios (sprinklers)',
+      'Trabajar con tuberías de gas y gases medicinales',
+      'Generar dibujos isométricos de plomería',
+      'Coordinar instalaciones sanitarias con otras disciplinas',
+    ],
+    prerequisites: [
+      'Revit Architecture 2026 (recomendado)',
+      'Conocimientos básicos de plomería',
+      'Comprensión de sistemas hidráulicos',
+      'Windows 10/11 con mínimo 16GB RAM',
+    ],
+    certification: 'Certificado Digital - Revit MEP Plumbing Systems 2026 Specialist',
+    instructor: 'Ing. Sanitario - Especialista en Sistemas de Plomería',
+    price: 225,
+    priceVEF: 8250,
+    image: '/cursos/revit-2026-mep-sanitarias/imagenes/portada-mep-sanitarias.png',
+    thumbnail: '/cursos/revit-2026-mep-sanitarias/imagenes/promo-mep-sanitarias.png',
+    featured: false,
+    popular: false,
+    enrollmentCount: 0,
+    rating: 0,
+    reviewsCount: 0,
+    skills: ['Revit', 'BIM', 'MEP', 'Plomería', 'Agua', 'Drenaje', 'Sprinklers'],
+    tags: ['Revit', '2026', 'MEP', 'Plomería', 'Sanitarias', 'Drenaje', 'Nuevo'],
+    lastUpdated: '2025-11-22T00:00:00Z',
+    releaseDate: '2025-11-22T00:00:00Z',
     syllabus: [],
   },
 
