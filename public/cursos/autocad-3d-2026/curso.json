@@ -1,0 +1,110 @@
+{
+  "id": "autocad-3d-2026",
+  "nombre": "AutoCAD Tridimensional 3D 2026",
+  "descripcion": "Curso profesional de modelado tridimensional en AutoCAD 2026. Domina técnicas de modelado de sólidos, superficies, visualización y renderizado para proyectos arquitectónicos, mecánicos e industriales.",
+  "precio": 245,
+  "duracion": "24 horas",
+  "nivel": "Intermedio",
+  "version": "2026",
+  "categoria": "AutoCAD",
+  "objetivos": [
+    "Dominar el entorno de trabajo 3D y sistema de coordenadas UCS en AutoCAD 2026",
+    "Crear modelos tridimensionales utilizando técnicas de sólidos y primitivas 3D",
+    "Aplicar operaciones booleanas y modificaciones avanzadas de sólidos",
+    "Modelar superficies complejas con herramientas NURBS y patches",
+    "Configurar iluminación, materiales y cámaras para visualización profesional",
+    "Generar renders fotorrealistas y documentación técnica desde modelos 3D"
+  ],
+  "requisitos": [
+    "Conocimientos de AutoCAD 2D nivel básico-intermedio",
+    "AutoCAD 2026 instalado (versión completa)",
+    "Comprensión de conceptos geométricos y espaciales",
+    "Computadora con capacidad gráfica para modelado 3D",
+    "Conocimientos básicos de visualización tridimensional"
+  ],
+  "modulos": [
+    {
+      "numero": 1,
+      "nombre": "Fundamentos de Modelado 3D",
+      "descripcion": "Introducción al entorno tridimensional de AutoCAD 2026, sistemas de coordenadas, visualización 3D y creación de objetos básicos.",
+      "duracion": "6 horas",
+      "lecciones": 6
+    },
+    {
+      "numero": 2,
+      "nombre": "Modelado de Sólidos 3D",
+      "descripcion": "Técnicas avanzadas de modelado de sólidos mediante extrusión, revolución, barrido, loft y operaciones booleanas.",
+      "duracion": "6 horas",
+      "lecciones": 6
+    },
+    {
+      "numero": 3,
+      "nombre": "Modelado de Superficies",
+      "descripcion": "Creación y manipulación de superficies NURBS, patches, blends y conversión entre superficies y sólidos.",
+      "duracion": "6 horas",
+      "lecciones": 6
+    },
+    {
+      "numero": 4,
+      "nombre": "Visualización y Renderizado",
+      "descripcion": "Configuración de estilos visuales, materiales, iluminación, cámaras y generación de renders profesionales.",
+      "duracion": "6 horas",
+      "lecciones": 6
+    }
+  ],
+  "instructor": {
+    "nombre": "Por asignar",
+    "especialidad": "Modelado 3D y Visualización Arquitectónica",
+    "certificaciones": ["Autodesk Certified Professional AutoCAD"]
+  },
+  "certificacion": {
+    "disponible": true,
+    "nombre": "Certificado de Finalización - AutoCAD Tridimensional 3D 2026",
+    "requisitos": "Completar todas las lecciones y aprobar ejercicios prácticos con mínimo 80%"
+  },
+  "software": {
+    "nombre": "Autodesk AutoCAD",
+    "version": "2026",
+    "licencia": "Comercial o Educacional",
+    "requisitosMinimos": {
+      "sistema": "Windows 10/11 64-bit",
+      "procesador": "Intel Core i5 o superior",
+      "ram": "8 GB mínimo (16 GB recomendado)",
+      "graficos": "GPU con 2 GB VRAM, DirectX 11 compatible",
+      "espacio": "10 GB disponibles"
+    }
+  },
+  "materialesIncluidos": [
+    "24 lecciones en formato Markdown editable",
+    "4 archivos de ejercicios prácticos por módulo",
+    "Proyectos integradores de modelado 3D",
+    "Plantillas de workspace 3D configuradas",
+    "Biblioteca de bloques 3D de ejemplo",
+    "Guías de referencia rápida de comandos 3D"
+  ],
+  "habilidadesDesarrolladas": [
+    "Modelado tridimensional de sólidos y superficies",
+    "Visualización y navegación en entornos 3D",
+    "Aplicación de materiales y texturas realistas",
+    "Configuración de iluminación natural y artificial",
+    "Renderizado fotorrealista de proyectos",
+    "Documentación técnica desde modelos 3D",
+    "Exportación a formatos de intercambio 3D"
+  ],
+  "aplicacionesProfesionales": [
+    "Diseño arquitectónico tridimensional",
+    "Modelado mecánico e industrial",
+    "Visualización de proyectos de construcción",
+    "Presentaciones de diseño para clientes",
+    "Coordinación BIM básica",
+    "Prototipado virtual de productos",
+    "Generación de documentación técnica 3D"
+  ],
+  "fechaCreacion": "2025-01-24",
+  "fechaActualizacion": "2025-01-24",
+  "idioma": "es",
+  "modalidad": "Autoguiado con soporte de instructor",
+  "videosDemostracion": true,
+  "ejerciciosPracticos": 24,
+  "proyectoFinal": true
+}

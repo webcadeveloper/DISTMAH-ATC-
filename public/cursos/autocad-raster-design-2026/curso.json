@@ -1,0 +1,111 @@
+{
+  "id": "autocad-raster-design-2026",
+  "titulo": "AutoCAD Raster Design 2026",
+  "subtitulo": "Vectorización y Gestión Profesional de Imágenes Raster",
+  "descripcion": "Domina el toolset especializado de Autodesk para convertir planos escaneados a formato digital, editar imágenes raster, realizar OCR, y crear workflows híbridos raster/vector para proyectos de ingeniería, GIS y facilities management.",
+  "categoria": "Diseño y Documentación",
+  "nivel": "Intermedio",
+  "duracion": "16 horas",
+  "precio": 245,
+  "version": "2026",
+  "imagen": "/images/cursos/autocad-raster-design-2026.jpg",
+  "video_intro": "https://www.youtube.com/embed/autocad-raster-design-intro",
+  "requisitos": [
+    "Conocimientos de AutoCAD básico (dibujo 2D, layers, comandos básicos)",
+    "Comprensión de formatos de imagen (TIFF, JPG, PNG)",
+    "Experiencia con planos escaneados o fotografías aéreas (recomendado)",
+    "Computadora con AutoCAD 2026 (con Raster Design Toolset incluido)",
+    "8 GB RAM mínimo, 16 GB recomendado"
+  ],
+  "objetivos": [
+    "Insertar, correlacionar y georreferenciar imágenes raster en AutoCAD",
+    "Realizar limpieza y mejora de calidad de imágenes escaneadas",
+    "Vectorizar automática y manualmente planos y mapas raster",
+    "Ejecutar OCR para convertir texto raster a texto CAD editable",
+    "Crear workflows híbridos combinando datos raster y vector",
+    "Optimizar performance y gestionar proyectos con grandes volúmenes de imágenes"
+  ],
+  "audiencia": [
+    "Ingenieros civiles que trabajan con planos legacy escaneados",
+    "Especialistas en facilities management y asset management",
+    "Topógrafos que procesan fotografías aéreas y ortofotografías",
+    "Profesionales GIS que integran imagery con datos vectoriales",
+    "Técnicos de digitalización de archivos históricos",
+    "Consultores que convierten documentación paper a formato digital"
+  ],
+  "herramientas": [
+    "AutoCAD Raster Design 2026",
+    "Image Processing Tools",
+    "Vectorization Engine",
+    "OCR Technology",
+    "Datos raster de muestra (incluidos)"
+  ],
+  "certificacion": {
+    "disponible": true,
+    "nombre": "Certificado DISTMAH ATC - AutoCAD Raster Design 2026",
+    "requisitos": "80% asistencia y aprobación de evaluaciones"
+  },
+  "instructor": {
+    "nombre": "Instructores Certificados DISTMAH",
+    "certificacion": "Autodesk Certified Instructors",
+    "experiencia": "10+ años en proyectos CAD/GIS/Facilities Management"
+  },
+  "modalidades": [
+    {
+      "tipo": "Presencial",
+      "horarios": ["Mañanas (9:00 AM - 1:00 PM)", "Tardes (2:00 PM - 6:00 PM)", "Noches (6:00 PM - 10:00 PM)", "Sábados (9:00 AM - 5:00 PM)"],
+      "duracion": "4 sesiones de 4 horas",
+      "ubicacion": "DISTMAH ATC - Authorized Training Center"
+    },
+    {
+      "tipo": "Online en Vivo",
+      "horarios": ["Flexible según demanda"],
+      "duracion": "4 sesiones de 4 horas",
+      "plataforma": "Zoom + Escritorio Remoto"
+    }
+  ],
+  "modulos": [
+    {
+      "numero": 1,
+      "titulo": "Fundamentos de Raster Design",
+      "descripcion": "Tipos de imágenes, inserción, correlación, georeferenciación, mejora de calidad y edición básica de raster",
+      "duracion": "6 horas",
+      "lecciones": 6,
+      "ruta": "modulo-1-fundamentos-raster"
+    },
+    {
+      "numero": 2,
+      "titulo": "Vectorización y Conversión",
+      "descripcion": "Métodos de vectorización, REM, OCR, líneas de contorno, datos de elevación y conversión batch",
+      "duracion": "5 horas",
+      "lecciones": 5,
+      "ruta": "modulo-2-vectorizacion-conversion"
+    },
+    {
+      "numero": 3,
+      "titulo": "Edición Avanzada y Workflows",
+      "descripcion": "Herramientas de limpieza avanzada, workflows híbridos, análisis de imágenes, optimización y producción",
+      "duracion": "5 horas",
+      "lecciones": 5,
+      "ruta": "modulo-3-edicion-avanzada-workflows"
+    }
+  ],
+  "incluye": [
+    "16 horas de instrucción presencial u online",
+    "Material didáctico digital completo",
+    "Imágenes raster de práctica (planos escaneados, ortofotos)",
+    "Ejercicios prácticos con casos reales",
+    "Certificado DISTMAH ATC al finalizar",
+    "Soporte post-curso por 30 días"
+  ],
+  "software_incluido": false,
+  "nota_software": "AutoCAD 2026 con Raster Design Toolset debe ser adquirido por el estudiante. Disponible como suscripción Autodesk o licencia educativa.",
+  "proximas_fechas": [
+    "Consultar calendario en www.distmah.com"
+  ],
+  "politicas": {
+    "cancelacion": "Reembolso 100% hasta 7 días antes del inicio",
+    "reprogramacion": "Permitida una vez sin costo adicional",
+    "materiales": "Acceso de por vida a materiales del curso"
+  }
+}

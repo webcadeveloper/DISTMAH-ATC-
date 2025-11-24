@@ -1,0 +1,299 @@
+{
+  "id": "autocad-basico-2d-2026",
+  "nombre": "AutoCAD Básico 2D 2026",
+  "software": "AutoCAD",
+  "version": "2026",
+  "categoria": "Diseño CAD",
+  "nivel": "Básico",
+  "modalidad": ["Presencial", "Virtual"],
+  "precio": 290,
+  "duracion": 30,
+  "idioma": "Español",
+  "descripcion": "Curso fundamental de AutoCAD 2026 enfocado en dibujo técnico 2D. Aprende los comandos esenciales, flujos de trabajo profesionales y técnicas de productividad para crear planos arquitectónicos, mecánicos y de ingeniería con estándares de la industria.",
+  "objetivos": [
+    "Dominar la interfaz de AutoCAD 2026 y configuración del entorno de trabajo",
+    "Crear dibujos técnicos 2D precisos utilizando comandos de dibujo básicos",
+    "Editar y modificar geometría de manera eficiente con herramientas de edición",
+    "Organizar proyectos mediante el sistema de capas y propiedades de objetos",
+    "Anotar planos con textos, cotas y símbolos según estándares profesionales",
+    "Configurar layouts e imprimir planos a escala con calidad profesional"
+  ],
+  "dirigidoA": [
+    "Estudiantes de arquitectura, ingeniería y diseño",
+    "Dibujantes técnicos que inician en AutoCAD",
+    "Profesionales que requieren actualización en AutoCAD 2026",
+    "Personas sin experiencia previa en software CAD"
+  ],
+  "prerequisitos": [
+    "Conocimientos básicos de computación y sistema operativo Windows",
+    "Comprensión de conceptos básicos de geometría y dibujo técnico",
+    "Computadora con AutoCAD 2026 instalado (licencia educativa o comercial)",
+    "Ratón de dos botones (recomendado con scroll wheel)",
+    "Ninguna experiencia previa en CAD es requerida"
+  ],
+  "competencias": [
+    "Creación de planos arquitectónicos básicos (plantas, fachadas, cortes)",
+    "Dibujo de piezas mecánicas con precisión dimensional",
+    "Aplicación de estándares de dibujo técnico (ISO, ANSI)",
+    "Gestión eficiente de archivos y plantillas DWG",
+    "Trabajo colaborativo con archivos compartidos",
+    "Exportación de planos a PDF y formatos de intercambio"
+  ],
+  "certificacion": "Al completar exitosamente el curso, el estudiante recibirá el Certificado de Finalización 'AutoCAD Básico 2D 2026' emitido por DISTMAH ATC (Authorized Training Center de Autodesk), válido para 30 créditos de desarrollo profesional.",
+  "softwareRequerido": {
+    "nombre": "Autodesk AutoCAD 2026",
+    "version": "2026",
+    "licencia": "Educativa o Comercial",
+    "sistemaOperativo": "Windows 10/11 (64-bit)",
+    "requisitosMinimos": {
+      "procesador": "Intel Core i5 o AMD equivalente",
+      "ram": "8 GB (16 GB recomendado)",
+      "graficos": "1920x1080 True Color, tarjeta compatible DirectX 11",
+      "espacio": "10 GB de espacio libre en disco"
+    }
+  },
+  "modulos": [
+    {
+      "numero": 1,
+      "nombre": "Introducción a AutoCAD 2026",
+      "descripcion": "Fundamentos del software, configuración del entorno de trabajo y navegación básica",
+      "duracion": 6,
+      "archivo": "modulo-1-introduccion-autocad/README.md",
+      "lecciones": [
+        {
+          "numero": 1,
+          "nombre": "Interface y Configuración Inicial",
+          "duracion": 1,
+          "archivo": "modulo-1-introduccion-autocad/lecciones/leccion-1.md"
+        },
+        {
+          "numero": 2,
+          "nombre": "Sistema de Coordenadas y Unidades",
+          "duracion": 1,
+          "archivo": "modulo-1-introduccion-autocad/lecciones/leccion-2.md"
+        },
+        {
+          "numero": 3,
+          "nombre": "Navegación y Visualización (Zoom, Pan)",
+          "duracion": 1,
+          "archivo": "modulo-1-introduccion-autocad/lecciones/leccion-3.md"
+        },
+        {
+          "numero": 4,
+          "nombre": "Métodos de Selección de Objetos",
+          "duracion": 1,
+          "archivo": "modulo-1-introduccion-autocad/lecciones/leccion-4.md"
+        },
+        {
+          "numero": 5,
+          "nombre": "Sistema de Entrada Dinámica",
+          "duracion": 1,
+          "archivo": "modulo-1-introduccion-autocad/lecciones/leccion-5.md"
+        },
+        {
+          "numero": 6,
+          "nombre": "Archivos DWG y Plantillas",
+          "duracion": 1,
+          "archivo": "modulo-1-introduccion-autocad/lecciones/leccion-6.md"
+        }
+      ]
+    },
+    {
+      "numero": 2,
+      "nombre": "Comandos de Dibujo Básico",
+      "descripcion": "Creación de geometría 2D con comandos fundamentales de dibujo",
+      "duracion": 6,
+      "archivo": "modulo-2-dibujo-basico/README.md",
+      "lecciones": [
+        {
+          "numero": 7,
+          "nombre": "Líneas y Polilíneas",
+          "duracion": 1,
+          "archivo": "modulo-2-dibujo-basico/lecciones/leccion-7.md"
+        },
+        {
+          "numero": 8,
+          "nombre": "Círculos y Arcos",
+          "duracion": 1,
+          "archivo": "modulo-2-dibujo-basico/lecciones/leccion-8.md"
+        },
+        {
+          "numero": 9,
+          "nombre": "Rectángulos y Polígonos",
+          "duracion": 1,
+          "archivo": "modulo-2-dibujo-basico/lecciones/leccion-9.md"
+        },
+        {
+          "numero": 10,
+          "nombre": "Elipses y Splines",
+          "duracion": 1,
+          "archivo": "modulo-2-dibujo-basico/lecciones/leccion-10.md"
+        },
+        {
+          "numero": 11,
+          "nombre": "Sombreados (Hatch)",
+          "duracion": 1,
+          "archivo": "modulo-2-dibujo-basico/lecciones/leccion-11.md"
+        },
+        {
+          "numero": 12,
+          "nombre": "Bloques Básicos",
+          "duracion": 1,
+          "archivo": "modulo-2-dibujo-basico/lecciones/leccion-12.md"
+        }
+      ]
+    },
+    {
+      "numero": 3,
+      "nombre": "Comandos de Edición y Modificación",
+      "descripcion": "Herramientas para modificar, transformar y optimizar geometría existente",
+      "duracion": 6,
+      "archivo": "modulo-3-edicion-modificacion/README.md",
+      "lecciones": [
+        {
+          "numero": 13,
+          "nombre": "Move, Copy, Rotate",
+          "duracion": 1,
+          "archivo": "modulo-3-edicion-modificacion/lecciones/leccion-13.md"
+        },
+        {
+          "numero": 14,
+          "nombre": "Scale, Stretch, Trim",
+          "duracion": 1,
+          "archivo": "modulo-3-edicion-modificacion/lecciones/leccion-14.md"
+        },
+        {
+          "numero": 15,
+          "nombre": "Extend, Offset, Mirror",
+          "duracion": 1,
+          "archivo": "modulo-3-edicion-modificacion/lecciones/leccion-15.md"
+        },
+        {
+          "numero": 16,
+          "nombre": "Array (Rectangular y Polar)",
+          "duracion": 1,
+          "archivo": "modulo-3-edicion-modificacion/lecciones/leccion-16.md"
+        },
+        {
+          "numero": 17,
+          "nombre": "Fillet, Chamfer, Break",
+          "duracion": 1,
+          "archivo": "modulo-3-edicion-modificacion/lecciones/leccion-17.md"
+        },
+        {
+          "numero": 18,
+          "nombre": "Join, Explode, Pedit",
+          "duracion": 1,
+          "archivo": "modulo-3-edicion-modificacion/lecciones/leccion-18.md"
+        }
+      ]
+    },
+    {
+      "numero": 4,
+      "nombre": "Capas y Propiedades de Objetos",
+      "descripcion": "Organización de dibujos mediante layers y control de propiedades visuales",
+      "duracion": 6,
+      "archivo": "modulo-4-capas-propiedades/README.md",
+      "lecciones": [
+        {
+          "numero": 19,
+          "nombre": "Sistema de Capas (Layers)",
+          "duracion": 1,
+          "archivo": "modulo-4-capas-propiedades/lecciones/leccion-19.md"
+        },
+        {
+          "numero": 20,
+          "nombre": "Propiedades de Objetos (Color, Linetype, Lineweight)",
+          "duracion": 1,
+          "archivo": "modulo-4-capas-propiedades/lecciones/leccion-20.md"
+        },
+        {
+          "numero": 21,
+          "nombre": "Layer States y Layer Filters",
+          "duracion": 1,
+          "archivo": "modulo-4-capas-propiedades/lecciones/leccion-21.md"
+        },
+        {
+          "numero": 22,
+          "nombre": "Match Properties y Quick Properties",
+          "duracion": 1,
+          "archivo": "modulo-4-capas-propiedades/lecciones/leccion-22.md"
+        },
+        {
+          "numero": 23,
+          "nombre": "Object Properties Panel",
+          "duracion": 1,
+          "archivo": "modulo-4-capas-propiedades/lecciones/leccion-23.md"
+        },
+        {
+          "numero": 24,
+          "nombre": "Layer Standards y Best Practices",
+          "duracion": 1,
+          "archivo": "modulo-4-capas-propiedades/lecciones/leccion-24.md"
+        }
+      ]
+    },
+    {
+      "numero": 5,
+      "nombre": "Anotación e Impresión",
+      "descripcion": "Textos, acotación, layouts y configuración profesional de impresión",
+      "duracion": 6,
+      "archivo": "modulo-5-anotacion-impresion/README.md",
+      "lecciones": [
+        {
+          "numero": 25,
+          "nombre": "Textos y Estilos de Texto",
+          "duracion": 1,
+          "archivo": "modulo-5-anotacion-impresion/lecciones/leccion-25.md"
+        },
+        {
+          "numero": 26,
+          "nombre": "Cotas y Estilos de Acotación",
+          "duracion": 1,
+          "archivo": "modulo-5-anotacion-impresion/lecciones/leccion-26.md"
+        },
+        {
+          "numero": 27,
+          "nombre": "Multileaders y Tablas",
+          "duracion": 1,
+          "archivo": "modulo-5-anotacion-impresion/lecciones/leccion-27.md"
+        },
+        {
+          "numero": 28,
+          "nombre": "Layouts y Viewports",
+          "duracion": 1,
+          "archivo": "modulo-5-anotacion-impresion/lecciones/leccion-28.md"
+        },
+        {
+          "numero": 29,
+          "nombre": "Plot Styles y Configuración de Impresión",
+          "duracion": 1,
+          "archivo": "modulo-5-anotacion-impresion/lecciones/leccion-29.md"
+        },
+        {
+          "numero": 30,
+          "nombre": "PDF Export y Cierre del Curso",
+          "duracion": 1,
+          "archivo": "modulo-5-anotacion-impresion/lecciones/leccion-30.md"
+        }
+      ]
+    }
+  ],
+  "evaluacion": {
+    "ejerciciosPracticos": "6 ejercicios por módulo (30 total)",
+    "proyectoIntegrador": "Plano arquitectónico completo aplicando todos los conocimientos",
+    "criteriosAprobacion": "80% de ejercicios completados y proyecto final aprobado"
+  },
+  "recursos": [
+    "Archivos DWG de ejercicios para cada módulo",
+    "Plantillas profesionales de AutoCAD",
+    "Biblioteca de bloques básicos",
+    "Guías de referencia rápida de comandos",
+    "Videos demostrativos de procedimientos clave"
+  ],
+  "instructor": {
+    "requisitos": "Certificación Autodesk o 3+ años de experiencia profesional con AutoCAD"
+  },
+  "actualizacion": "Enero 2025",
+  "vigencia": "Hasta enero 2027 (ciclo de versiones de Autodesk)"
+}

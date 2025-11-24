@@ -582,6 +582,266 @@ export const COURSES_2026: Course[] = [
     syllabus: [],
   },
 
+  // AUTOCAD BÁSICO 2D 2026 (NUEVO - 30 HORAS)
+  {
+    id: 'autocad-basico-2d-2026',
+    slug: 'autocad-basico-2d-2026',
+    version: '2026',
+    software: 'AutoCAD 2026',
+    title: 'AutoCAD Básico 2D 2026',
+    subtitle: 'Curso completo de AutoCAD 2D desde cero - 30 horas',
+    category: 'AutoCAD',
+    level: 'Básico',
+    duration: 30,
+    sessions: 10,
+    description: `Curso completo de AutoCAD Básico 2D 2026 para principiantes. Aprende desde cero:
+    • Interfaz y configuración inicial de AutoCAD 2026
+    • Sistema de coordenadas y unidades
+    • Comandos de dibujo básico (líneas, círculos, arcos, polígonos)
+    • Comandos de edición (move, copy, rotate, scale, trim, extend)
+    • Sistema de capas y propiedades de objetos
+    • Textos, cotas y anotación
+    • Layouts e impresión profesional
+
+    Curso 100% práctico con ejercicios paso a paso. Certificación al finalizar.`,
+    objectives: [
+      'Dominar la interfaz de AutoCAD 2026',
+      'Crear dibujos 2D precisos con comandos básicos',
+      'Utilizar comandos de edición eficientemente',
+      'Organizar dibujos con capas profesionalmente',
+      'Anotar planos con textos y cotas',
+      'Imprimir y exportar planos a PDF',
+    ],
+    prerequisites: [
+      'Conocimientos básicos de Windows',
+      'Conceptos básicos de dibujo técnico',
+      'Computadora con 8GB RAM mínimo',
+    ],
+    certification: 'Certificado Digital - AutoCAD Básico 2D 2026',
+    instructor: 'Ing. [Nombre] - Autodesk Certified Instructor',
+    price: 290,
+    priceVEF: 10600,
+    image: '/images/courses/autocad-basico-2d-2026.jpg',
+    thumbnail: '/images/courses/autocad-basico-2d-2026-thumb.jpg',
+    featured: true,
+    popular: true,
+    enrollmentCount: 0,
+    rating: 0,
+    reviewsCount: 0,
+    skills: ['AutoCAD', 'Dibujo 2D', 'CAD', 'Planos', 'Drafting'],
+    tags: ['AutoCAD', '2026', '2D', 'Básico', 'Principiantes', 'Nuevo'],
+    lastUpdated: '2025-11-24T00:00:00Z',
+    releaseDate: '2025-11-24T00:00:00Z',
+    syllabus: [],
+  },
+
+  // AUTOCAD INTERMEDIO 2D 2026 (NUEVO - 24 HORAS)
+  {
+    id: 'autocad-intermedio-2d-2026',
+    slug: 'autocad-intermedio-2d-2026',
+    version: '2026',
+    software: 'AutoCAD 2026',
+    title: 'AutoCAD Intermedio 2D 2026',
+    subtitle: 'Técnicas avanzadas de productividad y personalización - 24 horas',
+    category: 'AutoCAD',
+    level: 'Intermedio',
+    duration: 24,
+    sessions: 8,
+    description: `Curso intermedio de AutoCAD 2026 para usuarios con experiencia básica. Incluye:
+    • Bloques dinámicos y atributos avanzados
+    • Referencias externas (Xrefs) y coordinación
+    • Anotación avanzada y objetos anotativos
+    • Productividad y personalización del workspace
+    • Action Recorder para automatización
+    • Standards CAD y batch processing
+
+    Eleva tu productividad en AutoCAD al siguiente nivel.`,
+    objectives: [
+      'Crear bloques dinámicos con parámetros y acciones',
+      'Trabajar con Xrefs y referencias externas',
+      'Dominar objetos anotativos y escalas',
+      'Automatizar tareas con Action Recorder',
+      'Personalizar workspace y tool palettes',
+      'Implementar CAD Standards en proyectos',
+    ],
+    prerequisites: [
+      'AutoCAD Básico 2D 2026 o experiencia equivalente',
+      'Manejo fluido de comandos básicos de AutoCAD',
+      'Computadora con AutoCAD 2026 instalado',
+    ],
+    certification: 'Certificado Digital - AutoCAD Intermedio 2D 2026',
+    instructor: 'Ing. [Nombre] - Autodesk Certified Instructor',
+    price: 245,
+    priceVEF: 9000,
+    image: '/images/courses/autocad-intermedio-2d-2026.jpg',
+    thumbnail: '/images/courses/autocad-intermedio-2d-2026-thumb.jpg',
+    featured: false,
+    popular: false,
+    enrollmentCount: 0,
+    rating: 0,
+    reviewsCount: 0,
+    skills: ['AutoCAD', 'Bloques Dinámicos', 'Xrefs', 'Productividad', 'Automatización'],
+    tags: ['AutoCAD', '2026', '2D', 'Intermedio', 'Productividad', 'Nuevo'],
+    lastUpdated: '2025-11-24T00:00:00Z',
+    releaseDate: '2025-11-24T00:00:00Z',
+    syllabus: [],
+  },
+
+  // AUTOCAD 3D 2026 (NUEVO - 24 HORAS)
+  {
+    id: 'autocad-3d-2026-completo',
+    slug: 'autocad-3d-2026-completo',
+    version: '2026',
+    software: 'AutoCAD 2026',
+    title: 'AutoCAD Tridimensional 3D 2026',
+    subtitle: 'Modelado 3D, sólidos, superficies y renderizado - 24 horas',
+    category: 'AutoCAD',
+    level: 'Intermedio',
+    duration: 24,
+    sessions: 8,
+    description: `Curso completo de modelado 3D con AutoCAD 2026. Aprende:
+    • Fundamentos de modelado 3D y sistema UCS
+    • Modelado de sólidos (Extrude, Revolve, Sweep, Loft)
+    • Modelado de superficies avanzadas
+    • Visualización 3D y estilos visuales
+    • Rendering con materiales y luces
+    • Cámaras y animaciones walkthrough
+
+    Del modelado básico al renderizado fotorrealista profesional.`,
+    objectives: [
+      'Dominar workspace 3D y sistema UCS',
+      'Crear sólidos 3D con operaciones booleanas',
+      'Modelar superficies complejas',
+      'Aplicar materiales y texturas realistas',
+      'Configurar iluminación y cámaras',
+      'Generar renders de presentación',
+    ],
+    prerequisites: [
+      'AutoCAD Básico 2D 2026 o experiencia equivalente',
+      'Comprensión de geometría tridimensional',
+      'Computadora con tarjeta gráfica compatible',
+    ],
+    certification: 'Certificado Digital - AutoCAD 3D 2026',
+    instructor: 'Ing. [Nombre] - Especialista en Modelado 3D',
+    price: 245,
+    priceVEF: 9000,
+    image: '/images/courses/autocad-3d-2026-completo.jpg',
+    thumbnail: '/images/courses/autocad-3d-2026-completo-thumb.jpg',
+    featured: true,
+    popular: false,
+    enrollmentCount: 0,
+    rating: 0,
+    reviewsCount: 0,
+    skills: ['AutoCAD 3D', 'Modelado 3D', 'Sólidos', 'Superficies', 'Rendering'],
+    tags: ['AutoCAD', '2026', '3D', 'Modelado', 'Rendering', 'Nuevo'],
+    lastUpdated: '2025-11-24T00:00:00Z',
+    releaseDate: '2025-11-24T00:00:00Z',
+    syllabus: [],
+  },
+
+  // ACTUALIZACIÓN AUTOCAD 2026 (NUEVO - 8 HORAS)
+  {
+    id: 'actualizacion-autocad-2026',
+    slug: 'actualizacion-autocad-2026',
+    version: '2026',
+    software: 'AutoCAD 2026',
+    title: 'Actualización a AutoCAD 2026',
+    subtitle: 'Novedades y mejoras de AutoCAD 2026 - 8 horas',
+    category: 'AutoCAD',
+    level: 'Actualización',
+    duration: 8,
+    sessions: 2,
+    description: `Curso de actualización para usuarios de versiones anteriores de AutoCAD. Cubre:
+    • Nuevas funciones impulsadas por IA
+    • Mejoras de interfaz y Dark Theme
+    • Herramientas de colaboración mejoradas
+    • Nuevos comandos de dibujo y edición
+    • Optimizaciones de rendimiento
+    • Integración mejorada con la nube
+    • Nuevas herramientas de automatización
+
+    Actualízate rápidamente a AutoCAD 2026 en solo 8 horas.`,
+    objectives: [
+      'Conocer todas las novedades de AutoCAD 2026',
+      'Aprovechar nuevas funciones de IA',
+      'Mejorar productividad con nuevas herramientas',
+      'Integrar workflows cloud modernos',
+      'Migrar proyectos de versiones anteriores',
+    ],
+    prerequisites: [
+      'Experiencia con AutoCAD 2020-2025',
+      'Manejo fluido de AutoCAD versiones anteriores',
+    ],
+    certification: 'Certificado Digital - Actualización AutoCAD 2026',
+    instructor: 'Ing. [Nombre] - Autodesk Certified Instructor',
+    price: 85,
+    priceVEF: 3100,
+    image: '/images/courses/actualizacion-autocad-2026.jpg',
+    thumbnail: '/images/courses/actualizacion-autocad-2026-thumb.jpg',
+    featured: false,
+    popular: false,
+    enrollmentCount: 0,
+    rating: 0,
+    reviewsCount: 0,
+    skills: ['AutoCAD', 'Actualización', 'Novedades 2026', 'IA', 'Cloud'],
+    tags: ['AutoCAD', '2026', 'Actualización', 'Novedades', 'Nuevo'],
+    lastUpdated: '2025-11-24T00:00:00Z',
+    releaseDate: '2025-11-24T00:00:00Z',
+    syllabus: [],
+  },
+
+  // AUTOCAD RASTER DESIGN 2026 (NUEVO - 16 HORAS)
+  {
+    id: 'autocad-raster-design-2026',
+    slug: 'autocad-raster-design-2026',
+    version: '2026',
+    software: 'AutoCAD Raster Design 2026',
+    title: 'AutoCAD Raster Design 2026',
+    subtitle: 'Vectorización de planos escaneados e imágenes - 16 horas',
+    category: 'AutoCAD',
+    level: 'Intermedio',
+    duration: 16,
+    sessions: 4,
+    description: `Curso especializado en Raster Design 2026 para trabajar con planos escaneados. Incluye:
+    • Inserción y gestión de imágenes raster
+    • Georeferencing y correlación de imágenes
+    • Vectorización manual y automática
+    • OCR (reconocimiento óptico de caracteres)
+    • Limpieza y mejora de imágenes
+    • Workflows híbridos raster-vector
+
+    Ideal para digitalización de planos legacy y proyectos GIS.`,
+    objectives: [
+      'Insertar y georeferenciar imágenes raster',
+      'Limpiar y mejorar calidad de scans',
+      'Vectorizar planos escaneados',
+      'Utilizar OCR para textos automáticos',
+      'Crear workflows de conversión batch',
+      'Integrar imágenes con datos vectoriales',
+    ],
+    prerequisites: [
+      'AutoCAD Básico 2D 2026 o experiencia equivalente',
+      'Comprensión de formatos de imagen',
+      'Computadora con AutoCAD Raster Design 2026',
+    ],
+    certification: 'Certificado Digital - Raster Design 2026 Specialist',
+    instructor: 'Ing. [Nombre] - Especialista en GIS y CAD',
+    price: 245,
+    priceVEF: 9000,
+    image: '/images/courses/autocad-raster-design-2026.jpg',
+    thumbnail: '/images/courses/autocad-raster-design-2026-thumb.jpg',
+    featured: false,
+    popular: false,
+    enrollmentCount: 0,
+    rating: 0,
+    reviewsCount: 0,
+    skills: ['Raster Design', 'Vectorización', 'OCR', 'GIS', 'Digitalización'],
+    tags: ['AutoCAD', '2026', 'Raster', 'Vectorización', 'GIS', 'Nuevo'],
+    lastUpdated: '2025-11-24T00:00:00Z',
+    releaseDate: '2025-11-24T00:00:00Z',
+    syllabus: [],
+  },
+
   // CIVIL 3D 2026
   {
     id: 'civil3d-2026',
