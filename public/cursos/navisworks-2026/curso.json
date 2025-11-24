@@ -1,0 +1,105 @@
+{
+  "id": "navisworks-2026",
+  "titulo": "Navisworks 2026 - Curso Profesional",
+  "descripcion": "Curso profesional completo de Autodesk Navisworks 2026 para coordinación BIM, clash detection, simulación 4D y visualización de proyectos de construcción.",
+  "precio": 500,
+  "moneda": "USD",
+  "duracion": "24 horas",
+  "nivel": "Intermedio/Avanzado",
+  "categoria": "BIM Coordination",
+  "version": "2026",
+  "instructor": "EDITABLE_POR_PROFESOR",
+  "prerequisitos": [
+    "Conocimientos básicos de BIM",
+    "Familiaridad con software CAD/BIM (Revit, AutoCAD, etc.)",
+    "Comprensión de procesos de construcción"
+  ],
+  "software_requerido": [
+    "Autodesk Navisworks Manage 2026",
+    "Windows 10 64-bit o superior",
+    "16GB RAM mínimo (32GB recomendado)",
+    "GPU compatible DirectX 11"
+  ],
+  "modulos": [
+    {
+      "numero": 1,
+      "titulo": "Introducción a Navisworks 2026",
+      "duracion": "6 horas",
+      "lecciones": 6,
+      "temas": [
+        "Interfaz y fundamentos",
+        "Importación de modelos",
+        "Navegación y viewpoints",
+        "Selection sets",
+        "Visualización avanzada",
+        "Measure y redline"
+      ]
+    },
+    {
+      "numero": 2,
+      "titulo": "Clash Detection y Coordinación",
+      "duracion": "6 horas",
+      "lecciones": 6,
+      "temas": [
+        "Fundamentos clash detection",
+        "Configuración avanzada tests",
+        "Reporting y workflow",
+        "Model coordination",
+        "Clash avoidance",
+        "Advanced techniques"
+      ]
+    },
+    {
+      "numero": 3,
+      "titulo": "4D Simulation y TimeLiner",
+      "duracion": "6 horas",
+      "lecciones": 6,
+      "temas": [
+        "Introducción TimeLiner",
+        "Import schedules",
+        "4D simulation",
+        "Constructibilidad",
+        "Reporting",
+        "Advanced 4D"
+      ]
+    },
+    {
+      "numero": 4,
+      "titulo": "Visualización, Presentación y BIM 360",
+      "duracion": "6 horas",
+      "lecciones": 6,
+      "temas": [
+        "Presenter",
+        "Animations",
+        "Quantification",
+        "BIM 360 integration",
+        "Interoperability",
+        "Project delivery"
+      ]
+    }
+  ],
+  "novedades_2026": [
+    "Enhanced performance para large models",
+    "Improved clash detection algorithms",
+    "Better BIM 360 integration",
+    "Enhanced 4D simulation tools",
+    "New visualization features",
+    "Improved file format support"
+  ],
+  "aplicaciones": [
+    "Coordinación BIM multi-disciplina",
+    "Clash detection y resolución",
+    "4D construction simulation",
+    "Visualización de proyectos",
+    "Constructability reviews",
+    "Presentaciones a clientes"
+  ],
+  "industrias": [
+    "Edificación comercial",
+    "Industrial y plantas",
+    "Infraestructura",
+    "Healthcare",
+    "Educación",
+    "Hospitality"
+  ]
+}
