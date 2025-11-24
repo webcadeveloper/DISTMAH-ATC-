@@ -1,0 +1,225 @@
+{
+  "id": "civil-3d-2026-basico",
+  "titulo": "Autodesk Civil 3D 2026 - Curso Básico",
+  "descripcion": "Curso básico profesional de Autodesk Civil 3D 2026 para diseño de infraestructura civil. Aprende a modelar terrenos, alineamientos, perfiles, parcelas, y redes de tuberías con workflows BIM aplicados a proyectos de ingeniería civil, carreteras, urbanizaciones y drenaje.",
+  "instructor": "Ing. Civil - Especialista en Infraestructura",
+  "precio": 390,
+  "moneda": "USD",
+  "duracion": "30 horas",
+  "nivel": "Básico",
+  "categoria": "Civil",
+  "subcategoria": "Diseño de Infraestructura",
+  "version": "2026",
+  "idioma": "Español",
+  "prerequisitos": [
+    "AutoCAD Básico (conocimientos de dibujo 2D)",
+    "Conceptos básicos de topografía",
+    "Manejo de Windows",
+    "Comprensión de planos de ingeniería civil"
+  ],
+  "objetivos": [
+    "Dominar la interfaz de Civil 3D 2026 y workspace",
+    "Crear y gestionar puntos COGO y superficies topográficas",
+    "Importar datos de levantamiento topográfico",
+    "Diseñar alineamientos horizontales de carreteras",
+    "Crear perfiles longitudinales y diseño vertical",
+    "Modelar parcelas y subdivisiones",
+    "Diseñar grading y movimientos de tierra",
+    "Crear redes de tuberías (alcantarillado y agua potable)",
+    "Generar secciones transversales y cálculos de volumen",
+    "Producir planos de construcción profesionales",
+    "Utilizar nuevas herramientas de Civil 3D 2026",
+    "Aplicar workflows BIM en proyectos de infraestructura"
+  ],
+  "incluye": [
+    "30 lecciones completas con contenido profesional",
+    "Ejercicios prácticos por módulo",
+    "Archivos DWG de proyectos reales",
+    "Templates de Civil 3D (.dwt)",
+    "Material descargable en PDF",
+    "Acceso a plataforma LMS 24/7",
+    "Certificado digital al finalizar",
+    "Soporte por instructor",
+    "Acceso de por vida",
+    "Actualizaciones gratuitas"
+  ],
+  "modulos": [
+    {
+      "numero": 1,
+      "titulo": "Introducción a Civil 3D 2026",
+      "duracion": "5 horas",
+      "lecciones": 5,
+      "descripcion": "Introducción a la interfaz de Civil 3D, workspace, herramientas básicas, configuración de proyectos, styles y templates. Nuevas funcionalidades de Civil 3D 2026.",
+      "temas": [
+        "Interfaz de Civil 3D 2026 y workspace",
+        "Toolspace, Prospector y Settings",
+        "Styles y Templates de Civil 3D",
+        "Unidades, coordenadas y sistemas de referencia",
+        "Project Explorer mejorado (2026)",
+        "3D Model Viewer (nuevo en 2026)",
+        "Drawing settings y estándares",
+        "Object Viewer y herramientas de visualización"
+      ]
+    },
+    {
+      "numero": 2,
+      "titulo": "Puntos y Superficies Topográficas",
+      "duracion": "6 horas",
+      "lecciones": 6,
+      "descripcion": "Trabajo con puntos COGO, importación de levantamientos topográficos, creación de superficies TIN, análisis de terreno, curvas de nivel, y workflows de superficies mejorados en 2026.",
+      "temas": [
+        "Puntos COGO y Point Groups",
+        "Importar puntos desde archivos (CSV, TXT, LandXML)",
+        "Point Description Keys y códigos de campo",
+        "Creación de superficies TIN",
+        "Análisis de superficies (slopes, elevations, watersheds)",
+        "Curvas de nivel (contours) y etiquetado",
+        "Surface workflows mejorados (2026)",
+        "Edición y simplificación de superficies"
+      ]
+    },
+    {
+      "numero": 3,
+      "titulo": "Alineamientos y Perfiles",
+      "duracion": "6 horas",
+      "lecciones": 6,
+      "descripcion": "Diseño de alineamientos horizontales de carreteras, calles y vías. Creación de perfiles longitudinales, diseño vertical, rasantes, y horizontal regression analysis (nuevo 2026).",
+      "temas": [
+        "Alineamientos horizontales (centerlines)",
+        "Diseño con elementos geométricos (tangentes, curvas, espirales)",
+        "Superelevation (peralte) en curvas",
+        "Horizontal Regression Analysis (nuevo 2026)",
+        "Perfiles de superficie (existing ground)",
+        "Diseño de rasante vertical (finished grade)",
+        "Profile views y anotación",
+        "Criterios de diseño geométrico (AASHTO, SCT)"
+      ]
+    },
+    {
+      "numero": 4,
+      "titulo": "Parcelas y Grading",
+      "duracion": "5 horas",
+      "lecciones": 5,
+      "descripcion": "Creación y gestión de parcelas para subdivisiones. Diseño de grading (nivelación) para urbanizaciones, plataformas, y sitios comerciales. Feature lines y grading tools.",
+      "temas": [
+        "Creación de parcelas (Parcels)",
+        "Parcel sizing y layout de subdivisión",
+        "Right-of-way (derecho de vía) y easements",
+        "Feature lines para diseño de grading",
+        "Grading tools (slopes, elevations, surfaces)",
+        "Grading optimization",
+        "Cálculo de corte y relleno (cut & fill)",
+        "Análisis de drenaje superficial"
+      ]
+    },
+    {
+      "numero": 5,
+      "titulo": "Redes de Tuberías y Utilities",
+      "duracion": "5 horas",
+      "lecciones": 5,
+      "descripcion": "Diseño de redes de alcantarillado sanitario, pluvial, y agua potable. Pipe networks, structures, sizing, y Autodesk Drainage Analysis Tools (nuevo 2026).",
+      "temas": [
+        "Pipe Networks (redes de tuberías)",
+        "Structures (pozos de visita, catch basins)",
+        "Layout de redes por alineamiento",
+        "Sizing de tuberías según caudal",
+        "Autodesk Drainage Analysis Tools (2026)",
+        "Pressure networks (agua potable)",
+        "Interference checking (detección de conflictos)",
+        "Profile views de pipe networks"
+      ]
+    },
+    {
+      "numero": 6,
+      "titulo": "Documentación y Plan Production",
+      "duracion": "3 horas",
+      "lecciones": 3,
+      "descripcion": "Generación de planos de construcción profesionales. Secciones transversales, tablas, anotaciones, layouts, y exportación. Plan production tools de Civil 3D.",
+      "temas": [
+        "Secciones transversales (cross sections)",
+        "Sample lines y section views",
+        "Tables (curvas, parcelas, volúmenes)",
+        "Labels y anotaciones automáticas",
+        "Plan production tools",
+        "Layouts y viewports",
+        "Exportación a PDF y DWG",
+        "Plotting y estándares de impresión"
+      ]
+    }
+  ],
+  "certificacion": {
+    "nombre": "Civil 3D 2026 Basic Infrastructure Design Specialist",
+    "requisitos": [
+      "Completar las 30 lecciones",
+      "Aprobar ejercicios prácticos de cada módulo",
+      "Presentar proyecto final de carretera básica",
+      "Mínimo 80% de asistencia (modalidad en vivo)"
+    ],
+    "validez": "Permanente",
+    "verificable": true
+  },
+  "requisitos_tecnicos": {
+    "software": [
+      "Autodesk Civil 3D 2026 (licencia requerida o trial)",
+      "Windows 10/11 de 64 bits"
+    ],
+    "hardware": {
+      "procesador": "Intel i7 o AMD Ryzen 7 (3+ GHz)",
+      "ram": "16 GB mínimo (32 GB recomendado para proyectos grandes)",
+      "grafica": "4 GB VRAM DirectX 11 compatible",
+      "disco": "50 GB espacio libre (SSD recomendado)",
+      "resolucion": "1920x1080 mínimo (dual monitor recomendado)"
+    },
+    "conectividad": "Internet de banda ancha"
+  },
+  "novedades_2026": [
+    "Project Explorer mejorado - mejor gestión de data shortcuts",
+    "3D Model Viewer - visualización mejorada de modelos",
+    "Surface workflows mejorados - edición más eficiente",
+    "Horizontal Regression Analysis - alineamientos por regresión",
+    "Autodesk Drainage Analysis Tools - análisis de drenaje integrado",
+    "Dynamo for Civil 3D actualizado - automatización visual",
+    "Autodesk Construction Cloud integration - colaboración mejorada",
+    "My Insights analytics - métricas de productividad"
+  ],
+  "modalidades": [
+    "En vivo por videoconferencia",
+    "Acceso a grabaciones",
+    "Plataforma LMS con ejercicios",
+    "Soporte asíncrono"
+  ],
+  "horarios_disponibles": [
+    "Mañanas: 8:00 AM - 12:00 PM",
+    "Tardes: 2:00 PM - 6:00 PM",
+    "Noches: 6:00 PM - 10:00 PM",
+    "Sábados: 9:00 AM - 5:00 PM",
+    "Intensivo: Lunes a Viernes"
+  ],
+  "competencias_profesionales": [
+    "Modelado BIM de infraestructura civil",
+    "Diseño de carreteras y vialidades",
+    "Análisis topográfico y superficies",
+    "Diseño de subdivisiones y urbanizaciones",
+    "Redes de alcantarillado y agua potable",
+    "Cálculos de movimiento de tierras",
+    "Generación de planos de construcción",
+    "Coordinación de proyectos de infraestructura",
+    "Aplicación de normas AASHTO/SCT"
+  ],
+  "posiciones_laborales": [
+    "Dibujante de Ingeniería Civil",
+    "Proyectista de Vialidad",
+    "BIM Modeler Civil",
+    "Diseñador de Urbanizaciones",
+    "Ingeniero Civil Junior",
+    "Topógrafo CAD"
+  ],
+  "actualizacion": "2025-11-23",
+  "vigencia": "2026",
+  "contacto": {
+    "institucion": "DISTMAH Universidad Autodesk - ATC",
+    "web": "www.distmah.com.ve",
+    "email": "cursos@distmah.com.ve",
+    "whatsapp": "+58 XXX-XXXXXXX"
+  }
+}
