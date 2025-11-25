@@ -276,11 +276,11 @@ export default function RegisterPage() {
                             />
                             <Label htmlFor="terms" className="ml-2 text-sm text-neutral-400 cursor-pointer">
                                 Acepto los{' '}
-                                <Link href="/terminos" className="text-primary-400 hover:text-primary-300 font-medium">
+                                <Link href="/terminos" className="text-white hover:text-neutral-300 font-medium">
                                     términos
                                 </Link>{' '}
                                 y{' '}
-                                <Link href="/privacidad" className="text-primary-400 hover:text-primary-300 font-medium">
+                                <Link href="/privacidad" className="text-white hover:text-neutral-300 font-medium">
                                     privacidad
                                 </Link>
                             </Label>
@@ -326,7 +326,7 @@ export default function RegisterPage() {
                     {/* Login Link */}
                     <p className="text-center text-sm text-neutral-400 mt-6">
                         ¿Ya tienes una cuenta?{' '}
-                        <Link href="/login" className="text-primary-400 hover:text-primary-300 font-medium">
+                        <Link href="/login" className="text-white hover:text-neutral-300 font-medium">
                             Inicia sesión
                         </Link>
                     </p>
