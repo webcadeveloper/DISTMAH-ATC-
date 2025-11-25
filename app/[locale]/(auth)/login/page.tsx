@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { signIn } from 'next-auth/react';
+import { signIn, getSession } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -41,7 +41,16 @@ export default function LoginPage() {
                 return;
             }
 
-            window.location.href = '/es/estudiante/dashboard';
+            const session = await getSession();
+            const role = session?.user?.role;
+
+            if (role === 'ADMIN') {
+                window.location.href = '/es/admin/dashboard';
+            } else if (role === 'INSTRUCTOR') {
+                window.location.href = '/es/instructor/dashboard';
+            } else {
+                window.location.href = '/es/estudiante/dashboard';
+            }
         } catch (err) {
             setError('Error al iniciar sesión. Intenta de nuevo.');
             setLoading(false);
