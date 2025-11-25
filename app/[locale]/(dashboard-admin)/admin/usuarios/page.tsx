@@ -1,139 +1,189 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Checkbox } from '@/components/ui/checkbox';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { MoreHorizontal, Trash, Mail, Shield, Download } from 'lucide-react';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { UsersTable } from '@/components/admin/UsersTable';
+import { Download, Search, Filter } from 'lucide-react';
 import { toast } from 'sonner';
 
-// Mock data
-const users = [
-    { id: '1', name: 'Juan Pérez', email: 'juan@example.com', role: 'STUDENT', status: 'Active' },
-    { id: '2', name: 'Maria Garcia', email: 'maria@example.com', role: 'INSTRUCTOR', status: 'Active' },
-    { id: '3', name: 'Carlos Lopez', email: 'carlos@example.com', role: 'STUDENT', status: 'Inactive' },
-    { id: '4', name: 'Ana Martinez', email: 'ana@example.com', role: 'STUDENT', status: 'Active' },
-    { id: '5', name: 'Luis Rodriguez', email: 'luis@example.com', role: 'ADMIN', status: 'Active' },
-];
+export default function UsersManagementPage() {
+  const [users, setUsers] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState('');
+  const [roleFilter, setRoleFilter] = useState('ALL');
+  const [page, setPage] = useState(1);
+  const [pagination, setPagination] = useState({
+    page: 1,
+    limit: 20,
+    total: 0,
+    totalPages: 0,
+  });
 
-export default function UsersPage() {
-    const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
+  useEffect(() => {
+    loadUsers();
+  }, [page, roleFilter, search]);
 
-    const toggleUser = (userId: string) => {
-        setSelectedUsers(prev =>
-            prev.includes(userId)
-                ? prev.filter(id => id !== userId)
-                : [...prev, userId]
-        );
-    };
+  const loadUsers = async () => {
+    setLoading(true);
+    try {
+      const params = new URLSearchParams({
+        page: page.toString(),
+        limit: '20',
+        role: roleFilter,
+        ...(search && { search }),
+      });
 
-    const toggleAll = () => {
-        if (selectedUsers.length === users.length) {
-            setSelectedUsers([]);
-        } else {
-            setSelectedUsers(users.map(u => u.id));
-        }
-    };
+      const response = await fetch(`/api/admin/users?${params}`);
+      if (!response.ok) throw new Error('Error al cargar usuarios');
 
-    const handleBulkDelete = () => {
-        toast.success(`Eliminando ${selectedUsers.length} usuarios...`);
-        setSelectedUsers([]);
-    };
+      const data = await response.json();
+      setUsers(data.users);
+      setPagination(data.pagination);
+    } catch (error: any) {
+      toast.error(error.message || 'Error al cargar usuarios');
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    const handleBulkEmail = () => {
-        toast.success(`Enviando correo a ${selectedUsers.length} usuarios...`);
-    };
+  const handleExportCSV = () => {
+    const headers = ['Nombre', 'Email', 'Rol', 'Estado', 'Inscripciones', 'Fecha Registro'];
+    const rows = users.map((user) => [
+      user.name,
+      user.email,
+      user.role,
+      user.status,
+      user.enrollmentsCount,
+      new Date(user.createdAt).toLocaleDateString('es-ES'),
+    ]);
 
-    return (
-        <div className="p-8 max-w-7xl mx-auto">
-            <div className="flex justify-between items-center mb-8">
-                <div>
-                    <h1 className="text-3xl font-bold text-neutral-900">Gestión de Usuarios</h1>
-                    <p className="text-neutral-600">Administra estudiantes, instructores y administradores.</p>
-                </div>
-                <Button>
-                    <Download className="w-4 h-4 mr-2" /> Exportar CSV
-                </Button>
-            </div>
+    const csv = [headers, ...rows].map((row) => row.join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `usuarios-${new Date().toISOString().split('T')[0]}.csv`;
+    a.click();
+    toast.success('CSV exportado exitosamente');
+  };
 
-            <div className="flex items-center gap-4 mb-6">
-                <Input placeholder="Buscar usuarios..." className="max-w-sm" />
+  const handleSearch = (value: string) => {
+    setSearch(value);
+    setPage(1);
+  };
 
-                {selectedUsers.length > 0 && (
-                    <div className="flex items-center gap-2 animate-fade-in bg-neutral-100 p-2 rounded-lg">
-                        <span className="text-sm font-medium px-2">{selectedUsers.length} seleccionados</span>
-                        <Button variant="destructive" size="sm" onClick={handleBulkDelete}>
-                            <Trash className="w-4 h-4 mr-2" /> Eliminar
-                        </Button>
-                        <Button variant="secondary" size="sm" onClick={handleBulkEmail}>
-                            <Mail className="w-4 h-4 mr-2" /> Enviar Correo
-                        </Button>
-                    </div>
-                )}
-            </div>
+  const handleRoleFilter = (value: string) => {
+    setRoleFilter(value);
+    setPage(1);
+  };
 
-            <div className="border rounded-lg">
-                <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHead className="w-12">
-                                <Checkbox
-                                    checked={selectedUsers.length === users.length}
-                                    onCheckedChange={toggleAll}
-                                />
-                            </TableHead>
-                            <TableHead>Nombre</TableHead>
-                            <TableHead>Email</TableHead>
-                            <TableHead>Rol</TableHead>
-                            <TableHead>Estado</TableHead>
-                            <TableHead className="text-right">Acciones</TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        {users.map((user) => (
-                            <TableRow key={user.id}>
-                                <TableCell>
-                                    <Checkbox
-                                        checked={selectedUsers.includes(user.id)}
-                                        onCheckedChange={() => toggleUser(user.id)}
-                                    />
-                                </TableCell>
-                                <TableCell className="font-medium">{user.name}</TableCell>
-                                <TableCell>{user.email}</TableCell>
-                                <TableCell>
-                                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${user.role === 'ADMIN' ? 'bg-red-100 text-red-700' :
-                                            user.role === 'INSTRUCTOR' ? 'bg-blue-100 text-blue-700' :
-                                                'bg-green-100 text-green-700'
-                                        }`}>
-                                        {user.role}
-                                    </span>
-                                </TableCell>
-                                <TableCell>{user.status}</TableCell>
-                                <TableCell className="text-right">
-                                    <DropdownMenu>
-                                        <DropdownMenuTrigger asChild>
-                                            <Button variant="ghost" className="h-8 w-8 p-0">
-                                                <MoreHorizontal className="w-4 h-4" />
-                                            </Button>
-                                        </DropdownMenuTrigger>
-                                        <DropdownMenuContent align="end">
-                                            <DropdownMenuLabel>Acciones</DropdownMenuLabel>
-                                            <DropdownMenuItem>Editar Usuario</DropdownMenuItem>
-                                            <DropdownMenuItem>Ver Detalles</DropdownMenuItem>
-                                            <DropdownMenuSeparator />
-                                            <DropdownMenuItem className="text-red-600">
-                                                <Trash className="w-4 h-4 mr-2" /> Eliminar
-                                            </DropdownMenuItem>
-                                        </DropdownMenuContent>
-                                    </DropdownMenu>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </div>
+  return (
+    <div className="p-8 max-w-7xl mx-auto">
+      <div className="flex justify-between items-center mb-8">
+        <div>
+          <h1 className="text-3xl font-bold text-black">Gestión de Usuarios</h1>
+          <p className="text-gray-600 mt-1">
+            Administra estudiantes, instructores y administradores
+          </p>
         </div>
-    );
+        <Button
+          onClick={handleExportCSV}
+          className="bg-blue-900 hover:bg-blue-800 text-white"
+        >
+          <Download className="w-4 h-4 mr-2" />
+          Exportar CSV
+        </Button>
+      </div>
+
+      <Card>
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <CardTitle>
+              Todos los Usuarios ({pagination.total})
+            </CardTitle>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center gap-4 mb-6">
+            <div className="flex items-center gap-2 flex-1 max-w-md">
+              <Search className="w-4 h-4 text-gray-600" />
+              <Input
+                placeholder="Buscar por nombre o email..."
+                value={search}
+                onChange={(e) => handleSearch(e.target.value)}
+                className="flex-1"
+              />
+            </div>
+            <div className="flex items-center gap-2">
+              <Filter className="w-4 h-4 text-gray-600" />
+              <Select value={roleFilter} onValueChange={handleRoleFilter}>
+                <SelectTrigger className="w-[180px]">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="ALL">Todos los roles</SelectItem>
+                  <SelectItem value="STUDENT">Estudiantes</SelectItem>
+                  <SelectItem value="INSTRUCTOR">Instructores</SelectItem>
+                  <SelectItem value="ADMIN">Administradores</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          {loading ? (
+            <div className="text-center py-12">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mx-auto mb-4"></div>
+              <p className="text-gray-600">Cargando usuarios...</p>
+            </div>
+          ) : users.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-gray-600">No se encontraron usuarios</p>
+            </div>
+          ) : (
+            <>
+              <UsersTable users={users} onUpdate={loadUsers} />
+
+              {pagination.totalPages > 1 && (
+                <div className="flex items-center justify-between mt-6">
+                  <p className="text-sm text-gray-600">
+                    Mostrando {(page - 1) * pagination.limit + 1} -{' '}
+                    {Math.min(page * pagination.limit, pagination.total)} de{' '}
+                    {pagination.total} usuarios
+                  </p>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      onClick={() => setPage((p) => Math.max(1, p - 1))}
+                      disabled={page === 1}
+                    >
+                      Anterior
+                    </Button>
+                    <span className="text-sm text-gray-600">
+                      Página {page} de {pagination.totalPages}
+                    </span>
+                    <Button
+                      variant="outline"
+                      onClick={() => setPage((p) => Math.min(pagination.totalPages, p + 1))}
+                      disabled={page === pagination.totalPages}
+                    >
+                      Siguiente
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
+        </CardContent>
+      </Card>
+    </div>
+  );
 }

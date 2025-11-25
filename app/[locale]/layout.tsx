@@ -3,6 +3,7 @@ import { getMessages } from 'next-intl/server';
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "../globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { SessionProvider } from "@/components/providers/session-provider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
@@ -16,17 +17,17 @@ export default async function LocaleLayout({
 }) {
     const { locale } = await params;
 
-    // Providing all messages to the client
-    // side is the easiest way to get started
     const messages = await getMessages();
 
     return (
         <html lang={locale}>
             <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
-                <NextIntlClientProvider messages={messages}>
-                    {children}
-                    <Toaster />
-                </NextIntlClientProvider>
+                <SessionProvider>
+                    <NextIntlClientProvider messages={messages}>
+                        {children}
+                        <Toaster />
+                    </NextIntlClientProvider>
+                </SessionProvider>
             </body>
         </html>
     );

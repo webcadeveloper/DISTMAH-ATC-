@@ -12,7 +12,10 @@ model User {
   id                String   @id @default(uuid())
   email             String   @unique
   name              String
+  password          String?  // Hash bcrypt - null para Azure AD
   azureAdId         String?  @unique // ID de Azure AD
+  m365UserId        String?  @unique // Microsoft 365 User ID
+  m365Email         String?  @unique // Microsoft 365 Email
   role              Role     @default(STUDENT)
   emailVerified     Boolean  @default(false)
   phoneNumber       String?
@@ -35,12 +38,12 @@ model User {
   timezone          String   @default("America/Caracas")
   notifications     Boolean  @default(true)
   newsletter        Boolean  @default(true)
-  
+
   // Timestamps
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
   lastLoginAt       DateTime?
-  
+
   // Relations
   enrollments       Enrollment[]
   submissions       AssignmentSubmission[]
@@ -48,10 +51,14 @@ model User {
   certificates      Certificate[]
   forumPosts        ForumPost[]
   messages          Message[]
-  
+  userNotifications Notification[]
+  reviews           CourseReview[]
+  passwordResetTokens PasswordResetToken[]
+
   // Instructor relations
   taughtCourses     Course[] @relation("CourseInstructor")
-  
+  liveClasses       LiveClass[] @relation("LiveClassInstructor")
+
   @@map("users")
 }
 
@@ -94,6 +101,10 @@ model Course {
   thumbnail         String?  // URL thumbnail
   videoIntro        String?  // URL video intro
   
+  // Microsoft 365 Integration
+  m365TeamId        String?  @unique // Microsoft Teams ID
+  m365SharePointId  String?  // SharePoint folder ID
+
   // Status
   status            CourseStatus @default(DRAFT)
   featured          Boolean  @default(false)
@@ -121,7 +132,8 @@ model Course {
   exams             Exam[]
   certificates      Certificate[]
   forumCategories   ForumCategory[]
-  
+  reviews           CourseReview[]
+
   @@index([category])
   @@index([level])
   @@index([version])
@@ -202,10 +214,28 @@ model Lesson {
   
   // Relations
   progress          LessonProgress[]
-  
+  subtitles         VideoSubtitle[]
+
   @@unique([moduleId, number])
   @@index([moduleId])
   @@map("lessons")
+}
+
+model VideoSubtitle {
+  id        String   @id @default(cuid())
+  lessonId  String
+  lesson    Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+
+  language  String
+  label     String
+  fileUrl   String
+  isDefault Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([lessonId])
+  @@map("video_subtitles")
 }
 
 enum LessonType {
@@ -567,32 +597,38 @@ model LiveClass {
   id                String   @id @default(uuid())
   courseId          String
   moduleId          String?
-  
+  instructorId      String
+
   title             String
   description       String?  @db.Text
-  
+
   // Teams meeting info
   meetingUrl        String
   meetingId         String?
   joinUrl           String?
-  
+  m365EventId       String?  @unique // Microsoft 365 Event ID
+
   // Schedule
   scheduledStart    DateTime
   scheduledEnd      DateTime
   actualStart       DateTime?
   actualEnd         DateTime?
-  
+
   // Recording
   recordingUrl      String?
   recordingStreamId String?
-  
+
   // Stats
   attendeesCount    Int      @default(0)
-  
+
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
-  
+
+  // Relations
+  instructor        User     @relation("LiveClassInstructor", fields: [instructorId], references: [id])
+
   @@index([courseId])
+  @@index([instructorId])
   @@map("live_classes")
 }
 
@@ -666,4 +702,102 @@ model SoftwareVersion {
   
   @@unique([software, version])
   @@map("software_versions")
+}
+
+// NOTIFICACIONES
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  type      NotificationType
+  title     String
+  message   String
+  link      String?
+
+  read      Boolean  @default(false)
+  readAt    DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+  @@index([userId, read])
+  @@map("notifications")
+}
+
+enum NotificationType {
+  ASSIGNMENT_CREATED
+  ASSIGNMENT_GRADED
+  EXAM_AVAILABLE
+  EXAM_GRADED
+  CERTIFICATE_ISSUED
+  COURSE_ENROLLMENT
+  NEW_MODULE_AVAILABLE
+  FORUM_REPLY
+  SYSTEM_ANNOUNCEMENT
+}
+
+// REVIEWS DE CURSOS
+model CourseReview {
+  id        String   @id @default(cuid())
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  rating    Int      // 1-5 stars
+  title     String?
+  comment   String   @db.Text
+
+  helpful   Int      @default(0) // Counter de "útil"
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([courseId, userId]) // Un review por usuario por curso
+  @@index([courseId])
+  @@index([userId])
+  @@map("course_reviews")
+}
+
+// PASSWORD RESET TOKENS
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token     String   @unique
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([token])
+  @@index([userId])
+  @@map("password_reset_tokens")
+}
+
+// CUPONES/DESCUENTOS
+model Coupon {
+  id                String   @id @default(cuid())
+  code              String   @unique
+  type              CouponType
+  value             Float
+  minPurchase       Float?
+  maxDiscount       Float?
+  validFrom         DateTime
+  validUntil        DateTime
+  maxUses           Int?
+  currentUses       Int      @default(0)
+  active            Boolean  @default(true)
+  applicableCourses String[] // Array de course IDs
+  createdAt         DateTime @default(now())
+
+  @@index([code])
+  @@index([active])
+  @@map("coupons")
+}
+
+enum CouponType {
+  PERCENTAGE
+  FIXED_AMOUNT
 }

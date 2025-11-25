@@ -27,8 +27,8 @@ export function CoursePlayerSidebar() {
             </div>
 
             <ScrollArea className="flex-grow">
-                <Accordion type="multiple" defaultValue={syllabus.map(m => m.id)} className="w-full">
-                    {syllabus.map((module, index) => (
+                <Accordion type="multiple" defaultValue={syllabus.map((m: any) => m.id)} className="w-full">
+                    {syllabus.map((module: any, index: number) => (
                         <AccordionItem key={module.id} value={module.id} className="border-b-neutral-100">
                             <AccordionTrigger className="px-4 py-3 hover:bg-neutral-50 text-sm font-semibold text-neutral-900">
                                 <div className="text-left">
@@ -38,7 +38,7 @@ export function CoursePlayerSidebar() {
                             </AccordionTrigger>
                             <AccordionContent className="pt-0 pb-0">
                                 <div className="flex flex-col">
-                                    {module.lessons.map((lesson) => {
+                                    {module.lessons.map((lesson: any) => {
                                         const isActive = lessonId === lesson.id;
                                         // Mock completion status
                                         const isCompleted = false;

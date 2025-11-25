@@ -6,8 +6,10 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ChevronLeft, ChevronRight, Download, MessageSquare, ThumbsUp, CheckCircle, Circle } from 'lucide-react';
-import { COURSES_2026, type Lesson } from '@/lib/courses-catalog-2026';
+import { COURSES_2026 } from '@/lib/courses-catalog-2026';
+import type { Lesson } from '@/lib/course-loader';
 import { VideoPlayer } from '@/components/course-player/VideoPlayer';
+import { VideoPlayerWithSubtitles } from './VideoPlayerWithSubtitles';
 import { AssignmentSubmission } from '@/components/course-player/AssignmentSubmission';
 import { toast } from 'sonner';
 import { cn } from '@/lib/utils';
@@ -22,11 +24,11 @@ export default function LessonPage() {
     const course = COURSES_2026.find(c => c.slug === slug);
 
     // Find lesson in syllabus using flatMap for better type inference
-    const allLessons = course?.syllabus.flatMap(m =>
-        m.lessons.map(l => ({ ...l, moduleTitle: m.title }))
+    const allLessons = course?.syllabus.flatMap((m: any) =>
+        m.lessons.map((l: any) => ({ ...l, moduleTitle: m.title }))
     ) || [];
 
-    const lessonIndex = allLessons.findIndex(l => l.id === lessonId);
+    const lessonIndex = allLessons.findIndex((l: any) => l.id === lessonId);
     const lessonWithModule = allLessons[lessonIndex];
     const nextLesson = allLessons[lessonIndex + 1];
     const prevLesson = allLessons[lessonIndex - 1];
@@ -62,14 +64,17 @@ export default function LessonPage() {
             {lesson.type === 'video' && (
                 <div className="w-full bg-black flex justify-center">
                     <div className="w-full max-w-6xl">
-                        <VideoPlayer
-                            src={lesson.content.videoUrl}
+                        <VideoPlayerWithSubtitles
+                            lessonId={lesson.id}
+                            videoUrl={lesson.content.videoUrl}
                             title={lesson.title}
-                            autoPlay={false}
                             onComplete={() => {
                                 if (!isCompleted) {
                                     handleComplete();
                                 }
+                            }}
+                            onProgress={(progress) => {
+                                console.log('Video progress:', progress);
                             }}
                         />
                     </div>
@@ -134,7 +139,7 @@ export default function LessonPage() {
                         <TabsContent value="resources">
                             <div className="space-y-3">
                                 {lesson.resources && lesson.resources.length > 0 ? (
-                                    lesson.resources.map((resource) => (
+                                    lesson.resources.map((resource: any) => (
                                         <div key={resource.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-neutral-50 transition-colors">
                                             <div className="flex items-center gap-3">
                                                 <div className="w-10 h-10 bg-blue-100 rounded flex items-center justify-center text-blue-600 font-bold text-xs">
