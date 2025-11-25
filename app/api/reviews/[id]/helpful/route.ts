@@ -19,7 +19,7 @@ export async function POST(
 
     const { id } = await params;
 
-    const review = await prisma.courseReview.findUnique({
+    const review = await (prisma as any).courseReview.findUnique({
       where: { id },
     });
 
@@ -30,7 +30,7 @@ export async function POST(
       );
     }
 
-    const updatedReview = await prisma.courseReview.update({
+    const updatedReview = await (prisma as any).courseReview.update({
       where: { id },
       data: {
         helpful: {

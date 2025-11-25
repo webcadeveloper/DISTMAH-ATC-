@@ -39,7 +39,7 @@ export async function PUT(
       return NextResponse.json({ error: 'Solo el autor puede editar este reply' }, { status: 403 });
     }
 
-    const updatedReply = await (prisma.forumReply.update as any)({
+    const updatedReply = await (prisma as any).forumReply.update({
       where: { id },
       data: { content },
       include: {

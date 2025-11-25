@@ -52,7 +52,7 @@ export async function GET(request: NextRequest) {
       };
     }
 
-    const liveClasses = await (prisma.liveClass.findMany as any)({
+    const liveClasses = await (prisma as any).liveClass.findMany({
       where,
       include: {
         instructor: {

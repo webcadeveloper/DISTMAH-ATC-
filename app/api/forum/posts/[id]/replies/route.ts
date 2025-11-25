@@ -35,7 +35,7 @@ export async function POST(
       return NextResponse.json({ error: 'Post no encontrado' }, { status: 404 });
     }
 
-    const reply = await (prisma.forumReply.create as any)({
+    const reply = await (prisma as any).forumReply.create({
       data: {
         postId,
         authorId: user.id,

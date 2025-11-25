@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'courseId y name son requeridos' }, { status: 400 });
     }
 
-    const category = await (prisma.forumCategory.create as any)({
+    const category = await (prisma as any).forumCategory.create({
       data: {
         courseId,
         name,

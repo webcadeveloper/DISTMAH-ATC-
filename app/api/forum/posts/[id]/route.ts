@@ -14,7 +14,7 @@ export async function GET(
 
     const { id } = await params;
 
-    const post = await (prisma.forumPost.findUnique as any)({
+    const post = await (prisma as any).forumPost.findUnique({
       where: { id },
       include: {
         author: {
@@ -86,7 +86,7 @@ export async function PUT(
       return NextResponse.json({ error: 'Solo el autor puede editar este post' }, { status: 403 });
     }
 
-    const updatedPost = await (prisma.forumPost.update as any)({
+    const updatedPost = await (prisma as any).forumPost.update({
       where: { id },
       data: {
         ...(title && { title }),

@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'categoryId requerido' }, { status: 400 });
     }
 
-    const posts = await (prisma.forumPost.findMany as any)({
+    const posts = await (prisma as any).forumPost.findMany({
       where: { categoryId },
       include: {
         author: {
@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'categoryId, title y content son requeridos' }, { status: 400 });
     }
 
-    const post = await (prisma.forumPost.create as any)({
+    const post = await (prisma as any).forumPost.create({
       data: {
         categoryId,
         userId: user.id,

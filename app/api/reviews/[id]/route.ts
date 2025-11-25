@@ -21,7 +21,7 @@ export async function PUT(
     const body = await request.json();
     const { rating, title, comment } = body;
 
-    const review = await prisma.courseReview.findUnique({
+    const review = await (prisma as any).courseReview.findUnique({
       where: { id },
     });
 
@@ -53,7 +53,7 @@ export async function PUT(
       );
     }
 
-    const updatedReview = await prisma.courseReview.update({
+    const updatedReview = await (prisma as any).courseReview.update({
       where: { id },
       data: {
         rating: rating || review.rating,
@@ -71,7 +71,7 @@ export async function PUT(
       },
     });
 
-    const avgRating = await prisma.courseReview.aggregate({
+    const avgRating = await (prisma as any).courseReview.aggregate({
       where: { courseId: review.courseId },
       _avg: { rating: true },
     });
@@ -108,7 +108,7 @@ export async function DELETE(
 
     const { id } = await params;
 
-    const review = await prisma.courseReview.findUnique({
+    const review = await (prisma as any).courseReview.findUnique({
       where: { id },
     });
 
@@ -126,16 +126,16 @@ export async function DELETE(
       );
     }
 
-    await prisma.courseReview.delete({
+    await (prisma as any).courseReview.delete({
       where: { id },
     });
 
     const [avgRating, totalReviews] = await Promise.all([
-      prisma.courseReview.aggregate({
+      (prisma as any).courseReview.aggregate({
         where: { courseId: review.courseId },
         _avg: { rating: true },
       }),
-      prisma.courseReview.count({
+      (prisma as any).courseReview.count({
         where: { courseId: review.courseId },
       }),
     ]);

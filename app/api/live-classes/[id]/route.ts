@@ -16,7 +16,7 @@ export async function GET(
       return NextResponse.json({ error: 'No autorizado' }, { status: 401 });
     }
 
-    const liveClass = await (prisma.liveClass.findUnique as any)({
+    const liveClass = await (prisma as any).liveClass.findUnique({
       where: { id },
       include: {
         instructor: {
@@ -71,7 +71,7 @@ export async function PATCH(
       );
     }
 
-    const liveClass = await (prisma.liveClass.findUnique as any)({
+    const liveClass = await (prisma as any).liveClass.findUnique({
       where: { id },
     });
 
@@ -129,7 +129,7 @@ export async function DELETE(
       );
     }
 
-    const liveClass = await (prisma.liveClass.findUnique as any)({
+    const liveClass = await (prisma as any).liveClass.findUnique({
       where: { id },
     });
 
