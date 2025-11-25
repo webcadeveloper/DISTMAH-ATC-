@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    await prisma.passwordResetToken.updateMany({
+    await (prisma as any).passwordResetToken.updateMany({
       where: {
         userId: user.id,
         used: false,
@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
     const token = crypto.randomBytes(32).toString('hex');
     const expiresAt = new Date(Date.now() + 60 * 60 * 1000);
 
-    await prisma.passwordResetToken.create({
+    await (prisma as any).passwordResetToken.create({
       data: {
         userId: user.id,
         token,
