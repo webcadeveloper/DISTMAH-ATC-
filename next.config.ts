@@ -41,6 +41,10 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  experimental: {
+    staticGenerationRetryCount: 0,
+  },
+  staticPageGenerationTimeout: 120,
 };
 
 export default withNextIntl(nextConfig);

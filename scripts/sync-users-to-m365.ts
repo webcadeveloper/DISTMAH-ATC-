@@ -4,6 +4,11 @@ import { graphClient } from '@/lib/microsoft/graph-client';
 async function syncUsersToM365() {
   console.log('Starting M365 user sync...\n');
 
+  if (!graphClient) {
+    console.error('Microsoft Graph client not initialized. Check M365 environment variables.');
+    process.exit(1);
+  }
+
   const users = await prisma.user.findMany({
     where: {
       m365UserId: null,
@@ -30,7 +35,7 @@ async function syncUsersToM365() {
 
       console.log(`✓ Synced: ${user.email} → ${m365User.id}`);
     } catch (error) {
-      console.error(`✗ Failed: ${user.email} - ${error.message}`);
+      console.error(`✗ Failed: ${user.email} - ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 

@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Home, Search, ArrowLeft } from 'lucide-react';
@@ -6,7 +8,6 @@ export default function NotFound() {
     return (
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-neutral-50 to-neutral-100 px-4">
             <div className="max-w-2xl w-full text-center">
-                {/* 404 Illustration */}
                 <div className="mb-8">
                     <div className="relative inline-block">
                         <h1 className="text-[180px] font-bold text-neutral-200 leading-none">
@@ -20,7 +21,6 @@ export default function NotFound() {
                     </div>
                 </div>
 
-                {/* Message */}
                 <h2 className="text-3xl font-bold text-neutral-900 mb-4">
                     Página no encontrada
                 </h2>
@@ -28,7 +28,6 @@ export default function NotFound() {
                     Lo sentimos, la página que buscas no existe o ha sido movida. Verifica la URL o regresa al inicio.
                 </p>
 
-                {/* Actions */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Link href="/">
                         <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 min-w-[200px]">
@@ -44,7 +43,6 @@ export default function NotFound() {
                     </Link>
                 </div>
 
-                {/* Quick Links */}
                 <div className="mt-12 pt-8 border-t border-neutral-200">
                     <p className="text-sm text-neutral-600 mb-4">Enlaces útiles:</p>
                     <div className="flex flex-wrap gap-4 justify-center text-sm">
@@ -66,26 +64,6 @@ export default function NotFound() {
                     </div>
                 </div>
 
-                {/* Search Suggestion */}
-                <div className="mt-8 max-w-md mx-auto">
-                    <div className="bg-white rounded-lg p-6 shadow-sm border border-neutral-200">
-                        <p className="text-sm text-neutral-600 mb-3">
-                            ¿Buscas algo específico?
-                        </p>
-                        <div className="flex gap-2">
-                            <input
-                                type="text"
-                                placeholder="Buscar cursos..."
-                                className="flex-1 px-4 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            />
-                            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                                <Search className="w-5 h-5" />
-                            </Button>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Popular Courses */}
                 <div className="mt-12">
                     <p className="text-sm text-neutral-600 mb-4">Cursos populares:</p>
                     <div className="flex flex-wrap gap-2 justify-center">
@@ -107,7 +85,6 @@ export default function NotFound() {
                     </div>
                 </div>
 
-                {/* Back Button (alternative) */}
                 <div className="mt-12">
                     <button
                         onClick={() => window.history.back()}
@@ -121,8 +98,3 @@ export default function NotFound() {
         </div>
     );
 }
-
-export const metadata = {
-    title: '404 - Página no encontrada | DISTMAH ATC',
-    description: 'La página que buscas no existe.',
-};

@@ -5,6 +5,7 @@ export class MicrosoftGraphService {
   // ===== USER MANAGEMENT =====
 
   static async getUser(userId: string): Promise<User> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     return await graphClient.api(`/users/${userId}`).get();
   }
 
@@ -14,6 +15,7 @@ export class MicrosoftGraphService {
     mailNickname: string;
     password: string;
   }): Promise<User> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const user = {
       accountEnabled: true,
       displayName: userData.displayName,
@@ -29,6 +31,7 @@ export class MicrosoftGraphService {
   }
 
   static async assignLicense(userId: string, skuId: string): Promise<void> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const licenses = {
       addLicenses: [{ skuId }],
       removeLicenses: [],
@@ -38,10 +41,12 @@ export class MicrosoftGraphService {
   }
 
   static async deleteUser(userId: string): Promise<void> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     await graphClient.api(`/users/${userId}`).delete();
   }
 
   static async updateUser(userId: string, updates: Partial<User>): Promise<User> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     return await graphClient.api(`/users/${userId}`).patch(updates);
   }
 
@@ -55,6 +60,7 @@ export class MicrosoftGraphService {
     bodyType?: 'text' | 'html';
     attachments?: { name: string; contentBytes: string; contentType: string }[];
   }): Promise<void> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const message = {
       subject: emailData.subject,
       body: {
@@ -80,6 +86,7 @@ export class MicrosoftGraphService {
     filter?: string;
     orderBy?: string;
   }): Promise<Message[]> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     let request = graphClient.api(`/users/${userId}/messages`);
 
     if (options?.top) request = request.top(options.top);
@@ -91,10 +98,12 @@ export class MicrosoftGraphService {
   }
 
   static async getEmail(userId: string, messageId: string): Promise<Message> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     return await graphClient.api(`/users/${userId}/messages/${messageId}`).get();
   }
 
   static async deleteEmail(userId: string, messageId: string): Promise<void> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     await graphClient.api(`/users/${userId}/messages/${messageId}`).delete();
   }
 
@@ -109,6 +118,7 @@ export class MicrosoftGraphService {
     location?: string;
     isOnlineMeeting?: boolean;
   }): Promise<Event> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const event = {
       subject: eventData.subject,
       body: {
@@ -136,6 +146,7 @@ export class MicrosoftGraphService {
   }
 
   static async getEvents(userId: string, startDate: Date, endDate: Date): Promise<Event[]> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const response = await graphClient
       .api(`/users/${userId}/calendar/calendarView`)
       .query({
@@ -149,14 +160,17 @@ export class MicrosoftGraphService {
   }
 
   static async getEvent(userId: string, eventId: string): Promise<Event> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     return await graphClient.api(`/users/${userId}/calendar/events/${eventId}`).get();
   }
 
   static async updateEvent(userId: string, eventId: string, updates: Partial<Event>): Promise<Event> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     return await graphClient.api(`/users/${userId}/calendar/events/${eventId}`).patch(updates);
   }
 
   static async deleteEvent(userId: string, eventId: string): Promise<void> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     await graphClient.api(`/users/${userId}/calendar/events/${eventId}`).delete();
   }
 
@@ -169,6 +183,7 @@ export class MicrosoftGraphService {
     owners: string[];
     members: string[];
   }): Promise<Group> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const group = {
       displayName: groupData.displayName,
       description: groupData.description,
@@ -184,10 +199,12 @@ export class MicrosoftGraphService {
   }
 
   static async getGroup(groupId: string): Promise<Group> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     return await graphClient.api(`/groups/${groupId}`).get();
   }
 
   static async addMemberToGroup(groupId: string, userId: string): Promise<void> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const member = {
       '@odata.id': `https://graph.microsoft.com/v1.0/directoryObjects/${userId}`,
     };
@@ -196,10 +213,12 @@ export class MicrosoftGraphService {
   }
 
   static async removeMemberFromGroup(groupId: string, userId: string): Promise<void> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     await graphClient.api(`/groups/${groupId}/members/${userId}/$ref`).delete();
   }
 
   static async getGroupMembers(groupId: string): Promise<User[]> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const response = await graphClient.api(`/groups/${groupId}/members`).get();
     return response.value;
   }
@@ -207,10 +226,12 @@ export class MicrosoftGraphService {
   // ===== ONEDRIVE =====
 
   static async getUserDriveInfo(userId: string) {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     return await graphClient.api(`/users/${userId}/drive`).get();
   }
 
   static async createFolder(userId: string, folderName: string, parentPath: string = 'root') {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const driveItem = {
       name: folderName,
       folder: {},

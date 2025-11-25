@@ -8,6 +8,7 @@ export class TeamsService {
     instructorId: string;
     studentIds: string[];
   }): Promise<Team> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const group = await graphClient.api('/groups').post({
       displayName: courseData.courseName,
       description: courseData.description,
@@ -51,6 +52,7 @@ export class TeamsService {
   }
 
   static async createModuleChannel(teamId: string, moduleName: string, description: string): Promise<Channel> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     return await graphClient.api(`/teams/${teamId}/channels`).post({
       displayName: moduleName,
       description,
@@ -59,6 +61,7 @@ export class TeamsService {
   }
 
   static async getTeamChannels(teamId: string): Promise<Channel[]> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const response = await graphClient.api(`/teams/${teamId}/channels`).get();
     return response.value;
   }
@@ -69,6 +72,7 @@ export class TeamsService {
     endDateTime: Date;
     participants: string[];
   }) {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const meeting = await graphClient.api(`/users/${userId}/onlineMeetings`).post({
       subject: meetingData.subject,
       startDateTime: meetingData.startDateTime.toISOString(),
@@ -96,6 +100,7 @@ export class TeamsService {
   }
 
   static async sendChannelMessage(teamId: string, channelId: string, message: string) {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     return await graphClient.api(`/teams/${teamId}/channels/${channelId}/messages`).post({
       body: {
         content: message,
@@ -104,6 +109,7 @@ export class TeamsService {
   }
 
   static async getChannelMessages(teamId: string, channelId: string): Promise<ChatMessage[]> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const response = await graphClient
       .api(`/teams/${teamId}/channels/${channelId}/messages`)
       .top(50)
@@ -121,10 +127,12 @@ export class TeamsService {
       websiteUrl: string;
     };
   }) {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     return await graphClient.api(`/teams/${teamId}/channels/${channelId}/tabs`).post(tabData);
   }
 
   static async addMemberToTeam(teamId: string, userId: string, role: 'member' | 'owner' = 'member') {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     await graphClient.api(`/groups/${teamId}/members/$ref`).post({
       '@odata.id': `https://graph.microsoft.com/v1.0/users/${userId}`,
     });
@@ -137,10 +145,12 @@ export class TeamsService {
   }
 
   static async removeMemberFromTeam(teamId: string, userId: string) {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     await graphClient.api(`/groups/${teamId}/members/${userId}/$ref`).delete();
   }
 
   static async getRecordings(teamId: string) {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const response = await graphClient
       .api(`/groups/${teamId}/drive/root:/Recordings:/children`)
       .get();

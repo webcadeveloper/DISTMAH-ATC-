@@ -4,6 +4,7 @@ const SITE_ID = process.env.M365_SHAREPOINT_SITE_ID || '';
 
 export class SharePointService {
   static async uploadCourseMaterial(courseId: string, fileName: string, fileBuffer: Buffer) {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const folderPath = `Courses/${courseId}/Materials`;
 
     await this.ensureFolderExists(folderPath);
@@ -14,6 +15,7 @@ export class SharePointService {
   }
 
   static async getCourseMaterials(courseId: string) {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const folderPath = `Courses/${courseId}/Materials`;
 
     try {
@@ -28,6 +30,7 @@ export class SharePointService {
   }
 
   static async createCourseLibrary(courseId: string, courseName: string) {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const folderPath = `Courses/${courseId}`;
 
     const folder = await graphClient
@@ -53,6 +56,7 @@ export class SharePointService {
   }
 
   private static async ensureFolderExists(folderPath: string) {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const parts = folderPath.split('/').filter(Boolean);
     let currentPath = '';
 
@@ -79,6 +83,7 @@ export class SharePointService {
     fileName: string,
     fileBuffer: Buffer
   ) {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const folderPath = `Assignments/${assignmentId}/${studentId}`;
 
     await this.ensureFolderExists(folderPath);
@@ -89,6 +94,7 @@ export class SharePointService {
   }
 
   static async getStudentSubmissions(assignmentId: string, studentId: string) {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const folderPath = `Assignments/${assignmentId}/${studentId}`;
 
     try {

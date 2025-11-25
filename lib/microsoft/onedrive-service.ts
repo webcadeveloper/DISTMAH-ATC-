@@ -3,6 +3,7 @@ import { DriveItem } from '@microsoft/microsoft-graph-types';
 
 export class OneDriveService {
   static async uploadFile(userId: string, filePath: string, fileName: string, fileBuffer: Buffer): Promise<DriveItem> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     if (fileBuffer.length < 4 * 1024 * 1024) {
       return await graphClient
         .api(`/users/${userId}/drive/root:/${filePath}/${fileName}:/content`)
@@ -45,6 +46,7 @@ export class OneDriveService {
   }
 
   static async downloadFile(userId: string, itemId: string): Promise<Buffer> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const downloadUrl = await graphClient
       .api(`/users/${userId}/drive/items/${itemId}`)
       .select('@microsoft.graph.downloadUrl')
@@ -56,6 +58,7 @@ export class OneDriveService {
   }
 
   static async createSharingLink(userId: string, itemId: string, type: 'view' | 'edit' = 'view'): Promise<string> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const permission = await graphClient
       .api(`/users/${userId}/drive/items/${itemId}/createLink`)
       .post({
@@ -67,6 +70,7 @@ export class OneDriveService {
   }
 
   static async createFolder(userId: string, folderPath: string, folderName: string): Promise<DriveItem> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     return await graphClient
       .api(`/users/${userId}/drive/root:/${folderPath}:/children`)
       .post({
@@ -77,6 +81,7 @@ export class OneDriveService {
   }
 
   static async listFiles(userId: string, folderPath: string = ''): Promise<DriveItem[]> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const endpoint = folderPath
       ? `/users/${userId}/drive/root:/${folderPath}:/children`
       : `/users/${userId}/drive/root/children`;
@@ -86,10 +91,12 @@ export class OneDriveService {
   }
 
   static async deleteFile(userId: string, itemId: string): Promise<void> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     await graphClient.api(`/users/${userId}/drive/items/${itemId}`).delete();
   }
 
   static async searchFiles(userId: string, query: string): Promise<DriveItem[]> {
+    if (!graphClient) throw new Error('Microsoft Graph client not initialized');
     const response = await graphClient
       .api(`/users/${userId}/drive/root/search(q='${query}')`)
       .get();
