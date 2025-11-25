@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { signOut } from 'next-auth/react';
 import { cn } from '@/lib/utils';
 import {
     LayoutDashboard,
@@ -17,11 +18,11 @@ import { LogoDistmah } from '@/components/brand/LogoDistmah';
 import { Button } from '@/components/ui/button';
 
 const sidebarItems = [
-    { icon: LayoutDashboard, label: 'Dashboard', href: '/estudiante/dashboard' },
-    { icon: BookOpen, label: 'Mis Cursos', href: '/estudiante/mis-cursos' },
-    { icon: Award, label: 'Mis Certificados', href: '/estudiante/certificados' },
-    { icon: Calendar, label: 'Calendario', href: '/estudiante/calendario' },
-    { icon: MessageSquare, label: 'Foro', href: '/estudiante/foro' },
+    { icon: LayoutDashboard, label: 'Dashboard', href: '/es/estudiante/dashboard' },
+    { icon: BookOpen, label: 'Mis Cursos', href: '/es/estudiante/mis-cursos' },
+    { icon: Award, label: 'Mis Certificados', href: '/es/estudiante/certificados' },
+    { icon: Calendar, label: 'Calendario', href: '/es/estudiante/calendario' },
+    { icon: MessageSquare, label: 'Foro', href: '/es/estudiante/foro' },
 ];
 
 export function StudentSidebar() {
@@ -30,7 +31,7 @@ export function StudentSidebar() {
     return (
         <aside className="w-64 bg-white border-r border-neutral-200 h-screen flex flex-col fixed left-0 top-0 z-40">
             <div className="p-6 border-b border-neutral-100">
-                <Link href="/estudiante/dashboard">
+                <Link href="/es/estudiante/dashboard">
                     <LogoDistmah variant="horizontal" className="scale-90 origin-left" />
                 </Link>
             </div>
@@ -65,7 +66,7 @@ export function StudentSidebar() {
                         Configuración
                     </p>
                     <nav className="space-y-1">
-                        <Link href="/estudiante/perfil">
+                        <Link href="/es/estudiante/perfil">
                             <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 text-sm font-medium">
                                 <Settings className="w-5 h-5 text-neutral-400" />
                                 Mi Perfil
@@ -85,7 +86,12 @@ export function StudentSidebar() {
                         <p className="text-xs text-neutral-500 truncate">estudiante@distmah.com</p>
                     </div>
                 </div>
-                <Button variant="outline" className="w-full justify-start text-neutral-600" size="sm">
+                <Button
+                    variant="outline"
+                    className="w-full justify-start text-neutral-600"
+                    size="sm"
+                    onClick={() => signOut({ callbackUrl: '/es/login' })}
+                >
                     <LogOut className="w-4 h-4 mr-2" /> Cerrar Sesión
                 </Button>
             </div>
