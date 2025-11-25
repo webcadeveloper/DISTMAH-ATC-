@@ -54,11 +54,17 @@ export default function NosotrosPage() {
             <ScrollReveal direction="up">
               <div className="bg-neutral-900 rounded-2xl overflow-hidden border border-white/10">
                 <div className="grid grid-cols-1 lg:grid-cols-2">
-                  {/* Imagen */}
-                  <div className="h-96 lg:h-auto bg-gradient-to-br from-neutral-800 to-neutral-700 relative">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Award className="w-32 h-32 text-white opacity-20" />
-                    </div>
+                  {/* Video */}
+                  <div className="h-96 lg:h-auto bg-black relative overflow-hidden">
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover"
+                    >
+                      <source src="/video/ANTONIO.mp4" type="video/mp4" />
+                    </video>
                   </div>
 
                   {/* Contenido */}
