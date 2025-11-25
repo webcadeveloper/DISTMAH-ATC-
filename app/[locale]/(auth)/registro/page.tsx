@@ -97,28 +97,28 @@ export default function RegisterPage() {
     };
 
     return (
-        <div className="min-h-screen flex">
+        <div className="min-h-screen flex bg-black">
             {/* Left Side - Register Form */}
-            <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white overflow-y-auto">
-                <div className="w-full max-w-md">
+            <div className="w-full lg:w-1/2 flex items-center justify-center p-8 overflow-y-auto">
+                <div className="w-full max-w-md bg-neutral-900 rounded-2xl p-8 border border-white/10">
                     {/* Logo */}
                     <div className="mb-8 flex justify-center">
                         <LogoDistmah />
                     </div>
 
                     {/* Title */}
-                    <div className="mb-8">
-                        <h2 className="text-2xl font-bold text-neutral-900">Crear Cuenta</h2>
-                        <p className="text-neutral-600 mt-2">
+                    <div className="mb-8 text-center">
+                        <h2 className="text-2xl font-bold text-white">Crear Cuenta</h2>
+                        <p className="text-neutral-400 mt-2">
                             Regístrate y comienza tu camino en Autodesk
                         </p>
                     </div>
 
                     {/* Error Alert */}
                     {error && (
-                        <Alert variant="destructive" className="mb-6">
-                            <AlertCircle className="h-4 w-4" />
-                            <AlertDescription>{error}</AlertDescription>
+                        <Alert variant="destructive" className="mb-6 bg-red-500/10 border-red-500/50">
+                            <AlertCircle className="h-4 w-4 text-red-500" />
+                            <AlertDescription className="text-red-400">{error}</AlertDescription>
                         </Alert>
                     )}
 
@@ -126,18 +126,18 @@ export default function RegisterPage() {
                     <form onSubmit={handleRegister} className="space-y-6">
                         {/* Name */}
                         <div>
-                            <Label htmlFor="name" className="text-neutral-700 font-medium">
+                            <Label htmlFor="name" className="text-neutral-300 font-medium">
                                 Nombre Completo <span className="text-red-500">*</span>
                             </Label>
                             <div className="relative mt-2">
-                                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400" />
+                                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-500" />
                                 <Input
                                     id="name"
                                     type="text"
                                     value={formData.name}
                                     onChange={(e) => handleChange('name', e.target.value)}
                                     placeholder="Juan Pérez"
-                                    className="pl-10"
+                                    className="pl-10 bg-neutral-800 border-neutral-700 text-white placeholder:text-neutral-500 focus:border-primary-500"
                                     required
                                 />
                             </div>
@@ -145,18 +145,18 @@ export default function RegisterPage() {
 
                         {/* Email */}
                         <div>
-                            <Label htmlFor="email" className="text-neutral-700 font-medium">
+                            <Label htmlFor="email" className="text-neutral-300 font-medium">
                                 Correo Electrónico <span className="text-red-500">*</span>
                             </Label>
                             <div className="relative mt-2">
-                                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400" />
+                                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-500" />
                                 <Input
                                     id="email"
                                     type="email"
                                     value={formData.email}
                                     onChange={(e) => handleChange('email', e.target.value)}
                                     placeholder="tu@email.com"
-                                    className="pl-10"
+                                    className="pl-10 bg-neutral-800 border-neutral-700 text-white placeholder:text-neutral-500 focus:border-primary-500"
                                     required
                                 />
                             </div>
@@ -166,37 +166,37 @@ export default function RegisterPage() {
                         <div className="grid grid-cols-2 gap-4">
                             {/* Phone */}
                             <div>
-                                <Label htmlFor="phone" className="text-neutral-700 font-medium">
+                                <Label htmlFor="phone" className="text-neutral-300 font-medium">
                                     Teléfono
                                 </Label>
                                 <div className="relative mt-2">
-                                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400" />
+                                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-500" />
                                     <Input
                                         id="phone"
                                         type="tel"
                                         value={formData.phone}
                                         onChange={(e) => handleChange('phone', e.target.value)}
                                         placeholder="+58 412..."
-                                        className="pl-10"
+                                        className="pl-10 bg-neutral-800 border-neutral-700 text-white placeholder:text-neutral-500 focus:border-primary-500"
                                     />
                                 </div>
                             </div>
 
                             {/* Country */}
                             <div>
-                                <Label htmlFor="country" className="text-neutral-700 font-medium">
+                                <Label htmlFor="country" className="text-neutral-300 font-medium">
                                     País
                                 </Label>
                                 <div className="relative mt-2">
-                                    <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400 z-10" />
+                                    <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-500 z-10" />
                                     <Select
                                         value={formData.country}
                                         onValueChange={(value) => handleChange('country', value)}
                                     >
-                                        <SelectTrigger className="pl-10">
+                                        <SelectTrigger className="pl-10 bg-neutral-800 border-neutral-700 text-white">
                                             <SelectValue placeholder="Selecciona" />
                                         </SelectTrigger>
-                                        <SelectContent>
+                                        <SelectContent className="bg-neutral-800 border-neutral-700">
                                             <SelectItem value="ve">Venezuela</SelectItem>
                                             <SelectItem value="co">Colombia</SelectItem>
                                             <SelectItem value="mx">México</SelectItem>
@@ -215,24 +215,24 @@ export default function RegisterPage() {
 
                         {/* Password */}
                         <div>
-                            <Label htmlFor="password" className="text-neutral-700 font-medium">
+                            <Label htmlFor="password" className="text-neutral-300 font-medium">
                                 Contraseña <span className="text-red-500">*</span>
                             </Label>
                             <div className="relative mt-2">
-                                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400" />
+                                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-500" />
                                 <Input
                                     id="password"
                                     type={showPassword ? 'text' : 'password'}
                                     value={formData.password}
                                     onChange={(e) => handleChange('password', e.target.value)}
                                     placeholder="Mínimo 8 caracteres"
-                                    className="pl-10 pr-10"
+                                    className="pl-10 pr-10 bg-neutral-800 border-neutral-700 text-white placeholder:text-neutral-500 focus:border-primary-500"
                                     required
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-neutral-400 hover:text-neutral-600"
+                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-neutral-500 hover:text-neutral-300"
                                 >
                                     {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                                 </button>
@@ -241,24 +241,24 @@ export default function RegisterPage() {
 
                         {/* Confirm Password */}
                         <div>
-                            <Label htmlFor="confirmPassword" className="text-neutral-700 font-medium">
+                            <Label htmlFor="confirmPassword" className="text-neutral-300 font-medium">
                                 Confirmar Contraseña <span className="text-red-500">*</span>
                             </Label>
                             <div className="relative mt-2">
-                                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400" />
+                                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-500" />
                                 <Input
                                     id="confirmPassword"
                                     type={showConfirmPassword ? 'text' : 'password'}
                                     value={formData.confirmPassword}
                                     onChange={(e) => handleChange('confirmPassword', e.target.value)}
                                     placeholder="Repite tu contraseña"
-                                    className="pl-10 pr-10"
+                                    className="pl-10 pr-10 bg-neutral-800 border-neutral-700 text-white placeholder:text-neutral-500 focus:border-primary-500"
                                     required
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-neutral-400 hover:text-neutral-600"
+                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-neutral-500 hover:text-neutral-300"
                                 >
                                     {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                                 </button>
@@ -272,15 +272,15 @@ export default function RegisterPage() {
                                 type="checkbox"
                                 checked={acceptTerms}
                                 onChange={(e) => setAcceptTerms(e.target.checked)}
-                                className="w-4 h-4 text-blue-600 border-neutral-300 rounded focus:ring-blue-500"
+                                className="w-4 h-4 bg-neutral-800 border-neutral-700 rounded focus:ring-primary-500"
                             />
-                            <Label htmlFor="terms" className="ml-2 text-sm text-neutral-600 cursor-pointer">
+                            <Label htmlFor="terms" className="ml-2 text-sm text-neutral-400 cursor-pointer">
                                 Acepto los{' '}
-                                <Link href="/terminos" className="text-blue-600 hover:text-blue-700 font-medium">
+                                <Link href="/terminos" className="text-primary-400 hover:text-primary-300 font-medium">
                                     términos
                                 </Link>{' '}
                                 y{' '}
-                                <Link href="/privacidad" className="text-blue-600 hover:text-blue-700 font-medium">
+                                <Link href="/privacidad" className="text-primary-400 hover:text-primary-300 font-medium">
                                     privacidad
                                 </Link>
                             </Label>
@@ -289,7 +289,7 @@ export default function RegisterPage() {
                         {/* Submit Button */}
                         <Button
                             type="submit"
-                            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3"
+                            className="w-full bg-primary-600 hover:bg-primary-500 text-white py-3 font-semibold"
                             disabled={loading}
                         >
                             {loading ? 'Creando cuenta...' : 'Crear Cuenta'}
@@ -299,10 +299,10 @@ export default function RegisterPage() {
                     {/* Divider */}
                     <div className="relative my-6">
                         <div className="absolute inset-0 flex items-center">
-                            <div className="w-full border-t border-neutral-300"></div>
+                            <div className="w-full border-t border-neutral-700"></div>
                         </div>
                         <div className="relative flex justify-center text-sm">
-                            <span className="px-2 bg-white text-neutral-500">O regístrate con</span>
+                            <span className="px-2 bg-neutral-900 text-neutral-500">O regístrate con</span>
                         </div>
                     </div>
 
@@ -311,7 +311,7 @@ export default function RegisterPage() {
                         type="button"
                         onClick={handleMicrosoftRegister}
                         variant="outline"
-                        className="w-full py-3 border-2 hover:bg-neutral-50"
+                        className="w-full py-3 border-neutral-700 bg-neutral-800 hover:bg-neutral-700 text-white"
                     >
                         <svg className="w-5 h-5 mr-2" viewBox="0 0 23 23">
                             <path fill="#f3f3f3" d="M0 0h23v23H0z" />
@@ -324,16 +324,16 @@ export default function RegisterPage() {
                     </Button>
 
                     {/* Login Link */}
-                    <p className="text-center text-sm text-neutral-600 mt-6">
+                    <p className="text-center text-sm text-neutral-400 mt-6">
                         ¿Ya tienes una cuenta?{' '}
-                        <Link href="/login" className="text-blue-600 hover:text-blue-700 font-medium">
+                        <Link href="/login" className="text-primary-400 hover:text-primary-300 font-medium">
                             Inicia sesión
                         </Link>
                     </p>
 
                     {/* Back to Home */}
                     <div className="text-center mt-6">
-                        <Link href="/" className="text-sm text-neutral-600 hover:text-neutral-900">
+                        <Link href="/" className="text-sm text-neutral-500 hover:text-neutral-300">
                             ← Volver al inicio
                         </Link>
                     </div>

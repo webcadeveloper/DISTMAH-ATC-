@@ -7,7 +7,6 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle, Mail, Lock, Eye, EyeOff } from 'lucide-react';
-import Image from 'next/image';
 import { LogoDistmah } from '@/components/brand/LogoDistmah';
 
 export default function LoginPage() {
@@ -58,28 +57,28 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen flex">
+        <div className="min-h-screen flex bg-black">
             {/* Left Side - Login Form */}
-            <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white">
-                <div className="w-full max-w-md">
+            <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
+                <div className="w-full max-w-md bg-neutral-900 rounded-2xl p-8 border border-white/10">
                     {/* Logo */}
                     <div className="mb-8 flex justify-center">
                         <LogoDistmah />
                     </div>
 
                     {/* Title */}
-                    <div className="mb-8">
-                        <h2 className="text-2xl font-bold text-neutral-900">Iniciar Sesión</h2>
-                        <p className="text-neutral-600 mt-2">
+                    <div className="mb-8 text-center">
+                        <h2 className="text-2xl font-bold text-white">Iniciar Sesión</h2>
+                        <p className="text-neutral-400 mt-2">
                             Accede a tus cursos y continúa tu aprendizaje
                         </p>
                     </div>
 
                     {/* Error Alert */}
                     {error && (
-                        <Alert variant="destructive" className="mb-6">
-                            <AlertCircle className="h-4 w-4" />
-                            <AlertDescription>{error}</AlertDescription>
+                        <Alert variant="destructive" className="mb-6 bg-red-500/10 border-red-500/50">
+                            <AlertCircle className="h-4 w-4 text-red-500" />
+                            <AlertDescription className="text-red-400">{error}</AlertDescription>
                         </Alert>
                     )}
 
@@ -87,18 +86,18 @@ export default function LoginPage() {
                     <form onSubmit={handleLogin} className="space-y-6">
                         {/* Email */}
                         <div>
-                            <Label htmlFor="email" className="text-neutral-700 font-medium">
+                            <Label htmlFor="email" className="text-neutral-300 font-medium">
                                 Correo Electrónico
                             </Label>
                             <div className="relative mt-2">
-                                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400" />
+                                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-500" />
                                 <Input
                                     id="email"
                                     type="email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     placeholder="tu@email.com"
-                                    className="pl-10"
+                                    className="pl-10 bg-neutral-800 border-neutral-700 text-white placeholder:text-neutral-500 focus:border-primary-500"
                                     required
                                 />
                             </div>
@@ -106,24 +105,24 @@ export default function LoginPage() {
 
                         {/* Password */}
                         <div>
-                            <Label htmlFor="password" className="text-neutral-700 font-medium">
+                            <Label htmlFor="password" className="text-neutral-300 font-medium">
                                 Contraseña
                             </Label>
                             <div className="relative mt-2">
-                                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400" />
+                                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-500" />
                                 <Input
                                     id="password"
                                     type={showPassword ? 'text' : 'password'}
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     placeholder="••••••••"
-                                    className="pl-10 pr-10"
+                                    className="pl-10 pr-10 bg-neutral-800 border-neutral-700 text-white placeholder:text-neutral-500 focus:border-primary-500"
                                     required
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-neutral-400 hover:text-neutral-600"
+                                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-neutral-500 hover:text-neutral-300"
                                 >
                                     {showPassword ? (
                                         <EyeOff className="w-5 h-5" />
@@ -140,15 +139,15 @@ export default function LoginPage() {
                                 <input
                                     id="remember"
                                     type="checkbox"
-                                    className="w-4 h-4 text-blue-600 border-neutral-300 rounded focus:ring-blue-500"
+                                    className="w-4 h-4 bg-neutral-800 border-neutral-700 rounded focus:ring-primary-500"
                                 />
-                                <Label htmlFor="remember" className="ml-2 text-sm text-neutral-600">
+                                <Label htmlFor="remember" className="ml-2 text-sm text-neutral-400">
                                     Recordarme
                                 </Label>
                             </div>
                             <Link
                                 href="/recuperar-contrasena"
-                                className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                                className="text-sm text-primary-400 hover:text-primary-300 font-medium"
                             >
                                 ¿Olvidaste tu contraseña?
                             </Link>
@@ -157,7 +156,7 @@ export default function LoginPage() {
                         {/* Submit Button */}
                         <Button
                             type="submit"
-                            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3"
+                            className="w-full bg-primary-600 hover:bg-primary-500 text-white py-3 font-semibold"
                             disabled={loading}
                         >
                             {loading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
@@ -167,10 +166,10 @@ export default function LoginPage() {
                     {/* Divider */}
                     <div className="relative my-6">
                         <div className="absolute inset-0 flex items-center">
-                            <div className="w-full border-t border-neutral-300"></div>
+                            <div className="w-full border-t border-neutral-700"></div>
                         </div>
                         <div className="relative flex justify-center text-sm">
-                            <span className="px-2 bg-white text-neutral-500">O continúa con</span>
+                            <span className="px-2 bg-neutral-900 text-neutral-500">O continúa con</span>
                         </div>
                     </div>
 
@@ -179,7 +178,7 @@ export default function LoginPage() {
                         type="button"
                         onClick={handleMicrosoftLogin}
                         variant="outline"
-                        className="w-full py-3 border-2 hover:bg-neutral-50"
+                        className="w-full py-3 border-neutral-700 bg-neutral-800 hover:bg-neutral-700 text-white"
                     >
                         <svg className="w-5 h-5 mr-2" viewBox="0 0 23 23">
                             <path fill="#f3f3f3" d="M0 0h23v23H0z" />
@@ -192,16 +191,16 @@ export default function LoginPage() {
                     </Button>
 
                     {/* Sign Up Link */}
-                    <p className="text-center text-sm text-neutral-600 mt-6">
+                    <p className="text-center text-sm text-neutral-400 mt-6">
                         ¿No tienes una cuenta?{' '}
-                        <Link href="/registro" className="text-blue-600 hover:text-blue-700 font-medium">
+                        <Link href="/registro" className="text-primary-400 hover:text-primary-300 font-medium">
                             Regístrate aquí
                         </Link>
                     </p>
 
                     {/* Back to Home */}
                     <div className="text-center mt-6">
-                        <Link href="/" className="text-sm text-neutral-600 hover:text-neutral-900">
+                        <Link href="/" className="text-sm text-neutral-500 hover:text-neutral-300">
                             ← Volver al inicio
                         </Link>
                     </div>
