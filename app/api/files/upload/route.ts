@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
       buffer
     );
   } else {
-    const user = await prisma.user.findUnique({
+    const user = await (prisma as any).user.findUnique({
       where: { id: session.user.id },
       select: { m365UserId: true },
     });
