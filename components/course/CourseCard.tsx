@@ -77,20 +77,18 @@ export function CourseCard({ course, index = 0 }: CourseCardProps) {
                     {/* Image Section */}
                     <div className="relative h-44 w-full overflow-hidden" style={{ borderRadius: '1.2rem 1.2rem 0 0' }}>
                         <div className="absolute inset-0 bg-gradient-to-b from-neutral-800 to-neutral-700" />
-                        {course.image && (
-                            <motion.div
-                                animate={{ scale: isHovered ? 1.08 : 1 }}
-                                transition={{ duration: 0.5, ease: 'easeOut' }}
-                                className="w-full h-full"
-                            >
-                                <Image
-                                    src={course.image}
-                                    alt={course.title}
-                                    fill
-                                    className="object-cover"
-                                />
-                            </motion.div>
-                        )}
+                        <motion.div
+                            animate={{ scale: isHovered ? 1.08 : 1 }}
+                            transition={{ duration: 0.5, ease: 'easeOut' }}
+                            className="w-full h-full"
+                        >
+                            <Image
+                                src={course.image || '/images/course-placeholder.jpg'}
+                                alt={course.title || 'Curso DISTMAH'}
+                                fill
+                                className="object-cover"
+                            />
+                        </motion.div>
 
                         {/* Gradient overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-transparent to-transparent opacity-60" />

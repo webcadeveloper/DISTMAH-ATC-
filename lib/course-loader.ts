@@ -34,6 +34,7 @@ export interface CourseMetadata {
   enrollmentCount?: number;
   rating?: number;
   reviewsCount?: number;
+  imagen?: string;
 }
 
 export interface Module {
@@ -89,14 +90,39 @@ export async function getAllCourses(): Promise<CourseMetadata[]> {
             ? cursoData.precio.moneda
             : 'USD';
 
-          const instructor = cursoData.instructor?.nombre || cursoData.instructor || 'DISTMAH ATC';
+          const instructor = typeof cursoData.instructor === 'object'
+            ? (cursoData.instructor?.nombre || 'DISTMAH ATC')
+            : (cursoData.instructor || 'DISTMAH ATC');
+
+          const version = cursoData.software?.includes('2026') ? '2026' : (cursoData.version || '2025');
 
           courses.push({
-            ...cursoData,
-            duracion,
-            precio,
-            moneda,
-            instructor,
+            id: cursoData.id || entry.name,
+            titulo: cursoData.titulo || entry.name,
+            descripcion: cursoData.descripcion || '',
+            precio: precio || 390,
+            moneda: moneda,
+            duracion: duracion,
+            nivel: cursoData.nivel || 'Básico',
+            categoria: cursoData.categoria || 'General',
+            subcategoria: cursoData.subcategoria,
+            version: version,
+            idioma: cursoData.idioma || 'Español',
+            instructor: instructor,
+            prerequisitos: cursoData.prerequisitos || [],
+            objetivos: cursoData.objetivos || [],
+            incluye: cursoData.materiales || cursoData.incluye || [],
+            novedades_2026: cursoData.novedades_2026 || [],
+            competencias_profesionales: cursoData.competencias_profesionales || [],
+            posiciones_laborales: cursoData.posiciones_laborales || [],
+            certificacion: cursoData.certificacion,
+            actualizacion: cursoData.fecha_actualizacion || cursoData.actualizacion,
+            vigencia: cursoData.vigencia,
+            lastUpdated: cursoData.fecha_actualizacion || cursoData.lastUpdated,
+            enrollmentCount: cursoData.enrollmentCount,
+            rating: cursoData.rating || 4.9,
+            reviewsCount: cursoData.reviewsCount,
+            imagen: cursoData.imagen || `/cursos/${entry.name}/cover.jpg`,
             slug: entry.name,
           });
         } catch (error) {
