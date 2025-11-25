@@ -162,7 +162,7 @@ export async function PATCH(req: NextRequest) {
       );
     }
 
-    const liveClass = await prisma.liveClass.findUnique({
+    const liveClass = await (prisma as any).liveClass.findUnique({
       where: { id: liveClassId },
       select: { instructorId: true },
     });
@@ -229,7 +229,7 @@ export async function DELETE(req: NextRequest) {
       );
     }
 
-    const liveClass = await prisma.liveClass.findUnique({
+    const liveClass = await (prisma as any).liveClass.findUnique({
       where: { id: liveClassId },
       select: { instructorId: true },
     });
