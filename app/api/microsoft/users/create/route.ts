@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
 
     await MicrosoftGraphService.assignLicense(m365User.id, skuId);
 
-    await prisma.user.update({
+    await (prisma as any).user.update({
       where: { id: userId },
       data: {
         m365UserId: m365User.id,
