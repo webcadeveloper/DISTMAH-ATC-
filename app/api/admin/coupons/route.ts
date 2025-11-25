@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const active = searchParams.get('active');
 
-    const coupons = await prisma.coupon.findMany({
+    const coupons = await (prisma.coupon as any).findMany({
       where: active !== null ? { active: active === 'true' } : undefined,
       orderBy: { createdAt: 'desc' },
     });
@@ -58,7 +58,7 @@ export async function POST(request: NextRequest) {
       applicableCourses,
     } = validatedData.data;
 
-    const existingCoupon = await prisma.coupon.findUnique({
+    const existingCoupon = await (prisma.coupon as any).findUnique({
       where: { code },
     });
 
@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const coupon = await prisma.coupon.create({
+    const coupon = await (prisma.coupon as any).create({
       data: {
         code,
         type,

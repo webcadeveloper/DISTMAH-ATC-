@@ -39,7 +39,7 @@ export async function PATCH(
       updateData.maxUses = validatedData.data.maxUses;
     }
 
-    const coupon = await prisma.coupon.update({
+    const coupon = await (prisma.coupon as any).update({
       where: { id },
       data: updateData,
     });
@@ -60,7 +60,7 @@ export async function DELETE(
 ) {
   try {
     const { id } = await params;
-    await prisma.coupon.delete({
+    await (prisma.coupon as any).delete({
       where: { id },
     });
 
