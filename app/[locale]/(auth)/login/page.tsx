@@ -41,7 +41,7 @@ export default function LoginPage() {
                 return;
             }
 
-            window.location.href = '/estudiante/dashboard';
+            window.location.href = '/es/estudiante/dashboard';
         } catch (err) {
             setError('Error al iniciar sesión. Intenta de nuevo.');
             setLoading(false);
@@ -49,7 +49,7 @@ export default function LoginPage() {
     };
 
     const handleMicrosoftLogin = () => {
-        signIn('azure-ad', { callbackUrl: '/estudiante/dashboard' });
+        signIn('azure-ad', { callbackUrl: '/es/estudiante/dashboard' });
     };
 
     return (

@@ -85,7 +85,7 @@ export default function RegisterPage() {
                 return;
             }
 
-            window.location.href = '/login?registered=true';
+            window.location.href = '/es/login?registered=true';
         } catch (err) {
             setError('Error al crear la cuenta. Intenta de nuevo.');
             setLoading(false);
