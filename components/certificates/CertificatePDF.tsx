@@ -9,7 +9,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Helvetica',
   },
   border: {
-    border: '4px solid #000000',
+    borderWidth: 4,
+    borderColor: '#000000',
+    borderStyle: 'solid',
     padding: 40,
     height: '100%',
   },
@@ -56,7 +58,9 @@ const styles = StyleSheet.create({
     color: '#000000',
     textAlign: 'center',
     marginBottom: 30,
-    borderBottom: '2px solid #000000',
+    borderBottomWidth: 2,
+    borderBottomColor: '#000000',
+    borderBottomStyle: 'solid',
     paddingBottom: 10,
   },
   completionText: {
@@ -85,7 +89,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   signatureLine: {
-    borderTop: '1px solid #000000',
+    borderTopWidth: 1,
+    borderTopColor: '#000000',
+    borderTopStyle: 'solid',
     marginBottom: 8,
     paddingTop: 8,
   },
