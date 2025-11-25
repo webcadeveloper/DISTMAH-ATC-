@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
   if (source === 'sharepoint' && courseId) {
     files = await SharePointService.getCourseMaterials(courseId);
   } else {
-    const user = await prisma.user.findUnique({
+    const user = await (prisma as any).user.findUnique({
       where: { id: session.user.id },
       select: { m365UserId: true },
     });
