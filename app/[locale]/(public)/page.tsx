@@ -132,7 +132,7 @@ export default function Home() {
             </section>
 
             {/* Featured Courses Section */}
-            <section className="py-24 relative overflow-hidden" style={{ background: 'linear-gradient(to bottom, #000000 0%, #2a2a2a 50%, #3a3a3a 100%)' }}>
+            <section className="py-24 relative overflow-hidden" style={{ background: 'linear-gradient(to bottom, #000000 0%, #000000 75%, #171717 100%)' }}>
                 <div className="absolute inset-0 opacity-10">
                     <div className="absolute inset-0" style={{
                         backgroundImage: `
