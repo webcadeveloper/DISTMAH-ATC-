@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
 
     const { email } = validatedData.data;
 
-    const user = await prisma.user.findUnique({
+    const user = await (prisma as any).user.findUnique({
       where: { email },
     });
 
@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (!user.password) {
+    if (!(user as any).password) {
       return NextResponse.json(
         { error: 'Esta cuenta usa autenticación de Microsoft. No se puede resetear contraseña.' },
         { status: 400 }
