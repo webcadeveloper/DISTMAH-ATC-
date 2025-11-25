@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { signOut } from 'next-auth/react';
 import { cn } from '@/lib/utils';
 import {
     LayoutDashboard,
@@ -18,13 +19,13 @@ import { LogoDistmah } from '@/components/brand/LogoDistmah';
 import { Button } from '@/components/ui/button';
 
 const sidebarItems = [
-    { icon: LayoutDashboard, label: 'Dashboard', href: '/instructor/dashboard' },
-    { icon: BookOpen, label: 'Mis Cursos', href: '/instructor/cursos' },
-    { icon: FolderOpen, label: 'Archivos', href: '/instructor/archivos' },
-    { icon: Users, label: 'Estudiantes', href: '/instructor/estudiantes' },
-    { icon: Calendar, label: 'Clases en Vivo', href: '/instructor/clases' },
-    { icon: FileText, label: 'Tareas y Exámenes', href: '/instructor/evaluaciones' },
-    { icon: BarChart, label: 'Reportes', href: '/instructor/reportes' },
+    { icon: LayoutDashboard, label: 'Dashboard', href: '/es/instructor/dashboard' },
+    { icon: BookOpen, label: 'Mis Cursos', href: '/es/instructor/cursos' },
+    { icon: FolderOpen, label: 'Archivos', href: '/es/instructor/archivos' },
+    { icon: Users, label: 'Estudiantes', href: '/es/instructor/estudiantes' },
+    { icon: Calendar, label: 'Clases en Vivo', href: '/es/instructor/clases' },
+    { icon: FileText, label: 'Tareas y Exámenes', href: '/es/instructor/evaluaciones' },
+    { icon: BarChart, label: 'Reportes', href: '/es/instructor/reportes' },
 ];
 
 export function InstructorSidebar() {
@@ -33,7 +34,7 @@ export function InstructorSidebar() {
     return (
         <aside className="w-64 bg-white border-r border-neutral-200 h-screen flex flex-col fixed left-0 top-0 z-40">
             <div className="p-6 border-b border-neutral-100">
-                <Link href="/instructor/dashboard">
+                <Link href="/es/instructor/dashboard">
                     <LogoDistmah variant="horizontal" className="scale-90 origin-left" />
                 </Link>
             </div>
@@ -68,7 +69,7 @@ export function InstructorSidebar() {
                         Configuración
                     </p>
                     <nav className="space-y-1">
-                        <Link href="/instructor/perfil">
+                        <Link href="/es/instructor/perfil">
                             <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 text-sm font-medium">
                                 <Settings className="w-5 h-5 text-neutral-400" />
                                 Mi Perfil
@@ -88,7 +89,12 @@ export function InstructorSidebar() {
                         <p className="text-xs text-neutral-500 truncate">instructor@distmah.com</p>
                     </div>
                 </div>
-                <Button variant="outline" className="w-full justify-start text-neutral-600" size="sm">
+                <Button
+                    variant="outline"
+                    className="w-full justify-start text-neutral-600"
+                    size="sm"
+                    onClick={() => signOut({ callbackUrl: '/es/login' })}
+                >
                     <LogOut className="w-4 h-4 mr-2" /> Cerrar Sesión
                 </Button>
             </div>

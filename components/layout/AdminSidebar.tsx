@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { signOut } from 'next-auth/react';
 import { cn } from '@/lib/utils';
 import {
     LayoutDashboard,
@@ -17,12 +18,12 @@ import { LogoDistmah } from '@/components/brand/LogoDistmah';
 import { Button } from '@/components/ui/button';
 
 const sidebarItems = [
-    { icon: LayoutDashboard, label: 'Dashboard', href: '/admin/dashboard' },
-    { icon: Users, label: 'Usuarios', href: '/admin/usuarios' },
-    { icon: BookOpen, label: 'Cursos', href: '/admin/cursos' },
-    { icon: CreditCard, label: 'Pagos', href: '/admin/pagos' },
-    { icon: FileText, label: 'Reportes', href: '/admin/reportes' },
-    { icon: Shield, label: 'Roles y Permisos', href: '/admin/configuracion' },
+    { icon: LayoutDashboard, label: 'Dashboard', href: '/es/admin/dashboard' },
+    { icon: Users, label: 'Usuarios', href: '/es/admin/usuarios' },
+    { icon: BookOpen, label: 'Cursos', href: '/es/admin/cursos' },
+    { icon: CreditCard, label: 'Pagos', href: '/es/admin/pagos' },
+    { icon: FileText, label: 'Reportes', href: '/es/admin/reportes' },
+    { icon: Shield, label: 'Roles y Permisos', href: '/es/admin/configuracion' },
 ];
 
 export function AdminSidebar() {
@@ -31,7 +32,7 @@ export function AdminSidebar() {
     return (
         <aside className="w-64 bg-neutral-900 text-white border-r border-neutral-800 h-screen flex flex-col fixed left-0 top-0 z-40">
             <div className="p-6 border-b border-neutral-800">
-                <Link href="/admin/dashboard">
+                <Link href="/es/admin/dashboard">
                     <LogoDistmah variant="horizontal" className="scale-90 origin-left text-white" />
                 </Link>
             </div>
@@ -72,7 +73,12 @@ export function AdminSidebar() {
                         <p className="text-xs text-neutral-500 truncate">admin@distmah.com</p>
                     </div>
                 </div>
-                <Button variant="outline" className="w-full justify-start text-neutral-400 border-neutral-700 hover:bg-neutral-800 hover:text-white" size="sm">
+                <Button
+                    variant="outline"
+                    className="w-full justify-start text-neutral-400 border-neutral-700 hover:bg-neutral-800 hover:text-white"
+                    size="sm"
+                    onClick={() => signOut({ callbackUrl: '/es/login' })}
+                >
                     <LogOut className="w-4 h-4 mr-2" /> Cerrar Sesión
                 </Button>
             </div>
