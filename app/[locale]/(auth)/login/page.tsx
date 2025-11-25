@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { signIn } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -28,18 +29,13 @@ export default function LoginPage() {
         }
 
         try {
-            const result = await fetch('/api/auth/signin', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    email,
-                    password,
-                }),
+            const result = await signIn('credentials', {
+                email,
+                password,
+                redirect: false,
             });
 
-            const data = await result.json();
-
-            if (!result.ok) {
+            if (result?.error) {
                 setError('Email o contraseña incorrectos');
                 setLoading(false);
                 return;
@@ -53,7 +49,7 @@ export default function LoginPage() {
     };
 
     const handleMicrosoftLogin = () => {
-        window.location.href = '/api/auth/signin?provider=azure-ad';
+        signIn('azure-ad', { callbackUrl: '/estudiante/dashboard' });
     };
 
     return (
