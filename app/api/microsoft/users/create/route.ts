@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (user.m365UserId) {
+    if ((user as any).m365UserId) {
       return NextResponse.json(
         { error: 'Usuario ya tiene cuenta M365 configurada' },
         { status: 400 }
@@ -128,19 +128,19 @@ export async function DELETE(req: NextRequest) {
       );
     }
 
-    const user = await prisma.user.findUnique({
+    const user = await (prisma as any).user.findUnique({
       where: { id: userId },
       select: { m365UserId: true },
     });
 
-    if (!user?.m365UserId) {
+    if (!(user as any)?.m365UserId) {
       return NextResponse.json(
         { error: 'Usuario no tiene cuenta M365' },
         { status: 404 }
       );
     }
 
-    await MicrosoftGraphService.deleteUser(user.m365UserId);
+    await MicrosoftGraphService.deleteUser((user as any).m365UserId);
 
     await prisma.user.update({
       where: { id: userId },
