@@ -4,8 +4,7 @@ import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Button } from '@/components/ui/button';
-import { Menu, X, Home, BookOpen, Award, Building2, Users } from 'lucide-react';
+import { Menu, X, Home, BookOpen, Award, Building2, Users, LogIn, UserPlus } from 'lucide-react';
 
 const navItems = [
     { id: 'home', href: '/es', label: 'Inicio', icon: Home },
@@ -53,8 +52,8 @@ export function NavbarSimple() {
             <nav
                 className={`w-full sticky top-0 z-50 transition-all duration-500 ${
                     scrolled
-                        ? 'bg-black/95 backdrop-blur-xl shadow-2xl shadow-black/20'
-                        : 'bg-black'
+                        ? 'bg-neutral-900/70 backdrop-blur-2xl shadow-2xl shadow-black/30 border-b border-white/5'
+                        : 'bg-neutral-900/50 backdrop-blur-xl border-b border-white/5'
                 }`}
             >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -71,7 +70,7 @@ export function NavbarSimple() {
                         </Link>
 
                         <div className="hidden lg:block">
-                            <div className="relative bg-neutral-900/80 backdrop-blur-sm rounded-2xl p-1.5 border border-white/10">
+                            <div className="relative bg-neutral-800/60 backdrop-blur-md rounded-2xl p-1.5 border border-white/10">
                                 <div
                                     ref={indicatorRef}
                                     className="absolute top-0 left-0 w-[20%] h-full transition-transform duration-500 ease-out pointer-events-none"
@@ -91,18 +90,18 @@ export function NavbarSimple() {
                                                 onClick={() => setActiveIndex(index)}
                                                 className={`relative flex flex-col items-center justify-center px-5 py-2.5 rounded-xl transition-all duration-300 min-w-[90px] ${
                                                     isActive
-                                                        ? 'text-[#1F4E79]'
+                                                        ? 'text-[#4A90D9]'
                                                         : 'text-neutral-400 hover:text-white'
                                                 }`}
                                             >
                                                 <Icon
                                                     className={`w-5 h-5 mb-1 transition-all duration-300 ${
-                                                        isActive ? 'fill-[#1F4E79] stroke-[#1F4E79]' : ''
+                                                        isActive ? 'fill-[#4A90D9]/20 stroke-[#4A90D9]' : ''
                                                     }`}
                                                     strokeWidth={isActive ? 1.5 : 2}
                                                 />
                                                 <span className={`text-xs font-semibold transition-colors duration-300 ${
-                                                    isActive ? 'text-[#1F4E79]' : ''
+                                                    isActive ? 'text-[#4A90D9]' : ''
                                                 }`}>
                                                     {item.label}
                                                 </span>
@@ -113,38 +112,41 @@ export function NavbarSimple() {
                             </div>
                         </div>
 
-                        <div className="flex items-center gap-3">
-                            <Link href="/es/login" className="hidden sm:block">
-                                <Button
-                                    variant="ghost"
-                                    className="text-white font-medium hover:bg-white/10 border border-white/20 hover:border-white/40 transition-all duration-300"
+                        <div className="hidden sm:flex items-center gap-2">
+                            <div className="relative bg-neutral-800/60 backdrop-blur-md rounded-2xl p-1.5 border border-white/10 flex">
+                                <Link
+                                    href="/es/login"
+                                    className="relative flex flex-col items-center justify-center px-5 py-2.5 rounded-xl transition-all duration-300 min-w-[90px] text-neutral-400 hover:text-white hover:bg-white/5"
                                 >
-                                    Iniciar Sesión
-                                </Button>
-                            </Link>
-                            <Link href="/es/registro" className="hidden sm:block">
-                                <Button className="bg-[#1F4E79] hover:bg-[#003366] text-white font-semibold shadow-lg shadow-[#1F4E79]/30 hover:shadow-[#003366]/40 px-6 transition-all duration-300">
-                                    Registrarse
-                                </Button>
-                            </Link>
-
-                            <button
-                                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                                className="lg:hidden p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
-                            >
-                                {mobileMenuOpen ? (
-                                    <X className="w-6 h-6 text-white" />
-                                ) : (
-                                    <Menu className="w-6 h-6 text-white" />
-                                )}
-                            </button>
+                                    <LogIn className="w-5 h-5 mb-1" strokeWidth={2} />
+                                    <span className="text-xs font-semibold">Iniciar Sesión</span>
+                                </Link>
+                                <Link
+                                    href="/es/registro"
+                                    className="relative flex flex-col items-center justify-center px-5 py-2.5 rounded-xl transition-all duration-300 min-w-[90px] bg-[#1F4E79]/20 text-[#4A90D9] hover:bg-[#1F4E79]/30"
+                                >
+                                    <UserPlus className="w-5 h-5 mb-1 fill-[#4A90D9]/20 stroke-[#4A90D9]" strokeWidth={1.5} />
+                                    <span className="text-xs font-semibold">Registrarse</span>
+                                </Link>
+                            </div>
                         </div>
+
+                        <button
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            className="lg:hidden p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+                        >
+                            {mobileMenuOpen ? (
+                                <X className="w-6 h-6 text-white" />
+                            ) : (
+                                <Menu className="w-6 h-6 text-white" />
+                            )}
+                        </button>
                     </div>
                 </div>
 
                 <div
                     className={`lg:hidden overflow-hidden transition-all duration-300 ${
-                        mobileMenuOpen ? 'max-h-96 border-t border-white/10' : 'max-h-0'
+                        mobileMenuOpen ? 'max-h-[500px] border-t border-white/10' : 'max-h-0'
                     }`}
                 >
                     <div className="px-4 py-4 space-y-2 bg-neutral-900/95 backdrop-blur-xl">
@@ -161,29 +163,32 @@ export function NavbarSimple() {
                                     }}
                                     className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${
                                         isActive
-                                            ? 'bg-[#1F4E79]/20 text-[#1F4E79] border-l-4 border-[#1F4E79]'
+                                            ? 'bg-[#1F4E79]/20 text-[#4A90D9] border-l-4 border-[#1F4E79]'
                                             : 'text-neutral-400 hover:text-white hover:bg-white/5'
                                     }`}
                                 >
-                                    <Icon className={`w-5 h-5 ${isActive ? 'text-[#1F4E79]' : ''}`} />
+                                    <Icon className={`w-5 h-5 ${isActive ? 'text-[#4A90D9]' : ''}`} />
                                     <span className="font-semibold">{item.label}</span>
                                 </Link>
                             );
                         })}
 
-                        <div className="pt-4 mt-4 border-t border-white/10 flex gap-3">
-                            <Link href="/es/login" className="flex-1">
-                                <Button
-                                    variant="ghost"
-                                    className="w-full text-white font-medium hover:bg-white/10 border border-white/20"
-                                >
-                                    Iniciar Sesión
-                                </Button>
+                        <div className="pt-4 mt-4 border-t border-white/10 space-y-2">
+                            <Link
+                                href="/es/login"
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-neutral-400 hover:text-white hover:bg-white/5"
+                            >
+                                <LogIn className="w-5 h-5" />
+                                <span className="font-semibold">Iniciar Sesión</span>
                             </Link>
-                            <Link href="/es/registro" className="flex-1">
-                                <Button className="w-full bg-[#1F4E79] hover:bg-[#003366] text-white font-semibold">
-                                    Registrarse
-                                </Button>
+                            <Link
+                                href="/es/registro"
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 bg-[#1F4E79]/20 text-[#4A90D9]"
+                            >
+                                <UserPlus className="w-5 h-5" />
+                                <span className="font-semibold">Registrarse</span>
                             </Link>
                         </div>
                     </div>
