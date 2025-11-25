@@ -94,7 +94,10 @@ export async function getAllCourses(): Promise<CourseMetadata[]> {
             ? (cursoData.instructor?.nombre || 'DISTMAH ATC')
             : (cursoData.instructor || 'DISTMAH ATC');
 
-          const version = cursoData.software?.includes('2026') ? '2026' : (cursoData.version || '2025');
+          const softwareStr = typeof cursoData.software === 'string'
+            ? cursoData.software
+            : (cursoData.software?.version || cursoData.software?.nombre || '');
+          const version = softwareStr.includes('2026') ? '2026' : (cursoData.version || '2025');
 
           courses.push({
             id: cursoData.id || entry.name,
