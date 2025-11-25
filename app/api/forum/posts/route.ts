@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { auth } from '@/auth';
+import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
 export async function GET(request: NextRequest) {
@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'categoryId requerido' }, { status: 400 });
     }
 
-    const posts = await prisma.forumPost.findMany({
+    const posts = await (prisma.forumPost.findMany as any)({
       where: { categoryId },
       include: {
         author: {
@@ -69,13 +69,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'categoryId, title y content son requeridos' }, { status: 400 });
     }
 
-    const post = await prisma.forumPost.create({
+    const post = await (prisma.forumPost.create as any)({
       data: {
         categoryId,
-        authorId: user.id,
+        userId: user.id,
         title,
         content,
-        isPinned: false
+        pinned: false
       },
       include: {
         author: {

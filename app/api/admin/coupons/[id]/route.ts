@@ -10,15 +10,16 @@ const updateCouponSchema = z.object({
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const body = await request.json();
     const validatedData = updateCouponSchema.safeParse(body);
 
     if (!validatedData.success) {
       return NextResponse.json(
-        { error: 'Datos inválidos', details: validatedData.error.errors },
+        { error: 'Datos inválidos', details: validatedData.error.flatten() },
         { status: 400 }
       );
     }
@@ -39,7 +40,7 @@ export async function PATCH(
     }
 
     const coupon = await prisma.coupon.update({
-      where: { id: params.id },
+      where: { id },
       data: updateData,
     });
 
@@ -55,11 +56,12 @@ export async function PATCH(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     await prisma.coupon.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     return NextResponse.json(

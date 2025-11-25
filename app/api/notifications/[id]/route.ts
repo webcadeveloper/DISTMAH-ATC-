@@ -1,20 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const { id } = await params;
+    const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: 'No autorizado' }, { status: 401 });
     }
 
     const notification = await prisma.notification.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!notification) {
@@ -26,7 +26,7 @@ export async function PATCH(
     }
 
     const updated = await prisma.notification.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         read: true,
         readAt: new Date(),
@@ -45,16 +45,17 @@ export async function PATCH(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const { id } = await params;
+    const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: 'No autorizado' }, { status: 401 });
     }
 
     const notification = await prisma.notification.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!notification) {
@@ -66,7 +67,7 @@ export async function DELETE(
     }
 
     await prisma.notification.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     return NextResponse.json({ message: 'Notificación eliminada' });

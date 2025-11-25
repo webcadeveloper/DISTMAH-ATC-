@@ -57,11 +57,11 @@ export interface CourseLesson {
  */
 export function formatLessonFrontmatter(frontmatter: LessonFrontmatter): LessonFrontmatter {
   return {
+    ...frontmatter,
     titulo: frontmatter.titulo || 'Sin título',
     descripcion: frontmatter.descripcion || '',
     duracion: frontmatter.duracion || '',
     objetivos: frontmatter.objetivos || [],
-    ...frontmatter
   };
 }
 
@@ -70,10 +70,10 @@ export function formatLessonFrontmatter(frontmatter: LessonFrontmatter): LessonF
  */
 export function formatModuleFrontmatter(frontmatter: ModuleFrontmatter): ModuleFrontmatter {
   return {
+    ...frontmatter,
     titulo: frontmatter.titulo || 'Sin título',
     descripcion: frontmatter.descripcion || '',
     orden: frontmatter.orden || 1,
-    ...frontmatter
   };
 }
 

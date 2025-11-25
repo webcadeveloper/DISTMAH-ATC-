@@ -1,21 +1,19 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import createIntlMiddleware from 'next-intl/middleware';
 import { auth } from '@/lib/auth';
-
-const intlMiddleware = createIntlMiddleware({
-    locales: ['en', 'es'],
-    defaultLocale: 'es'
-});
 
 export default async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
-    const publicPaths = ['/login', '/registro', '/recuperar-contrasena', '/api/auth'];
-    const isPublicPath = publicPaths.some(path => pathname.includes(path));
+    if (pathname.startsWith('/video/') || pathname.startsWith('/images/') || pathname.startsWith('/cursos/') || pathname.startsWith('/_next') || pathname.startsWith('/api/')) {
+        return NextResponse.next();
+    }
+
+    const publicPaths = ['/login', '/registro', '/recuperar-contrasena', '/'];
+    const isPublicPath = publicPaths.some(path => pathname === path || pathname.startsWith(path + '/'));
 
     if (isPublicPath) {
-        return intlMiddleware(request);
+        return NextResponse.next();
     }
 
     const session = await auth();
@@ -38,9 +36,9 @@ export default async function middleware(request: NextRequest) {
         }
     }
 
-    return intlMiddleware(request);
+    return NextResponse.next();
 }
 
 export const config = {
-    matcher: ['/', '/(es|en)/:path*', '/((?!_next|api|favicon.ico).*)']
+    matcher: ['/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)']
 };

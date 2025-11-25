@@ -67,7 +67,7 @@ async function createCourseTeams() {
 
       await new Promise(resolve => setTimeout(resolve, 2000));
     } catch (error) {
-      console.error(`✗ Failed: ${course.title} - ${error.message}\n`);
+      console.error(`✗ Failed: ${course.title} - ${error instanceof Error ? error.message : String(error)}\n`);
     }
   }
 

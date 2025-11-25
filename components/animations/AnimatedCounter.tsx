@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useInView } from 'framer-motion';
-import anime from 'animejs';
+import { animate } from 'animejs';
 import { cn } from '@/lib/utils';
 
 export interface AnimatedCounterProps {
@@ -38,12 +38,11 @@ export function AnimatedCounter({
 
     const obj = { value: from };
 
-    anime({
-      targets: obj,
+    animate(obj, {
       value: to,
       duration,
-      easing: 'easeOutExpo',
-      update() {
+      ease: 'out-expo',
+      update: () => {
         setCount(obj.value);
       },
     });

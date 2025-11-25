@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { auth } from '@/auth';
+import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
 export async function PUT(
@@ -35,11 +35,11 @@ export async function PUT(
       return NextResponse.json({ error: 'Reply no encontrado' }, { status: 404 });
     }
 
-    if (reply.authorId !== user.id) {
+    if (reply.userId !== user.id) {
       return NextResponse.json({ error: 'Solo el autor puede editar este reply' }, { status: 403 });
     }
 
-    const updatedReply = await prisma.forumReply.update({
+    const updatedReply = await (prisma.forumReply.update as any)({
       where: { id },
       data: { content },
       include: {
@@ -89,7 +89,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Reply no encontrado' }, { status: 404 });
     }
 
-    if (reply.authorId !== user.id && user.role !== 'INSTRUCTOR' && user.role !== 'ADMIN') {
+    if (reply.userId !== user.id && user.role !== 'INSTRUCTOR' && user.role !== 'ADMIN') {
       return NextResponse.json({ error: 'No autorizado para eliminar este reply' }, { status: 403 });
     }
 

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { auth } from '@/auth';
+import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
 export async function GET(
@@ -14,7 +14,7 @@ export async function GET(
 
     const { id } = await params;
 
-    const post = await prisma.forumPost.findUnique({
+    const post = await (prisma.forumPost.findUnique as any)({
       where: { id },
       include: {
         author: {
@@ -82,11 +82,11 @@ export async function PUT(
       return NextResponse.json({ error: 'Post no encontrado' }, { status: 404 });
     }
 
-    if (post.authorId !== user.id && user.role !== 'INSTRUCTOR' && user.role !== 'ADMIN') {
+    if ((post as any).userId !== user.id && user.role !== 'INSTRUCTOR' && user.role !== 'ADMIN') {
       return NextResponse.json({ error: 'Solo el autor puede editar este post' }, { status: 403 });
     }
 
-    const updatedPost = await prisma.forumPost.update({
+    const updatedPost = await (prisma.forumPost.update as any)({
       where: { id },
       data: {
         ...(title && { title }),
@@ -140,7 +140,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Post no encontrado' }, { status: 404 });
     }
 
-    if (post.authorId !== user.id && user.role !== 'INSTRUCTOR' && user.role !== 'ADMIN') {
+    if ((post as any).userId !== user.id && user.role !== 'INSTRUCTOR' && user.role !== 'ADMIN') {
       return NextResponse.json({ error: 'No autorizado para eliminar este post' }, { status: 403 });
     }
 

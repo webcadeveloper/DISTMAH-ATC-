@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import InstructorDashboardClient from '@/components/InstructorDashboardClient';
-import LoadingSpinner from '@/components/ui/LoadingSpinner';
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 
 export default function InstructorDashboard() {
     return (

@@ -17,11 +17,15 @@ export default async function CourseContentPage({ params }: { params: { cursoId:
 
     if (!courseMeta) return <div className="p-8">Curso no encontrado</div>;
 
-    let courseData;
+    let courseData: any = null;
     try {
         courseData = await getCourse(courseMeta.slug);
     } catch (error) {
         return <div className="p-8">Error cargando contenido del curso</div>;
+    }
+
+    if (!courseData) {
+        return <div className="p-8">Datos del curso no disponibles</div>;
     }
 
     const modules = courseData.modules || [];

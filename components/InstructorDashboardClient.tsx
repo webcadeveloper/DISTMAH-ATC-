@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -28,8 +29,8 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
-import LoadingSpinner from '@/components/ui/LoadingSpinner';
-import EmptyState from '@/components/ui/EmptyState';
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
+import { EmptyState } from '@/components/ui/EmptyState';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 interface DashboardStats {
@@ -84,6 +85,7 @@ interface Notification {
 }
 
 export default function InstructorDashboardClient() {
+    const router = useRouter();
     const [stats, setStats] = useState<DashboardStats | null>(null);
     const [students, setStudents] = useState<Student[]>([]);
     const [analytics, setAnalytics] = useState<Analytics | null>(null);
@@ -344,16 +346,10 @@ export default function InstructorDashboardClient() {
                             </div>
                         ) : (
                             <EmptyState
-                                icon={BookOpen}
                                 title="No hay cursos publicados"
                                 description="Crea tu primer curso para comenzar"
-                                action={
-                                    <Link href="/instructor/cursos/crear">
-                                        <Button className="bg-blue-600 hover:bg-blue-700">
-                                            <PlusCircle className="w-4 h-4 mr-2" /> Crear Curso
-                                        </Button>
-                                    </Link>
-                                }
+                                actionLabel="Crear Curso"
+                                onAction={() => router.push('/instructor/cursos/crear')}
                             />
                         )}
                     </div>
@@ -384,7 +380,6 @@ export default function InstructorDashboardClient() {
                         <CardContent>
                             {filteredStudents.length === 0 ? (
                                 <EmptyState
-                                    icon={Users}
                                     title="No hay estudiantes inscritos"
                                     description="Los estudiantes aparecerán aquí cuando se inscriban en tus cursos"
                                 />
@@ -441,7 +436,6 @@ export default function InstructorDashboardClient() {
                         </CardHeader>
                         <CardContent>
                             <EmptyState
-                                icon={Award}
                                 title="Sistema de assignments en desarrollo"
                                 description="Pronto podrás calificar tareas y exámenes de tus estudiantes"
                             />
@@ -543,7 +537,6 @@ export default function InstructorDashboardClient() {
                                         </div>
                                     ) : (
                                         <EmptyState
-                                            icon={BarChart3}
                                             title="No hay datos de analíticas"
                                             description="Los datos aparecerán cuando tengas estudiantes inscritos"
                                         />

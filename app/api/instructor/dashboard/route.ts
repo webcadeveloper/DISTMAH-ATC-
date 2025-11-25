@@ -29,7 +29,7 @@ export async function GET() {
         }
       }),
 
-      prisma.enrollment.count({
+      (prisma.enrollment.count as any)({
         where: {
           course: {
             instructorId

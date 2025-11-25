@@ -12,11 +12,12 @@ import { useState } from 'react';
 
 interface Lesson {
   id: string;
+  moduleId: string;
   number: number;
   title: string;
   slug: string;
   duration?: number;
-  content: string;
+  content?: string;
   excerpt?: string;
   videoUrl?: string;
 }
@@ -62,8 +63,8 @@ export default function LessonPageClient({
 
   const currentModule = course.modules.find((m) => m.id === moduleId);
   const currentLessonIndex = currentModule?.lessons.findIndex((l) => l.slug === lessonSlug) ?? -1;
-  const previousLesson = currentLessonIndex > 0 ? currentModule?.lessons[currentLessonIndex - 1] : null;
-  const nextLesson = currentLessonIndex < (currentModule?.lessons.length ?? 0) - 1 ? currentModule?.lessons[currentLessonIndex + 1] : null;
+  const previousLesson = currentModule && currentLessonIndex > 0 ? currentModule.lessons[currentLessonIndex - 1] || null : null;
+  const nextLesson = currentModule && currentLessonIndex < currentModule.lessons.length - 1 ? currentModule.lessons[currentLessonIndex + 1] || null : null;
 
   const totalLessons = course.modules.reduce((sum, m) => sum + m.lessons.length, 0);
   const completedLessons = 0;

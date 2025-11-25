@@ -11,9 +11,10 @@ const updateCourseSchema = z.object({
 
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
 
     if (!session || session.user.role !== 'ADMIN') {
@@ -23,7 +24,7 @@ export async function PUT(
       );
     }
 
-    const courseId = params.id;
+    const courseId = id;
     const body = await request.json();
     const validated = updateCourseSchema.parse(body);
 
@@ -67,7 +68,7 @@ export async function PUT(
     console.error('Error updating course:', error);
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: 'Datos inválidos', details: error.errors },
+        { error: 'Datos inválidos', details: error.flatten() },
         { status: 400 }
       );
     }
@@ -80,9 +81,10 @@ export async function PUT(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
 
     if (!session || session.user.role !== 'ADMIN') {
@@ -92,7 +94,7 @@ export async function DELETE(
       );
     }
 
-    const courseId = params.id;
+    const courseId = id;
 
     const course = await prisma.course.findUnique({
       where: { id: courseId },

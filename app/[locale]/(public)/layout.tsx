@@ -1,4 +1,4 @@
-import { Navbar } from '@/components/layout/Navbar';
+import { NavbarSimple } from '@/components/layout/NavbarSimple';
 import { Footer } from '@/components/layout/Footer';
 
 export default function PublicLayout({
@@ -8,7 +8,7 @@ export default function PublicLayout({
 }) {
     return (
         <div className="flex flex-col min-h-screen">
-            <Navbar />
+            <NavbarSimple />
             <main className="flex-grow">
                 {children}
             </main>

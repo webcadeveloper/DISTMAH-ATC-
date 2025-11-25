@@ -116,7 +116,7 @@ async function migrateCourses() {
         'Coordinación': 'NAVISWORKS',
       };
 
-      const category = categoryMap[cursoData.category] || 'AUTOCAD';
+      const category = categoryMap[(cursoData.category as string)] || 'AUTOCAD';
 
       // Mapear nivel al enum
       const levelMap: { [key: string]: string } = {
@@ -125,10 +125,10 @@ async function migrateCourses() {
         'Avanzado': 'AVANZADO',
       };
 
-      const level = levelMap[cursoData.level] || 'BASICO';
+      const level = levelMap[((cursoData as any).level as string)] || 'BASICO';
 
       // Extraer duración en horas (ej: "40 horas" → 40)
-      const durationMatch = cursoData.duration.match(/(\d+)/);
+      const durationMatch = (((cursoData as any).duration) || '40 horas').match(/(\d+)/);
       const duration = durationMatch ? parseInt(durationMatch[1]) : 40;
 
       // Verificar si el curso ya existe
@@ -142,26 +142,27 @@ async function migrateCourses() {
       }
 
       // Crear curso en Prisma
+      const curso = cursoData as any;
       const course = await prisma.course.create({
         data: {
           slug: folder,
-          title: cursoData.title,
-          subtitle: cursoData.subtitle,
-          description: cursoData.description,
+          title: curso.title || curso.titulo || 'Untitled Course',
+          subtitle: curso.subtitle || curso.subtítulo || '',
+          description: curso.description || curso.descripcion || '',
           category: category as any,
           level: level as any,
-          version: cursoData.version,
-          software: cursoData.software,
+          version: curso.version || '2026',
+          software: curso.software || 'Autodesk',
           duration: duration,
-          sessions: cursoData.modules.length, // Número de módulos como sesiones
-          objectives: cursoData.objectives || [],
-          prerequisites: cursoData.prerequisites || [],
-          skills: cursoData.skills || [],
-          tags: cursoData.tags || [],
-          price: cursoData.price,
-          priceVEF: null, // Configurar después si es necesario
-          image: cursoData.heroImage || cursoData.thumbnail,
-          thumbnail: cursoData.thumbnail,
+          sessions: (curso.modules || curso.modulos || []).length,
+          objectives: curso.objectives || curso.objetivos || [],
+          prerequisites: curso.prerequisites || curso.prerequisitos || [],
+          skills: [],
+          tags: [],
+          price: curso.price || 299,
+          priceVEF: null,
+          image: curso.heroImage || curso.thumbnail || '/images/default-course.jpg',
+          thumbnail: curso.thumbnail || '/images/default-course.jpg',
           videoIntro: null, // Configurar después si hay video intro
           status: 'PUBLISHED',
           featured: false,
@@ -175,14 +176,16 @@ async function migrateCourses() {
       console.log(`  ✅ Curso creado: ${course.title}`);
 
       // 4. Crear módulos y lecciones
-      for (const [moduleIndex, moduleData] of cursoData.modules.entries()) {
+      const modules = curso.modules || curso.modulos || [];
+      for (const [moduleIndex, moduleData] of modules.entries()) {
+        const mod = moduleData as any;
         const module = await prisma.module.create({
           data: {
             courseId: course.id,
             number: moduleIndex + 1,
-            title: moduleData.title,
-            description: moduleData.description,
-            duration: 4, // Duración estimada por módulo en horas
+            title: mod.title || mod.titulo || 'Module ' + (moduleIndex + 1),
+            description: mod.description || mod.descripcion || '',
+            duration: 4,
             order: moduleIndex + 1,
           },
         });

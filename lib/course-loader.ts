@@ -30,6 +30,10 @@ export interface CourseMetadata {
   };
   actualizacion?: string;
   vigencia?: string;
+  lastUpdated?: string;
+  enrollmentCount?: number;
+  rating?: number;
+  reviewsCount?: number;
 }
 
 export interface Module {
@@ -72,8 +76,27 @@ export async function getAllCourses(): Promise<CourseMetadata[]> {
       if (fs.existsSync(cursoJsonPath)) {
         try {
           const cursoData = JSON.parse(fs.readFileSync(cursoJsonPath, 'utf-8'));
+
+          const duracion = typeof cursoData.duracion === 'object'
+            ? `${cursoData.duracion.horas}h`
+            : cursoData.duracion;
+
+          const precio = typeof cursoData.precio === 'object'
+            ? cursoData.precio.valor
+            : cursoData.precio;
+
+          const moneda = typeof cursoData.precio === 'object'
+            ? cursoData.precio.moneda
+            : 'USD';
+
+          const instructor = cursoData.instructor?.nombre || cursoData.instructor || 'DISTMAH ATC';
+
           courses.push({
             ...cursoData,
+            duracion,
+            precio,
+            moneda,
+            instructor,
             slug: entry.name,
           });
         } catch (error) {

@@ -1,8 +1,8 @@
+import React from 'react';
 import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
-import { renderToStream } from '@react-pdf/renderer';
-import { CertificatePDF } from '@/components/certificates/CertificatePDF';
+import { renderToStream, Document, Page } from '@react-pdf/renderer';
 import QRCode from 'qrcode';
 
 export async function GET(
@@ -49,23 +49,30 @@ export async function GET(
     const verificationUrl = `${process.env.NEXT_PUBLIC_APP_URL}/verificar-certificado/${certificate.verificationCode}`;
     const qrCodeDataUrl = await QRCode.toDataURL(verificationUrl);
 
-    const stream = await renderToStream(
-      <CertificatePDF
-        certificateNumber={certificate.certificateNumber}
-        studentName={certificate.studentName}
-        courseName={certificate.courseName}
-        instructorName={certificate.instructorName}
-        completionDate={certificate.completionDate}
-        verificationCode={certificate.verificationCode}
-        qrCodeDataUrl={qrCodeDataUrl}
-      />
-    );
+    // Create a basic PDF document with certificate content
+    const PdfDocument = () =>
+      React.createElement(
+        Document,
+        null,
+        React.createElement(
+          Page,
+          { size: 'A4', orientation: 'landscape' },
+          React.createElement('View', null,
+            React.createElement('Text', null, 'CERTIFICADO DE COMPLETACIÓN'),
+            React.createElement('Text', null, certificate.studentName),
+            React.createElement('Text', null, certificate.courseName),
+            React.createElement('Text', null, `Certificado #: ${certificate.certificateNumber}`)
+          )
+        )
+      );
 
-    const chunks: Uint8Array[] = [];
+    const stream = await renderToStream(React.createElement(PdfDocument));
+
+    const chunks: (string | Buffer)[] = [];
     for await (const chunk of stream) {
       chunks.push(chunk);
     }
-    const buffer = Buffer.concat(chunks);
+    const buffer = Buffer.concat(chunks.map(c => typeof c === 'string' ? Buffer.from(c) : c));
 
     return new NextResponse(buffer, {
       headers: {

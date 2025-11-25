@@ -4,9 +4,10 @@ import { prisma } from '@/lib/prisma';
 
 export async function POST(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
 
     if (!session || session.user.role !== 'ADMIN') {
@@ -16,7 +17,7 @@ export async function POST(
       );
     }
 
-    const userId = params.id;
+    const userId = id;
 
     const user = await prisma.user.findUnique({
       where: { id: userId },

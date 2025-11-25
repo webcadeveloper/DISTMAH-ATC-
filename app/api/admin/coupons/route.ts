@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
 
     if (!validatedData.success) {
       return NextResponse.json(
-        { error: 'Datos inválidos', details: validatedData.error.errors },
+        { error: 'Datos inválidos', details: validatedData.error.flatten() },
         { status: 400 }
       );
     }

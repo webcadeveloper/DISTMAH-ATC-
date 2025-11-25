@@ -3,16 +3,17 @@ import { auth } from '@/lib/auth';
 
 export async function POST(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await auth();
 
     if (!session?.user) {
       return NextResponse.json({ error: 'No autorizado' }, { status: 401 });
     }
 
-    const notificationId = params.id;
+    const notificationId = id;
 
     return NextResponse.json({
       success: true,

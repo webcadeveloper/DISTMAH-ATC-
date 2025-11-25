@@ -5,10 +5,10 @@ const prisma = new PrismaClient();
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { userId: string; courseId: string } }
+  { params }: { params: Promise<{ userId: string; courseId: string }> }
 ) {
   try {
-    const { userId, courseId } = params;
+    const { userId, courseId } = await params;
 
     const enrollment = await prisma.enrollment.findUnique({
       where: {

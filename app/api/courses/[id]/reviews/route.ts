@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { auth } from '@/lib/auth';
 import { PrismaClient } from '@prisma/client';
 import { apiLimiter, getClientIp } from '@/lib/rate-limit';
 
@@ -99,7 +98,7 @@ export async function POST(
   if (rateLimitResult) return rateLimitResult;
 
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     if (!session?.user) {
       return NextResponse.json(
         { error: 'No autenticado' },

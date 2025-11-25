@@ -1,7 +1,4 @@
 import type { NextConfig } from "next";
-import createNextIntlPlugin from 'next-intl/plugin';
-
-const withNextIntl = createNextIntlPlugin('./app/i18n.ts');
 
 const nextConfig: NextConfig = {
   async headers() {
@@ -47,4 +44,4 @@ const nextConfig: NextConfig = {
   staticPageGenerationTimeout: 120,
 };
 
-export default withNextIntl(nextConfig);
+export default nextConfig;

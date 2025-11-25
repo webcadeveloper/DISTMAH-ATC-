@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { auth } from '@/auth';
+import { auth } from '@/lib/auth';
 import { OneDriveService } from '@/lib/microsoft/onedrive-service';
 import { prisma } from '@/lib/prisma';
 
@@ -27,7 +27,7 @@ export async function GET(req: NextRequest) {
 
   const buffer = await OneDriveService.downloadFile(user.m365UserId, fileId);
 
-  return new NextResponse(buffer, {
+  return new NextResponse(buffer as any, {
     headers: {
       'Content-Type': 'application/octet-stream',
       'Content-Disposition': 'attachment',

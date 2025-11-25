@@ -4,7 +4,10 @@ import dynamic from 'next/dynamic';
 import { Skeleton, ChartSkeleton, TableSkeleton } from '@/components/ui/skeleton';
 
 export const LazyAnalyticsChart = dynamic(
-  () => import('@/components/admin/AnalyticsCharts'),
+  () =>
+    import('@/components/admin/AnalyticsCharts').then((mod) => ({
+      default: mod.AnalyticsCharts,
+    })),
   {
     loading: () => <ChartSkeleton />,
     ssr: false,
@@ -12,7 +15,10 @@ export const LazyAnalyticsChart = dynamic(
 );
 
 export const LazyUsersTable = dynamic(
-  () => import('@/components/admin/UsersTable'),
+  () =>
+    import('@/components/admin/UsersTable').then((mod) => ({
+      default: mod.UsersTable,
+    })),
   {
     loading: () => <TableSkeleton rows={10} />,
     ssr: false,
@@ -20,7 +26,10 @@ export const LazyUsersTable = dynamic(
 );
 
 export const LazyCoursesTable = dynamic(
-  () => import('@/components/admin/CoursesTable'),
+  () =>
+    import('@/components/admin/CoursesTable').then((mod) => ({
+      default: mod.CoursesTable,
+    })),
   {
     loading: () => <TableSkeleton rows={8} />,
     ssr: false,
@@ -43,7 +52,10 @@ export const LazyVideoPlayer = dynamic(
 );
 
 export const LazyMarkdownEditor = dynamic(
-  () => import('@/components/instructor/MarkdownEditor'),
+  () =>
+    import('@/components/instructor/MarkdownEditor').then((mod) => ({
+      default: mod.MarkdownEditor,
+    })),
   {
     loading: () => (
       <div className="border border-gray-300 rounded-lg p-4">
@@ -56,7 +68,10 @@ export const LazyMarkdownEditor = dynamic(
 );
 
 export const LazyTipTapEditor = dynamic(
-  () => import('@/components/cms/RichTextEditor/TipTapEditor'),
+  () =>
+    import('@/components/cms/RichTextEditor/TipTapEditor').then((mod) => ({
+      default: mod.TipTapEditor,
+    })),
   {
     loading: () => (
       <div className="border border-gray-300 rounded-lg p-4">
@@ -73,7 +88,10 @@ export const LazyTipTapEditor = dynamic(
 );
 
 export const LazyExamPlayer = dynamic(
-  () => import('@/components/student/ExamPlayer'),
+  () =>
+    import('@/components/student/ExamPlayer').then((mod) => ({
+      default: mod.ExamPlayer,
+    })),
   {
     loading: () => (
       <div className="space-y-6">
@@ -95,7 +113,10 @@ export const LazyExamPlayer = dynamic(
 );
 
 export const LazyCertificatePDF = dynamic(
-  () => import('@/components/certificates/CertificatePDF'),
+  () =>
+    import('@/components/certificates/CertificatePDF').then((mod) => ({
+      default: mod.CertificatePDF,
+    })),
   {
     loading: () => (
       <div className="border border-gray-300 rounded-lg p-8 bg-white">
@@ -141,7 +162,10 @@ export const LazyCalendar = dynamic(
 );
 
 export const LazyLottieAnimation = dynamic(
-  () => import('@/components/animations/LottieAnimation'),
+  () =>
+    import('@/components/animations/LottieAnimation').then((mod) => ({
+      default: mod.LottieAnimation,
+    })),
   {
     loading: () => <Skeleton className="h-64 w-64 mx-auto" />,
     ssr: false,
@@ -149,7 +173,10 @@ export const LazyLottieAnimation = dynamic(
 );
 
 export const LazyConfetti = dynamic(
-  () => import('@/components/ui/CelebrationConfetti'),
+  () =>
+    import('@/components/ui/CelebrationConfetti').then((mod) => ({
+      default: mod.CelebrationConfetti,
+    })),
   {
     loading: () => null,
     ssr: false,

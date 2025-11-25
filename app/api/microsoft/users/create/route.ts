@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { auth } from '@/auth';
+import { auth } from '@/lib/auth';
 import { MicrosoftGraphService } from '@/lib/microsoft/graph-services';
 import { OutlookEmailService } from '@/lib/microsoft/email-service';
 import { PrismaClient } from '@prisma/client';

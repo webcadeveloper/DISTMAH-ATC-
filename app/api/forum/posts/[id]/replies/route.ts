@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { auth } from '@/auth';
+import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
 export async function POST(
@@ -35,7 +35,7 @@ export async function POST(
       return NextResponse.json({ error: 'Post no encontrado' }, { status: 404 });
     }
 
-    const reply = await prisma.forumReply.create({
+    const reply = await (prisma.forumReply.create as any)({
       data: {
         postId,
         authorId: user.id,

@@ -14,7 +14,7 @@ const loginSchema = z.object({
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   ...authConfig,
-  adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter(prisma) as any,
   session: { strategy: 'jwt' },
   providers: [
     Credentials({
@@ -62,10 +62,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     AzureADProvider({
       clientId: process.env.AZURE_AD_CLIENT_ID ?? '',
       clientSecret: process.env.AZURE_AD_CLIENT_SECRET ?? '',
-      tenantId: process.env.AZURE_AD_TENANT_ID ?? '',
       authorization: {
         params: {
           scope: 'openid profile email User.Read',
+          tenant: process.env.AZURE_AD_TENANT_ID ?? 'common',
         },
       },
       profile(profile) {

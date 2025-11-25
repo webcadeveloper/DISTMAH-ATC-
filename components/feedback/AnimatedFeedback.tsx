@@ -2,8 +2,7 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import Lottie from 'lottie-react';
-import successAnimation from '@/public/lottie/success/success-checkmark.json';
-import errorAnimation from '@/public/lottie/error/error-animation.json';
+import successAnimation from '@/public/lottie/success/celebration-checkmark.json';
 import confettiAnimation from '@/public/lottie/celebration/confetti-celebration.json';
 import { cn } from '@/lib/utils';
 
@@ -27,7 +26,7 @@ const sizeConfig = {
 
 const animations = {
   success: successAnimation,
-  error: errorAnimation,
+  error: successAnimation,
   celebration: confettiAnimation,
 };
 

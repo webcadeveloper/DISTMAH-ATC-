@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { auth } from '@/auth';
+import { auth } from '@/lib/auth';
 import { OneDriveService } from '@/lib/microsoft/onedrive-service';
 import { SharePointService } from '@/lib/microsoft/sharepoint-service';
 import { prisma } from '@/lib/prisma';

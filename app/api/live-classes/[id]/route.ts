@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { auth } from '@/lib/auth';
 import { CalendarService } from '@/lib/microsoft/calendar-service';
 import { PrismaClient } from '@prisma/client';
 
@@ -8,16 +7,17 @@ const prisma = new PrismaClient();
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const { id } = await params;
+    const session = await auth();
     if (!session?.user?.email) {
       return NextResponse.json({ error: 'No autorizado' }, { status: 401 });
     }
 
-    const liveClass = await prisma.liveClass.findUnique({
-      where: { id: params.id },
+    const liveClass = await (prisma.liveClass.findUnique as any)({
+      where: { id },
       include: {
         instructor: {
           select: {
@@ -51,10 +51,11 @@ export async function GET(
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const { id } = await params;
+    const session = await auth();
     if (!session?.user?.email) {
       return NextResponse.json({ error: 'No autorizado' }, { status: 401 });
     }
@@ -70,8 +71,8 @@ export async function PATCH(
       );
     }
 
-    const liveClass = await prisma.liveClass.findUnique({
-      where: { id: params.id },
+    const liveClass = await (prisma.liveClass.findUnique as any)({
+      where: { id },
     });
 
     if (!liveClass) {
@@ -94,7 +95,7 @@ export async function PATCH(
     if (scheduledStart) updates.scheduledStart = new Date(scheduledStart);
     if (durationMinutes) updates.durationMinutes = parseInt(durationMinutes);
 
-    const updatedClass = await CalendarService.updateLiveClass(params.id, updates);
+    const updatedClass = await CalendarService.updateLiveClass(id, updates);
 
     return NextResponse.json(updatedClass);
   } catch (error) {
@@ -108,10 +109,11 @@ export async function PATCH(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const session = await getServerSession(authOptions);
+    const { id } = await params;
+    const session = await auth();
     if (!session?.user?.email) {
       return NextResponse.json({ error: 'No autorizado' }, { status: 401 });
     }
@@ -127,8 +129,8 @@ export async function DELETE(
       );
     }
 
-    const liveClass = await prisma.liveClass.findUnique({
-      where: { id: params.id },
+    const liveClass = await (prisma.liveClass.findUnique as any)({
+      where: { id },
     });
 
     if (!liveClass) {
@@ -142,7 +144,7 @@ export async function DELETE(
       );
     }
 
-    await CalendarService.deleteLiveClass(params.id);
+    await CalendarService.deleteLiveClass(id);
 
     return NextResponse.json({ message: 'Clase eliminada exitosamente' });
   } catch (error) {

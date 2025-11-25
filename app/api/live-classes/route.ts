@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { auth } from '@/lib/auth';
 import { CalendarService } from '@/lib/microsoft/calendar-service';
 import { PrismaClient } from '@prisma/client';
 
@@ -8,7 +7,7 @@ const prisma = new PrismaClient();
 
 export async function GET(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     if (!session?.user?.email) {
       return NextResponse.json({ error: 'No autorizado' }, { status: 401 });
     }
@@ -53,7 +52,7 @@ export async function GET(request: NextRequest) {
       };
     }
 
-    const liveClasses = await prisma.liveClass.findMany({
+    const liveClasses = await (prisma.liveClass.findMany as any)({
       where,
       include: {
         instructor: {
@@ -87,7 +86,7 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
   try {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     if (!session?.user?.email) {
       return NextResponse.json({ error: 'No autorizado' }, { status: 401 });
     }

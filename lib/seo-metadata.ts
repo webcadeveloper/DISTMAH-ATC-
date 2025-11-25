@@ -40,7 +40,7 @@ export function generateMetadata(config: SEOConfig): Metadata {
         : undefined,
       locale: 'es_VE',
       alternateLocale: ['en_US'],
-      type: config.type || 'website',
+      type: (config.type === 'course' ? 'article' : config.type) || 'website',
       publishedTime: config.publishedTime,
       modifiedTime: config.modifiedTime,
     },

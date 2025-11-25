@@ -99,7 +99,7 @@ export async function POST(
     console.error('Error creating exam:', error);
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: 'Validation error', details: error.errors },
+        { error: 'Validation error', details: error.flatten() },
         { status: 400 }
       );
     }

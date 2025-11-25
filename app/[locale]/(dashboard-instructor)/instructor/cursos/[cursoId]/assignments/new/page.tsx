@@ -11,7 +11,7 @@ export default async function NewAssignmentPage({ params }: PageProps) {
   const { cursoId } = await params;
 
   // TODO: Fetch modules from API or database
-  const modules = []; // Replace with actual modules fetch
+  const modules: any[] = []; // Replace with actual modules fetch
 
   return (
     <div className="container mx-auto px-4 py-8">

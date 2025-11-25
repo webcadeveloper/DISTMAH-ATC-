@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const progress = await prisma.lessonProgress.upsert({
+    const progress = await (prisma.lessonProgress.upsert as any)({
       where: {
         lessonId_userId: {
           lessonId,

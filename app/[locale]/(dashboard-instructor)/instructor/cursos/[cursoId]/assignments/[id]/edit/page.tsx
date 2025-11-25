@@ -33,7 +33,7 @@ export default async function EditAssignmentPage({ params }: PageProps) {
     console.error('Error fetching assignment:', error);
   }
 
-  const modules = []; // Replace with actual modules fetch
+  const modules: any[] = []; // Replace with actual modules fetch
 
   if (!assignment) {
     return (

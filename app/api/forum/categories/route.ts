@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { auth } from '@/auth';
+import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 
 export async function GET(request: NextRequest) {
@@ -54,11 +54,12 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'courseId y name son requeridos' }, { status: 400 });
     }
 
-    const category = await prisma.forumCategory.create({
+    const category = await (prisma.forumCategory.create as any)({
       data: {
         courseId,
         name,
-        description: description || ''
+        description: description || '',
+        order: 0
       }
     });
 
