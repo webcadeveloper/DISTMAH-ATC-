@@ -1,10 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Disable Turbopack due to global-error.rsc bug
-  turbopack: {
-    enabled: false,
-  },
   async headers() {
     return [
       {
