@@ -70,7 +70,7 @@ export default function CourseCard({ course, onViewDetails }: CourseCardProps) {
             className="w-full h-full"
           >
             <Image
-              src={course.imagen || '/images/course-placeholder.jpg'}
+              src={course.imagen || '/images/logodis.PNG'}
               alt={course.titulo || 'Curso DISTMAH'}
               fill
               className="object-cover"

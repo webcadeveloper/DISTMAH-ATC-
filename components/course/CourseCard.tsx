@@ -83,7 +83,7 @@ export function CourseCard({ course, index = 0 }: CourseCardProps) {
                             className="w-full h-full"
                         >
                             <Image
-                                src={course.image || '/images/course-placeholder.jpg'}
+                                src={course.image || '/images/logodis.PNG'}
                                 alt={course.title || 'Curso DISTMAH'}
                                 fill
                                 className="object-cover"

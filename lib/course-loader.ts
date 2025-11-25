@@ -125,7 +125,7 @@ export async function getAllCourses(): Promise<CourseMetadata[]> {
             enrollmentCount: cursoData.enrollmentCount,
             rating: cursoData.rating || 4.9,
             reviewsCount: cursoData.reviewsCount,
-            imagen: cursoData.imagen || `/cursos/${entry.name}/cover.jpg`,
+            imagen: cursoData.imagen || '/images/logodis.PNG',
             slug: entry.name,
           });
         } catch (error) {
