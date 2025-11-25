@@ -1,21 +1,25 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Rajdhani, Montserrat } from "next/font/google";
 import "./globals.css";
 import { CookieBanner } from "@/components/legal/CookieBanner";
+import { Toaster } from "@/components/ui/sonner";
+import { SessionProvider } from "@/components/providers/session-provider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const rajdhani = Rajdhani({
+  weight: ['500', '600', '700'],
   subsets: ["latin"],
+  variable: "--font-display"
 });
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const montserrat = Montserrat({
+  weight: ['600', '700', '800', '900'],
   subsets: ["latin"],
+  variable: "--font-heading"
 });
 
 export const metadata: Metadata = {
-  title: "DISTMAH - Universidad Autodesk",
-  description: "Centro Autorizado de Capacitación Autodesk - Cursos profesionales de AutoCAD, Revit, 3ds Max y más",
+  title: "DISTMAH ATC - Universidad Autodesk",
+  description: "Centro de Entrenamiento Autorizado (ATC) de Autodesk en Venezuela. Cursos certificados de AutoCAD, Revit, Civil 3D, Navisworks 2026.",
 };
 
 export default function RootLayout({
@@ -24,12 +28,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${rajdhani.variable} ${montserrat.variable} font-sans antialiased`}
+        suppressHydrationWarning
       >
-        {children}
-        <CookieBanner />
+        <SessionProvider>
+          {children}
+          <Toaster />
+          <CookieBanner />
+        </SessionProvider>
       </body>
     </html>
   );

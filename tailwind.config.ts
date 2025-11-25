@@ -10,6 +10,11 @@ const config: Config = {
     ],
     theme: {
         extend: {
+            fontFamily: {
+                sans: ['var(--font-sans)'],
+                display: ['var(--font-display)'],
+                heading: ['var(--font-heading)'],
+            },
             colors: {
                 border: "var(--border)",
                 input: "var(--input)",

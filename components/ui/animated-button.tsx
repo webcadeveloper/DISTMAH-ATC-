@@ -50,7 +50,7 @@ export const AnimatedButton = forwardRef<HTMLButtonElement, AnimatedButtonProps>
           stiffness: 400,
           damping: 17,
         }}
-        {...props}
+        {...(props as any)}
       >
         {withShimmer && (
           <motion.div

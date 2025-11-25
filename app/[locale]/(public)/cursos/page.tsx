@@ -6,21 +6,21 @@ import CursosClientPage from './CursosClientPage';
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: 'Cat\u00e1logo de Cursos 2026 | DISTMAH ATC',
-  description: 'Explora nuestro cat\u00e1logo completo de cursos Autodesk 2026: AutoCAD, Revit, Civil 3D, Navisworks. Certificaci\u00f3n oficial, instructores expertos, metodolog\u00eda pr\u00e1ctica.',
+  title: 'Catálogo de Cursos 2026 | DISTMAH ATC',
+  description: 'Explora nuestro catálogo completo de cursos Autodesk 2026: AutoCAD, Revit, Civil 3D, Navisworks. Certificación oficial, instructores expertos, metodología práctica.',
   keywords: [
     'cursos Autodesk 2026',
     'AutoCAD 2026',
     'Revit 2026',
     'Civil 3D 2026',
     'Navisworks 2026',
-    'cat\u00e1logo cursos',
-    'certificaci\u00f3n Autodesk',
+    'catálogo cursos',
+    'certificación Autodesk',
     'DISTMAH',
   ],
   openGraph: {
-    title: 'Cat\u00e1logo de Cursos Autodesk 2026 | DISTMAH ATC',
-    description: 'Todos los cursos de AutoCAD, Revit, Civil 3D y Navisworks 2026 con certificaci\u00f3n oficial',
+    title: 'Catálogo de Cursos Autodesk 2026 | DISTMAH ATC',
+    description: 'Todos los cursos de AutoCAD, Revit, Civil 3D y Navisworks 2026 con certificación oficial',
     url: 'https://distmah-atc.com/cursos',
     type: 'website',
   },

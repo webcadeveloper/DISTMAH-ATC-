@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from "@/components/ui/button";
 import { CourseCard } from "@/components/course/CourseCard";
 import { COURSES_2026 } from "@/lib/courses-catalog-2026";
@@ -9,54 +11,17 @@ import { AnimatedCounter } from "@/components/animations/AnimatedCounter";
 import { AnimatedButton } from "@/components/ui/animated-button";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { generateOrganizationStructuredData } from "@/lib/seo-metadata";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: 'DISTMAH ATC - Universidad Autodesk | Cursos de AutoCAD, Revit, Civil 3D 2026',
-  description: 'Centro de Entrenamiento Autorizado (ATC) de Autodesk en Venezuela. Cursos certificados de AutoCAD, Revit, Civil 3D, Navisworks 2026. Instructores certificados, metodología práctica, certificación internacional.',
-  keywords: [
-    'Autodesk',
-    'AutoCAD 2026',
-    'Revit 2026',
-    'Civil 3D 2026',
-    'Navisworks',
-    'BIM',
-    'CAD',
-    'cursos Autodesk',
-    'certificación Autodesk',
-    'ATC Venezuela',
-    'Universidad Autodesk',
-    'DISTMAH',
-  ],
-  openGraph: {
-    title: 'DISTMAH ATC - Universidad Autodesk',
-    description: 'Cursos certificados de AutoCAD, Revit, Civil 3D 2026 con instructores expertos',
-    url: 'https://distmah-atc.com',
-    siteName: 'DISTMAH ATC',
-    images: [
-      {
-        url: '/images/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'DISTMAH ATC - Universidad Autodesk',
-      },
-    ],
-    locale: 'es_VE',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'DISTMAH ATC - Universidad Autodesk',
-    description: 'Cursos certificados de AutoCAD, Revit, Civil 3D 2026',
-    images: ['/images/og-image.jpg'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
+import { useEffect } from "react";
 
 export default function Home() {
+    useEffect(() => {
+        document.title = 'DISTMAH ATC - Universidad Autodesk | Cursos de AutoCAD, Revit, Civil 3D 2026';
+        const metaDescription = document.querySelector('meta[name="description"]');
+        if (metaDescription) {
+            metaDescription.setAttribute('content', 'Centro de Entrenamiento Autorizado (ATC) de Autodesk en Venezuela. Cursos certificados de AutoCAD, Revit, Civil 3D, Navisworks 2026.');
+        }
+    }, []);
+
     const orgData = generateOrganizationStructuredData({
       name: 'DISTMAH ATC - Universidad Autodesk',
       url: 'https://distmah-atc.com',
@@ -85,12 +50,19 @@ export default function Home() {
                         loop
                         muted
                         playsInline
+                        preload="auto"
                         className="w-full h-full object-cover opacity-100"
+                        onError={(e) => {
+                            console.error('Video failed to load:', e);
+                            const target = e.target as HTMLVideoElement;
+                            target.style.display = 'none';
+                        }}
                     >
                         <source src="/video/hero-video.mp4" type="video/mp4" />
+                        Tu navegador no soporta el elemento de video.
                     </video>
                     {/* Dark overlay to ensure text readability */}
-                    <div className="absolute inset-0 bg-black/60" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70" />
                 </div>
 
                 <div className="container relative z-10 mx-auto px-4 py-24 md:py-32 lg:py-40">
@@ -98,14 +70,16 @@ export default function Home() {
                         <AnimatedElement animation={{ translateY: [20, 0], opacity: [0, 1] }}>
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm mb-8">
                                 <span className="flex h-2 w-2 rounded-full bg-primary-400 animate-pulse"></span>
-                                <span className="text-sm font-medium tracking-wide text-primary-100">Catálogo 2026 Disponible</span>
+                                <span className="text-sm font-medium tracking-wide text-primary-100">Centro de Entrenamiento Digital CAD</span>
                             </div>
                         </AnimatedElement>
 
                         <AnimatedElement animation={{ translateY: [30, 0], opacity: [0, 1] }} delay={100}>
                             <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
-                                Diseña el Futuro <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-400">
+                                <span className="aurora-text block mb-2">
+                                    Diseña el Futuro
+                                </span>
+                                <span className="aurora-text block">
                                     Construye tu Carrera
                                 </span>
                             </h1>
@@ -158,17 +132,27 @@ export default function Home() {
             </section>
 
             {/* Featured Courses Section */}
-            <section className="py-24 bg-neutral-50">
-                <div className="container mx-auto px-4">
+            <section className="py-24 bg-black relative overflow-hidden">
+                <div className="absolute inset-0 opacity-20">
+                    <div className="absolute inset-0 bg-gradient-to-br from-neutral-900 via-black to-neutral-800"></div>
+                    <div className="absolute inset-0" style={{
+                        backgroundImage: `
+                            linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px),
+                            linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px)
+                        `,
+                        backgroundSize: '50px 50px'
+                    }}></div>
+                </div>
+                <div className="container mx-auto px-4 relative z-10">
                     <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                         <div>
-                            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-4 tracking-tight">Cursos Destacados</h2>
-                            <p className="text-lg text-neutral-600 max-w-2xl">
+                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 tracking-tight">Cursos Destacados</h2>
+                            <p className="text-lg text-neutral-300 max-w-2xl">
                                 Inicia tu camino profesional con nuestros cursos más demandados. Actualizados a la versión 2026.
                             </p>
                         </div>
                         <Link href="/cursos">
-                            <Button variant="ghost" className="text-primary-600 hover:text-primary-700 hover:bg-primary-50 font-medium group">
+                            <Button variant="ghost" className="text-white border border-white/20 hover:bg-white/10 font-medium group">
                                 Ver todos los cursos
                                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                             </Button>
@@ -184,13 +168,13 @@ export default function Home() {
             </section>
 
             {/* Value Proposition / Features */}
-            <section className="py-24 bg-white border-t border-neutral-100">
+            <section className="py-24 bg-neutral-900 border-t border-neutral-800">
                 <div className="container mx-auto px-4">
                     <ScrollReveal direction="up" className="text-center max-w-3xl mx-auto mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-6 tracking-tight">
+                        <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">
                             ¿Por qué elegir DISTMAH?
                         </h2>
-                        <p className="text-lg text-neutral-600">
+                        <p className="text-lg text-neutral-300">
                             Somos un Centro de Entrenamiento Autorizado (ATC) de Autodesk. Tu certificación tiene validez internacional.
                         </p>
                     </ScrollReveal>
@@ -215,11 +199,11 @@ export default function Home() {
                         ].map((feature, i) => (
                             <ScrollReveal key={i} delay={i * 0.1} direction="up">
                                 <div className="flex flex-col items-center text-center group">
-                                    <div className="w-16 h-16 rounded-2xl bg-primary-50 text-primary-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm">
+                                    <div className="w-16 h-16 rounded-2xl bg-primary-600/20 text-primary-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm border border-primary-600/30">
                                         <feature.icon className="w-8 h-8" />
                                     </div>
-                                    <h3 className="text-xl font-bold text-neutral-900 mb-3">{feature.title}</h3>
-                                    <p className="text-neutral-600 leading-relaxed">
+                                    <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
+                                    <p className="text-neutral-400 leading-relaxed">
                                         {feature.description}
                                     </p>
                                 </div>

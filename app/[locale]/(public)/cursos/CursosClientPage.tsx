@@ -47,7 +47,7 @@ export default function CursosClientPage({ courses }: CursosClientPageProps) {
       course.descripcion.toLowerCase().includes(lowerQuery) ||
       course.categoria.toLowerCase().includes(lowerQuery) ||
       course.nivel.toLowerCase().includes(lowerQuery) ||
-      (course.instructor && course.instructor.toLowerCase().includes(lowerQuery))
+      (course.instructor ? course.instructor.toLowerCase().includes(lowerQuery) : false)
     );
   };
 
@@ -111,7 +111,7 @@ export default function CursosClientPage({ courses }: CursosClientPageProps) {
     <div className="min-h-screen bg-gray-50">
       <div className="bg-gradient-to-br from-blue-900 to-blue-700 text-white py-16">
         <div className="container mx-auto px-4">
-          <h1 className="text-5xl font-bold mb-4">Cat\u00e1logo de Cursos 2026</h1>
+          <h1 className="text-5xl font-bold mb-4">Catálogo de Cursos 2026</h1>
           <p className="text-xl text-blue-100 max-w-2xl mb-8">
             Todos los cursos de Autodesk 2026 disponibles en DISTMAH ATC
           </p>
@@ -121,7 +121,7 @@ export default function CursosClientPage({ courses }: CursosClientPageProps) {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <Input
                 type="text"
-                placeholder="Buscar por t\u00edtulo, categor\u00eda, instructor..."
+                placeholder="Buscar por título, categoría, instructor..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-10 pr-10 h-12 bg-white text-gray-900"
@@ -150,10 +150,10 @@ export default function CursosClientPage({ courses }: CursosClientPageProps) {
                 onValueChange={(value) => setSelectedCategory(value === 'all' ? null : value)}
               >
                 <SelectTrigger className="w-[180px]">
-                  <SelectValue placeholder="Categor\u00eda" />
+                  <SelectValue placeholder="Categoría" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">Todas las categor\u00edas</SelectItem>
+                  <SelectItem value="all">Todas las categorías</SelectItem>
                   {categorias.map((categoria) => (
                     <SelectItem key={categoria} value={categoria}>
                       {categoria}
@@ -210,12 +210,12 @@ export default function CursosClientPage({ courses }: CursosClientPageProps) {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="newest">M\u00e1s reciente</SelectItem>
-                  <SelectItem value="popular">M\u00e1s popular</SelectItem>
+                  <SelectItem value="newest">Más reciente</SelectItem>
+                  <SelectItem value="popular">Más popular</SelectItem>
                   <SelectItem value="rating">Mejor calificado</SelectItem>
                   <SelectItem value="price-asc">Precio: menor a mayor</SelectItem>
                   <SelectItem value="price-desc">Precio: mayor a menor</SelectItem>
-                  <SelectItem value="alphabetical">Alfab\u00e9tico A-Z</SelectItem>
+                  <SelectItem value="alphabetical">Alfabético A-Z</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -231,7 +231,7 @@ export default function CursosClientPage({ courses }: CursosClientPageProps) {
               <div className="flex gap-2 flex-wrap">
                 {searchQuery && (
                   <Badge variant="secondary" className="gap-1">
-                    B\u00fasqueda: "{searchQuery}"
+                    Búsqueda: "{searchQuery}"
                     <button onClick={() => setSearchQuery('')} className="ml-1">
                       <X className="w-3 h-3" />
                     </button>
