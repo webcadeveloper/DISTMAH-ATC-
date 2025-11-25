@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle, Mail, Lock, User, Eye, EyeOff, Phone, MapPin } from 'lucide-react';
+import { LogoDistmah } from '@/components/brand/LogoDistmah';
 import {
     Select,
     SelectContent,
@@ -39,7 +40,6 @@ export default function RegisterPage() {
         setError(null);
         setLoading(true);
 
-        // Validaciones
         if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
             setError('Por favor completa todos los campos obligatorios');
             setLoading(false);
@@ -100,11 +100,10 @@ export default function RegisterPage() {
         <div className="min-h-screen flex">
             {/* Left Side - Register Form */}
             <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white overflow-y-auto">
-                <div className="w-full max-w-md py-8">
+                <div className="w-full max-w-md">
                     {/* Logo */}
-                    <div className="mb-8 text-center">
-                        <h1 className="text-3xl font-bold text-neutral-900">DISTMAH ATC</h1>
-                        <p className="text-neutral-600 mt-2">Universidad Autodesk 2026</p>
+                    <div className="mb-8 flex justify-center">
+                        <LogoDistmah />
                     </div>
 
                     {/* Title */}
@@ -124,7 +123,7 @@ export default function RegisterPage() {
                     )}
 
                     {/* Register Form */}
-                    <form onSubmit={handleRegister} className="space-y-5">
+                    <form onSubmit={handleRegister} className="space-y-6">
                         {/* Name */}
                         <div>
                             <Label htmlFor="name" className="text-neutral-700 font-medium">
@@ -163,51 +162,54 @@ export default function RegisterPage() {
                             </div>
                         </div>
 
-                        {/* Phone */}
-                        <div>
-                            <Label htmlFor="phone" className="text-neutral-700 font-medium">
-                                Teléfono (opcional)
-                            </Label>
-                            <div className="relative mt-2">
-                                <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400" />
-                                <Input
-                                    id="phone"
-                                    type="tel"
-                                    value={formData.phone}
-                                    onChange={(e) => handleChange('phone', e.target.value)}
-                                    placeholder="+58 412-1234567"
-                                    className="pl-10"
-                                />
+                        {/* Phone & Country in one row */}
+                        <div className="grid grid-cols-2 gap-4">
+                            {/* Phone */}
+                            <div>
+                                <Label htmlFor="phone" className="text-neutral-700 font-medium">
+                                    Teléfono
+                                </Label>
+                                <div className="relative mt-2">
+                                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400" />
+                                    <Input
+                                        id="phone"
+                                        type="tel"
+                                        value={formData.phone}
+                                        onChange={(e) => handleChange('phone', e.target.value)}
+                                        placeholder="+58 412..."
+                                        className="pl-10"
+                                    />
+                                </div>
                             </div>
-                        </div>
 
-                        {/* Country */}
-                        <div>
-                            <Label htmlFor="country" className="text-neutral-700 font-medium">
-                                País (opcional)
-                            </Label>
-                            <div className="relative mt-2">
-                                <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400 z-10" />
-                                <Select
-                                    value={formData.country}
-                                    onValueChange={(value) => handleChange('country', value)}
-                                >
-                                    <SelectTrigger className="pl-10">
-                                        <SelectValue placeholder="Selecciona tu país" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="ve">Venezuela</SelectItem>
-                                        <SelectItem value="co">Colombia</SelectItem>
-                                        <SelectItem value="mx">México</SelectItem>
-                                        <SelectItem value="ar">Argentina</SelectItem>
-                                        <SelectItem value="pe">Perú</SelectItem>
-                                        <SelectItem value="cl">Chile</SelectItem>
-                                        <SelectItem value="ec">Ecuador</SelectItem>
-                                        <SelectItem value="es">España</SelectItem>
-                                        <SelectItem value="us">Estados Unidos</SelectItem>
-                                        <SelectItem value="other">Otro</SelectItem>
-                                    </SelectContent>
-                                </Select>
+                            {/* Country */}
+                            <div>
+                                <Label htmlFor="country" className="text-neutral-700 font-medium">
+                                    País
+                                </Label>
+                                <div className="relative mt-2">
+                                    <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-neutral-400 z-10" />
+                                    <Select
+                                        value={formData.country}
+                                        onValueChange={(value) => handleChange('country', value)}
+                                    >
+                                        <SelectTrigger className="pl-10">
+                                            <SelectValue placeholder="Selecciona" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="ve">Venezuela</SelectItem>
+                                            <SelectItem value="co">Colombia</SelectItem>
+                                            <SelectItem value="mx">México</SelectItem>
+                                            <SelectItem value="ar">Argentina</SelectItem>
+                                            <SelectItem value="pe">Perú</SelectItem>
+                                            <SelectItem value="cl">Chile</SelectItem>
+                                            <SelectItem value="ec">Ecuador</SelectItem>
+                                            <SelectItem value="es">España</SelectItem>
+                                            <SelectItem value="us">Estados Unidos</SelectItem>
+                                            <SelectItem value="other">Otro</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
                             </div>
                         </div>
 
@@ -264,22 +266,22 @@ export default function RegisterPage() {
                         </div>
 
                         {/* Terms & Conditions */}
-                        <div className="flex items-start gap-2">
+                        <div className="flex items-center">
                             <input
                                 id="terms"
                                 type="checkbox"
                                 checked={acceptTerms}
                                 onChange={(e) => setAcceptTerms(e.target.checked)}
-                                className="w-4 h-4 mt-1 text-blue-600 border-neutral-300 rounded focus:ring-blue-500"
+                                className="w-4 h-4 text-blue-600 border-neutral-300 rounded focus:ring-blue-500"
                             />
-                            <Label htmlFor="terms" className="text-sm text-neutral-600 cursor-pointer">
+                            <Label htmlFor="terms" className="ml-2 text-sm text-neutral-600 cursor-pointer">
                                 Acepto los{' '}
                                 <Link href="/terminos" className="text-blue-600 hover:text-blue-700 font-medium">
-                                    términos y condiciones
+                                    términos
                                 </Link>{' '}
-                                y la{' '}
+                                y{' '}
                                 <Link href="/privacidad" className="text-blue-600 hover:text-blue-700 font-medium">
-                                    política de privacidad
+                                    privacidad
                                 </Link>
                             </Label>
                         </div>
@@ -338,47 +340,55 @@ export default function RegisterPage() {
                 </div>
             </div>
 
-            {/* Right Side - Image/Branding */}
-            <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-600 to-blue-800 items-center justify-center p-12">
-                <div className="max-w-md text-white">
+            {/* Right Side - Video Background */}
+            <div className="hidden lg:flex lg:w-1/2 relative items-center justify-center p-12 overflow-hidden">
+                {/* Video Background */}
+                <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover"
+                >
+                    <source src="/video/LOGIN.mp4" type="video/mp4" />
+                </video>
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/50" />
+                {/* Content */}
+                <div className="relative z-10 max-w-md text-white">
                     <h2 className="text-4xl font-bold mb-6">
                         Únete a miles de profesionales
                     </h2>
-                    <p className="text-lg text-blue-100 mb-8">
+                    <p className="text-lg text-white/80 mb-8">
                         Aprende de los mejores instructores certificados por Autodesk y transforma tu carrera
                     </p>
-
-                    {/* Stats */}
-                    <div className="grid grid-cols-2 gap-6 mb-8">
-                        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                            <p className="text-3xl font-bold">16+</p>
-                            <p className="text-sm text-blue-100">Cursos disponibles</p>
-                        </div>
-                        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                            <p className="text-3xl font-bold">1,200+</p>
-                            <p className="text-sm text-blue-100">Estudiantes activos</p>
-                        </div>
-                    </div>
-
-                    {/* Benefits */}
                     <div className="space-y-4">
                         <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
-                                ✓
+                            <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                                <span className="text-2xl">🎓</span>
                             </div>
-                            <p className="text-blue-100">Acceso de por vida a los cursos</p>
+                            <div>
+                                <p className="font-semibold">Certificación Autodesk</p>
+                                <p className="text-sm text-white/70">Reconocida internacionalmente</p>
+                            </div>
                         </div>
                         <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
-                                ✓
+                            <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                                <span className="text-2xl">👨‍🏫</span>
                             </div>
-                            <p className="text-blue-100">Certificación oficial de Autodesk</p>
+                            <div>
+                                <p className="font-semibold">Instructores Expertos</p>
+                                <p className="text-sm text-white/70">Profesionales certificados</p>
+                            </div>
                         </div>
                         <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
-                                ✓
+                            <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                                <span className="text-2xl">💻</span>
                             </div>
-                            <p className="text-blue-100">Soporte 24/7 de instructores</p>
+                            <div>
+                                <p className="font-semibold">Proyectos Reales</p>
+                                <p className="text-sm text-white/70">Aprende con casos prácticos</p>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertCircle, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import Image from 'next/image';
+import { LogoDistmah } from '@/components/brand/LogoDistmah';
 
 export default function LoginPage() {
     const [email, setEmail] = useState('');
@@ -62,9 +63,8 @@ export default function LoginPage() {
             <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white">
                 <div className="w-full max-w-md">
                     {/* Logo */}
-                    <div className="mb-8 text-center">
-                        <h1 className="text-3xl font-bold text-neutral-900">DISTMAH ATC</h1>
-                        <p className="text-neutral-600 mt-2">Universidad Autodesk 2026</p>
+                    <div className="mb-8 flex justify-center">
+                        <LogoDistmah />
                     </div>
 
                     {/* Title */}

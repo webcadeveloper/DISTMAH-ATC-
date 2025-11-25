@@ -100,8 +100,8 @@ export default function Home() {
                                     </AnimatedButton>
                                 </Link>
                                 <Link href="/contacto">
-                                    <AnimatedButton variant="outline" size="lg" className="h-14 px-8 text-lg border-white/30 text-white hover:bg-white/10 hover:text-white rounded-sm backdrop-blur-sm">
-                                        Hablar con un Asesor
+                                    <AnimatedButton variant="outline" size="lg" className="h-14 px-8 text-lg border-2 border-white text-white hover:bg-white hover:text-black rounded-sm backdrop-blur-sm bg-transparent">
+                                        Contactar
                                     </AnimatedButton>
                                 </Link>
                             </div>
@@ -198,8 +198,8 @@ export default function Home() {
                         ].map((feature, i) => (
                             <ScrollReveal key={i} delay={i * 0.1} direction="up">
                                 <div className="flex flex-col items-center text-center group">
-                                    <div className="w-16 h-16 rounded-2xl bg-primary-600/20 text-primary-400 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm border border-primary-600/30">
-                                        <feature.icon className="w-8 h-8" />
+                                    <div className="w-16 h-16 rounded-2xl bg-white/10 text-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm border border-white/20">
+                                        <feature.icon className="w-8 h-8 text-white" />
                                     </div>
                                     <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
                                     <p className="text-neutral-400 leading-relaxed">
