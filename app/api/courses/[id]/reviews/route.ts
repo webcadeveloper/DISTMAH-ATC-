@@ -58,7 +58,7 @@ export async function GET(
     ]);
 
     const ratingDistribution = [1, 2, 3, 4, 5].reduce((acc, rating) => {
-      const found = distribution.find(d => d.rating === rating);
+      const found = distribution.find((d: any) => d.rating === rating);
       acc[rating] = found ? found._count.rating : 0;
       return acc;
     }, {} as Record<number, number>);
