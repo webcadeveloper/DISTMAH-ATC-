@@ -11,8 +11,8 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { getCourse } from '@/lib/course-loader';
 
-export default async function CourseContentPage({ params }: { params: { cursoId: string } }) {
-    const cursoId = params.cursoId;
+export default async function CourseContentPage({ params }: { params: Promise<{ cursoId: string }> }) {
+    const { cursoId } = await params;
     const courseMeta = COURSES_2026.find(c => c.id === cursoId);
 
     if (!courseMeta) return <div className="p-8">Curso no encontrado</div>;
