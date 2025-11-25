@@ -142,7 +142,7 @@ export async function DELETE(req: NextRequest) {
 
     await MicrosoftGraphService.deleteUser((user as any).m365UserId);
 
-    await prisma.user.update({
+    await (prisma as any).user.update({
       where: { id: userId },
       data: {
         m365UserId: null,
