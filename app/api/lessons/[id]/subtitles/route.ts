@@ -9,7 +9,7 @@ export async function GET(
   try {
     const { id } = await params;
 
-    const subtitles = await prisma.videoSubtitle.findMany({
+    const subtitles = await (prisma as any).videoSubtitle.findMany({
       where: { lessonId: id },
       orderBy: { isDefault: 'desc' },
     });
@@ -45,13 +45,13 @@ export async function POST(
     }
 
     if (isDefault) {
-      await prisma.videoSubtitle.updateMany({
+      await (prisma as any).videoSubtitle.updateMany({
         where: { lessonId: id },
         data: { isDefault: false },
       });
     }
 
-    const subtitle = await prisma.videoSubtitle.create({
+    const subtitle = await (prisma as any).videoSubtitle.create({
       data: {
         lessonId: id,
         language,
@@ -91,7 +91,7 @@ export async function DELETE(
       );
     }
 
-    await prisma.videoSubtitle.delete({
+    await (prisma as any).videoSubtitle.delete({
       where: { id: subtitleId },
     });
 
