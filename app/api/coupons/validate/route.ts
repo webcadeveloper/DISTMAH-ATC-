@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
 
     const { code, courseId, totalAmount } = validatedData.data;
 
-    const coupon = await (prisma.coupon as any).findUnique({
+    const coupon = await (prisma as any).coupon.findUnique({
       where: { code: code.toUpperCase() },
     });
 
