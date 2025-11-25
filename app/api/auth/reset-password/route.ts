@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
 
     const { token, password } = validatedData.data;
 
-    const resetToken = await prisma.passwordResetToken.findUnique({
+    const resetToken = await (prisma as any).passwordResetToken.findUnique({
       where: { token },
       include: { user: true },
     });
@@ -50,11 +50,11 @@ export async function POST(request: NextRequest) {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     await prisma.$transaction([
-      prisma.user.update({
+      (prisma as any).user.update({
         where: { id: resetToken.userId },
         data: { password: hashedPassword },
       }),
-      prisma.passwordResetToken.update({
+      (prisma as any).passwordResetToken.update({
         where: { id: resetToken.id },
         data: { used: true },
       }),
