@@ -132,15 +132,14 @@ export default function Home() {
             </section>
 
             {/* Featured Courses Section */}
-            <section className="py-24 bg-black relative overflow-hidden">
-                <div className="absolute inset-0 opacity-20">
-                    <div className="absolute inset-0 bg-gradient-to-br from-neutral-900 via-black to-neutral-800"></div>
+            <section className="py-24 relative overflow-hidden" style={{ background: 'linear-gradient(to bottom, #000000 0%, #2a2a2a 50%, #3a3a3a 100%)' }}>
+                <div className="absolute inset-0 opacity-10">
                     <div className="absolute inset-0" style={{
                         backgroundImage: `
-                            linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px),
-                            linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px)
+                            linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px),
+                            linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px)
                         `,
-                        backgroundSize: '50px 50px'
+                        backgroundSize: '60px 60px'
                     }}></div>
                 </div>
                 <div className="container mx-auto px-4 relative z-10">
