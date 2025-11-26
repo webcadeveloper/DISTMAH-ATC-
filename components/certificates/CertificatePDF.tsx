@@ -212,7 +212,7 @@ export const CertificatePDF = ({
               Verifica este certificado en: distmah-atc.com/verificar/{verificationCode}
             </Text>
             {qrCodeDataUrl && (
-              <Image src={qrCodeDataUrl} style={styles.qrCode} alt="" />
+              <Image src={qrCodeDataUrl} style={styles.qrCode} />
             )}
           </View>
         </View>
