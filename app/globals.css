@@ -324,3 +324,236 @@
     background-position: 100% 50%;
   }
 }
+
+/* ============================================
+   LESSON CONTENT STYLES - Professional Brochure
+   ============================================ */
+
+.lesson-content {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #374151;
+}
+
+.lesson-content > *:first-child {
+  margin-top: 0;
+}
+
+/* Headers */
+.lesson-content h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid #3b82f6;
+}
+
+.lesson-content h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.lesson-content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #374151;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.lesson-content h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #4b5563;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Paragraphs */
+.lesson-content p {
+  color: #4b5563;
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+
+/* Lists */
+.lesson-content ul,
+.lesson-content ol {
+  margin: 1.25rem 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.lesson-content li {
+  position: relative;
+  padding-left: 1.75rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.7;
+}
+
+.lesson-content ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6rem;
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+  border-radius: 50%;
+}
+
+.lesson-content ol {
+  counter-reset: list-counter;
+}
+
+.lesson-content ol > li {
+  counter-increment: list-counter;
+}
+
+.lesson-content ol > li::before {
+  content: counter(list-counter);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tables */
+.lesson-content table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 2rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.lesson-content thead {
+  background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+}
+
+.lesson-content th {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  font-weight: 600;
+  color: white;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.lesson-content tbody tr {
+  background: white;
+  transition: background-color 0.15s ease;
+}
+
+.lesson-content tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+.lesson-content tbody tr:hover {
+  background: #eff6ff;
+}
+
+.lesson-content td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #e5e7eb;
+  color: #374151;
+}
+
+/* Code blocks */
+.lesson-content code {
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  color: #1f2937;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875em;
+  border: 1px solid #d1d5db;
+}
+
+.lesson-content pre {
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  color: #e2e8f0;
+  padding: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 1.5rem 0;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.lesson-content pre code {
+  background: transparent;
+  border: none;
+  padding: 1.5rem;
+  display: block;
+  overflow-x: auto;
+  color: #e2e8f0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Blockquotes */
+.lesson-content blockquote {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border-left: 4px solid #3b82f6;
+  border-radius: 0 12px 12px 0;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: #1e40af;
+}
+
+.lesson-content blockquote p {
+  margin-bottom: 0;
+  color: inherit;
+}
+
+/* Horizontal rule */
+.lesson-content hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #d1d5db 20%, #9ca3af 50%, #d1d5db 80%, transparent 100%);
+  margin: 2.5rem 0;
+}
+
+/* Strong / Bold */
+.lesson-content strong {
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Links */
+.lesson-content a {
+  color: #2563eb;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s ease;
+}
+
+.lesson-content a:hover {
+  color: #1d4ed8;
+}
+
+/* Images placeholder */
+.lesson-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 1.5rem 0;
+}
