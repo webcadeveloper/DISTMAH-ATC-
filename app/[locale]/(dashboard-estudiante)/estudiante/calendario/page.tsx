@@ -43,7 +43,7 @@ export default function CalendarioPage() {
       if (!response.ok) throw new Error('Error al cargar eventos');
       const data = await response.json();
       setEventos(data);
-    } catch (error) {
+    } catch {
       toast.error('Error al cargar el calendario');
     } finally {
       setLoading(false);
@@ -81,35 +81,6 @@ export default function CalendarioPage() {
   const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
   const emptyDays = Array.from({ length: firstDay }, (_, i) => i);
 
-  const getTipoColor = (tipo: string) => {
-    switch (tipo) {
-      case 'clase_vivo':
-        return 'bg-blue-100 text-blue-700 border-blue-200';
-      case 'examen':
-        return 'bg-red-100 text-red-700 border-red-200';
-      case 'webinar':
-        return 'bg-purple-100 text-purple-700 border-purple-200';
-      case 'consulta':
-        return 'bg-green-100 text-green-700 border-green-200';
-      default:
-        return 'bg-neutral-100 text-neutral-700 border-neutral-200';
-    }
-  };
-
-  const getTipoTexto = (tipo: string) => {
-    switch (tipo) {
-      case 'clase_vivo':
-        return 'Clase en Vivo';
-      case 'examen':
-        return 'Examen';
-      case 'webinar':
-        return 'Webinar';
-      case 'consulta':
-        return 'Consulta';
-      default:
-        return 'Evento';
-    }
-  };
 
   if (loading) {
     return (

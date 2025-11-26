@@ -1,10 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { useParams, usePathname } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { CheckCircle, PlayCircle, FileText, ChevronLeft, Loader2 } from 'lucide-react';
+import { FileText, ChevronLeft, Loader2 } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
@@ -28,7 +28,6 @@ interface CourseData {
 
 export function CoursePlayerSidebar() {
     const params = useParams();
-    const pathname = usePathname();
     const slug = params.slug as string;
     const moduleId = params.moduleId as string;
     const lessonSlug = params.lessonSlug as string;

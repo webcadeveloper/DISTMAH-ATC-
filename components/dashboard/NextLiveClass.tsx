@@ -5,7 +5,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Countdown } from '@/components/ui/countdown';
-import { toast } from 'sonner';
 import { Calendar, Clock, Video, ExternalLink } from 'lucide-react';
 import { format, isWithinInterval } from 'date-fns';
 import { es } from 'date-fns/locale';

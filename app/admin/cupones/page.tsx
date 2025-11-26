@@ -24,7 +24,6 @@ import {
   Plus,
   Tag,
   Trash2,
-  Edit,
   CheckCircle,
   XCircle,
   AlertCircle,
@@ -75,7 +74,7 @@ export default function CuponesAdminPage() {
       const response = await fetch('/api/admin/coupons');
       const data = await response.json();
       setCoupons(data.coupons || []);
-    } catch (err) {
+    } catch {
       setError('Error al cargar cupones');
     } finally {
       setLoading(false);
@@ -124,7 +123,7 @@ export default function CuponesAdminPage() {
         maxUses: '',
       });
       fetchCoupons();
-    } catch (err) {
+    } catch {
       setError('Error al crear cupón');
     }
   };
@@ -144,7 +143,7 @@ export default function CuponesAdminPage() {
 
       setSuccess('Cupón actualizado exitosamente');
       fetchCoupons();
-    } catch (err) {
+    } catch {
       setError('Error al actualizar cupón');
     }
   };
@@ -164,7 +163,7 @@ export default function CuponesAdminPage() {
 
       setSuccess('Cupón eliminado exitosamente');
       fetchCoupons();
-    } catch (err) {
+    } catch {
       setError('Error al eliminar cupón');
     }
   };

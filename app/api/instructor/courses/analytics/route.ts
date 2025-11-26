@@ -34,7 +34,7 @@ export async function GET() {
 
     const courseAnalytics = await Promise.all(
       courses.map(async (course) => {
-        const totalLessons = await prisma.lesson.count({
+        await prisma.lesson.count({
           where: {
             module: {
               courseId: course.id

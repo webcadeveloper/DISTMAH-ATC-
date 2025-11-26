@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { CourseCard } from "@/components/course/CourseCard";
 import { COURSES_2026 } from "@/lib/courses-catalog-2026";
-import { ArrowRight, CheckCircle2, Globe, Award, Users, Zap } from "lucide-react";
+import { ArrowRight, Award, Users, Zap } from "lucide-react";
 import Link from "next/link";
 import { AnimatedElement } from "@/components/animations/AnimatedElement";
 import { ScrollReveal } from "@/components/animations/ScrollReveal";

@@ -43,7 +43,7 @@ export default function ForgotPasswordPage() {
 
             setSuccess(true);
             setEmail('');
-        } catch (err) {
+        } catch {
             setError('Error al enviar email. Intenta de nuevo.');
         } finally {
             setLoading(false);

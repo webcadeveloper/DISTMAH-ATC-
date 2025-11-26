@@ -38,7 +38,7 @@ interface LessonsListProps {
     onAdd: () => void;
 }
 
-export function LessonsList({ moduleId, lessons: initialLessons, onReorder, onEdit, onDelete, onAdd }: LessonsListProps) {
+export function LessonsList({ lessons: initialLessons, onReorder, onEdit, onDelete, onAdd }: LessonsListProps) {
     const [lessons, setLessons] = useState(initialLessons);
 
     const sensors = useSensors(

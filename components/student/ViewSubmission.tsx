@@ -19,16 +19,16 @@ import { es } from 'date-fns/locale';
 interface ViewSubmissionProps {
   assignmentId: string;
   userId: string;
-  courseSlug: string;
 }
 
-export default function ViewSubmission({ assignmentId, userId, courseSlug }: ViewSubmissionProps) {
+export default function ViewSubmission({ assignmentId, userId }: ViewSubmissionProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [submission, setSubmission] = useState<any>(null);
 
   useEffect(() => {
     fetchSubmission();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [assignmentId, userId]);
 
   const fetchSubmission = async () => {

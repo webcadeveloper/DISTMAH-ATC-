@@ -54,6 +54,7 @@ export default function ArchivosInstructorPage() {
 
     useEffect(() => {
         loadArchivos();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const loadArchivos = async () => {
@@ -80,7 +81,7 @@ export default function ArchivosInstructorPage() {
                 documentos: docs,
                 espacioUsado: formatSize(totalSize)
             });
-        } catch (error) {
+        } catch {
             toast.error('Error al cargar archivos de OneDrive');
         } finally {
             setLoading(false);
@@ -128,7 +129,7 @@ export default function ArchivosInstructorPage() {
             if (!response.ok) throw new Error('Error al eliminar');
             toast.success('Archivo eliminado');
             loadArchivos();
-        } catch (error) {
+        } catch {
             toast.error('Error al eliminar archivo');
         }
     };

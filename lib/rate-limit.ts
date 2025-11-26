@@ -37,7 +37,6 @@ export function rateLimiter(options: {
       tokenCount.count += 1;
       rateLimit.set(token, tokenCount);
 
-      const remaining = limit - tokenCount.count;
       const reset = new Date(tokenCount.resetTime);
 
       if (tokenCount.count > limit) {

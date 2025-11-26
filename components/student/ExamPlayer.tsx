@@ -7,7 +7,6 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Clock, AlertCircle, CheckCircle, Flag, Send } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -20,23 +19,18 @@ interface Question {
 }
 
 interface ExamPlayerProps {
-  examId: string;
   attemptId: string;
   questions: Question[];
   duration: number;
-  maxScore: number;
   onSubmit: (answers: any[]) => void;
 }
 
 export function ExamPlayer({
-  examId,
   attemptId,
   questions,
   duration,
-  maxScore,
   onSubmit,
 }: ExamPlayerProps) {
-  const router = useRouter();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<string, any>>({});
   const [flagged, setFlagged] = useState<Set<string>>(new Set());
@@ -55,6 +49,7 @@ export function ExamPlayer({
     }, 1000);
 
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -78,6 +73,7 @@ export function ExamPlayer({
   const handleAutoSubmit = useCallback(() => {
     toast.info('Tiempo agotado. Enviando examen automáticamente...');
     handleSubmit();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [answers]);
 
   const handleAnswerChange = (questionId: string, answer: any) => {

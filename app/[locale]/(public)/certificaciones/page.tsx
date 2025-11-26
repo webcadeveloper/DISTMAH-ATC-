@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { CheckCircle2, Award, Download, ExternalLink } from 'lucide-react';
+import { CheckCircle2, Award, ExternalLink } from 'lucide-react';
 import { ScrollReveal } from '@/components/animations/ScrollReveal';
 
 export const metadata: Metadata = {

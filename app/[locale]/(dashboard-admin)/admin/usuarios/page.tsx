@@ -30,6 +30,7 @@ export default function UsersManagementPage() {
 
   useEffect(() => {
     loadUsers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, roleFilter, search]);
 
   const loadUsers = async () => {

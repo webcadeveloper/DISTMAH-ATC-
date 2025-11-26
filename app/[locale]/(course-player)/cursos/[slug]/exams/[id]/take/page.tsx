@@ -23,6 +23,7 @@ export default function TakeExamPage() {
 
   useEffect(() => {
     loadExam();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [examId]);
 
   const loadExam = async () => {

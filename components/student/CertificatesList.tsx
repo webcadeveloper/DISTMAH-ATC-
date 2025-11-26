@@ -32,6 +32,7 @@ export function CertificatesList({ userId }: CertificatesListProps) {
 
   useEffect(() => {
     loadCertificates();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
   const loadCertificates = async () => {
@@ -82,8 +83,8 @@ export function CertificatesList({ userId }: CertificatesListProps) {
           url: url,
         });
         toast.success('Compartido exitosamente');
-      } catch (error) {
-        console.error('Error sharing:', error);
+      } catch {
+        // Error silently ignored
       }
     } else {
       try {

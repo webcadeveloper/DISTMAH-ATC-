@@ -72,7 +72,7 @@ function ResetPasswordForm() {
             setTimeout(() => {
                 router.push('/login');
             }, 3000);
-        } catch (err) {
+        } catch {
             setError('Error al resetear contraseña. Intenta de nuevo.');
             setLoading(false);
         }

@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { LessonType } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -46,7 +45,6 @@ interface LessonEditorProps {
 export function LessonEditor({
     lessonId,
     moduleId,
-    courseId,
     initialData,
     onSave,
 }: LessonEditorProps) {
@@ -90,9 +88,9 @@ export function LessonEditor({
             if (onSave) {
                 onSave(lessonData);
             } else {
-                // router.push(`/instructor/cursos/${courseId}/contenido`);
+                // router.push(`/instructor/cursos/contenido`);
             }
-        } catch (error) {
+        } catch {
             toast.error('Error al guardar la lección');
         } finally {
             setSaving(false);
@@ -233,7 +231,7 @@ export function LessonEditor({
 
                                             {/* Uploader de video a OneDrive/Stream */}
                                             <VideoUploader
-                                                onVideoUploaded={(url, streamId) => {
+                                                onVideoUploaded={(url) => {
                                                     form.setValue('videoUrl', url);
                                                     toast.success('Video subido exitosamente');
                                                 }}

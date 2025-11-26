@@ -55,11 +55,9 @@ export default function LessonPageClient({
   moduleId,
   lessonSlug,
   userId,
-  courseId,
   lessonId,
   initialCompleted = false,
 }: LessonPageClientProps) {
-  const [progressPercent, setProgressPercent] = useState(0);
 
   const currentModule = course.modules.find((m) => m.id === moduleId);
   const currentLessonIndex = currentModule?.lessons.findIndex((l) => l.slug === lessonSlug) ?? -1;
@@ -68,10 +66,6 @@ export default function LessonPageClient({
 
   const totalLessons = course.modules.reduce((sum, m) => sum + m.lessons.length, 0);
   const completedLessons = 0;
-
-  const handleComplete = (newProgressPercent: number) => {
-    setProgressPercent(newProgressPercent);
-  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -185,7 +179,6 @@ export default function LessonPageClient({
                     lessonId={lessonId}
                     userId={userId}
                     initialCompleted={initialCompleted}
-                    onComplete={handleComplete}
                   />
                 </div>
               </div>

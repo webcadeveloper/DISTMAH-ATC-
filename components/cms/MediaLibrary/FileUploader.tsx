@@ -2,8 +2,7 @@
 
 import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Upload, File, X, CheckCircle, FileIcon } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Upload, FileIcon } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 

@@ -1,4 +1,4 @@
-import { getCourse, getLesson, getLessons, getModules } from '@/lib/course-loader';
+import { getCourse, getLesson } from '@/lib/course-loader';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ChevronLeft, ChevronRight, Clock, CheckCircle, BookOpen, Target, Lightbulb, FileText, HelpCircle, Award } from 'lucide-react';
@@ -83,7 +83,7 @@ const MarkdownComponents = {
     ol: ({ children, ...props }: any) => (
         <ol className="space-y-2 my-4 pl-0 list-none counter-reset-item" {...props}>{children}</ol>
     ),
-    li: ({ children, ordered, ...props }: any) => (
+    li: ({ children, ...props }: any) => (
         <li className="flex items-start gap-3 text-neutral-700" {...props}>
             <span className="flex-shrink-0 w-2 h-2 rounded-full bg-blue-500 mt-2" />
             <span>{children}</span>
@@ -150,7 +150,7 @@ const MarkdownComponents = {
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-neutral-300 to-transparent" />
         </div>
     ),
-    img: ({ src, alt, ...props }: any) => (
+    img: ({ alt }: any) => (
         <div className="my-6">
             <div className="bg-neutral-100 border-2 border-dashed border-neutral-300 rounded-lg p-8 text-center">
                 <div className="flex flex-col items-center gap-3">

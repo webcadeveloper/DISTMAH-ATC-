@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Calendar,
@@ -11,7 +10,7 @@ import {
   Award,
   ArrowRight
 } from 'lucide-react';
-import { format, isPast, differenceInDays, differenceInHours } from 'date-fns';
+import { format, differenceInDays, differenceInHours } from 'date-fns';
 import { es } from 'date-fns/locale';
 
 interface AssignmentCardProps {

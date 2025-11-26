@@ -103,7 +103,7 @@ export async function POST(
     const percentage = Math.round((totalScore / attempt.maxScore) * 100);
     const passed = percentage >= attempt.exam.passingScore;
 
-    const updated = await prisma.examAttempt.update({
+    await prisma.examAttempt.update({
       where: { id: attemptId },
       data: {
         answers: gradedAnswers,

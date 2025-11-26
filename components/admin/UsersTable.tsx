@@ -32,7 +32,7 @@ import {
 } from '@/components/ui/dialog';
 import { RoleSelector } from './RoleSelector';
 import { StatusBadge } from './StatusBadge';
-import { MoreVertical, Edit, Trash2, UserCheck, ShieldCheck } from 'lucide-react';
+import { MoreVertical, Edit, Trash2, UserCheck } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface User {

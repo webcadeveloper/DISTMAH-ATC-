@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { PlusCircle, BookOpen, Users, BarChart3, Edit, MoreVertical, Bell, MessageSquare, TrendingUp, Award, Download } from 'lucide-react';
+import { PlusCircle, BookOpen, Users, BarChart3, Edit, MoreVertical, Bell, MessageSquare, TrendingUp, Award } from 'lucide-react';
 import {
     DropdownMenu,
     DropdownMenuContent,

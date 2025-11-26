@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, CSSProperties } from 'react';
+import { useRef, useEffect } from 'react';
 import { LottieRefCurrentProps } from 'lottie-react';
 
 export interface UseLottieOptions {

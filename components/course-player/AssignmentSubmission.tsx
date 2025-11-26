@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Upload, CheckCircle, Clock, AlertCircle, FileText } from 'lucide-react';
+import { CheckCircle, Clock, AlertCircle, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -16,7 +16,7 @@ interface AssignmentSubmissionProps {
 
 type SubmissionStatus = 'pending' | 'submitted' | 'graded' | 'late';
 
-export function AssignmentSubmission({ lessonId, dueDate, maxScore = 100 }: AssignmentSubmissionProps) {
+export function AssignmentSubmission({ dueDate }: AssignmentSubmissionProps) {
     const [status, setStatus] = useState<SubmissionStatus>('pending');
     const [files, setFiles] = useState<any[]>([]);
     const [submittedDate, setSubmittedDate] = useState<Date | null>(null);

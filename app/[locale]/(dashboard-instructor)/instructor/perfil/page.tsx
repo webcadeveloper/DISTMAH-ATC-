@@ -85,7 +85,7 @@ export default function PerfilInstructorPage() {
                     averageRating: data.averageRating || 0
                 });
             }
-        } catch (error) {
+        } catch {
             toast.error('Error al cargar perfil');
         } finally {
             setLoading(false);

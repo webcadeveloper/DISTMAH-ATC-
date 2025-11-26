@@ -32,11 +32,11 @@ const mockCertificados = [
 ];
 
 export default function CertificadosPage() {
-  const handleDownloadPDF = (certificadoId: string, cursoTitle: string) => {
+  const handleDownloadPDF = (_certificadoId: string, cursoTitle: string) => {
     alert(`Descargando certificado: ${cursoTitle}`);
   };
 
-  const handleViewOnline = (certificadoId: string) => {
+  const handleViewOnline = (_certificadoId: string) => {
     alert(`Abriendo certificado en nueva pestaña...`);
   };
 

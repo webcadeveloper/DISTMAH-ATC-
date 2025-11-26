@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactNode, useRef } from 'react';
-import { motion, useInView, Variant } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 export interface ScrollRevealProps {

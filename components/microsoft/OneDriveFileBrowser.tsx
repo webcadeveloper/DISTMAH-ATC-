@@ -12,13 +12,14 @@ interface DriveItem {
   webUrl?: string;
 }
 
-export function OneDriveFileBrowser({ userId }: { userId: string }) {
+export function OneDriveFileBrowser() {
   const [files, setFiles] = useState<DriveItem[]>([]);
-  const [currentPath, setCurrentPath] = useState('');
+  const [currentPath] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchFiles();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPath]);
 
   async function fetchFiles() {

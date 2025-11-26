@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Edit, Users, Eye, MoreVertical, Plus, BookOpen, Loader2, Star } from 'lucide-react';
 import { toast } from 'sonner';
@@ -60,7 +60,7 @@ export default function InstructorCoursesPage() {
                 const data = await analyticsRes.json();
                 setAnalytics(data.courseAnalytics || []);
             }
-        } catch (error) {
+        } catch {
             toast.error('Error al cargar cursos');
         } finally {
             setLoading(false);

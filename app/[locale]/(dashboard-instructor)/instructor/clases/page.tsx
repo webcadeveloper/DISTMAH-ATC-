@@ -60,7 +60,7 @@ export default function ClasesInstructorPage() {
                     return acc + (end.getTime() - start.getTime()) / (1000 * 60 * 60);
                 }, 0))
             });
-        } catch (error) {
+        } catch {
             toast.error('Error al cargar clases en vivo');
         } finally {
             setLoading(false);

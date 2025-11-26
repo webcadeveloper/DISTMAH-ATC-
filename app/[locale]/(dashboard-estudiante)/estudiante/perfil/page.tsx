@@ -70,7 +70,7 @@ export default function PerfilPage() {
         profession: data.profession || '',
         institution: data.institution || '',
       });
-    } catch (error) {
+    } catch {
       toast.error('Error al cargar el perfil');
     } finally {
       setLoading(false);
@@ -113,7 +113,7 @@ export default function PerfilPage() {
       setProfile({ ...profile, ...updatedProfile } as UserProfile);
       toast.success('Perfil actualizado correctamente');
       setIsEditing(false);
-    } catch (error) {
+    } catch {
       toast.error('Error al guardar el perfil');
     } finally {
       setSaving(false);

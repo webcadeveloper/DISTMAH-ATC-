@@ -47,7 +47,7 @@ export async function GET(
     }
 
     const verificationUrl = `${process.env.NEXT_PUBLIC_APP_URL}/verificar-certificado/${certificate.verificationCode}`;
-    const qrCodeDataUrl = await QRCode.toDataURL(verificationUrl);
+    await QRCode.toDataURL(verificationUrl);
 
     // Create a basic PDF document with certificate content
     const PdfDocument = () =>

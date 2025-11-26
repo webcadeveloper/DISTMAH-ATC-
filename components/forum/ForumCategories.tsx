@@ -18,6 +18,7 @@ export function ForumCategories({ courseId }: { courseId: string }) {
 
   useEffect(() => {
     fetchCategories();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseId]);
 
   async function fetchCategories() {

@@ -58,6 +58,7 @@ export default function CoursesManagementPage() {
 
   useEffect(() => {
     loadCourses();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, statusFilter, search]);
 
   const loadCourses = async () => {

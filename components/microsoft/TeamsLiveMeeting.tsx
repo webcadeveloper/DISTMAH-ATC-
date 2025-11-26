@@ -4,12 +4,7 @@ import { useState } from 'react';
 import { Video, Calendar, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-interface TeamsLiveMeetingProps {
-  courseId: string;
-  moduleId?: string;
-}
-
-export function TeamsLiveMeeting({ courseId, moduleId }: TeamsLiveMeetingProps) {
+export function TeamsLiveMeeting() {
   const [creating, setCreating] = useState(false);
   const [meetingUrl, setMeetingUrl] = useState<string | null>(null);
 

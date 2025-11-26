@@ -1,4 +1,4 @@
-import { Course, Module, Lesson, LessonContent, Resource } from './types';
+import { Course } from './types';
 
 // CATÁLOGO 2026
 export const COURSES_2026: Course[] = [

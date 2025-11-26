@@ -65,6 +65,7 @@ export default function PaymentsManagementPage() {
   useEffect(() => {
     loadPayments();
     loadStats();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page, statusFilter, search]);
 
   const loadPayments = async () => {

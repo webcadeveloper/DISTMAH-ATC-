@@ -43,6 +43,7 @@ export function ModuleEditor({
 
   useEffect(() => {
     loadModule();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseSlug, moduleId]);
 
   const loadModule = async () => {

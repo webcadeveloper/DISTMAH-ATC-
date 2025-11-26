@@ -32,6 +32,7 @@ export function ForumPostDetail({ postId }: ForumPostDetailProps) {
 
   useEffect(() => {
     fetchPost();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postId]);
 
   async function fetchPost() {

@@ -26,6 +26,7 @@ export function ForumPosts({ categoryId }: { categoryId: string }) {
 
   useEffect(() => {
     fetchPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryId]);
 
   async function fetchPosts() {

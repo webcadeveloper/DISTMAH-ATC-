@@ -57,7 +57,7 @@ export default function ReportesInstructorPage() {
                 const data = await statsRes.json();
                 setStats(data);
             }
-        } catch (error) {
+        } catch {
             toast.error('Error al cargar reportes');
         } finally {
             setLoading(false);

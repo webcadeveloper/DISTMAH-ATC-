@@ -8,7 +8,6 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Save, Loader2, ArrowLeft } from 'lucide-react';
 import { toast } from 'sonner';
-import { useRouter } from 'next/navigation';
 
 export interface LessonEditorProps {
   courseSlug: string;
@@ -36,7 +35,6 @@ export function LessonEditor({
   onSave,
   onCancel
 }: LessonEditorProps) {
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [lessonData, setLessonData] = useState<LessonData>({
@@ -46,6 +44,7 @@ export function LessonEditor({
 
   useEffect(() => {
     loadLesson();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseSlug, moduleId, lessonSlug]);
 
   const loadLesson = async () => {

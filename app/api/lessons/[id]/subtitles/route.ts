@@ -72,8 +72,7 @@ export async function POST(
 }
 
 export async function DELETE(
-  req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  req: NextRequest
 ) {
   try {
     const session = await auth();

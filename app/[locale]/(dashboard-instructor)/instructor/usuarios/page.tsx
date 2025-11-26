@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import {
@@ -54,7 +54,7 @@ export default function InstructorUsuariosPage() {
             if (!response.ok) throw new Error('Error al cargar estudiantes');
             const data = await response.json();
             setStudents(data.students || []);
-        } catch (error) {
+        } catch {
             toast.error('Error al cargar estudiantes');
         } finally {
             setLoading(false);

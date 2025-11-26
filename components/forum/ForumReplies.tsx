@@ -26,6 +26,7 @@ export function ForumReplies({ postId }: ForumRepliesProps) {
 
   useEffect(() => {
     fetchReplies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postId]);
 
   async function fetchReplies() {

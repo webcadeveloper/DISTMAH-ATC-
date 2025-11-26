@@ -11,8 +11,7 @@ import {
     Calendar,
     MessageSquare,
     Settings,
-    LogOut,
-    GraduationCap
+    LogOut
 } from 'lucide-react';
 import { LogoDistmah } from '@/components/brand/LogoDistmah';
 import { Button } from '@/components/ui/button';

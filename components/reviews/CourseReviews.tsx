@@ -40,6 +40,7 @@ export function CourseReviews({ courseId, userEnrolled, userReview: initialUserR
 
   useEffect(() => {
     fetchReviews();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseId, sortBy]);
 
   async function fetchReviews() {

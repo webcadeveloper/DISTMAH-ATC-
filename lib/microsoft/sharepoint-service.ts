@@ -24,14 +24,13 @@ export class SharePointService {
         .get();
 
       return response.value;
-    } catch (error) {
+    } catch {
       return [];
     }
   }
 
-  static async createCourseLibrary(courseId: string, courseName: string) {
+  static async createCourseLibrary(courseId: string) {
     if (!graphClient) throw new Error('Microsoft Graph client not initialized');
-    const folderPath = `Courses/${courseId}`;
 
     const folder = await graphClient
       .api(`/sites/${SITE_ID}/drive/root:/Courses:/children`)

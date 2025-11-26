@@ -4,18 +4,14 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Badge } from '@/components/ui/badge';
 import { UsersTable } from '@/components/admin/UsersTable';
 import { CoursesTable } from '@/components/admin/CoursesTable';
 import { AnalyticsCharts } from '@/components/admin/AnalyticsCharts';
-import { StatusBadge } from '@/components/admin/StatusBadge';
 import {
   Users,
   BookOpen,
   DollarSign,
-  TrendingUp,
   GraduationCap,
-  UserCheck,
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -130,6 +126,7 @@ export function AdminDashboardClient() {
     } else if (activeTab === 'courses' && courses.length === 0) {
       loadCourses();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab]);
 
   if (loading || !stats || !analytics) {

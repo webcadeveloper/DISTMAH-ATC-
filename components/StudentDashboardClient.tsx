@@ -53,6 +53,7 @@ export default function StudentDashboardClient({ userId }: StudentDashboardClien
 
   useEffect(() => {
     fetchProgress();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
   const fetchProgress = async () => {

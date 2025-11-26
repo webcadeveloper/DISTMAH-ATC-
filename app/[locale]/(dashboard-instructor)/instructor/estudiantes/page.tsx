@@ -60,7 +60,7 @@ export default function EstudiantesInstructorPage() {
                 completados,
                 promedioProgreso: students.length > 0 ? Math.round(totalProgreso / students.length) : 0
             });
-        } catch (error) {
+        } catch {
             toast.error('Error al cargar estudiantes');
         } finally {
             setLoading(false);

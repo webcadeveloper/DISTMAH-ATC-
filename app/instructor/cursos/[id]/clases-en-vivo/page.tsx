@@ -59,7 +59,6 @@ interface LiveClass {
 
 export default function LiveClassesPage() {
   const params = useParams();
-  const { data: session } = useSession();
   const courseId = params.id as string;
 
   const [classes, setClasses] = useState<LiveClass[]>([]);
@@ -77,6 +76,7 @@ export default function LiveClassesPage() {
 
   useEffect(() => {
     fetchClasses();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseId]);
 
   const fetchClasses = async () => {
@@ -158,7 +158,7 @@ export default function LiveClassesPage() {
     try {
       await navigator.clipboard.writeText(url);
       toast.success('Link copiado al portapapeles');
-    } catch (error) {
+    } catch {
       toast.error('Error al copiar link');
     }
   };

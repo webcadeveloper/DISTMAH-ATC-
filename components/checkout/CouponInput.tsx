@@ -66,7 +66,7 @@ export default function CouponInput({
 
       onCouponApplied(data.discount, data.coupon.code, data.finalAmount);
       setCouponCode('');
-    } catch (err) {
+    } catch {
       setError('Error al validar cupón. Intenta de nuevo.');
     } finally {
       setLoading(false);

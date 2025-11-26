@@ -33,6 +33,7 @@ export default function LessonSidebar({
 
   useEffect(() => {
     fetchProgress();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseId, userId]);
 
   const fetchProgress = async () => {

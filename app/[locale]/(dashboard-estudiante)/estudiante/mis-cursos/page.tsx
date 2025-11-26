@@ -53,6 +53,7 @@ export default function MisCursosPage() {
     if (session?.user?.id) {
       loadEnrollments();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session?.user?.id]);
 
   const loadEnrollments = async () => {
@@ -61,7 +62,7 @@ export default function MisCursosPage() {
       if (!response.ok) throw new Error('Error al cargar cursos');
       const data = await response.json();
       setEnrollments(data.enrollments || []);
-    } catch (error) {
+    } catch {
       toast.error('Error al cargar tus cursos');
     } finally {
       setLoading(false);

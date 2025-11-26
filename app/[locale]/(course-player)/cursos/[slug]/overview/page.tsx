@@ -1,7 +1,7 @@
 import { getCourse } from '@/lib/course-loader';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { BookOpen, Clock, PlayCircle, FileText, CheckCircle } from 'lucide-react';
+import { BookOpen, Clock, PlayCircle, FileText } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 

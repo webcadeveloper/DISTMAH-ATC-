@@ -38,7 +38,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { StatusBadge } from './StatusBadge';
-import { MoreVertical, Edit, Trash2, Star, Archive, Eye } from 'lucide-react';
+import { MoreVertical, Edit, Trash2, Star, Eye } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface Course {

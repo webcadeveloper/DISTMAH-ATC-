@@ -51,7 +51,7 @@ export default function LoginPage() {
             } else {
                 window.location.href = '/es/estudiante/dashboard';
             }
-        } catch (err) {
+        } catch {
             setError('Error al iniciar sesión. Intenta de nuevo.');
             setLoading(false);
         }

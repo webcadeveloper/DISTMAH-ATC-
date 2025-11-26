@@ -48,6 +48,7 @@ export default function AssignmentsList({ courseId, modules = [] }: AssignmentsL
 
   useEffect(() => {
     fetchAssignments();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseId, moduleFilter]);
 
   const fetchAssignments = async () => {
@@ -110,7 +111,6 @@ export default function AssignmentsList({ courseId, modules = [] }: AssignmentsL
   };
 
   const filteredAssignments = assignments.filter(assignment => {
-    const now = new Date();
     const dueDate = new Date(assignment.dueDate);
     const availableFrom = new Date(assignment.availableFrom);
 

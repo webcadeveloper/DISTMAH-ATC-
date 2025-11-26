@@ -2,8 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
-import { CheckCircle, XCircle, Clock, Award, AlertCircle, RefreshCw } from 'lucide-react';
+import { CheckCircle, XCircle, Award, AlertCircle, RefreshCw } from 'lucide-react';
 
 interface Answer {
   questionId: string;

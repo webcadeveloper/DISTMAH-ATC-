@@ -8,7 +8,6 @@ import {
     LayoutDashboard,
     Users,
     BookOpen,
-    Settings,
     LogOut,
     Shield,
     CreditCard,

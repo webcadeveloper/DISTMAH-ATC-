@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Star, ThumbsUp, Trash2, Edit2 } from 'lucide-react';
+import { Star, ThumbsUp, Trash2 } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { Button } from '@/components/ui/button';
