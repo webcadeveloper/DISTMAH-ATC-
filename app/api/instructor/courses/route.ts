@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
-import { prisma } from '@/lib/prisma';
+import { getAllCourses } from '@/lib/course-loader';
 
 export async function GET() {
   try {
@@ -14,33 +14,23 @@ export async function GET() {
       return NextResponse.json({ error: 'Acceso denegado. Se requiere rol de instructor.' }, { status: 403 });
     }
 
-    const instructorId = session.user.id;
+    const allCourses = await getAllCourses();
 
-    const courses = await prisma.course.findMany({
-      where: {
-        instructorId
-      },
-      select: {
-        id: true,
-        title: true,
-        slug: true,
-        description: true,
-        thumbnail: true,
-        category: true,
-        level: true,
-        status: true,
-        price: true,
-        version: true,
-        enrollmentCount: true,
-        rating: true,
-        reviewsCount: true,
-        createdAt: true,
-        updatedAt: true
-      },
-      orderBy: {
-        createdAt: 'desc'
-      }
-    });
+    const courses = allCourses.map(course => ({
+      id: course.id,
+      title: course.titulo,
+      slug: course.slug,
+      description: course.descripcion,
+      thumbnail: course.imagen || null,
+      category: course.categoria,
+      level: course.nivel === 'Básico' ? 'BEGINNER' : course.nivel === 'Avanzado' ? 'ADVANCED' : 'INTERMEDIATE',
+      status: 'PUBLISHED',
+      price: course.precio,
+      version: course.version,
+      enrollmentCount: course.enrollmentCount || 0,
+      rating: course.rating || 4.9,
+      reviewsCount: course.reviewsCount || 0,
+    }));
 
     return NextResponse.json({ courses });
   } catch (error) {
