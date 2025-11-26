@@ -2,55 +2,25 @@
 
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Calendar as CalendarIcon, Clock, Video, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useState } from 'react';
+import { Calendar as CalendarIcon, Clock, Video, ChevronLeft, ChevronRight, Loader2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { toast } from 'sonner';
 
-const mockEventos = [
-  {
-    id: '1',
-    titulo: 'Clase en Vivo: Alineamientos en Civil 3D',
-    tipo: 'clase_vivo',
-    fecha: '2025-11-28',
-    hora: '16:00',
-    duracion: '2 horas',
-    instructor: 'Ing. Juan Pérez',
-    plataforma: 'Zoom',
-    estado: 'próximo',
-  },
-  {
-    id: '2',
-    titulo: 'Examen Final - AutoCAD 2026 Avanzado',
-    tipo: 'examen',
-    fecha: '2025-11-30',
-    hora: '10:00',
-    duracion: '3 horas',
-    instructor: 'Ing. Carlos Rodríguez',
-    plataforma: 'Plataforma DISTMAH',
-    estado: 'próximo',
-  },
-  {
-    id: '3',
-    titulo: 'Webinar: Novedades Revit 2026',
-    tipo: 'webinar',
-    fecha: '2025-12-05',
-    hora: '18:00',
-    duracion: '1.5 horas',
-    instructor: 'Arq. María González',
-    plataforma: 'YouTube Live',
-    estado: 'próximo',
-  },
-  {
-    id: '4',
-    titulo: 'Sesión de Consultas - Civil 3D',
-    tipo: 'consulta',
-    fecha: '2025-12-08',
-    hora: '15:00',
-    duracion: '1 hora',
-    instructor: 'Ing. Juan Pérez',
-    plataforma: 'Google Meet',
-    estado: 'próximo',
-  },
-];
+interface LiveClass {
+  id: string;
+  title: string;
+  description: string;
+  meetingUrl: string;
+  joinUrl: string;
+  scheduledStart: string;
+  scheduledEnd: string;
+  instructor: {
+    name: string;
+  };
+  course: {
+    title: string;
+  };
+}
 
 const meses = [
   'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
@@ -58,8 +28,27 @@ const meses = [
 ];
 
 export default function CalendarioPage() {
+  const [eventos, setEventos] = useState<LiveClass[]>([]);
+  const [loading, setLoading] = useState(true);
   const [mesActual, setMesActual] = useState(new Date().getMonth());
   const [añoActual, setAñoActual] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    loadEventos();
+  }, []);
+
+  const loadEventos = async () => {
+    try {
+      const response = await fetch('/api/live-classes?upcoming=true');
+      if (!response.ok) throw new Error('Error al cargar eventos');
+      const data = await response.json();
+      setEventos(data);
+    } catch (error) {
+      toast.error('Error al cargar el calendario');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const getDaysInMonth = (month: number, year: number) => {
     return new Date(year, month + 1, 0).getDate();
@@ -122,7 +111,24 @@ export default function CalendarioPage() {
     }
   };
 
-  if (mockEventos.length === 0) {
+  if (loading) {
+    return (
+      <div className="p-8 max-w-7xl mx-auto">
+        <div className="mb-8">
+          <h1 className="text-2xl font-bold text-neutral-900">Calendario</h1>
+          <p className="text-neutral-600">Gestiona tus clases y eventos programados</p>
+        </div>
+        <Card>
+          <CardContent className="p-12 text-center">
+            <Loader2 className="w-12 h-12 text-blue-600 mx-auto mb-4 animate-spin" />
+            <p className="text-neutral-600">Cargando calendario...</p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  if (eventos.length === 0) {
     return (
       <div className="p-8 max-w-7xl mx-auto">
         <div className="mb-8">
@@ -181,8 +187,8 @@ export default function CalendarioPage() {
                   const isToday = dia === new Date().getDate() &&
                                   mesActual === new Date().getMonth() &&
                                   añoActual === new Date().getFullYear();
-                  const hasEvent = mockEventos.some(e => {
-                    const eventDate = new Date(e.fecha);
+                  const hasEvent = eventos.some(e => {
+                    const eventDate = new Date(e.scheduledStart);
                     return eventDate.getDate() === dia &&
                            eventDate.getMonth() === mesActual &&
                            eventDate.getFullYear() === añoActual;
@@ -210,46 +216,57 @@ export default function CalendarioPage() {
         <div>
           <h2 className="text-xl font-bold text-neutral-900 mb-4">Próximos Eventos</h2>
           <div className="space-y-4">
-            {mockEventos.slice(0, 4).map((evento) => (
-              <Card key={evento.id} className="border border-neutral-200 hover:shadow-md transition-shadow">
-                <CardContent className="p-4">
-                  <div className="mb-3">
-                    <span className={`text-xs font-semibold px-2 py-1 rounded border ${getTipoColor(evento.tipo)}`}>
-                      {getTipoTexto(evento.tipo)}
-                    </span>
-                  </div>
+            {eventos.slice(0, 4).map((evento) => {
+              const startDate = new Date(evento.scheduledStart);
+              const endDate = new Date(evento.scheduledEnd);
+              const duration = Math.round((endDate.getTime() - startDate.getTime()) / (1000 * 60));
 
-                  <h3 className="font-bold text-neutral-900 mb-2">{evento.titulo}</h3>
+              return (
+                <Card key={evento.id} className="border border-neutral-200 hover:shadow-md transition-shadow">
+                  <CardContent className="p-4">
+                    <div className="mb-3">
+                      <span className="text-xs font-semibold px-2 py-1 rounded border bg-blue-100 text-blue-700 border-blue-200">
+                        Clase en Vivo
+                      </span>
+                    </div>
 
-                  <div className="space-y-1.5 text-sm text-neutral-600">
-                    <div className="flex items-center gap-2">
-                      <CalendarIcon className="w-3.5 h-3.5" />
-                      <span>{new Date(evento.fecha).toLocaleDateString('es-ES', {
-                        weekday: 'long',
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                      })}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Clock className="w-3.5 h-3.5" />
-                      <span>{evento.hora} ({evento.duracion})</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Video className="w-3.5 h-3.5" />
-                      <span>{evento.plataforma}</span>
-                    </div>
-                  </div>
+                    <h3 className="font-bold text-neutral-900 mb-2">{evento.title}</h3>
+                    <p className="text-sm text-neutral-500 mb-2">{evento.course.title}</p>
 
-                  <Button size="sm" className="w-full mt-4 bg-blue-600 hover:bg-blue-700">
-                    Unirse al Evento
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
+                    <div className="space-y-1.5 text-sm text-neutral-600">
+                      <div className="flex items-center gap-2">
+                        <CalendarIcon className="w-3.5 h-3.5" />
+                        <span>{startDate.toLocaleDateString('es-ES', {
+                          weekday: 'long',
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Clock className="w-3.5 h-3.5" />
+                        <span>{startDate.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })} ({duration} min)</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Video className="w-3.5 h-3.5" />
+                        <span>Microsoft Teams</span>
+                      </div>
+                    </div>
+
+                    <Button
+                      size="sm"
+                      className="w-full mt-4 bg-blue-600 hover:bg-blue-700"
+                      onClick={() => evento.joinUrl && window.open(evento.joinUrl, '_blank')}
+                    >
+                      Unirse a Teams
+                    </Button>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
 
-          {mockEventos.length > 4 && (
+          {eventos.length > 4 && (
             <Button variant="outline" className="w-full mt-4">
               Ver Todos los Eventos
             </Button>
