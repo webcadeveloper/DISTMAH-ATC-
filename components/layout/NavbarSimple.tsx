@@ -75,8 +75,8 @@ export function NavbarSimple() {
                                     ref={indicatorRef}
                                     className="absolute top-0 left-0 w-[20%] h-full transition-transform duration-500 ease-out pointer-events-none"
                                 >
-                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-1 bg-[#1F4E79] rounded-b-full shadow-[0_4px_12px_rgba(31,78,121,0.6)]" />
-                                    <div className="absolute inset-1 rounded-xl bg-[#1F4E79]/10" />
+                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-1 bg-twilight rounded-b-full shadow-[0_4px_12px_rgba(29,145,208,0.6)]" />
+                                    <div className="absolute inset-1 rounded-xl bg-twilight/10" />
                                 </div>
 
                                 <div className="relative flex">
@@ -90,18 +90,18 @@ export function NavbarSimple() {
                                                 onClick={() => setActiveIndex(index)}
                                                 className={`relative flex flex-col items-center justify-center px-5 py-2.5 rounded-xl transition-all duration-300 min-w-[90px] ${
                                                     isActive
-                                                        ? 'text-[#4A90D9]'
+                                                        ? 'text-twilight-light'
                                                         : 'text-neutral-400 hover:text-white'
                                                 }`}
                                             >
                                                 <Icon
                                                     className={`w-5 h-5 mb-1 transition-all duration-300 ${
-                                                        isActive ? 'fill-[#4A90D9]/20 stroke-[#4A90D9]' : ''
+                                                        isActive ? 'fill-twilight/20 stroke-twilight-light' : ''
                                                     }`}
                                                     strokeWidth={isActive ? 1.5 : 2}
                                                 />
                                                 <span className={`text-xs font-semibold transition-colors duration-300 ${
-                                                    isActive ? 'text-[#4A90D9]' : ''
+                                                    isActive ? 'text-twilight-light' : ''
                                                 }`}>
                                                     {item.label}
                                                 </span>
@@ -119,13 +119,13 @@ export function NavbarSimple() {
                                     className="relative flex flex-col items-center justify-center px-5 py-2.5 rounded-xl transition-all duration-300 min-w-[90px] text-neutral-400 hover:text-white hover:bg-white/5"
                                 >
                                     <LogIn className="w-5 h-5 mb-1" strokeWidth={2} />
-                                    <span className="text-xs font-semibold">Iniciar Sesión</span>
+                                    <span className="text-xs font-semibold">Iniciar Sesion</span>
                                 </Link>
                                 <Link
                                     href="/es/registro"
-                                    className="relative flex flex-col items-center justify-center px-5 py-2.5 rounded-xl transition-all duration-300 min-w-[90px] bg-[#1F4E79]/20 text-[#4A90D9] hover:bg-[#1F4E79]/30"
+                                    className="relative flex flex-col items-center justify-center px-5 py-2.5 rounded-xl transition-all duration-300 min-w-[90px] bg-twilight/20 text-twilight-light hover:bg-twilight/30"
                                 >
-                                    <UserPlus className="w-5 h-5 mb-1 fill-[#4A90D9]/20 stroke-[#4A90D9]" strokeWidth={1.5} />
+                                    <UserPlus className="w-5 h-5 mb-1 fill-twilight/20 stroke-twilight-light" strokeWidth={1.5} />
                                     <span className="text-xs font-semibold">Registrarse</span>
                                 </Link>
                             </div>
@@ -163,11 +163,11 @@ export function NavbarSimple() {
                                     }}
                                     className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${
                                         isActive
-                                            ? 'bg-[#1F4E79]/20 text-[#4A90D9] border-l-4 border-[#1F4E79]'
+                                            ? 'bg-twilight/20 text-twilight-light border-l-4 border-twilight'
                                             : 'text-neutral-400 hover:text-white hover:bg-white/5'
                                     }`}
                                 >
-                                    <Icon className={`w-5 h-5 ${isActive ? 'text-[#4A90D9]' : ''}`} />
+                                    <Icon className={`w-5 h-5 ${isActive ? 'text-twilight-light' : ''}`} />
                                     <span className="font-semibold">{item.label}</span>
                                 </Link>
                             );
@@ -180,12 +180,12 @@ export function NavbarSimple() {
                                 className="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 text-neutral-400 hover:text-white hover:bg-white/5"
                             >
                                 <LogIn className="w-5 h-5" />
-                                <span className="font-semibold">Iniciar Sesión</span>
+                                <span className="font-semibold">Iniciar Sesion</span>
                             </Link>
                             <Link
                                 href="/es/registro"
                                 onClick={() => setMobileMenuOpen(false)}
-                                className="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 bg-[#1F4E79]/20 text-[#4A90D9]"
+                                className="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 bg-twilight/20 text-twilight-light"
                             >
                                 <UserPlus className="w-5 h-5" />
                                 <span className="font-semibold">Registrarse</span>

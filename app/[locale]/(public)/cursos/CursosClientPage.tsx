@@ -345,7 +345,7 @@ export default function CursosClientPage({ courses }: CursosClientPageProps) {
                       <Badge className="bg-neutral-800 text-neutral-300">{selectedCourse.categoria}</Badge>
                       <Badge className={getLevelBadgeStyle(selectedCourse.nivel)}>{selectedCourse.nivel}</Badge>
                       {selectedCourse.version === '2026' && (
-                        <Badge className="bg-primary-600 text-white">NUEVO 2026</Badge>
+                        <Badge className="bg-twilight text-white">NUEVO 2026</Badge>
                       )}
                     </div>
                     <DialogTitle className="text-2xl font-bold text-white mb-2">
@@ -360,22 +360,22 @@ export default function CursosClientPage({ courses }: CursosClientPageProps) {
                 {/* Stats */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div className="bg-neutral-800 rounded-lg p-4 text-center">
-                    <Clock className="w-6 h-6 mx-auto mb-2 text-primary-500" />
+                    <Clock className="w-6 h-6 mx-auto mb-2 text-twilight" />
                     <p className="text-sm text-neutral-400">Duracion</p>
                     <p className="font-bold text-white">{selectedCourse.duracion}</p>
                   </div>
                   <div className="bg-neutral-800 rounded-lg p-4 text-center">
-                    <BookOpen className="w-6 h-6 mx-auto mb-2 text-primary-500" />
+                    <BookOpen className="w-6 h-6 mx-auto mb-2 text-twilight" />
                     <p className="text-sm text-neutral-400">Nivel</p>
                     <p className="font-bold text-white">{selectedCourse.nivel}</p>
                   </div>
                   <div className="bg-neutral-800 rounded-lg p-4 text-center">
-                    <Star className="w-6 h-6 mx-auto mb-2 text-amber-500" />
+                    <Star className="w-6 h-6 mx-auto mb-2 text-dawn" />
                     <p className="text-sm text-neutral-400">Rating</p>
                     <p className="font-bold text-white">{selectedCourse.rating || '4.9'}/5</p>
                   </div>
                   <div className="bg-neutral-800 rounded-lg p-4 text-center">
-                    <Users className="w-6 h-6 mx-auto mb-2 text-primary-500" />
+                    <Users className="w-6 h-6 mx-auto mb-2 text-morning" />
                     <p className="text-sm text-neutral-400">Estudiantes</p>
                     <p className="font-bold text-white">{selectedCourse.enrollmentCount || '100'}+</p>
                   </div>
@@ -393,13 +393,13 @@ export default function CursosClientPage({ courses }: CursosClientPageProps) {
                 {selectedCourse.objetivos && selectedCourse.objetivos.length > 0 && (
                   <div>
                     <h4 className="font-semibold text-white mb-3 flex items-center gap-2">
-                      <Award className="w-5 h-5 text-primary-500" />
+                      <Award className="w-5 h-5 text-twilight" />
                       Lo que aprenderas
                     </h4>
                     <div className="grid md:grid-cols-2 gap-2">
                       {selectedCourse.objetivos.map((objetivo, i) => (
                         <div key={i} className="flex items-start gap-2 text-neutral-300">
-                          <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                          <CheckCircle2 className="w-4 h-4 text-morning mt-0.5 flex-shrink-0" />
                           <span className="text-sm">{objetivo}</span>
                         </div>
                       ))}
@@ -424,12 +424,12 @@ export default function CursosClientPage({ courses }: CursosClientPageProps) {
 
                 {/* Novedades 2026 */}
                 {selectedCourse.novedades_2026 && selectedCourse.novedades_2026.length > 0 && (
-                  <div className="bg-primary-900/20 border border-primary-800 rounded-lg p-4">
-                    <h4 className="font-semibold text-primary-400 mb-3">Novedades 2026</h4>
+                  <div className="bg-twilight/10 border border-twilight/30 rounded-lg p-4">
+                    <h4 className="font-semibold text-twilight-light mb-3">Novedades 2026</h4>
                     <ul className="space-y-1">
                       {selectedCourse.novedades_2026.map((novedad, i) => (
                         <li key={i} className="text-neutral-300 text-sm flex items-center gap-2">
-                          <Star className="w-3 h-3 text-primary-500" />
+                          <Star className="w-3 h-3 text-twilight" />
                           {novedad}
                         </li>
                       ))}
@@ -449,7 +449,7 @@ export default function CursosClientPage({ courses }: CursosClientPageProps) {
                       Cerrar
                     </Button>
                     <Link href={`/cursos/${selectedCourse.slug}`}>
-                      <Button className="bg-primary-600 hover:bg-primary-700 text-white">
+                      <Button className="bg-twilight hover:bg-twilight-dark text-white">
                         Inscribirme Ahora
                       </Button>
                     </Link>

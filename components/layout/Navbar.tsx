@@ -63,16 +63,16 @@ export function Navbar() {
                 </Link>
 
                 <div className="hidden md:flex items-center gap-10">
-                    <Link href="/cursos" className="nav-item text-base font-semibold text-neutral-700 hover:text-primary-600 transition-colors">
+                    <Link href="/cursos" className="nav-item text-base font-semibold text-neutral-700 hover:text-twilight transition-colors">
                         {t('courses')}
                     </Link>
-                    <Link href="/certificaciones" className="nav-item text-base font-semibold text-neutral-700 hover:text-primary-600 transition-colors">
+                    <Link href="/certificaciones" className="nav-item text-base font-semibold text-neutral-700 hover:text-twilight transition-colors">
                         {t('certifications')}
                     </Link>
-                    <Link href="/empresas" className="nav-item text-base font-semibold text-neutral-700 hover:text-primary-600 transition-colors">
+                    <Link href="/empresas" className="nav-item text-base font-semibold text-neutral-700 hover:text-twilight transition-colors">
                         {t('companies')}
                     </Link>
-                    <Link href="/nosotros" className="nav-item text-base font-semibold text-neutral-700 hover:text-primary-600 transition-colors">
+                    <Link href="/nosotros" className="nav-item text-base font-semibold text-neutral-700 hover:text-twilight transition-colors">
                         {t('about')}
                     </Link>
                 </div>
@@ -85,7 +85,7 @@ export function Navbar() {
                         </Button>
                     </Link>
                     <Link href="/es/estudiante/dashboard" className="nav-item">
-                        <Button className="bg-primary-600 hover:bg-primary-700 text-white font-semibold shadow-lg shadow-primary-600/25 px-6">
+                        <Button className="bg-primary hover:bg-neutral-800 text-white font-semibold shadow-lg shadow-black/15 px-6">
                             {tCommon('register')}
                         </Button>
                     </Link>
