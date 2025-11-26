@@ -535,49 +535,6 @@ export function TiptapEditor({ content, onChange, onImageUpload, placeholder = '
             {/* Editor Content */}
             <EditorContent editor={editor} />
 
-            {/* Bubble Menu for quick formatting */}
-            {editor && (
-                <BubbleMenu editor={editor} tippyOptions={{ duration: 100 }}>
-                    <div className="bg-neutral-900 rounded-lg shadow-xl p-1 flex gap-1">
-                        <Button
-                            type="button"
-                            variant={editor.isActive('bold') ? 'default' : 'ghost'}
-                            size="icon-sm"
-                            onClick={() => editor.chain().focus().toggleBold().run()}
-                            className="text-white hover:bg-neutral-700"
-                        >
-                            <Bold className="w-3 h-3" />
-                        </Button>
-                        <Button
-                            type="button"
-                            variant={editor.isActive('italic') ? 'default' : 'ghost'}
-                            size="icon-sm"
-                            onClick={() => editor.chain().focus().toggleItalic().run()}
-                            className="text-white hover:bg-neutral-700"
-                        >
-                            <Italic className="w-3 h-3" />
-                        </Button>
-                        <Button
-                            type="button"
-                            variant={editor.isActive('link') ? 'default' : 'ghost'}
-                            size="icon-sm"
-                            onClick={() => setShowLinkModal(true)}
-                            className="text-white hover:bg-neutral-700"
-                        >
-                            <LinkIcon className="w-3 h-3" />
-                        </Button>
-                        <Button
-                            type="button"
-                            variant={editor.isActive('highlight') ? 'default' : 'ghost'}
-                            size="icon-sm"
-                            onClick={() => editor.chain().focus().toggleHighlight().run()}
-                            className="text-white hover:bg-neutral-700"
-                        >
-                            <Highlighter className="w-3 h-3" />
-                        </Button>
-                    </div>
-                </BubbleMenu>
-            )}
 
             {/* Image Modal */}
             {showImageModal && (
