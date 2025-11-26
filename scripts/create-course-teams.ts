@@ -53,10 +53,7 @@ async function createCourseTeams() {
       });
 
       console.log(`  SharePoint library...`);
-      const library = await SharePointService.createCourseLibrary(
-        course.id,
-        course.title
-      );
+      const library = await SharePointService.createCourseLibrary(course.id);
 
       await prisma.course.update({
         where: { id: course.id },
