@@ -173,10 +173,16 @@ export async function getCourse(slug: string): Promise<(CourseMetadata & { modul
     const version = softwareStr.includes('2026') ? '2026' : (cursoData.version || '2025');
 
     const objetivos = cursoData.objetivos || cursoData.objetivos_generales || [];
+    const prerequisitos = cursoData.prerequisitos || cursoData.requisitos || [];
 
-    const certNombre = typeof cursoData.certificacion === 'object'
-      ? cursoData.certificacion.nombre || cursoData.certificacion.tipo
-      : cursoData.certificacion;
+    let certNombre: string | undefined;
+    if (typeof cursoData.certificacion === 'object' && cursoData.certificacion !== null) {
+      certNombre = cursoData.certificacion.nombre || cursoData.certificacion.tipo;
+    } else if (typeof cursoData.certificacion === 'string') {
+      certNombre = cursoData.certificacion;
+    } else if (cursoData.certificacion === true) {
+      certNombre = `Certificado Digital - ${cursoData.titulo}`;
+    }
 
     return {
       id: cursoData.id || slug,
@@ -191,7 +197,7 @@ export async function getCourse(slug: string): Promise<(CourseMetadata & { modul
       version: version,
       idioma: cursoData.idioma || 'Español',
       instructor: instructor,
-      prerequisitos: cursoData.prerequisitos || [],
+      prerequisitos: prerequisitos,
       objetivos: objetivos,
       incluye: cursoData.materiales || cursoData.incluye || [],
       novedades_2026: cursoData.novedades_2026 || [],
