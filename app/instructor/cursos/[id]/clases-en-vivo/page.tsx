@@ -5,7 +5,6 @@ export const runtime = 'nodejs';
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
-import { useSession } from 'next-auth/react';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,

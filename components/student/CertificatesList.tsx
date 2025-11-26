@@ -90,7 +90,7 @@ export function CertificatesList({ userId }: CertificatesListProps) {
       try {
         await navigator.clipboard.writeText(url);
         toast.success('Enlace copiado al portapapeles');
-      } catch (error) {
+      } catch {
         toast.error('Error al copiar el enlace');
       }
     }

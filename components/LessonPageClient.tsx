@@ -8,7 +8,6 @@ import LessonNavigation from '@/components/lesson-player/LessonNavigation';
 import ProgressSidebar from '@/components/lesson-player/ProgressSidebar';
 import CourseProgressBar from '@/components/lesson-player/CourseProgressBar';
 import TimeTracker from '@/components/lesson-player/TimeTracker';
-import { useState } from 'react';
 
 interface Lesson {
   id: string;

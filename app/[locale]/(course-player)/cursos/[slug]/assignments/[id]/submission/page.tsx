@@ -5,7 +5,6 @@ import ViewSubmission from '@/components/student/ViewSubmission';
 
 export default function ViewSubmissionPage() {
   const params = useParams();
-  const slug = params.slug as string;
   const assignmentId = params.id as string;
 
   // TODO: Get user ID from session
@@ -16,7 +15,6 @@ export default function ViewSubmissionPage() {
       <ViewSubmission
         assignmentId={assignmentId}
         userId={userId}
-        courseSlug={slug}
       />
     </div>
   );
