@@ -211,7 +211,7 @@ export default function InstructorDashboardClient() {
                         </DropdownMenuContent>
                     </DropdownMenu>
 
-                    <Link href="/instructor/cursos/crear">
+                    <Link href="/es/instructor/cursos/crear">
                         <Button className="bg-blue-600 hover:bg-blue-700">
                             <PlusCircle className="w-4 h-4 mr-2" /> Crear Nuevo Curso
                         </Button>

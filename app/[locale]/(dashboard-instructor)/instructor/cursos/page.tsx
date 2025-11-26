@@ -122,7 +122,7 @@ export default function InstructorCoursesPage() {
                         <h1 className="text-3xl font-bold text-neutral-900">Mis Cursos</h1>
                         <p className="text-neutral-600">Gestiona tus cursos y contenido academico.</p>
                     </div>
-                    <Link href="/instructor/cursos/crear-curso">
+                    <Link href="/es/instructor/cursos/crear-curso">
                         <Button className="bg-neutral-900 hover:bg-neutral-800">
                             <Plus className="w-4 h-4 mr-2" /> Crear Nuevo Curso
                         </Button>
@@ -133,7 +133,7 @@ export default function InstructorCoursesPage() {
                         <BookOpen className="w-16 h-16 text-neutral-300 mx-auto mb-4" />
                         <h3 className="text-xl font-bold text-neutral-900 mb-2">No tienes cursos creados</h3>
                         <p className="text-neutral-600 mb-6">Crea tu primer curso para comenzar a ensenar</p>
-                        <Link href="/instructor/cursos/crear-curso">
+                        <Link href="/es/instructor/cursos/crear-curso">
                             <Button className="bg-blue-600 hover:bg-blue-700">
                                 <Plus className="w-4 h-4 mr-2" /> Crear Curso
                             </Button>
@@ -151,7 +151,7 @@ export default function InstructorCoursesPage() {
                     <h1 className="text-3xl font-bold text-neutral-900">Mis Cursos</h1>
                     <p className="text-neutral-600">Gestiona tus cursos y contenido academico.</p>
                 </div>
-                <Link href="/instructor/cursos/crear-curso">
+                <Link href="/es/instructor/cursos/crear-curso">
                     <Button className="bg-neutral-900 hover:bg-neutral-800">
                         <Plus className="w-4 h-4 mr-2" /> Crear Nuevo Curso
                     </Button>
@@ -264,17 +264,17 @@ export default function InstructorCoursesPage() {
                                     </div>
 
                                     <div className="flex items-center gap-3 mt-6 pt-4 border-t border-neutral-100">
-                                        <Link href={`/instructor/cursos/${course.slug}/contenido`}>
+                                        <Link href={`/es/instructor/cursos/${course.slug}/contenido`}>
                                             <Button variant="default" size="sm" className="bg-neutral-900 hover:bg-neutral-800">
                                                 <Edit className="w-4 h-4 mr-2" /> Editar Contenido
                                             </Button>
                                         </Link>
-                                        <Link href={`/instructor/cursos/${course.slug}/editar`}>
+                                        <Link href={`/es/instructor/cursos/${course.slug}/editar`}>
                                             <Button variant="outline" size="sm">
                                                 Informacion
                                             </Button>
                                         </Link>
-                                        <Link href={`/cursos/${course.slug}`} target="_blank">
+                                        <Link href={`/es/cursos/${course.slug}`} target="_blank">
                                             <Button variant="ghost" size="sm">
                                                 Ver Vista Previa
                                             </Button>

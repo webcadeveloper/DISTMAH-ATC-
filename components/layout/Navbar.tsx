@@ -79,12 +79,12 @@ export function Navbar() {
 
                 <div className="flex items-center gap-3">
                     <LanguageSwitcher />
-                    <Link href="/instructor/dashboard" className="nav-item hidden lg:block">
+                    <Link href="/es/instructor/dashboard" className="nav-item hidden lg:block">
                         <Button variant="ghost" className="text-neutral-700 font-medium hover:bg-neutral-100">
                             {tCommon('login')}
                         </Button>
                     </Link>
-                    <Link href="/estudiante/dashboard" className="nav-item">
+                    <Link href="/es/estudiante/dashboard" className="nav-item">
                         <Button className="bg-primary-600 hover:bg-primary-700 text-white font-semibold shadow-lg shadow-primary-600/25 px-6">
                             {tCommon('register')}
                         </Button>

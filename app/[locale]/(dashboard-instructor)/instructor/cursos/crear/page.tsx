@@ -49,14 +49,14 @@ export default function CreateCoursePage() {
         toast.success('Curso creado exitosamente');
         // In a real app, we would get the ID from the response
         // For now, redirect to the dashboard
-        router.push('/instructor/dashboard');
+        router.push('/es/instructor/dashboard');
     };
 
     return (
         <div className="p-8 max-w-3xl mx-auto">
             <div className="mb-8">
                 <Link
-                    href="/instructor/dashboard"
+                    href="/es/instructor/dashboard"
                     className="text-sm text-neutral-500 hover:text-neutral-900 flex items-center gap-1 mb-4"
                 >
                     <ArrowLeft className="w-4 h-4" /> Volver al Dashboard
@@ -165,7 +165,7 @@ export default function CreateCoursePage() {
                         </div>
 
                         <div className="pt-4 flex justify-end gap-4">
-                            <Link href="/instructor/dashboard">
+                            <Link href="/es/instructor/dashboard">
                                 <Button type="button" variant="outline">
                                     Cancelar
                                 </Button>

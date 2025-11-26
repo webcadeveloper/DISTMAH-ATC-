@@ -1,7 +1,6 @@
 import { Button } from '@/components/ui/button';
-import { Plus, ArrowLeft, GripVertical, FileText, Video, MoreVertical } from 'lucide-react';
+import { Plus, ArrowLeft, GripVertical, FileText, MoreVertical } from 'lucide-react';
 import Link from 'next/link';
-import { COURSES_2026 } from '@/lib/courses-catalog-2026';
 import {
     Accordion,
     AccordionContent,
@@ -13,19 +12,19 @@ import { getCourse } from '@/lib/course-loader';
 
 export default async function CourseContentPage({ params }: { params: Promise<{ cursoId: string }> }) {
     const { cursoId } = await params;
-    const courseMeta = COURSES_2026.find(c => c.id === cursoId);
 
-    if (!courseMeta) return <div className="p-8">Curso no encontrado</div>;
-
-    let courseData: any = null;
-    try {
-        courseData = await getCourse(courseMeta.slug);
-    } catch (error) {
-        return <div className="p-8">Error cargando contenido del curso</div>;
-    }
+    const courseData = await getCourse(cursoId);
 
     if (!courseData) {
-        return <div className="p-8">Datos del curso no disponibles</div>;
+        return (
+            <div className="p-8 text-center">
+                <h2 className="text-xl font-bold text-neutral-900 mb-2">Curso no encontrado</h2>
+                <p className="text-neutral-600 mb-4">El curso "{cursoId}" no existe en /public/cursos/</p>
+                <Link href="/es/instructor/cursos">
+                    <Button variant="outline">Volver a Mis Cursos</Button>
+                </Link>
+            </div>
+        );
     }
 
     const modules = courseData.modules || [];
@@ -33,12 +32,12 @@ export default async function CourseContentPage({ params }: { params: Promise<{ 
     return (
         <div className="p-8 max-w-5xl mx-auto">
             <div className="mb-8">
-                <Link href="/instructor/dashboard" className="text-sm text-neutral-500 hover:text-neutral-900 flex items-center gap-1 mb-4">
+                <Link href="/es/instructor/dashboard" className="text-sm text-neutral-500 hover:text-neutral-900 flex items-center gap-1 mb-4">
                     <ArrowLeft className="w-4 h-4" /> Volver al Dashboard
                 </Link>
                 <div className="flex justify-between items-start">
                     <div>
-                        <h1 className="text-3xl font-bold text-neutral-900 mb-2">{courseMeta.title}</h1>
+                        <h1 className="text-3xl font-bold text-neutral-900 mb-2">{courseData.titulo}</h1>
                         <p className="text-neutral-600">Gestiona la estructura y contenido del curso.</p>
                     </div>
                     <Button className="bg-primary-600 hover:bg-primary-700">
@@ -88,7 +87,7 @@ export default async function CourseContentPage({ params }: { params: Promise<{ 
                                                     </div>
                                                 </div>
                                                 <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                    <Link href={`/instructor/cursos/${courseMeta.id}/contenido/editar-leccion/${module.id}/${lesson.slug}`}>
+                                                    <Link href={`/es/instructor/cursos/${cursoId}/contenido/editar-leccion/${module.id}/${lesson.slug}`}>
                                                         <Button variant="ghost" size="sm">Editar</Button>
                                                     </Link>
                                                 </div>
