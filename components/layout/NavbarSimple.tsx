@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -19,7 +19,6 @@ export function NavbarSimple() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0);
     const pathname = usePathname();
-    const indicatorRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -39,13 +38,6 @@ export function NavbarSimple() {
         });
         setActiveIndex(currentIndex >= 0 ? currentIndex : 0);
     }, [pathname]);
-
-    useEffect(() => {
-        if (indicatorRef.current) {
-            const offset = activeIndex * 100;
-            indicatorRef.current.style.transform = `translateX(${offset}%)`;
-        }
-    }, [activeIndex]);
 
     return (
         <>
@@ -70,15 +62,7 @@ export function NavbarSimple() {
                         </Link>
 
                         <div className="hidden lg:block">
-                            <div className="relative bg-neutral-800/60 backdrop-blur-md rounded-2xl p-1.5 border border-white/10">
-                                <div
-                                    ref={indicatorRef}
-                                    className="absolute top-0 left-0 w-[20%] h-full transition-transform duration-500 ease-out pointer-events-none"
-                                >
-                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-1 bg-twilight rounded-b-full shadow-[0_4px_12px_rgba(29,145,208,0.6)]" />
-                                    <div className="absolute inset-1 rounded-xl bg-twilight/10" />
-                                </div>
-
+                            <div className="relative bg-neutral-800/80 backdrop-blur-md rounded-lg p-1 border border-neutral-600/50">
                                 <div className="relative flex">
                                     {navItems.map((item, index) => {
                                         const Icon = item.icon;
@@ -88,19 +72,19 @@ export function NavbarSimple() {
                                                 key={item.id}
                                                 href={item.href}
                                                 onClick={() => setActiveIndex(index)}
-                                                className={`relative flex flex-col items-center justify-center px-5 py-2.5 rounded-xl transition-all duration-300 min-w-[90px] ${
+                                                className={`relative flex flex-col items-center justify-center px-4 py-2 rounded-md transition-all duration-200 min-w-[85px] ${
                                                     isActive
-                                                        ? 'text-twilight-light'
-                                                        : 'text-neutral-400 hover:text-white'
+                                                        ? 'text-twilight-light bg-transparent border-2 border-twilight'
+                                                        : 'text-neutral-400 hover:text-white border border-transparent'
                                                 }`}
                                             >
                                                 <Icon
-                                                    className={`w-5 h-5 mb-1 transition-all duration-300 ${
-                                                        isActive ? 'fill-twilight/20 stroke-twilight-light' : ''
+                                                    className={`w-4 h-4 mb-0.5 transition-all duration-200 ${
+                                                        isActive ? 'text-twilight-light' : ''
                                                     }`}
-                                                    strokeWidth={isActive ? 1.5 : 2}
+                                                    strokeWidth={1.5}
                                                 />
-                                                <span className={`text-xs font-semibold transition-colors duration-300 ${
+                                                <span className={`text-[11px] font-medium transition-colors duration-200 ${
                                                     isActive ? 'text-twilight-light' : ''
                                                 }`}>
                                                     {item.label}
@@ -113,20 +97,20 @@ export function NavbarSimple() {
                         </div>
 
                         <div className="hidden sm:flex items-center gap-2">
-                            <div className="relative bg-neutral-800/60 backdrop-blur-md rounded-2xl p-1.5 border border-white/10 flex">
+                            <div className="relative bg-neutral-800/80 backdrop-blur-md rounded-lg p-1 border border-neutral-600/50 flex">
                                 <Link
                                     href="/es/login"
-                                    className="relative flex flex-col items-center justify-center px-5 py-2.5 rounded-xl transition-all duration-300 min-w-[90px] text-neutral-400 hover:text-white hover:bg-white/5"
+                                    className="relative flex flex-col items-center justify-center px-4 py-2 rounded-md transition-all duration-200 min-w-[85px] text-neutral-400 hover:text-white border border-transparent hover:border-neutral-600/50"
                                 >
-                                    <LogIn className="w-5 h-5 mb-1" strokeWidth={2} />
-                                    <span className="text-xs font-semibold">Iniciar Sesion</span>
+                                    <LogIn className="w-4 h-4 mb-0.5" strokeWidth={1.5} />
+                                    <span className="text-[11px] font-medium">Iniciar Sesion</span>
                                 </Link>
                                 <Link
                                     href="/es/registro"
-                                    className="relative flex flex-col items-center justify-center px-5 py-2.5 rounded-xl transition-all duration-300 min-w-[90px] bg-twilight/20 text-twilight-light hover:bg-twilight/30"
+                                    className="relative flex flex-col items-center justify-center px-4 py-2 rounded-md transition-all duration-200 min-w-[85px] bg-twilight/20 text-twilight-light border border-twilight/50 hover:bg-twilight/30"
                                 >
-                                    <UserPlus className="w-5 h-5 mb-1 fill-twilight/20 stroke-twilight-light" strokeWidth={1.5} />
-                                    <span className="text-xs font-semibold">Registrarse</span>
+                                    <UserPlus className="w-4 h-4 mb-0.5 text-twilight-light" strokeWidth={1.5} />
+                                    <span className="text-[11px] font-medium">Registrarse</span>
                                 </Link>
                             </div>
                         </div>
