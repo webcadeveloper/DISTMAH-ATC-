@@ -93,6 +93,17 @@
   --sidebar-ring: #1D91D0;
 }
 
+/* Text Selection - White text on blue background */
+::selection {
+  background-color: #1D91D0;
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background-color: #1D91D0;
+  color: #ffffff;
+}
+
 .dark {
   --background: #000000;
   --foreground: #ffffff;
@@ -317,18 +328,18 @@
   position: relative;
   background: linear-gradient(
     120deg,
-    rgba(29, 145, 208, 0.8) 0%,
-    rgba(42, 208, 169, 0.8) 25%,
-    rgba(91, 180, 229, 0.8) 50%,
-    rgba(42, 208, 169, 0.8) 75%,
-    rgba(29, 145, 208, 0.8) 100%
+    #1D91D0 0%,
+    #2AD0A9 25%,
+    #5BB4E5 50%,
+    #2AD0A9 75%,
+    #1D91D0 100%
   );
   background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
-  animation: aurora-text-shift 4s ease-in-out infinite;
+  animation: aurora-text-shift 12s ease-in-out infinite;
   font-weight: 900;
   letter-spacing: -0.02em;
 }
