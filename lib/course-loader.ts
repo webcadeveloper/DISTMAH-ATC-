@@ -90,9 +90,12 @@ export async function getAllCourses(): Promise<CourseMetadata[]> {
             ? cursoData.precio.moneda
             : 'USD';
 
-          const instructor = typeof cursoData.instructor === 'object'
-            ? (cursoData.instructor?.nombre || 'DISTMAH ATC')
-            : (cursoData.instructor || 'DISTMAH ATC');
+          let instructor = 'DISTMAH ATC';
+          if (typeof cursoData.instructor === 'string') {
+            instructor = cursoData.instructor;
+          } else if (typeof cursoData.instructor === 'object' && cursoData.instructor !== null) {
+            instructor = cursoData.instructor.nombre || cursoData.instructor.name || 'DISTMAH ATC';
+          }
 
           const softwareStr = typeof cursoData.software === 'string'
             ? cursoData.software
@@ -112,8 +115,8 @@ export async function getAllCourses(): Promise<CourseMetadata[]> {
             version: version,
             idioma: cursoData.idioma || 'Español',
             instructor: instructor,
-            prerequisitos: cursoData.prerequisitos || [],
-            objetivos: cursoData.objetivos || [],
+            prerequisitos: cursoData.prerequisitos || cursoData.requisitos || [],
+            objetivos: cursoData.objetivos || cursoData.objetivos_generales || [],
             incluye: cursoData.materiales || cursoData.incluye || [],
             novedades_2026: cursoData.novedades_2026 || [],
             competencias_profesionales: cursoData.competencias_profesionales || [],
@@ -163,9 +166,12 @@ export async function getCourse(slug: string): Promise<(CourseMetadata & { modul
       ? cursoData.precio.moneda
       : (cursoData.moneda || 'USD');
 
-    const instructor = typeof cursoData.instructor === 'object'
-      ? (cursoData.instructor?.nombre || 'DISTMAH ATC')
-      : (cursoData.instructor || 'DISTMAH ATC');
+    let instructor = 'DISTMAH ATC';
+    if (typeof cursoData.instructor === 'string') {
+      instructor = cursoData.instructor;
+    } else if (typeof cursoData.instructor === 'object' && cursoData.instructor !== null) {
+      instructor = cursoData.instructor.nombre || cursoData.instructor.name || 'DISTMAH ATC';
+    }
 
     const softwareStr = typeof cursoData.software === 'string'
       ? cursoData.software
