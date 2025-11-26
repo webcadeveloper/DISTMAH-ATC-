@@ -1,11 +1,11 @@
 'use client';
 
-import { useEditor, EditorContent, BubbleMenu } from '@tiptap/react';
+import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
 import Youtube from '@tiptap/extension-youtube';
-import Table from '@tiptap/extension-table';
+import { Table } from '@tiptap/extension-table';
 import TableRow from '@tiptap/extension-table-row';
 import TableCell from '@tiptap/extension-table-cell';
 import TableHeader from '@tiptap/extension-table-header';
@@ -40,7 +40,6 @@ import {
     Highlighter,
     Undo,
     Redo,
-    Plus,
     Trash2,
     RowsIcon,
     ColumnsIcon,
@@ -82,7 +81,7 @@ turndownService.addRule('tableRow', {
 
 turndownService.addRule('table', {
     filter: 'table',
-    replacement: function (content, node) {
+    replacement: function (content) {
         const rows = content.trim().split('\n').filter(row => row.length > 0);
         if (rows.length === 0) return '';
 
