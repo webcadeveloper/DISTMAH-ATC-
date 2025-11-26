@@ -1,85 +1,85 @@
-import Link from 'next/link';
+'use client';
+
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
-import { Search, Download, Mail, MoreVertical, User, BookOpen, Clock } from 'lucide-react';
+import { Search, Download, Mail, MoreVertical, User, BookOpen, Clock, Loader2, Users } from 'lucide-react';
+import { toast } from 'sonner';
+
+interface Student {
+    id: string;
+    userId: string;
+    name: string;
+    email: string;
+    avatar?: string;
+    course: {
+        id: string;
+        title: string;
+        slug: string;
+    };
+    progress: number;
+    enrolledAt: string;
+    lastActivity?: string;
+    status: string;
+}
 
 export default function EstudiantesInstructorPage() {
-    const estudiantes = [
-        {
-            id: 1,
-            nombre: 'Carlos Méndez',
-            email: 'carlos.mendez@example.com',
-            curso: 'Civil 3D 2026 Básico',
-            progreso: 75,
-            ultimaActividad: '2025-11-24',
-            estado: 'Activo',
-            calificacion: 92
-        },
-        {
-            id: 2,
-            nombre: 'María González',
-            email: 'maria.gonzalez@example.com',
-            curso: 'Civil 3D 2026 Avanzado',
-            progreso: 45,
-            ultimaActividad: '2025-11-23',
-            estado: 'Activo',
-            calificacion: 88
-        },
-        {
-            id: 3,
-            nombre: 'Juan Ramírez',
-            email: 'juan.ramirez@example.com',
-            curso: 'Civil 3D 2026 Básico',
-            progreso: 100,
-            ultimaActividad: '2025-11-22',
-            estado: 'Completado',
-            calificacion: 95
-        },
-        {
-            id: 4,
-            nombre: 'Ana Torres',
-            email: 'ana.torres@example.com',
-            curso: 'Civil 3D 2026 Avanzado',
-            progreso: 30,
-            ultimaActividad: '2025-11-20',
-            estado: 'Activo',
-            calificacion: 85
-        },
-        {
-            id: 5,
-            nombre: 'Pedro Sánchez',
-            email: 'pedro.sanchez@example.com',
-            curso: 'Civil 3D 2026 Básico',
-            progreso: 15,
-            ultimaActividad: '2025-11-15',
-            estado: 'Inactivo',
-            calificacion: 72
-        },
-        {
-            id: 6,
-            nombre: 'Laura Martínez',
-            email: 'laura.martinez@example.com',
-            curso: 'Civil 3D 2026 Avanzado',
-            progreso: 88,
-            ultimaActividad: '2025-11-24',
-            estado: 'Activo',
-            calificacion: 91
-        }
-    ];
+    const [estudiantes, setEstudiantes] = useState<Student[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [selectedCourse, setSelectedCourse] = useState('all');
+    const [selectedStatus, setSelectedStatus] = useState('all');
+    const [stats, setStats] = useState({
+        total: 0,
+        activos: 0,
+        completados: 0,
+        promedioProgreso: 0
+    });
 
-    const getEstadoColor = (estado: string) => {
-        switch (estado) {
-            case 'Activo':
-                return 'bg-green-100 text-green-800 border-green-200';
-            case 'Completado':
-                return 'bg-blue-100 text-blue-800 border-blue-200';
-            case 'Inactivo':
-                return 'bg-neutral-100 text-neutral-600 border-neutral-200';
-            default:
-                return 'bg-neutral-100 text-neutral-600 border-neutral-200';
+    useEffect(() => {
+        loadEstudiantes();
+    }, []);
+
+    const loadEstudiantes = async () => {
+        try {
+            const response = await fetch('/api/instructor/students');
+            if (!response.ok) throw new Error('Error al cargar estudiantes');
+            const data = await response.json();
+            setEstudiantes(data.students || []);
+
+            const students = data.students || [];
+            const activos = students.filter((s: Student) => s.status === 'ACTIVE').length;
+            const completados = students.filter((s: Student) => s.progress >= 100).length;
+            const totalProgreso = students.reduce((acc: number, s: Student) => acc + s.progress, 0);
+
+            setStats({
+                total: students.length,
+                activos,
+                completados,
+                promedioProgreso: students.length > 0 ? Math.round(totalProgreso / students.length) : 0
+            });
+        } catch (error) {
+            toast.error('Error al cargar estudiantes');
+        } finally {
+            setLoading(false);
         }
+    };
+
+    const courses = Array.from(new Set(estudiantes.map(s => s.course.id)))
+        .map(id => estudiantes.find(s => s.course.id === id)!.course);
+
+    const getEstadoColor = (progress: number, status: string) => {
+        if (progress >= 100) return 'bg-blue-100 text-blue-800 border-blue-200';
+        if (status === 'ACTIVE') return 'bg-green-100 text-green-800 border-green-200';
+        return 'bg-neutral-100 text-neutral-600 border-neutral-200';
+    };
+
+    const getEstadoLabel = (progress: number, status: string) => {
+        if (progress >= 100) return 'Completado';
+        if (status === 'ACTIVE') return 'Activo';
+        return 'Inactivo';
     };
 
     const getProgresoColor = (progreso: number) => {
@@ -88,6 +88,73 @@ export default function EstudiantesInstructorPage() {
         if (progreso >= 25) return 'bg-yellow-500';
         return 'bg-neutral-300';
     };
+
+    const formatDate = (dateStr: string) => {
+        if (!dateStr) return 'N/A';
+        return new Date(dateStr).toLocaleDateString('es-ES', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        });
+    };
+
+    const getLastActivityLabel = (lastActivity?: string) => {
+        if (!lastActivity) return 'Sin actividad';
+        const date = new Date(lastActivity);
+        const now = new Date();
+        const diffDays = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
+
+        if (diffDays === 0) return 'Hoy';
+        if (diffDays === 1) return 'Ayer';
+        if (diffDays < 7) return `Hace ${diffDays} días`;
+        return formatDate(lastActivity);
+    };
+
+    const filteredEstudiantes = estudiantes.filter(s => {
+        const matchesSearch = s.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                             s.email.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchesCourse = selectedCourse === 'all' || s.course.id === selectedCourse;
+        const matchesStatus = selectedStatus === 'all' ||
+                             (selectedStatus === 'activo' && s.status === 'ACTIVE' && s.progress < 100) ||
+                             (selectedStatus === 'completado' && s.progress >= 100) ||
+                             (selectedStatus === 'inactivo' && s.status !== 'ACTIVE');
+        return matchesSearch && matchesCourse && matchesStatus;
+    });
+
+    if (loading) {
+        return (
+            <div className="p-8 max-w-7xl mx-auto bg-neutral-50 min-h-screen">
+                <div className="mb-8">
+                    <h1 className="text-3xl font-bold text-neutral-900">Estudiantes</h1>
+                    <p className="text-neutral-600">Gestiona y monitorea el progreso de tus estudiantes.</p>
+                </div>
+                <Card>
+                    <CardContent className="p-12 text-center">
+                        <Loader2 className="w-12 h-12 text-blue-600 mx-auto mb-4 animate-spin" />
+                        <p className="text-neutral-600">Cargando estudiantes...</p>
+                    </CardContent>
+                </Card>
+            </div>
+        );
+    }
+
+    if (estudiantes.length === 0) {
+        return (
+            <div className="p-8 max-w-7xl mx-auto bg-neutral-50 min-h-screen">
+                <div className="mb-8">
+                    <h1 className="text-3xl font-bold text-neutral-900">Estudiantes</h1>
+                    <p className="text-neutral-600">Gestiona y monitorea el progreso de tus estudiantes.</p>
+                </div>
+                <Card>
+                    <CardContent className="p-12 text-center">
+                        <Users className="w-16 h-16 text-neutral-300 mx-auto mb-4" />
+                        <h3 className="text-xl font-bold text-neutral-900 mb-2">No tienes estudiantes inscritos</h3>
+                        <p className="text-neutral-600">Los estudiantes aparecerán aquí cuando se inscriban en tus cursos</p>
+                    </CardContent>
+                </Card>
+            </div>
+        );
+    }
 
     return (
         <div className="p-8 max-w-7xl mx-auto bg-neutral-50 min-h-screen">
@@ -106,14 +173,13 @@ export default function EstudiantesInstructorPage() {
                 </div>
             </div>
 
-            {/* Estadísticas */}
             <div className="grid md:grid-cols-4 gap-4 mb-6">
                 <Card className="bg-white border-neutral-200">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-neutral-600">Total Estudiantes</p>
-                                <p className="text-2xl font-bold text-neutral-900">127</p>
+                                <p className="text-2xl font-bold text-neutral-900">{stats.total}</p>
                             </div>
                             <User className="w-8 h-8 text-neutral-400" />
                         </div>
@@ -124,7 +190,7 @@ export default function EstudiantesInstructorPage() {
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-neutral-600">Activos</p>
-                                <p className="text-2xl font-bold text-green-600">98</p>
+                                <p className="text-2xl font-bold text-green-600">{stats.activos}</p>
                             </div>
                             <BookOpen className="w-8 h-8 text-green-400" />
                         </div>
@@ -135,7 +201,7 @@ export default function EstudiantesInstructorPage() {
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-neutral-600">Completados</p>
-                                <p className="text-2xl font-bold text-blue-600">23</p>
+                                <p className="text-2xl font-bold text-blue-600">{stats.completados}</p>
                             </div>
                             <User className="w-8 h-8 text-blue-400" />
                         </div>
@@ -146,7 +212,7 @@ export default function EstudiantesInstructorPage() {
                         <div className="flex items-center justify-between">
                             <div>
                                 <p className="text-sm text-neutral-600">Promedio Progreso</p>
-                                <p className="text-2xl font-bold text-neutral-900">68%</p>
+                                <p className="text-2xl font-bold text-neutral-900">{stats.promedioProgreso}%</p>
                             </div>
                             <Clock className="w-8 h-8 text-yellow-400" />
                         </div>
@@ -154,7 +220,6 @@ export default function EstudiantesInstructorPage() {
                 </Card>
             </div>
 
-            {/* Filtros y búsqueda */}
             <Card className="mb-6 bg-white border-neutral-200">
                 <CardContent className="p-4">
                     <div className="flex gap-4 items-center">
@@ -163,24 +228,34 @@ export default function EstudiantesInstructorPage() {
                             <Input
                                 placeholder="Buscar por nombre o email..."
                                 className="pl-10 bg-neutral-50 border-neutral-200"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
                             />
                         </div>
-                        <select className="px-4 py-2 border border-neutral-300 rounded-md bg-white text-sm">
-                            <option>Todos los cursos</option>
-                            <option>Civil 3D 2026 Básico</option>
-                            <option>Civil 3D 2026 Avanzado</option>
+                        <select
+                            className="px-4 py-2 border border-neutral-300 rounded-md bg-white text-sm"
+                            value={selectedCourse}
+                            onChange={(e) => setSelectedCourse(e.target.value)}
+                        >
+                            <option value="all">Todos los cursos</option>
+                            {courses.map(course => (
+                                <option key={course.id} value={course.id}>{course.title}</option>
+                            ))}
                         </select>
-                        <select className="px-4 py-2 border border-neutral-300 rounded-md bg-white text-sm">
-                            <option>Todos los estados</option>
-                            <option>Activo</option>
-                            <option>Completado</option>
-                            <option>Inactivo</option>
+                        <select
+                            className="px-4 py-2 border border-neutral-300 rounded-md bg-white text-sm"
+                            value={selectedStatus}
+                            onChange={(e) => setSelectedStatus(e.target.value)}
+                        >
+                            <option value="all">Todos los estados</option>
+                            <option value="activo">Activo</option>
+                            <option value="completado">Completado</option>
+                            <option value="inactivo">Inactivo</option>
                         </select>
                     </div>
                 </CardContent>
             </Card>
 
-            {/* Tabla de estudiantes */}
             <Card className="bg-white border-neutral-200">
                 <CardContent className="p-0">
                     <div className="overflow-x-auto">
@@ -190,52 +265,57 @@ export default function EstudiantesInstructorPage() {
                                     <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700">Estudiante</th>
                                     <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700">Curso</th>
                                     <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700">Progreso</th>
-                                    <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700">Calificación</th>
+                                    <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700">Inscripción</th>
                                     <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700">Última Actividad</th>
                                     <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700">Estado</th>
                                     <th className="text-right px-6 py-4 text-sm font-semibold text-neutral-700">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-neutral-200">
-                                {estudiantes.map((estudiante) => (
+                                {filteredEstudiantes.map((estudiante) => (
                                     <tr key={estudiante.id} className="hover:bg-neutral-50 transition-colors">
                                         <td className="px-6 py-4">
                                             <div className="flex items-center gap-3">
-                                                <div className="w-10 h-10 rounded-full bg-neutral-200 flex items-center justify-center">
-                                                    <User className="w-5 h-5 text-neutral-600" />
+                                                <div className="w-10 h-10 rounded-full bg-neutral-200 flex items-center justify-center overflow-hidden">
+                                                    {estudiante.avatar ? (
+                                                        <img src={estudiante.avatar} alt={estudiante.name} className="w-full h-full object-cover" />
+                                                    ) : (
+                                                        <User className="w-5 h-5 text-neutral-600" />
+                                                    )}
                                                 </div>
                                                 <div>
-                                                    <p className="font-medium text-neutral-900">{estudiante.nombre}</p>
+                                                    <p className="font-medium text-neutral-900">{estudiante.name}</p>
                                                     <p className="text-xs text-neutral-500">{estudiante.email}</p>
                                                 </div>
                                             </div>
                                         </td>
                                         <td className="px-6 py-4">
                                             <Badge variant="outline" className="text-neutral-700 border-neutral-300">
-                                                {estudiante.curso}
+                                                {estudiante.course.title}
                                             </Badge>
                                         </td>
                                         <td className="px-6 py-4">
                                             <div className="w-full">
                                                 <div className="flex items-center gap-2 mb-1">
-                                                    <span className="text-sm font-medium text-neutral-900">{estudiante.progreso}%</span>
+                                                    <span className="text-sm font-medium text-neutral-900">{estudiante.progress}%</span>
                                                 </div>
                                                 <div className="w-full bg-neutral-200 rounded-full h-2">
                                                     <div
-                                                        className={`h-2 rounded-full ${getProgresoColor(estudiante.progreso)}`}
-                                                        style={{ width: `${estudiante.progreso}%` }}
+                                                        className={`h-2 rounded-full ${getProgresoColor(estudiante.progress)}`}
+                                                        style={{ width: `${estudiante.progress}%` }}
                                                     />
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className="px-6 py-4">
-                                            <span className="font-semibold text-neutral-900">{estudiante.calificacion}</span>
-                                            <span className="text-neutral-500">/100</span>
+                                        <td className="px-6 py-4 text-sm text-neutral-600">
+                                            {formatDate(estudiante.enrolledAt)}
                                         </td>
-                                        <td className="px-6 py-4 text-sm text-neutral-600">{estudiante.ultimaActividad}</td>
+                                        <td className="px-6 py-4 text-sm text-neutral-600">
+                                            {getLastActivityLabel(estudiante.lastActivity)}
+                                        </td>
                                         <td className="px-6 py-4">
-                                            <Badge variant="outline" className={getEstadoColor(estudiante.estado)}>
-                                                {estudiante.estado}
+                                            <Badge variant="outline" className={getEstadoColor(estudiante.progress, estudiante.status)}>
+                                                {getEstadoLabel(estudiante.progress, estudiante.status)}
                                             </Badge>
                                         </td>
                                         <td className="px-6 py-4">
