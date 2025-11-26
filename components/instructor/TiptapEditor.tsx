@@ -207,10 +207,10 @@ export function TiptapEditor({ content, onChange, onImageUpload, placeholder = '
             .replace(/!\[(.*?)\]\((.*?)\)/g, '<img alt="$1" src="$2">')
             .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>')
             .replace(/^\- (.*$)/gim, '<li>$1</li>')
-            .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
+            .replace(/(<li>[\s\S]*<\/li>)/g, '<ul>$1</ul>')
             .replace(/\n\n/g, '</p><p>')
             .replace(/^(?!<[hupoblia])/gim, '<p>')
-            .replace(/(?<![>])$/gim, '</p>');
+            .replace(/([^>])$/gim, '$1</p>');
         return html;
     };
 
