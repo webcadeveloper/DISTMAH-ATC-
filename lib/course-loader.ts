@@ -151,8 +151,60 @@ export async function getCourse(slug: string): Promise<(CourseMetadata & { modul
 
     const modules = await getModules(slug);
 
+    const duracion = typeof cursoData.duracion === 'object'
+      ? `${cursoData.duracion.horas}h`
+      : cursoData.duracion;
+
+    const precio = typeof cursoData.precio === 'object'
+      ? cursoData.precio.valor
+      : cursoData.precio;
+
+    const moneda = typeof cursoData.precio === 'object'
+      ? cursoData.precio.moneda
+      : (cursoData.moneda || 'USD');
+
+    const instructor = typeof cursoData.instructor === 'object'
+      ? (cursoData.instructor?.nombre || 'DISTMAH ATC')
+      : (cursoData.instructor || 'DISTMAH ATC');
+
+    const softwareStr = typeof cursoData.software === 'string'
+      ? cursoData.software
+      : (cursoData.software?.version || cursoData.software?.nombre || '');
+    const version = softwareStr.includes('2026') ? '2026' : (cursoData.version || '2025');
+
+    const objetivos = cursoData.objetivos || cursoData.objetivos_generales || [];
+
+    const certNombre = typeof cursoData.certificacion === 'object'
+      ? cursoData.certificacion.nombre || cursoData.certificacion.tipo
+      : cursoData.certificacion;
+
     return {
-      ...cursoData,
+      id: cursoData.id || slug,
+      titulo: cursoData.titulo || slug,
+      descripcion: cursoData.descripcion || '',
+      precio: precio || 390,
+      moneda: moneda,
+      duracion: duracion,
+      nivel: cursoData.nivel || 'Basico',
+      categoria: cursoData.categoria || 'General',
+      subcategoria: cursoData.subcategoria,
+      version: version,
+      idioma: cursoData.idioma || 'Español',
+      instructor: instructor,
+      prerequisitos: cursoData.prerequisitos || [],
+      objetivos: objetivos,
+      incluye: cursoData.materiales || cursoData.incluye || [],
+      novedades_2026: cursoData.novedades_2026 || [],
+      competencias_profesionales: cursoData.competencias_profesionales || cursoData.competencias_adquiridas || [],
+      posiciones_laborales: cursoData.posiciones_laborales || cursoData.audiencia_objetivo || [],
+      certificacion: certNombre ? { nombre: certNombre, requisitos: [], validez: '', verificable: false } : undefined,
+      actualizacion: cursoData.fecha_actualizacion || cursoData.ultima_actualizacion || cursoData.actualizacion,
+      vigencia: cursoData.vigencia,
+      lastUpdated: cursoData.fecha_actualizacion || cursoData.ultima_actualizacion || cursoData.lastUpdated,
+      enrollmentCount: cursoData.enrollmentCount,
+      rating: cursoData.rating || 4.9,
+      reviewsCount: cursoData.reviewsCount,
+      imagen: cursoData.imagen || '/images/logodis.PNG',
       slug,
       modules,
     };

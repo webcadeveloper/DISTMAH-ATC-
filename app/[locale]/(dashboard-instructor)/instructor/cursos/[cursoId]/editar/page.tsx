@@ -6,9 +6,9 @@ import Link from 'next/link';
 import { ArrowLeft, Loader2, Save, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { toast } from 'sonner';
+import { TiptapEditor } from '@/components/instructor/TiptapEditor';
 
 interface CourseData {
     id: string;
@@ -181,11 +181,10 @@ export default function EditCourseInfoPage() {
                         </div>
                         <div>
                             <label className="block text-sm font-medium text-neutral-700 mb-1">Descripcion</label>
-                            <Textarea
-                                value={course.descripcion}
-                                onChange={(e) => updateField('descripcion', e.target.value)}
-                                placeholder="Descripcion del curso"
-                                rows={4}
+                            <TiptapEditor
+                                content={course.descripcion}
+                                onChange={(markdown) => updateField('descripcion', markdown)}
+                                placeholder="Descripcion del curso..."
                             />
                         </div>
                         <div className="grid grid-cols-2 gap-4">
