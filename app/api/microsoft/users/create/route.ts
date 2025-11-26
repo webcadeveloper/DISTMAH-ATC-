@@ -15,9 +15,9 @@ export async function POST(req: NextRequest) {
   try {
     const session = await auth();
 
-    if (!session || session.user.role !== 'ADMIN') {
+    if (!session || (session.user.role !== 'ADMIN' && session.user.role !== 'INSTRUCTOR')) {
       return NextResponse.json(
-        { error: 'No autorizado. Solo administradores pueden crear cuentas M365.' },
+        { error: 'No autorizado. Solo administradores e instructores pueden crear cuentas M365.' },
         { status: 401 }
       );
     }

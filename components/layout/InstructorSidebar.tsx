@@ -13,7 +13,8 @@ import {
     Settings,
     LogOut,
     FolderOpen,
-    BarChart
+    BarChart,
+    UserPlus
 } from 'lucide-react';
 import { LogoDistmah } from '@/components/brand/LogoDistmah';
 import { Button } from '@/components/ui/button';
@@ -23,8 +24,9 @@ const sidebarItems = [
     { icon: BookOpen, label: 'Mis Cursos', href: '/es/instructor/cursos' },
     { icon: FolderOpen, label: 'Archivos', href: '/es/instructor/archivos' },
     { icon: Users, label: 'Estudiantes', href: '/es/instructor/estudiantes' },
+    { icon: UserPlus, label: 'Usuarios M365', href: '/es/instructor/usuarios' },
     { icon: Calendar, label: 'Clases en Vivo', href: '/es/instructor/clases' },
-    { icon: FileText, label: 'Tareas y Exámenes', href: '/es/instructor/evaluaciones' },
+    { icon: FileText, label: 'Tareas y Examenes', href: '/es/instructor/evaluaciones' },
     { icon: BarChart, label: 'Reportes', href: '/es/instructor/reportes' },
 ];
 

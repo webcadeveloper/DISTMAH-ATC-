@@ -3,10 +3,17 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Upload, File, FileVideo, FileImage, Trash2, Download, Search, Folder, MoreVertical, Loader2, Cloud } from 'lucide-react';
+import { Upload, File, FileVideo, FileImage, Trash2, Download, Search, Folder, MoreVertical, Loader2, Cloud, X, CheckCircle, Link as LinkIcon } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { toast } from 'sonner';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+} from '@/components/ui/dialog';
 
 interface DriveFile {
     id: string;
@@ -22,6 +29,13 @@ interface DriveFile {
     };
 }
 
+interface UploadingFile {
+    file: File;
+    progress: number;
+    status: 'pending' | 'uploading' | 'done' | 'error';
+    error?: string;
+}
+
 export default function ArchivosInstructorPage() {
     const [archivos, setArchivos] = useState<DriveFile[]>([]);
     const [loading, setLoading] = useState(true);
@@ -32,6 +46,11 @@ export default function ArchivosInstructorPage() {
         documentos: 0,
         espacioUsado: '0 MB'
     });
+    const [showUploadDialog, setShowUploadDialog] = useState(false);
+    const [uploadingFiles, setUploadingFiles] = useState<UploadingFile[]>([]);
+    const [externalUrl, setExternalUrl] = useState('');
+    const [uploadSource, setUploadSource] = useState<'local' | 'url'>('local');
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
         loadArchivos();
@@ -114,6 +133,73 @@ export default function ArchivosInstructorPage() {
         }
     };
 
+    const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const files = e.target.files;
+        if (!files) return;
+
+        const newFiles: UploadingFile[] = Array.from(files).map(file => ({
+            file,
+            progress: 0,
+            status: 'pending'
+        }));
+
+        setUploadingFiles(prev => [...prev, ...newFiles]);
+    };
+
+    const uploadFile = async (uploadingFile: UploadingFile, index: number) => {
+        setUploadingFiles(prev => prev.map((f, i) =>
+            i === index ? { ...f, status: 'uploading', progress: 10 } : f
+        ));
+
+        try {
+            const formData = new FormData();
+            formData.append('file', uploadingFile.file);
+            formData.append('destination', 'onedrive');
+            formData.append('path', '/DISTMAH-Cursos');
+
+            const response = await fetch('/api/files/upload', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.error || 'Error al subir archivo');
+            }
+
+            setUploadingFiles(prev => prev.map((f, i) =>
+                i === index ? { ...f, status: 'done', progress: 100 } : f
+            ));
+
+            toast.success(`${uploadingFile.file.name} subido correctamente`);
+        } catch (error: any) {
+            setUploadingFiles(prev => prev.map((f, i) =>
+                i === index ? { ...f, status: 'error', error: error.message } : f
+            ));
+            toast.error(`Error subiendo ${uploadingFile.file.name}`);
+        }
+    };
+
+    const startUpload = async () => {
+        for (let i = 0; i < uploadingFiles.length; i++) {
+            if (uploadingFiles[i].status === 'pending') {
+                await uploadFile(uploadingFiles[i], i);
+            }
+        }
+        loadArchivos();
+    };
+
+    const removeUploadingFile = (index: number) => {
+        setUploadingFiles(prev => prev.filter((_, i) => i !== index));
+    };
+
+    const closeUploadDialog = () => {
+        setShowUploadDialog(false);
+        setUploadingFiles([]);
+        setExternalUrl('');
+        setUploadSource('local');
+    };
+
     const filteredArchivos = archivos.filter(f =>
         f.name.toLowerCase().includes(searchQuery.toLowerCase())
     );
@@ -143,6 +229,9 @@ export default function ArchivosInstructorPage() {
                         <h1 className="text-3xl font-bold text-neutral-900">Archivos</h1>
                         <p className="text-neutral-600">Gestiona los archivos y recursos de tus cursos.</p>
                     </div>
+                    <Button onClick={() => setShowUploadDialog(true)} className="bg-neutral-900 hover:bg-neutral-800">
+                        <Upload className="w-4 h-4 mr-2" /> Subir Archivo
+                    </Button>
                 </div>
                 <Card>
                     <CardContent className="p-12 text-center">
@@ -156,6 +245,21 @@ export default function ArchivosInstructorPage() {
                         </Button>
                     </CardContent>
                 </Card>
+
+                <UploadDialog
+                    open={showUploadDialog}
+                    onClose={closeUploadDialog}
+                    uploadSource={uploadSource}
+                    setUploadSource={setUploadSource}
+                    fileInputRef={fileInputRef}
+                    handleFileSelect={handleFileSelect}
+                    uploadingFiles={uploadingFiles}
+                    removeUploadingFile={removeUploadingFile}
+                    startUpload={startUpload}
+                    externalUrl={externalUrl}
+                    setExternalUrl={setExternalUrl}
+                    formatSize={formatSize}
+                />
             </div>
         );
     }
@@ -167,7 +271,7 @@ export default function ArchivosInstructorPage() {
                     <h1 className="text-3xl font-bold text-neutral-900">Archivos</h1>
                     <p className="text-neutral-600">Gestiona los archivos y recursos de tus cursos en OneDrive.</p>
                 </div>
-                <Button className="bg-neutral-900 hover:bg-neutral-800">
+                <Button onClick={() => setShowUploadDialog(true)} className="bg-neutral-900 hover:bg-neutral-800">
                     <Upload className="w-4 h-4 mr-2" /> Subir Archivo
                 </Button>
             </div>
@@ -246,7 +350,7 @@ export default function ArchivosInstructorPage() {
                                 <tr>
                                     <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700">Archivo</th>
                                     <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700">Tipo</th>
-                                    <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700">Tamaño</th>
+                                    <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700">Tamano</th>
                                     <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700">Fecha</th>
                                     <th className="text-right px-6 py-4 text-sm font-semibold text-neutral-700">Acciones</th>
                                 </tr>
@@ -303,6 +407,184 @@ export default function ArchivosInstructorPage() {
                     </div>
                 </CardContent>
             </Card>
+
+            <UploadDialog
+                open={showUploadDialog}
+                onClose={closeUploadDialog}
+                uploadSource={uploadSource}
+                setUploadSource={setUploadSource}
+                fileInputRef={fileInputRef}
+                handleFileSelect={handleFileSelect}
+                uploadingFiles={uploadingFiles}
+                removeUploadingFile={removeUploadingFile}
+                startUpload={startUpload}
+                externalUrl={externalUrl}
+                setExternalUrl={setExternalUrl}
+                formatSize={formatSize}
+            />
         </div>
+    );
+}
+
+function UploadDialog({
+    open,
+    onClose,
+    uploadSource,
+    setUploadSource,
+    fileInputRef,
+    handleFileSelect,
+    uploadingFiles,
+    removeUploadingFile,
+    startUpload,
+    externalUrl,
+    setExternalUrl,
+    formatSize
+}: {
+    open: boolean;
+    onClose: () => void;
+    uploadSource: 'local' | 'url';
+    setUploadSource: (source: 'local' | 'url') => void;
+    fileInputRef: React.RefObject<HTMLInputElement | null>;
+    handleFileSelect: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    uploadingFiles: UploadingFile[];
+    removeUploadingFile: (index: number) => void;
+    startUpload: () => void;
+    externalUrl: string;
+    setExternalUrl: (url: string) => void;
+    formatSize: (bytes: number) => string;
+}) {
+    const pendingCount = uploadingFiles.filter(f => f.status === 'pending').length;
+    const uploadingCount = uploadingFiles.filter(f => f.status === 'uploading').length;
+
+    return (
+        <Dialog open={open} onOpenChange={(o) => !o && onClose()}>
+            <DialogContent className="sm:max-w-lg">
+                <DialogHeader>
+                    <DialogTitle>Subir Archivos</DialogTitle>
+                    <DialogDescription>
+                        Sube archivos a OneDrive o ingresa URL externa (PostImages, Google Drive, etc.)
+                    </DialogDescription>
+                </DialogHeader>
+
+                <div className="flex gap-2 mb-4">
+                    <Button
+                        variant={uploadSource === 'local' ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={() => setUploadSource('local')}
+                        className={uploadSource === 'local' ? 'bg-neutral-900' : ''}
+                    >
+                        <Upload className="w-4 h-4 mr-2" /> Archivo Local
+                    </Button>
+                    <Button
+                        variant={uploadSource === 'url' ? 'default' : 'outline'}
+                        size="sm"
+                        onClick={() => setUploadSource('url')}
+                        className={uploadSource === 'url' ? 'bg-neutral-900' : ''}
+                    >
+                        <LinkIcon className="w-4 h-4 mr-2" /> URL Externa
+                    </Button>
+                </div>
+
+                {uploadSource === 'local' ? (
+                    <div className="space-y-4">
+                        <div
+                            onClick={() => fileInputRef.current?.click()}
+                            className="border-2 border-dashed border-neutral-300 rounded-lg p-8 text-center cursor-pointer hover:border-blue-400 hover:bg-blue-50/50 transition-colors"
+                        >
+                            <Upload className="w-10 h-10 text-neutral-400 mx-auto mb-3" />
+                            <p className="text-sm text-neutral-600">
+                                Haz clic para seleccionar archivos
+                            </p>
+                            <p className="text-xs text-neutral-400 mt-1">
+                                Videos, imagenes, documentos (max 100MB)
+                            </p>
+                        </div>
+                        <input
+                            ref={fileInputRef}
+                            type="file"
+                            multiple
+                            className="hidden"
+                            onChange={handleFileSelect}
+                            accept="video/*,image/*,.pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx"
+                        />
+
+                        {uploadingFiles.length > 0 && (
+                            <div className="space-y-2 max-h-48 overflow-y-auto">
+                                {uploadingFiles.map((file, index) => (
+                                    <div key={index} className="flex items-center gap-3 p-2 bg-neutral-50 rounded-md">
+                                        <File className="w-5 h-5 text-neutral-500" />
+                                        <div className="flex-grow min-w-0">
+                                            <p className="text-sm font-medium truncate">{file.file.name}</p>
+                                            <p className="text-xs text-neutral-400">{formatSize(file.file.size)}</p>
+                                        </div>
+                                        {file.status === 'pending' && (
+                                            <Button
+                                                variant="ghost"
+                                                size="icon"
+                                                className="h-6 w-6"
+                                                onClick={() => removeUploadingFile(index)}
+                                            >
+                                                <X className="w-4 h-4" />
+                                            </Button>
+                                        )}
+                                        {file.status === 'uploading' && (
+                                            <Loader2 className="w-5 h-5 animate-spin text-blue-600" />
+                                        )}
+                                        {file.status === 'done' && (
+                                            <CheckCircle className="w-5 h-5 text-green-600" />
+                                        )}
+                                        {file.status === 'error' && (
+                                            <span className="text-xs text-red-600">{file.error}</span>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
+                        {pendingCount > 0 && (
+                            <Button
+                                onClick={startUpload}
+                                disabled={uploadingCount > 0}
+                                className="w-full bg-blue-600 hover:bg-blue-700"
+                            >
+                                {uploadingCount > 0 ? (
+                                    <>
+                                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                        Subiendo...
+                                    </>
+                                ) : (
+                                    <>
+                                        <Upload className="w-4 h-4 mr-2" />
+                                        Subir {pendingCount} archivo{pendingCount > 1 ? 's' : ''}
+                                    </>
+                                )}
+                            </Button>
+                        )}
+                    </div>
+                ) : (
+                    <div className="space-y-4">
+                        <div>
+                            <label className="text-sm font-medium text-neutral-700 mb-2 block">
+                                URL del archivo
+                            </label>
+                            <Input
+                                placeholder="https://postimages.org/... o https://drive.google.com/..."
+                                value={externalUrl}
+                                onChange={(e) => setExternalUrl(e.target.value)}
+                            />
+                            <p className="text-xs text-neutral-500 mt-2">
+                                Soporta: PostImages, Google Drive, SharePoint, OneDrive links publicos
+                            </p>
+                        </div>
+                        <div className="bg-blue-50 border border-blue-200 rounded-md p-3">
+                            <p className="text-sm text-blue-800">
+                                <strong>Tip:</strong> Para videos grandes, sube a OneDrive primero y luego
+                                copia el link de compartir aqui.
+                            </p>
+                        </div>
+                    </div>
+                )}
+            </DialogContent>
+        </Dialog>
     );
 }
