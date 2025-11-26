@@ -162,11 +162,9 @@ export default function TakeExamPage() {
           )}
         </div>
         <ExamPlayer
-          examId={examId}
           attemptId={attemptData.attemptId}
           questions={attemptData.questions}
           duration={attemptData.duration}
-          maxScore={attemptData.maxScore}
           onSubmit={handleSubmit}
         />
       </div>
