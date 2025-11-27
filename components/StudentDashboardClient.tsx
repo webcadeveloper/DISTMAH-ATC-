@@ -144,7 +144,7 @@ export default function StudentDashboardClient({ userId }: StudentDashboardClien
 
   if (loading) {
     return (
-      <div className="p-8 max-w-7xl mx-auto">
+      <div className="min-h-screen bg-white dark:bg-neutral-900 p-8 max-w-7xl mx-auto">
         <div className="mb-8">
           <div className="h-8 bg-neutral-200 dark:bg-neutral-700 rounded w-64 mb-2 animate-pulse"></div>
           <div className="h-4 bg-neutral-200 dark:bg-neutral-700 rounded w-48 animate-pulse"></div>
@@ -159,7 +159,7 @@ export default function StudentDashboardClient({ userId }: StudentDashboardClien
 
   if (!data || data.courses.length === 0) {
     return (
-      <div className="p-8 max-w-7xl mx-auto">
+      <div className="min-h-screen bg-white dark:bg-neutral-900 p-8 max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Hola, Estudiante</h1>
           <p className="text-neutral-600 dark:text-neutral-300">Inscríbete en un curso para comenzar tu aprendizaje.</p>
@@ -204,7 +204,7 @@ export default function StudentDashboardClient({ userId }: StudentDashboardClien
   };
 
   return (
-    <div className="p-8 max-w-7xl mx-auto">
+    <div className="min-h-screen bg-white dark:bg-neutral-900 p-8 max-w-7xl mx-auto">
       <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Hola, Estudiante</h1>

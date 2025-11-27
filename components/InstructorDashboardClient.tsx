@@ -252,7 +252,7 @@ export default function InstructorDashboardClient() {
     }
 
     return (
-        <div className="p-8 max-w-7xl mx-auto">
+        <div className="min-h-screen bg-white dark:bg-neutral-900 p-8 max-w-7xl mx-auto">
             <div className="flex justify-between items-center mb-8">
                 <div>
                     <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Panel del Instructor</h1>
