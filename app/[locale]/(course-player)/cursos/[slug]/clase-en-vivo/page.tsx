@@ -128,9 +128,9 @@ export default function LiveClassPage() {
       <div className="min-h-screen flex items-center justify-center p-8">
         <Card className="max-w-md w-full text-center">
           <CardContent className="p-8">
-            <Calendar className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-gray-900 mb-2">Sin horario configurado</h2>
-            <p className="text-gray-600 mb-4">
+            <Calendar className="w-16 h-16 text-neutral-300 mx-auto mb-4" />
+            <h2 className="text-xl font-bold text-neutral-900 mb-2">Sin horario configurado</h2>
+            <p className="text-neutral-600 mb-4">
               Este curso aún no tiene un horario de clases en vivo configurado.
             </p>
             <Link href={`/${locale}/cursos/${slug}/overview`}>
@@ -145,7 +145,7 @@ export default function LiveClassPage() {
   const { schedule, isLive, nextClass, currentModule } = data;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-neutral-50">
       {/* Header con estado de clase */}
       <div className={`${isLive ? 'bg-red-600' : 'bg-blue-900'} text-white py-4 px-6`}>
         <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -188,7 +188,7 @@ export default function LiveClassPage() {
           {/* Columna principal - Video */}
           <div className="lg:col-span-2 space-y-6">
             <Card className="overflow-hidden">
-              <div className="aspect-video bg-gray-900 relative flex items-center justify-center">
+              <div className="aspect-video bg-neutral-900 relative flex items-center justify-center">
                 {isLive && schedule.streamUrl ? (
                   <iframe
                     src={schedule.streamUrl}
@@ -198,11 +198,11 @@ export default function LiveClassPage() {
                   />
                 ) : (
                   <div className="text-center text-white p-8">
-                    <Video className="w-24 h-24 mx-auto mb-4 text-gray-500" />
+                    <Video className="w-24 h-24 mx-auto mb-4 text-neutral-500" />
                     {isLive ? (
                       <>
                         <h3 className="text-xl font-bold mb-2">Clase en progreso</h3>
-                        <p className="text-gray-400 mb-4">
+                        <p className="text-neutral-400 mb-4">
                           {schedule.streamUrl
                             ? 'Cargando transmisión...'
                             : 'El instructor aún no ha iniciado la transmisión'}
@@ -222,10 +222,10 @@ export default function LiveClassPage() {
                     ) : (
                       <>
                         <h3 className="text-xl font-bold mb-2">Fuera de horario</h3>
-                        <p className="text-gray-400 mb-2">
+                        <p className="text-neutral-400 mb-2">
                           La clase comenzará {nextClass ? formatNextClass(nextClass) : 'pronto'}
                         </p>
-                        <p className="text-sm text-gray-500">
+                        <p className="text-sm text-neutral-500">
                           Mientras tanto, puedes revisar el material del módulo actual
                         </p>
                       </>
@@ -244,8 +244,8 @@ export default function LiveClassPage() {
               </div>
 
               {/* Barra inferior con opciones */}
-              <div className="p-4 bg-gray-100 border-t flex items-center justify-between">
-                <div className="flex items-center gap-2 text-sm text-gray-600">
+              <div className="p-4 bg-neutral-100 border-t flex items-center justify-between">
+                <div className="flex items-center gap-2 text-sm text-neutral-600">
                   <Radio className="w-4 h-4 text-red-500" />
                   <span>Transmisión en vivo</span>
                 </div>
@@ -271,7 +271,7 @@ export default function LiveClassPage() {
                 <CardHeader>
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm text-gray-500 mb-1">
+                      <p className="text-sm text-neutral-500 mb-1">
                         Módulo {currentModule.number} - En clase
                       </p>
                       <CardTitle className="text-xl">{currentModule.title}</CardTitle>
@@ -281,7 +281,7 @@ export default function LiveClassPage() {
                     </Badge>
                   </div>
                   {currentModule.description && (
-                    <p className="text-gray-600 mt-2">{currentModule.description}</p>
+                    <p className="text-neutral-600 mt-2">{currentModule.description}</p>
                   )}
                 </CardHeader>
                 <CardContent>
@@ -290,20 +290,20 @@ export default function LiveClassPage() {
                       <Link
                         key={lesson.id}
                         href={`/${locale}/cursos/${slug}/aprender/${currentModule.id}/${lesson.slug}`}
-                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors group border border-transparent hover:border-gray-200"
+                        className="flex items-center gap-3 p-3 rounded-lg hover:bg-neutral-50 transition-colors group border border-transparent hover:border-neutral-200"
                       >
-                        <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-sm font-medium text-gray-600 group-hover:bg-blue-100 group-hover:text-blue-700">
+                        <div className="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center text-sm font-medium text-neutral-600 group-hover:bg-blue-100 group-hover:text-blue-700">
                           {index + 1}
                         </div>
                         <div className="flex-grow">
-                          <p className="font-medium text-gray-900 group-hover:text-blue-700">
+                          <p className="font-medium text-neutral-900 group-hover:text-blue-700">
                             {lesson.title}
                           </p>
                           {lesson.duration && (
-                            <p className="text-xs text-gray-500">{lesson.duration} min</p>
+                            <p className="text-xs text-neutral-500">{lesson.duration} min</p>
                           )}
                         </div>
-                        <FileText className="w-4 h-4 text-gray-400 group-hover:text-blue-600" />
+                        <FileText className="w-4 h-4 text-neutral-400 group-hover:text-blue-600" />
                       </Link>
                     ))}
                   </div>
@@ -330,21 +330,21 @@ export default function LiveClassPage() {
                         key={module.id}
                         className={`relative pl-6 pb-4 ${
                           index < (course?.modules?.length || 0) - 1 ? 'border-l-2' : ''
-                        } ${isCurrent ? 'border-blue-500' : 'border-gray-200'}`}
+                        } ${isCurrent ? 'border-blue-500' : 'border-neutral-200'}`}
                       >
                         <div
                           className={`absolute left-0 top-0 w-4 h-4 rounded-full -translate-x-[9px] ${
                             isCurrent
                               ? 'bg-blue-500 ring-4 ring-blue-100'
-                              : 'bg-gray-300'
+                              : 'bg-neutral-300'
                           }`}
                         />
-                        <div className={isCurrent ? 'text-blue-900' : 'text-gray-600'}>
-                          <p className="text-xs text-gray-500 mb-1">Módulo {module.number}</p>
-                          <p className={`font-medium ${isCurrent ? 'text-blue-900' : 'text-gray-900'}`}>
+                        <div className={isCurrent ? 'text-blue-900' : 'text-neutral-600'}>
+                          <p className="text-xs text-neutral-500 mb-1">Módulo {module.number}</p>
+                          <p className={`font-medium ${isCurrent ? 'text-blue-900' : 'text-neutral-900'}`}>
                             {module.title}
                           </p>
-                          <p className="text-xs text-gray-500 mt-1">
+                          <p className="text-xs text-neutral-500 mt-1">
                             {module.lessons?.length || 0} lecciones
                           </p>
                           {isCurrent && (
@@ -370,24 +370,24 @@ export default function LiveClassPage() {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <p className="text-sm text-gray-500">Turno</p>
-                  <p className="font-medium text-gray-900">{schedule.shiftLabel}</p>
+                  <p className="text-sm text-neutral-500">Turno</p>
+                  <p className="font-medium text-neutral-900">{schedule.shiftLabel}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500">Días</p>
-                  <p className="font-medium text-gray-900">
+                  <p className="text-sm text-neutral-500">Días</p>
+                  <p className="font-medium text-neutral-900">
                     {schedule.daysOfWeek.map((d: number) => DAY_NAMES[d]).join(', ')}
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500">Horario</p>
-                  <p className="font-medium text-gray-900">
+                  <p className="text-sm text-neutral-500">Horario</p>
+                  <p className="font-medium text-neutral-900">
                     {schedule.startTime} - {schedule.endTime}
                   </p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500">Período</p>
-                  <p className="font-medium text-gray-900">
+                  <p className="text-sm text-neutral-500">Período</p>
+                  <p className="font-medium text-neutral-900">
                     {new Date(schedule.startDate).toLocaleDateString('es')} -{' '}
                     {new Date(schedule.endDate).toLocaleDateString('es')}
                   </p>

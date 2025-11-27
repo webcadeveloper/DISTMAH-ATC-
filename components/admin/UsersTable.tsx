@@ -168,14 +168,14 @@ export function UsersTable({ users, onUpdate }: UsersTableProps) {
           {users.map((user) => (
             <TableRow key={user.id}>
               <TableCell className="font-medium text-black">{user.name}</TableCell>
-              <TableCell className="text-gray-600">{user.email}</TableCell>
+              <TableCell className="text-neutral-600">{user.email}</TableCell>
               <TableCell>{getRoleBadge(user.role)}</TableCell>
               <TableCell>
                 <StatusBadge status={user.status} />
               </TableCell>
-              <TableCell className="text-gray-700">{user.enrollmentsCount}</TableCell>
-              <TableCell className="text-gray-700">{user.coursesCount}</TableCell>
-              <TableCell className="text-gray-600 text-sm">
+              <TableCell className="text-neutral-700">{user.enrollmentsCount}</TableCell>
+              <TableCell className="text-neutral-700">{user.coursesCount}</TableCell>
+              <TableCell className="text-neutral-600 text-sm">
                 {user.lastLoginAt
                   ? new Date(user.lastLoginAt).toLocaleDateString('es-ES')
                   : 'Nunca'}

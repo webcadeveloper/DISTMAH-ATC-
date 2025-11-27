@@ -155,7 +155,7 @@ export default function GradeSubmissions({ assignmentId, instructorId }: GradeSu
   if (!assignment) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-600">Tarea no encontrada</p>
+        <p className="text-neutral-600">Tarea no encontrada</p>
       </div>
     );
   }
@@ -165,7 +165,7 @@ export default function GradeSubmissions({ assignmentId, instructorId }: GradeSu
       {/* Header */}
       <div>
         <h2 className="text-2xl font-bold">{assignment.title}</h2>
-        <p className="text-gray-600 mt-1">
+        <p className="text-neutral-600 mt-1">
           {submissions.length} {submissions.length === 1 ? 'entrega' : 'entregas'} en total
         </p>
       </div>
@@ -177,7 +177,7 @@ export default function GradeSubmissions({ assignmentId, instructorId }: GradeSu
           className={`px-4 py-2 rounded-lg ${
             filter === 'all'
               ? 'bg-blue-600 text-white'
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
           }`}
         >
           Todas ({submissions.length})
@@ -187,7 +187,7 @@ export default function GradeSubmissions({ assignmentId, instructorId }: GradeSu
           className={`px-4 py-2 rounded-lg ${
             filter === 'submitted'
               ? 'bg-blue-600 text-white'
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
           }`}
         >
           Pendientes ({submissions.filter(s => s.status === 'SUBMITTED').length})
@@ -197,7 +197,7 @@ export default function GradeSubmissions({ assignmentId, instructorId }: GradeSu
           className={`px-4 py-2 rounded-lg ${
             filter === 'graded'
               ? 'bg-blue-600 text-white'
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+              : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
           }`}
         >
           Calificadas ({submissions.filter(s => s.status === 'GRADED').length})
@@ -206,9 +206,9 @@ export default function GradeSubmissions({ assignmentId, instructorId }: GradeSu
 
       {/* Lista de entregas */}
       {filteredSubmissions.length === 0 ? (
-        <div className="text-center py-12 bg-gray-50 rounded-lg">
-          <FileText className="mx-auto h-12 w-12 text-gray-400 mb-3" />
-          <p className="text-gray-600">No hay entregas para mostrar</p>
+        <div className="text-center py-12 bg-neutral-50 rounded-lg">
+          <FileText className="mx-auto h-12 w-12 text-neutral-400 mb-3" />
+          <p className="text-neutral-600">No hay entregas para mostrar</p>
         </div>
       ) : (
         <div className="space-y-4">
@@ -224,7 +224,7 @@ export default function GradeSubmissions({ assignmentId, instructorId }: GradeSu
                   </div>
                   <div>
                     <h3 className="font-semibold">{submission.user.name}</h3>
-                    <p className="text-sm text-gray-600">{submission.user.email}</p>
+                    <p className="text-sm text-neutral-600">{submission.user.email}</p>
                   </div>
                 </div>
 
@@ -246,15 +246,15 @@ export default function GradeSubmissions({ assignmentId, instructorId }: GradeSu
               </div>
 
               <div className="space-y-3">
-                <div className="flex items-center gap-2 text-sm text-gray-600">
+                <div className="flex items-center gap-2 text-sm text-neutral-600">
                   <Calendar className="w-4 h-4" />
                   Entregado: {format(new Date(submission.submittedAt), "d 'de' MMMM, yyyy 'a las' HH:mm", { locale: es })}
                 </div>
 
                 {submission.comments && (
-                  <div className="bg-gray-50 p-3 rounded-lg">
+                  <div className="bg-neutral-50 p-3 rounded-lg">
                     <p className="text-sm font-medium mb-1">Comentarios del estudiante:</p>
-                    <p className="text-sm text-gray-700">{submission.comments}</p>
+                    <p className="text-sm text-neutral-700">{submission.comments}</p>
                   </div>
                 )}
 
@@ -265,7 +265,7 @@ export default function GradeSubmissions({ assignmentId, instructorId }: GradeSu
                       {submission.files.map((file: any, idx: number) => (
                         <div
                           key={idx}
-                          className="flex items-center justify-between p-2 bg-gray-50 rounded"
+                          className="flex items-center justify-between p-2 bg-neutral-50 rounded"
                         >
                           <div className="flex items-center gap-2">
                             <FileText className="w-4 h-4 text-blue-500" />
@@ -286,7 +286,7 @@ export default function GradeSubmissions({ assignmentId, instructorId }: GradeSu
                 {submission.feedback && (
                   <div className="bg-blue-50 p-3 rounded-lg">
                     <p className="text-sm font-medium mb-1">Retroalimentación:</p>
-                    <p className="text-sm text-gray-700">{submission.feedback}</p>
+                    <p className="text-sm text-neutral-700">{submission.feedback}</p>
                   </div>
                 )}
 
@@ -359,7 +359,7 @@ export default function GradeSubmissions({ assignmentId, instructorId }: GradeSu
 
                 <button
                   onClick={closeGradingModal}
-                  className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+                  className="px-4 py-2 border border-neutral-300 rounded-lg hover:bg-neutral-50"
                 >
                   Cancelar
                 </button>

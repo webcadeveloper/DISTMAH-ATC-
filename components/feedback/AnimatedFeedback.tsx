@@ -71,7 +71,7 @@ export function AnimatedFeedback({
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="text-xl font-bold text-gray-900 dark:text-white text-center"
+              className="text-xl font-bold text-neutral-900 dark:text-white text-center"
             >
               {title}
             </motion.h3>
@@ -82,7 +82,7 @@ export function AnimatedFeedback({
               initial={{ y: 10, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-sm text-gray-600 dark:text-gray-400 text-center max-w-md"
+              className="text-sm text-neutral-600 dark:text-neutral-400 text-center max-w-md"
             >
               {message}
             </motion.p>

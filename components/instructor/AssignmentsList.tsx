@@ -99,7 +99,7 @@ export default function AssignmentsList({ courseId, modules = [] }: AssignmentsL
       return { label: 'Próximamente', color: 'text-blue-600 bg-blue-50' };
     }
     if (isPast(dueDate)) {
-      return { label: 'Vencida', color: 'text-gray-600 bg-gray-100' };
+      return { label: 'Vencida', color: 'text-neutral-600 bg-neutral-100' };
     }
 
     const daysLeft = differenceInDays(dueDate, now);
@@ -141,7 +141,7 @@ export default function AssignmentsList({ courseId, modules = [] }: AssignmentsL
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold">Tareas del Curso</h2>
-          <p className="text-gray-600 mt-1">
+          <p className="text-neutral-600 mt-1">
             {assignments.length} {assignments.length === 1 ? 'tarea' : 'tareas'} en total
           </p>
         </div>
@@ -158,7 +158,7 @@ export default function AssignmentsList({ courseId, modules = [] }: AssignmentsL
       {/* Filtros */}
       <div className="flex flex-wrap gap-4">
         <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-gray-500" />
+          <Filter className="w-4 h-4 text-neutral-500" />
           <select
             value={filter}
             onChange={(e) => setFilter(e.target.value as any)}
@@ -189,9 +189,9 @@ export default function AssignmentsList({ courseId, modules = [] }: AssignmentsL
 
       {/* Lista de tareas */}
       {filteredAssignments.length === 0 ? (
-        <div className="text-center py-12 bg-gray-50 rounded-lg">
-          <FileText className="mx-auto h-12 w-12 text-gray-400 mb-3" />
-          <p className="text-gray-600">No hay tareas {filter !== 'all' && `(${filter})`}</p>
+        <div className="text-center py-12 bg-neutral-50 rounded-lg">
+          <FileText className="mx-auto h-12 w-12 text-neutral-400 mb-3" />
+          <p className="text-neutral-600">No hay tareas {filter !== 'all' && `(${filter})`}</p>
           <button
             onClick={() => router.push(`/instructor/cursos/${courseId}/assignments/new`)}
             className="mt-4 text-blue-600 hover:underline"
@@ -226,11 +226,11 @@ export default function AssignmentsList({ courseId, modules = [] }: AssignmentsL
                       )}
                     </div>
 
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                    <p className="text-neutral-600 text-sm mb-4 line-clamp-2">
                       {assignment.description}
                     </p>
 
-                    <div className="flex flex-wrap gap-4 text-sm text-gray-600">
+                    <div className="flex flex-wrap gap-4 text-sm text-neutral-600">
                       <div className="flex items-center gap-1.5">
                         <Calendar className="w-4 h-4" />
                         Entrega: {format(new Date(assignment.dueDate), "d 'de' MMMM, yyyy", { locale: es })}
@@ -260,7 +260,7 @@ export default function AssignmentsList({ courseId, modules = [] }: AssignmentsL
                     </button>
                     <button
                       onClick={() => router.push(`/instructor/cursos/${courseId}/assignments/${assignment.id}/edit`)}
-                      className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition"
+                      className="p-2 text-neutral-600 hover:bg-neutral-100 rounded-lg transition"
                       title="Editar"
                     >
                       <Edit className="w-5 h-5" />

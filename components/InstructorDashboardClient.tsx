@@ -714,8 +714,8 @@ export default function InstructorDashboardClient() {
                                 )}
 
                                 {toggleError && (
-                                    <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
-                                        <p className="text-sm text-red-800">{toggleError}</p>
+                                    <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                                        <p className="text-sm text-red-800 dark:text-red-300">{toggleError}</p>
                                     </div>
                                 )}
 
@@ -744,9 +744,9 @@ export default function InstructorDashboardClient() {
                                 </Button>
 
                                 {classActive && (
-                                    <div className="p-4 bg-green-100 border border-green-300 rounded-lg text-center">
-                                        <p className="text-lg font-bold text-green-800">EN VIVO</p>
-                                        <p className="text-sm text-green-700">Los estudiantes pueden ver la clase ahora</p>
+                                    <div className="p-4 bg-green-100 dark:bg-green-900/20 border border-green-300 dark:border-green-800 rounded-lg text-center">
+                                        <p className="text-lg font-bold text-green-800 dark:text-green-300">EN VIVO</p>
+                                        <p className="text-sm text-green-700 dark:text-green-400">Los estudiantes pueden ver la clase ahora</p>
                                     </div>
                                 )}
                             </CardContent>

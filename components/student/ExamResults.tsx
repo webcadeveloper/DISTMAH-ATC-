@@ -79,17 +79,17 @@ export function ExamResults({
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
               <div className="bg-white p-6 rounded-lg shadow">
-                <p className="text-sm text-gray-500 mb-2">Puntaje</p>
+                <p className="text-sm text-neutral-500 mb-2">Puntaje</p>
                 <p className="text-3xl font-bold">
                   {score} / {maxScore}
                 </p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow">
-                <p className="text-sm text-gray-500 mb-2">Porcentaje</p>
+                <p className="text-sm text-neutral-500 mb-2">Porcentaje</p>
                 <p className="text-3xl font-bold">{percentage}%</p>
               </div>
               <div className="bg-white p-6 rounded-lg shadow">
-                <p className="text-sm text-gray-500 mb-2">Tiempo</p>
+                <p className="text-sm text-neutral-500 mb-2">Tiempo</p>
                 <p className="text-3xl font-bold">{formatTime(timeSpent)}</p>
               </div>
             </div>
@@ -133,7 +133,7 @@ export function ExamResults({
                 </div>
 
                 <div className="mb-3">
-                  <p className="text-sm text-gray-600 mb-2">Tu respuesta:</p>
+                  <p className="text-sm text-neutral-600 mb-2">Tu respuesta:</p>
                   <div className="p-3 bg-white rounded border">
                     {typeof answer.answer === 'string' || typeof answer.answer === 'number' ? (
                       <p>{answer.answer}</p>
@@ -145,7 +145,7 @@ export function ExamResults({
 
                 {!answer.correct && answer.correctAnswer && (
                   <div className="mb-3">
-                    <p className="text-sm text-gray-600 mb-2">Respuesta correcta:</p>
+                    <p className="text-sm text-neutral-600 mb-2">Respuesta correcta:</p>
                     <div className="p-3 bg-green-50 rounded border border-green-200">
                       {typeof answer.correctAnswer === 'string' ||
                       typeof answer.correctAnswer === 'number' ? (
@@ -173,7 +173,7 @@ export function ExamResults({
 
       <div className="flex gap-4 justify-center">
         {!passed && attemptsRemaining !== undefined && attemptsRemaining > 0 && onRetry && (
-          <Button onClick={onRetry} className="bg-black text-white hover:bg-gray-800">
+          <Button onClick={onRetry} className="bg-black text-white hover:bg-neutral-800">
             <RefreshCw className="w-4 h-4 mr-2" />
             Intentar de Nuevo
           </Button>

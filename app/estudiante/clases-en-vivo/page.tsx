@@ -100,13 +100,13 @@ export default function StudentLiveClassesPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Clases en Vivo</h1>
-        <p className="text-gray-600 mt-2">Pr\u00f3ximas clases en vivo de tus cursos inscritos</p>
+        <h1 className="text-3xl font-bold text-neutral-900">Clases en Vivo</h1>
+        <p className="text-neutral-600 mt-2">Pr\u00f3ximas clases en vivo de tus cursos inscritos</p>
       </div>
 
       <div className="mb-6">
         <div className="flex items-center gap-4">
-          <span className="text-gray-700 font-medium">Filtrar por curso:</span>
+          <span className="text-neutral-700 font-medium">Filtrar por curso:</span>
           <Select value={selectedCourse} onValueChange={setSelectedCourse}>
             <SelectTrigger className="w-[300px]">
               <SelectValue />
@@ -124,12 +124,12 @@ export default function StudentLiveClassesPage() {
       </div>
 
       {upcomingClasses.length === 0 ? (
-        <div className="text-center py-16 bg-white rounded-lg border border-gray-200">
-          <Calendar className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">
+        <div className="text-center py-16 bg-white rounded-lg border border-neutral-200">
+          <Calendar className="w-16 h-16 text-neutral-400 mx-auto mb-4" />
+          <h3 className="text-lg font-semibold text-neutral-900 mb-2">
             No hay clases pr\u00f3ximas programadas
           </h3>
-          <p className="text-gray-600">
+          <p className="text-neutral-600">
             Las clases en vivo aparecer\u00e1n aqu\u00ed cuando tu instructor las programe
           </p>
         </div>
@@ -142,10 +142,10 @@ export default function StudentLiveClassesPage() {
                 <CardHeader>
                   <div className="flex justify-between items-start gap-2">
                     <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                      <h3 className="text-lg font-semibold text-neutral-900 mb-1">
                         {clase.title}
                       </h3>
-                      <p className="text-sm text-gray-500">{clase.course.title}</p>
+                      <p className="text-sm text-neutral-500">{clase.course.title}</p>
                     </div>
                     {status === 'live' && (
                       <Badge variant="destructive" className="gap-1">
@@ -156,27 +156,27 @@ export default function StudentLiveClassesPage() {
                   </div>
                 </CardHeader>
                 <CardContent className="flex-1">
-                  <p className="text-sm text-gray-600 mb-4 line-clamp-3">
+                  <p className="text-sm text-neutral-600 mb-4 line-clamp-3">
                     {clase.description}
                   </p>
                   <div className="space-y-2">
-                    <div className="flex items-center gap-2 text-sm text-gray-700">
-                      <Calendar className="w-4 h-4 text-gray-400" />
+                    <div className="flex items-center gap-2 text-sm text-neutral-700">
+                      <Calendar className="w-4 h-4 text-neutral-400" />
                       <span>
                         {format(new Date(clase.scheduledStart), "d 'de' MMMM, yyyy", {
                           locale: es,
                         })}
                       </span>
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-gray-700">
-                      <Clock className="w-4 h-4 text-gray-400" />
+                    <div className="flex items-center gap-2 text-sm text-neutral-700">
+                      <Clock className="w-4 h-4 text-neutral-400" />
                       <span>
                         {format(new Date(clase.scheduledStart), 'HH:mm', { locale: es })} -{' '}
                         {format(new Date(clase.scheduledEnd), 'HH:mm', { locale: es })}
                       </span>
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-gray-700">
-                      <Video className="w-4 h-4 text-gray-400" />
+                    <div className="flex items-center gap-2 text-sm text-neutral-700">
+                      <Video className="w-4 h-4 text-neutral-400" />
                       <span>Instructor: {clase.instructor.name}</span>
                     </div>
                   </div>
@@ -197,7 +197,7 @@ export default function StudentLiveClassesPage() {
 
       {filteredClasses.filter((c) => getStatus(c) === 'past').length > 0 && (
         <div className="mt-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Clases Pasadas</h2>
+          <h2 className="text-2xl font-bold text-neutral-900 mb-6">Clases Pasadas</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredClasses
               .filter((c) => getStatus(c) === 'past')
@@ -205,15 +205,15 @@ export default function StudentLiveClassesPage() {
                 <Card key={clase.id} className="opacity-75">
                   <CardHeader>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                      <h3 className="text-lg font-semibold text-neutral-900 mb-1">
                         {clase.title}
                       </h3>
-                      <p className="text-sm text-gray-500">{clase.course.title}</p>
+                      <p className="text-sm text-neutral-500">{clase.course.title}</p>
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <Calendar className="w-4 h-4 text-gray-400" />
+                    <div className="flex items-center gap-2 text-sm text-neutral-600">
+                      <Calendar className="w-4 h-4 text-neutral-400" />
                       <span>
                         {format(new Date(clase.scheduledStart), "d 'de' MMMM, yyyy 'a las' HH:mm", {
                           locale: es,

@@ -148,7 +148,7 @@ export function MarkdownEditor({
   return (
     <div className={`border rounded-lg overflow-hidden ${className}`}>
       {/* Toolbar */}
-      <div className="bg-gray-50 border-b p-2 flex items-center justify-between gap-2 flex-wrap">
+      <div className="bg-neutral-50 border-b p-2 flex items-center justify-between gap-2 flex-wrap">
         <div className="flex gap-2">
           <Button
             type="button"
@@ -256,13 +256,13 @@ export function MarkdownEditor({
               {value}
             </ReactMarkdown>
           ) : (
-            <p className="text-gray-400 italic">No hay contenido para previsualizar</p>
+            <p className="text-neutral-400 italic">No hay contenido para previsualizar</p>
           )}
         </div>
       )}
 
       {/* Footer */}
-      <div className="bg-gray-50 border-t p-2 text-xs text-gray-500">
+      <div className="bg-neutral-50 border-t p-2 text-xs text-neutral-500">
         <div className="flex justify-between items-center">
           <span>Markdown soportado</span>
           <span>{value.length} caracteres</span>

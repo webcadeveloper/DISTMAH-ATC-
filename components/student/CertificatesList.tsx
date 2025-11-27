@@ -112,9 +112,9 @@ export function CertificatesList({ userId }: CertificatesListProps) {
     return (
       <Card>
         <CardContent className="flex flex-col items-center justify-center py-12">
-          <Award className="w-16 h-16 text-gray-300 mb-4" />
+          <Award className="w-16 h-16 text-neutral-300 mb-4" />
           <h3 className="text-xl font-semibold mb-2">No tienes certificados aún</h3>
-          <p className="text-gray-500 text-center max-w-md">
+          <p className="text-neutral-500 text-center max-w-md">
             Completa un curso y aprueba el examen final para obtener tu certificado oficial
           </p>
         </CardContent>
@@ -127,7 +127,7 @@ export function CertificatesList({ userId }: CertificatesListProps) {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-2xl font-bold">Mis Certificados</h2>
-          <p className="text-gray-500">
+          <p className="text-neutral-500">
             {certificates.length} certificado{certificates.length !== 1 ? 's' : ''} obtenido
             {certificates.length !== 1 ? 's' : ''}
           </p>
@@ -138,9 +138,9 @@ export function CertificatesList({ userId }: CertificatesListProps) {
         {certificates.map((certificate) => (
           <Card
             key={certificate.id}
-            className="hover:shadow-lg transition-shadow border-2 border-gray-200"
+            className="hover:shadow-lg transition-shadow border-2 border-neutral-200"
           >
-            <CardHeader className="bg-gradient-to-r from-black to-gray-800 text-white">
+            <CardHeader className="bg-gradient-to-r from-black to-neutral-800 text-white">
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
@@ -156,19 +156,19 @@ export function CertificatesList({ userId }: CertificatesListProps) {
             <CardContent className="pt-6">
               <div className="space-y-4">
                 <div>
-                  <p className="text-sm text-gray-500">Estudiante</p>
+                  <p className="text-sm text-neutral-500">Estudiante</p>
                   <p className="font-semibold">{certificate.studentName}</p>
                 </div>
 
                 <div>
-                  <p className="text-sm text-gray-500">Instructor</p>
+                  <p className="text-sm text-neutral-500">Instructor</p>
                   <p className="font-semibold">{certificate.instructorName}</p>
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-gray-500" />
+                  <Calendar className="w-4 h-4 text-neutral-500" />
                   <div>
-                    <p className="text-sm text-gray-500">Fecha de completación</p>
+                    <p className="text-sm text-neutral-500">Fecha de completación</p>
                     <p className="font-semibold">
                       {format(new Date(certificate.completionDate), 'dd/MM/yyyy')}
                     </p>
@@ -179,7 +179,7 @@ export function CertificatesList({ userId }: CertificatesListProps) {
                   <span className="px-3 py-1 bg-black text-white rounded-full text-xs font-semibold">
                     {certificate.course.category}
                   </span>
-                  <span className="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-xs font-semibold">
+                  <span className="px-3 py-1 bg-neutral-200 text-neutral-800 rounded-full text-xs font-semibold">
                     {certificate.course.level}
                   </span>
                 </div>

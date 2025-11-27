@@ -75,7 +75,7 @@ export default function AssignmentCard({ assignment, courseSlug }: AssignmentCar
     }
 
     return (
-      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 text-gray-700 rounded-full text-sm font-medium">
+      <div className="flex items-center gap-1.5 px-3 py-1.5 bg-neutral-100 text-neutral-700 rounded-full text-sm font-medium">
         <FileText className="w-4 h-4" />
         Pendiente
       </div>
@@ -115,13 +115,13 @@ export default function AssignmentCard({ assignment, courseSlug }: AssignmentCar
       <div className="flex items-start justify-between mb-4">
         <div className="flex-1">
           <h3 className="text-lg font-semibold mb-2">{assignment.title}</h3>
-          <p className="text-gray-600 text-sm line-clamp-2">{assignment.description}</p>
+          <p className="text-neutral-600 text-sm line-clamp-2">{assignment.description}</p>
         </div>
         <div className="ml-4">{getStatusBadge()}</div>
       </div>
 
       <div className="space-y-2 mb-4">
-        <div className="flex items-center gap-2 text-sm text-gray-600">
+        <div className="flex items-center gap-2 text-sm text-neutral-600">
           <Calendar className="w-4 h-4" />
           <span>
             Fecha de entrega:{' '}
@@ -137,7 +137,7 @@ export default function AssignmentCard({ assignment, courseSlug }: AssignmentCar
                 ? 'text-red-600 font-medium'
                 : assignment.isNearDue
                 ? 'text-orange-600 font-medium'
-                : 'text-gray-600'
+                : 'text-neutral-600'
             }
           >
             {getTimeRemaining()}
@@ -155,7 +155,7 @@ export default function AssignmentCard({ assignment, courseSlug }: AssignmentCar
       </div>
 
       <div className="flex items-center justify-between pt-4 border-t">
-        <div className="text-sm text-gray-600">
+        <div className="text-sm text-neutral-600">
           Puntaje máximo: <span className="font-medium">{assignment.maxScore}</span>
         </div>
 

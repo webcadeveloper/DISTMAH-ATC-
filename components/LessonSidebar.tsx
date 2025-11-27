@@ -74,14 +74,14 @@ export default function LessonSidebar({
 
   if (loading) {
     return (
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 sticky top-4">
+      <div className="bg-white rounded-lg shadow-sm border border-neutral-200 p-6 sticky top-4">
         <div className="animate-pulse space-y-4">
-          <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-          <div className="h-2 bg-gray-200 rounded"></div>
+          <div className="h-4 bg-neutral-200 rounded w-1/2"></div>
+          <div className="h-2 bg-neutral-200 rounded"></div>
           <div className="space-y-2">
-            <div className="h-8 bg-gray-200 rounded"></div>
-            <div className="h-8 bg-gray-200 rounded"></div>
-            <div className="h-8 bg-gray-200 rounded"></div>
+            <div className="h-8 bg-neutral-200 rounded"></div>
+            <div className="h-8 bg-neutral-200 rounded"></div>
+            <div className="h-8 bg-neutral-200 rounded"></div>
           </div>
         </div>
       </div>
@@ -89,13 +89,13 @@ export default function LessonSidebar({
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 sticky top-4">
+    <div className="bg-white rounded-lg shadow-sm border border-neutral-200 p-6 sticky top-4">
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
-          <h3 className="font-bold text-gray-900">Progreso del Curso</h3>
+          <h3 className="font-bold text-neutral-900">Progreso del Curso</h3>
           <span className="text-sm font-semibold text-blue-600">{progressPercent}%</span>
         </div>
-        <div className="w-full bg-gray-200 rounded-full h-2.5">
+        <div className="w-full bg-neutral-200 rounded-full h-2.5">
           <div
             className="bg-blue-600 h-2.5 rounded-full transition-all duration-300"
             style={{ width: `${progressPercent}%` }}
@@ -103,11 +103,11 @@ export default function LessonSidebar({
         </div>
       </div>
 
-      <h3 className="font-bold text-gray-900 mb-4">Contenido del Curso</h3>
+      <h3 className="font-bold text-neutral-900 mb-4">Contenido del Curso</h3>
       <div className="space-y-4 max-h-[600px] overflow-y-auto">
         {Object.values(groupedByModule).map((module) => (
           <div key={module.moduleNumber}>
-            <h4 className="text-sm font-semibold text-gray-900 mb-2">
+            <h4 className="text-sm font-semibold text-neutral-900 mb-2">
               {module.moduleNumber}. {module.moduleTitle}
             </h4>
             <div className="space-y-1 ml-4">
@@ -122,7 +122,7 @@ export default function LessonSidebar({
                     className={`flex items-center gap-2 text-sm py-2 px-2 rounded transition-colors ${
                       isCurrentLesson
                         ? 'bg-blue-50 text-blue-600 font-semibold'
-                        : 'text-gray-600 hover:bg-gray-50 hover:text-blue-600'
+                        : 'text-neutral-600 hover:bg-neutral-50 hover:text-blue-600'
                     }`}
                   >
                     {lesson.completed ? (
@@ -134,7 +134,7 @@ export default function LessonSidebar({
                         />
                       </svg>
                     ) : (
-                      <svg className="w-4 h-4 flex-shrink-0 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="w-4 h-4 flex-shrink-0 text-neutral-300" fill="currentColor" viewBox="0 0 20 20">
                         <path
                           fillRule="evenodd"
                           d="M10 18a8 8 0 100-16 8 8 0 000 16zm0-2a6 6 0 100-12 6 6 0 000 12z"

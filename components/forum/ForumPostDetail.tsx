@@ -57,7 +57,7 @@ export function ForumPostDetail({ postId }: ForumPostDetailProps) {
       )}
       <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
 
-      <div className="flex items-center gap-3 text-sm text-gray-500 mb-6">
+      <div className="flex items-center gap-3 text-sm text-neutral-500 mb-6">
         <span className="font-medium">{post.author.name}</span>
         <span>•</span>
         <span>{formatDistanceToNow(new Date(post.createdAt), { addSuffix: true, locale: es })}</span>

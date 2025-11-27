@@ -145,7 +145,7 @@ export default function CoursesManagementPage() {
     const variants = {
       PUBLISHED: 'bg-green-100 text-green-800',
       DRAFT: 'bg-yellow-100 text-yellow-800',
-      ARCHIVED: 'bg-gray-100 text-gray-800',
+      ARCHIVED: 'bg-neutral-100 text-neutral-800',
     };
 
     const labels = {
@@ -166,7 +166,7 @@ export default function CoursesManagementPage() {
       <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-3xl font-bold text-black">Gestión de Cursos</h1>
-          <p className="text-gray-600 mt-1">
+          <p className="text-neutral-600 mt-1">
             Administra todos los cursos de la plataforma DISTMAH ATC
           </p>
         </div>
@@ -188,7 +188,7 @@ export default function CoursesManagementPage() {
         <CardContent>
           <div className="flex items-center gap-4 mb-6">
             <div className="flex items-center gap-2 flex-1 max-w-md">
-              <Search className="w-4 h-4 text-gray-600" />
+              <Search className="w-4 h-4 text-neutral-600" />
               <Input
                 placeholder="Buscar por título o instructor..."
                 value={search}
@@ -200,7 +200,7 @@ export default function CoursesManagementPage() {
               />
             </div>
             <div className="flex items-center gap-2">
-              <Filter className="w-4 h-4 text-gray-600" />
+              <Filter className="w-4 h-4 text-neutral-600" />
               <Select
                 value={statusFilter}
                 onValueChange={(value) => {
@@ -224,11 +224,11 @@ export default function CoursesManagementPage() {
           {loading ? (
             <div className="text-center py-12">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mx-auto mb-4"></div>
-              <p className="text-gray-600">Cargando cursos...</p>
+              <p className="text-neutral-600">Cargando cursos...</p>
             </div>
           ) : courses.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-gray-600">No se encontraron cursos</p>
+              <p className="text-neutral-600">No se encontraron cursos</p>
             </div>
           ) : (
             <>
@@ -249,22 +249,22 @@ export default function CoursesManagementPage() {
                       <TableCell>
                         <div>
                           <p className="font-medium text-black">{course.title}</p>
-                          <p className="text-xs text-gray-600">
+                          <p className="text-xs text-neutral-600">
                             Creado {new Date(course.createdAt).toLocaleDateString('es-ES')}
                           </p>
                         </div>
                       </TableCell>
                       <TableCell>
                         <div>
-                          <p className="text-sm text-gray-900">{course.instructor.name}</p>
-                          <p className="text-xs text-gray-600">{course.instructor.email}</p>
+                          <p className="text-sm text-neutral-900">{course.instructor.name}</p>
+                          <p className="text-xs text-neutral-600">{course.instructor.email}</p>
                         </div>
                       </TableCell>
                       <TableCell className="text-center">
                         <span className="font-medium text-black">{course.enrollmentsCount}</span>
                       </TableCell>
                       <TableCell className="text-center">{getStatusBadge(course.status)}</TableCell>
-                      <TableCell className="text-right font-medium text-gray-900">
+                      <TableCell className="text-right font-medium text-neutral-900">
                         ${course.price} {course.currency}
                       </TableCell>
                       <TableCell className="text-right">
@@ -318,7 +318,7 @@ export default function CoursesManagementPage() {
 
               {pagination.totalPages > 1 && (
                 <div className="flex items-center justify-between mt-6">
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-neutral-600">
                     Mostrando {(page - 1) * pagination.limit + 1} -{' '}
                     {Math.min(page * pagination.limit, pagination.total)} de {pagination.total}{' '}
                     cursos
@@ -331,7 +331,7 @@ export default function CoursesManagementPage() {
                     >
                       Anterior
                     </Button>
-                    <span className="text-sm text-gray-600">
+                    <span className="text-sm text-neutral-600">
                       Página {page} de {pagination.totalPages}
                     </span>
                     <Button

@@ -40,7 +40,7 @@ export function TeamsLiveMeeting() {
 
       {!meetingUrl ? (
         <div className="space-y-4">
-          <p className="text-gray-600">
+          <p className="text-neutral-600">
             Crea una reunión de Microsoft Teams para tu clase en vivo
           </p>
           <Button
@@ -80,11 +80,11 @@ export function TeamsLiveMeeting() {
       )}
 
       <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
-        <div className="flex items-center gap-2 text-gray-600">
+        <div className="flex items-center gap-2 text-neutral-600">
           <Calendar className="w-4 h-4" />
           <span>Grabación automática</span>
         </div>
-        <div className="flex items-center gap-2 text-gray-600">
+        <div className="flex items-center gap-2 text-neutral-600">
           <Users className="w-4 h-4" />
           <span>Chat habilitado</span>
         </div>

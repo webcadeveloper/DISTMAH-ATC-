@@ -94,13 +94,13 @@ export function WriteReviewButton({ courseId, onReviewSubmitted }: WriteReviewBu
                     className={`w-8 h-8 ${
                       i <= (hoveredRating || rating)
                         ? 'fill-yellow-400 text-yellow-400'
-                        : 'text-gray-300'
+                        : 'text-neutral-300'
                     }`}
                   />
                 </button>
               ))}
             </div>
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-neutral-500 mt-1">
               {rating === 5 && 'Excelente'}
               {rating === 4 && 'Muy bueno'}
               {rating === 3 && 'Bueno'}
@@ -132,7 +132,7 @@ export function WriteReviewButton({ courseId, onReviewSubmitted }: WriteReviewBu
               minLength={10}
               maxLength={2000}
             />
-            <p className="text-sm text-gray-500 mt-1">
+            <p className="text-sm text-neutral-500 mt-1">
               {comment.length}/2000 caracteres (mínimo 10)
             </p>
           </div>

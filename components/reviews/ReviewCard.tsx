@@ -86,7 +86,7 @@ export function ReviewCard({ review, isOwnReview = false, onDeleted }: ReviewCar
                   className="w-8 h-8 rounded-full"
                 />
               ) : (
-                <div className="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-white font-semibold">
+                <div className="w-8 h-8 rounded-full bg-neutral-300 flex items-center justify-center text-white font-semibold">
                   {review.user.name.charAt(0).toUpperCase()}
                 </div>
               )}
@@ -99,13 +99,13 @@ export function ReviewCard({ review, isOwnReview = false, onDeleted }: ReviewCar
                   className={`w-4 h-4 ${
                     i <= review.rating
                       ? 'fill-yellow-400 text-yellow-400'
-                      : 'text-gray-300'
+                      : 'text-neutral-300'
                   }`}
                 />
               ))}
             </div>
           </div>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-neutral-500">
             {formatDistanceToNow(new Date(review.createdAt), {
               addSuffix: true,
               locale: es,
@@ -128,7 +128,7 @@ export function ReviewCard({ review, isOwnReview = false, onDeleted }: ReviewCar
 
       {review.title && <h4 className="font-semibold mb-2">{review.title}</h4>}
 
-      <p className="text-gray-700 whitespace-pre-wrap">{review.comment}</p>
+      <p className="text-neutral-700 whitespace-pre-wrap">{review.comment}</p>
 
       <div className="flex items-center gap-4 mt-3">
         <button
@@ -136,8 +136,8 @@ export function ReviewCard({ review, isOwnReview = false, onDeleted }: ReviewCar
           disabled={hasMarkedHelpful || isOwnReview}
           className={`flex items-center gap-1 text-sm ${
             hasMarkedHelpful || isOwnReview
-              ? 'text-gray-400 cursor-not-allowed'
-              : 'text-gray-600 hover:text-blue-600'
+              ? 'text-neutral-400 cursor-not-allowed'
+              : 'text-neutral-600 hover:text-blue-600'
           }`}
         >
           <ThumbsUp className={`w-4 h-4 ${hasMarkedHelpful ? 'fill-blue-600 text-blue-600' : ''}`} />

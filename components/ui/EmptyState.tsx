@@ -97,12 +97,12 @@ export function EmptyState({
       />
 
       <div className="mt-6 space-y-3 max-w-md">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+        <h3 className="text-xl font-bold text-neutral-900 dark:text-white">
           {title}
         </h3>
 
         {description && (
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">
             {description}
           </p>
         )}

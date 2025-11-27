@@ -84,8 +84,8 @@ export function NextLiveClass() {
         </CardHeader>
         <CardContent>
           <div className="text-center py-8">
-            <Calendar className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-            <p className="text-gray-500 text-sm">No hay clases programadas</p>
+            <Calendar className="w-12 h-12 text-neutral-400 mx-auto mb-3" />
+            <p className="text-neutral-500 text-sm">No hay clases programadas</p>
             <Button variant="link" asChild className="mt-2">
               <Link href="/estudiante/clases-en-vivo">Ver todas las clases</Link>
             </Button>
@@ -115,35 +115,35 @@ export function NextLiveClass() {
       </CardHeader>
       <CardContent className="space-y-4">
         <div>
-          <h4 className="font-semibold text-gray-900 mb-1">{nextClass.title}</h4>
-          <p className="text-sm text-gray-500">{nextClass.course.title}</p>
+          <h4 className="font-semibold text-neutral-900 mb-1">{nextClass.title}</h4>
+          <p className="text-sm text-neutral-500">{nextClass.course.title}</p>
         </div>
 
         <div className="space-y-2 text-sm">
-          <div className="flex items-center gap-2 text-gray-700">
-            <Calendar className="w-4 h-4 text-gray-400" />
+          <div className="flex items-center gap-2 text-neutral-700">
+            <Calendar className="w-4 h-4 text-neutral-400" />
             <span>
               {format(new Date(nextClass.scheduledStart), "d 'de' MMMM, yyyy", {
                 locale: es,
               })}
             </span>
           </div>
-          <div className="flex items-center gap-2 text-gray-700">
-            <Clock className="w-4 h-4 text-gray-400" />
+          <div className="flex items-center gap-2 text-neutral-700">
+            <Clock className="w-4 h-4 text-neutral-400" />
             <span>
               {format(new Date(nextClass.scheduledStart), 'HH:mm', { locale: es })} -{' '}
               {format(new Date(nextClass.scheduledEnd), 'HH:mm', { locale: es })}
             </span>
           </div>
-          <div className="flex items-center gap-2 text-gray-700">
-            <Video className="w-4 h-4 text-gray-400" />
+          <div className="flex items-center gap-2 text-neutral-700">
+            <Video className="w-4 h-4 text-neutral-400" />
             <span>Instructor: {nextClass.instructor.name}</span>
           </div>
         </div>
 
         {!live && (
-          <div className="bg-gray-50 rounded-lg p-4">
-            <p className="text-xs text-gray-600 mb-3 text-center">Comienza en:</p>
+          <div className="bg-neutral-50 rounded-lg p-4">
+            <p className="text-xs text-neutral-600 mb-3 text-center">Comienza en:</p>
             <Countdown targetDate={new Date(nextClass.scheduledStart)} />
           </div>
         )}

@@ -9,15 +9,15 @@ export default function CookiesPage() {
   return (
     <div className="min-h-screen bg-white py-12">
       <div className="container mx-auto px-4 max-w-4xl">
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">Política de Cookies</h1>
+        <h1 className="text-4xl font-bold text-neutral-900 mb-8">Política de Cookies</h1>
 
-        <div className="prose prose-lg max-w-none text-gray-700">
-          <p className="text-gray-600 mb-6">
+        <div className="prose prose-lg max-w-none text-neutral-700">
+          <p className="text-neutral-600 mb-6">
             Última actualización: 24 de noviembre de 2025
           </p>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">1. ¿Qué son las Cookies?</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">1. ¿Qué son las Cookies?</h2>
             <p>
               Las cookies son pequeños archivos de texto que se almacenan en su navegador o
               dispositivo cuando visita un sitio web. Permiten que el sitio web recuerde sus
@@ -29,7 +29,7 @@ export default function CookiesPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">2. ¿Por qué Usamos Cookies?</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">2. ¿Por qué Usamos Cookies?</h2>
             <p>
               DISTMAH ATC utiliza cookies para:
             </p>
@@ -44,38 +44,38 @@ export default function CookiesPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Tipos de Cookies que Usamos</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">3. Tipos de Cookies que Usamos</h2>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">3.1 Cookies Estrictamente Necesarias</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">3.1 Cookies Estrictamente Necesarias</h3>
             <p>
               Estas cookies son esenciales para que pueda utilizar la Plataforma y sus
               funciones principales. Sin estas cookies, servicios como la autenticación de
               usuario no funcionarían.
             </p>
             <div className="mt-4 overflow-x-auto">
-              <table className="min-w-full bg-white border border-gray-300">
+              <table className="min-w-full bg-white border border-neutral-300">
                 <thead>
-                  <tr className="bg-gray-100">
-                    <th className="border border-gray-300 px-4 py-2 text-left">Nombre</th>
-                    <th className="border border-gray-300 px-4 py-2 text-left">Propósito</th>
-                    <th className="border border-gray-300 px-4 py-2 text-left">Duración</th>
+                  <tr className="bg-neutral-100">
+                    <th className="border border-neutral-300 px-4 py-2 text-left">Nombre</th>
+                    <th className="border border-neutral-300 px-4 py-2 text-left">Propósito</th>
+                    <th className="border border-neutral-300 px-4 py-2 text-left">Duración</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="border border-gray-300 px-4 py-2">auth-token</td>
-                    <td className="border border-gray-300 px-4 py-2">Autenticación de sesión JWT</td>
-                    <td className="border border-gray-300 px-4 py-2">7 días</td>
+                    <td className="border border-neutral-300 px-4 py-2">auth-token</td>
+                    <td className="border border-neutral-300 px-4 py-2">Autenticación de sesión JWT</td>
+                    <td className="border border-neutral-300 px-4 py-2">7 días</td>
                   </tr>
                   <tr>
-                    <td className="border border-gray-300 px-4 py-2">csrf-token</td>
-                    <td className="border border-gray-300 px-4 py-2">Protección contra ataques CSRF</td>
-                    <td className="border border-gray-300 px-4 py-2">Sesión</td>
+                    <td className="border border-neutral-300 px-4 py-2">csrf-token</td>
+                    <td className="border border-neutral-300 px-4 py-2">Protección contra ataques CSRF</td>
+                    <td className="border border-neutral-300 px-4 py-2">Sesión</td>
                   </tr>
                   <tr>
-                    <td className="border border-gray-300 px-4 py-2">session-id</td>
-                    <td className="border border-gray-300 px-4 py-2">Identificador de sesión</td>
-                    <td className="border border-gray-300 px-4 py-2">Sesión</td>
+                    <td className="border border-neutral-300 px-4 py-2">session-id</td>
+                    <td className="border border-neutral-300 px-4 py-2">Identificador de sesión</td>
+                    <td className="border border-neutral-300 px-4 py-2">Sesión</td>
                   </tr>
                 </tbody>
               </table>
@@ -85,46 +85,46 @@ export default function CookiesPage() {
               necesarias y no se pueden rechazar sin afectar el funcionamiento de la Plataforma.
             </p>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">3.2 Cookies de Funcionalidad</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">3.2 Cookies de Funcionalidad</h3>
             <p>
               Estas cookies permiten que la Plataforma recuerde las opciones que ha elegido
               y proporcionan funciones mejoradas y más personales.
             </p>
             <div className="mt-4 overflow-x-auto">
-              <table className="min-w-full bg-white border border-gray-300">
+              <table className="min-w-full bg-white border border-neutral-300">
                 <thead>
-                  <tr className="bg-gray-100">
-                    <th className="border border-gray-300 px-4 py-2 text-left">Nombre</th>
-                    <th className="border border-gray-300 px-4 py-2 text-left">Propósito</th>
-                    <th className="border border-gray-300 px-4 py-2 text-left">Duración</th>
+                  <tr className="bg-neutral-100">
+                    <th className="border border-neutral-300 px-4 py-2 text-left">Nombre</th>
+                    <th className="border border-neutral-300 px-4 py-2 text-left">Propósito</th>
+                    <th className="border border-neutral-300 px-4 py-2 text-left">Duración</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="border border-gray-300 px-4 py-2">locale</td>
-                    <td className="border border-gray-300 px-4 py-2">Preferencia de idioma (ES/EN)</td>
-                    <td className="border border-gray-300 px-4 py-2">1 año</td>
+                    <td className="border border-neutral-300 px-4 py-2">locale</td>
+                    <td className="border border-neutral-300 px-4 py-2">Preferencia de idioma (ES/EN)</td>
+                    <td className="border border-neutral-300 px-4 py-2">1 año</td>
                   </tr>
                   <tr>
-                    <td className="border border-gray-300 px-4 py-2">video-progress</td>
-                    <td className="border border-gray-300 px-4 py-2">Guardar posición de reproducción de videos</td>
-                    <td className="border border-gray-300 px-4 py-2">30 días</td>
+                    <td className="border border-neutral-300 px-4 py-2">video-progress</td>
+                    <td className="border border-neutral-300 px-4 py-2">Guardar posición de reproducción de videos</td>
+                    <td className="border border-neutral-300 px-4 py-2">30 días</td>
                   </tr>
                   <tr>
-                    <td className="border border-gray-300 px-4 py-2">theme-preference</td>
-                    <td className="border border-gray-300 px-4 py-2">Modo claro/oscuro</td>
-                    <td className="border border-gray-300 px-4 py-2">1 año</td>
+                    <td className="border border-neutral-300 px-4 py-2">theme-preference</td>
+                    <td className="border border-neutral-300 px-4 py-2">Modo claro/oscuro</td>
+                    <td className="border border-neutral-300 px-4 py-2">1 año</td>
                   </tr>
                   <tr>
-                    <td className="border border-gray-300 px-4 py-2">sidebar-state</td>
-                    <td className="border border-gray-300 px-4 py-2">Estado de menú lateral (expandido/colapsado)</td>
-                    <td className="border border-gray-300 px-4 py-2">30 días</td>
+                    <td className="border border-neutral-300 px-4 py-2">sidebar-state</td>
+                    <td className="border border-neutral-300 px-4 py-2">Estado de menú lateral (expandido/colapsado)</td>
+                    <td className="border border-neutral-300 px-4 py-2">30 días</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">3.3 Cookies Analíticas</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">3.3 Cookies Analíticas</h3>
             <p>
               Estas cookies nos ayudan a entender cómo los visitantes interactúan con la
               Plataforma, proporcionando información sobre las áreas visitadas, el tiempo
@@ -132,34 +132,34 @@ export default function CookiesPage() {
               ayuda a mejorar el rendimiento de la Plataforma.
             </p>
             <div className="mt-4 overflow-x-auto">
-              <table className="min-w-full bg-white border border-gray-300">
+              <table className="min-w-full bg-white border border-neutral-300">
                 <thead>
-                  <tr className="bg-gray-100">
-                    <th className="border border-gray-300 px-4 py-2 text-left">Nombre</th>
-                    <th className="border border-gray-300 px-4 py-2 text-left">Propósito</th>
-                    <th className="border border-gray-300 px-4 py-2 text-left">Duración</th>
+                  <tr className="bg-neutral-100">
+                    <th className="border border-neutral-300 px-4 py-2 text-left">Nombre</th>
+                    <th className="border border-neutral-300 px-4 py-2 text-left">Propósito</th>
+                    <th className="border border-neutral-300 px-4 py-2 text-left">Duración</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="border border-gray-300 px-4 py-2">_ga</td>
-                    <td className="border border-gray-300 px-4 py-2">Google Analytics - Distinguir usuarios</td>
-                    <td className="border border-gray-300 px-4 py-2">2 años</td>
+                    <td className="border border-neutral-300 px-4 py-2">_ga</td>
+                    <td className="border border-neutral-300 px-4 py-2">Google Analytics - Distinguir usuarios</td>
+                    <td className="border border-neutral-300 px-4 py-2">2 años</td>
                   </tr>
                   <tr>
-                    <td className="border border-gray-300 px-4 py-2">_gid</td>
-                    <td className="border border-gray-300 px-4 py-2">Google Analytics - Distinguir usuarios</td>
-                    <td className="border border-gray-300 px-4 py-2">24 horas</td>
+                    <td className="border border-neutral-300 px-4 py-2">_gid</td>
+                    <td className="border border-neutral-300 px-4 py-2">Google Analytics - Distinguir usuarios</td>
+                    <td className="border border-neutral-300 px-4 py-2">24 horas</td>
                   </tr>
                   <tr>
-                    <td className="border border-gray-300 px-4 py-2">_gat</td>
-                    <td className="border border-gray-300 px-4 py-2">Google Analytics - Limitar tasa de solicitudes</td>
-                    <td className="border border-gray-300 px-4 py-2">1 minuto</td>
+                    <td className="border border-neutral-300 px-4 py-2">_gat</td>
+                    <td className="border border-neutral-300 px-4 py-2">Google Analytics - Limitar tasa de solicitudes</td>
+                    <td className="border border-neutral-300 px-4 py-2">1 minuto</td>
                   </tr>
                   <tr>
-                    <td className="border border-gray-300 px-4 py-2">analytics-consent</td>
-                    <td className="border border-gray-300 px-4 py-2">Guardar consentimiento para cookies analíticas</td>
-                    <td className="border border-gray-300 px-4 py-2">1 año</td>
+                    <td className="border border-neutral-300 px-4 py-2">analytics-consent</td>
+                    <td className="border border-neutral-300 px-4 py-2">Guardar consentimiento para cookies analíticas</td>
+                    <td className="border border-neutral-300 px-4 py-2">1 año</td>
                   </tr>
                 </tbody>
               </table>
@@ -169,31 +169,31 @@ export default function CookiesPage() {
               de forma agregada y anónima. No identifican personalmente a los usuarios.
             </p>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">3.4 Cookies de Rendimiento</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">3.4 Cookies de Rendimiento</h3>
             <p>
               Estas cookies recopilan información sobre cómo se utiliza la Plataforma, por
               ejemplo, qué páginas se visitan con más frecuencia y si los usuarios reciben
               mensajes de error.
             </p>
             <div className="mt-4 overflow-x-auto">
-              <table className="min-w-full bg-white border border-gray-300">
+              <table className="min-w-full bg-white border border-neutral-300">
                 <thead>
-                  <tr className="bg-gray-100">
-                    <th className="border border-gray-300 px-4 py-2 text-left">Nombre</th>
-                    <th className="border border-gray-300 px-4 py-2 text-left">Propósito</th>
-                    <th className="border border-gray-300 px-4 py-2 text-left">Duración</th>
+                  <tr className="bg-neutral-100">
+                    <th className="border border-neutral-300 px-4 py-2 text-left">Nombre</th>
+                    <th className="border border-neutral-300 px-4 py-2 text-left">Propósito</th>
+                    <th className="border border-neutral-300 px-4 py-2 text-left">Duración</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="border border-gray-300 px-4 py-2">performance-metrics</td>
-                    <td className="border border-gray-300 px-4 py-2">Métricas de carga de página</td>
-                    <td className="border border-gray-300 px-4 py-2">7 días</td>
+                    <td className="border border-neutral-300 px-4 py-2">performance-metrics</td>
+                    <td className="border border-neutral-300 px-4 py-2">Métricas de carga de página</td>
+                    <td className="border border-neutral-300 px-4 py-2">7 días</td>
                   </tr>
                   <tr>
-                    <td className="border border-gray-300 px-4 py-2">error-tracking</td>
-                    <td className="border border-gray-300 px-4 py-2">Rastreo de errores JavaScript</td>
-                    <td className="border border-gray-300 px-4 py-2">Sesión</td>
+                    <td className="border border-neutral-300 px-4 py-2">error-tracking</td>
+                    <td className="border border-neutral-300 px-4 py-2">Rastreo de errores JavaScript</td>
+                    <td className="border border-neutral-300 px-4 py-2">Sesión</td>
                   </tr>
                 </tbody>
               </table>
@@ -201,13 +201,13 @@ export default function CookiesPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Cookies de Terceros</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">4. Cookies de Terceros</h2>
             <p>
               Algunos de nuestros socios también establecen cookies en su dispositivo cuando
               visita la Plataforma. Estos terceros incluyen:
             </p>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">4.1 Google Analytics</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">4.1 Google Analytics</h3>
             <p>
               Utilizamos Google Analytics para analizar el uso de la Plataforma. Google
               Analytics recopila información mediante cookies sobre cómo los usuarios utilizan
@@ -236,7 +236,7 @@ export default function CookiesPage() {
               </a>
             </p>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">4.2 Stripe (Pagos)</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">4.2 Stripe (Pagos)</h3>
             <p>
               Stripe establece cookies para procesar pagos de forma segura. Estas cookies
               son esenciales para prevenir fraude y garantizar transacciones seguras.
@@ -253,7 +253,7 @@ export default function CookiesPage() {
               </a>
             </p>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">4.3 Vercel Analytics</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">4.3 Vercel Analytics</h3>
             <p>
               Vercel Analytics proporciona métricas de rendimiento y velocidad de la Plataforma.
               No recopila información de identificación personal.
@@ -272,9 +272,9 @@ export default function CookiesPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Cómo Gestionar las Cookies</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">5. Cómo Gestionar las Cookies</h2>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">5.1 Banner de Consentimiento</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">5.1 Banner de Consentimiento</h3>
             <p>
               Al visitar la Plataforma por primera vez, se le mostrará un banner de cookies
               solicitando su consentimiento para cookies no esenciales. Puede:
@@ -284,7 +284,7 @@ export default function CookiesPage() {
               <li>Rechazar cookies opcionales (solo se usarán las estrictamente necesarias)</li>
             </ul>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">5.2 Configuración del Navegador</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">5.2 Configuración del Navegador</h3>
             <p>
               Todos los navegadores modernos le permiten controlar las cookies mediante la
               configuración de privacidad. Puede:
@@ -325,7 +325,7 @@ export default function CookiesPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Almacenamiento Local (LocalStorage)</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">6. Almacenamiento Local (LocalStorage)</h2>
             <p>
               Además de cookies, utilizamos el almacenamiento local del navegador (LocalStorage)
               para guardar:
@@ -343,7 +343,7 @@ export default function CookiesPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Actualizaciones de esta Política</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">7. Actualizaciones de esta Política</h2>
             <p>
               Podemos actualizar esta Política de Cookies ocasionalmente para reflejar
               cambios en las cookies que utilizamos o por otras razones operativas, legales
@@ -357,12 +357,12 @@ export default function CookiesPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Contacto</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">8. Contacto</h2>
             <p>
               Si tiene preguntas sobre nuestra Política de Cookies o cómo utilizamos las
               cookies, contáctenos:
             </p>
-            <div className="mt-4 p-4 bg-gray-100 rounded-lg">
+            <div className="mt-4 p-4 bg-neutral-100 rounded-lg">
               <p><strong>DISTMAH ATC</strong></p>
               <p>Email: privacidad@distmah.com.ve</p>
               <p>Email alternativo: soporte@distmah.com.ve</p>
@@ -372,7 +372,7 @@ export default function CookiesPage() {
           </section>
 
           <section className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-600 rounded">
-            <p className="font-bold text-gray-900">
+            <p className="font-bold text-neutral-900">
               Al continuar navegando en la Plataforma después de ver el banner de cookies,
               usted acepta nuestro uso de cookies según lo descrito en esta política.
             </p>

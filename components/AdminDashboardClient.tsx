@@ -190,25 +190,25 @@ export function AdminDashboardClient() {
               <StatsCard
                 title="Total Usuarios"
                 value={stats.totalUsers.toString()}
-                icon={<Users className="w-5 h-5 text-blue-900" />}
+                icon={<Users className="w-5 h-5 text-blue-900 dark:text-blue-400" />}
                 trend={`+${stats.newUsersThisWeek} esta semana`}
               />
               <StatsCard
                 title="Total Cursos"
                 value={stats.totalCourses.toString()}
-                icon={<BookOpen className="w-5 h-5 text-blue-900" />}
+                icon={<BookOpen className="w-5 h-5 text-blue-900 dark:text-blue-400" />}
                 trend={`${stats.coursesByStatus.PUBLISHED} publicados`}
               />
               <StatsCard
                 title="Inscripciones"
                 value={stats.totalEnrollments.toString()}
-                icon={<GraduationCap className="w-5 h-5 text-blue-900" />}
+                icon={<GraduationCap className="w-5 h-5 text-blue-900 dark:text-blue-400" />}
                 trend={`${stats.activeEnrollments} activas`}
               />
               <StatsCard
                 title="Ingresos Totales"
                 value={`$${stats.totalRevenue.toLocaleString()}`}
-                icon={<DollarSign className="w-5 h-5 text-blue-900" />}
+                icon={<DollarSign className="w-5 h-5 text-blue-900 dark:text-blue-400" />}
                 trend={`${analytics.growthRate > 0 ? '+' : ''}${analytics.growthRate}% este mes`}
               />
             </div>
@@ -221,19 +221,19 @@ export function AdminDashboardClient() {
                 <CardContent>
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600 dark:text-gray-400">Estudiantes</span>
+                      <span className="text-sm text-neutral-600 dark:text-neutral-400">Estudiantes</span>
                       <span className="text-sm font-medium text-black dark:text-white">
                         {stats.usersByRole.STUDENT}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600 dark:text-gray-400">Instructores</span>
+                      <span className="text-sm text-neutral-600 dark:text-neutral-400">Instructores</span>
                       <span className="text-sm font-medium text-black dark:text-white">
                         {stats.usersByRole.INSTRUCTOR}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600 dark:text-gray-400">Administradores</span>
+                      <span className="text-sm text-neutral-600 dark:text-neutral-400">Administradores</span>
                       <span className="text-sm font-medium text-black dark:text-white">
                         {stats.usersByRole.ADMIN}
                       </span>
@@ -249,19 +249,19 @@ export function AdminDashboardClient() {
                 <CardContent>
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600 dark:text-gray-400">Publicados</span>
+                      <span className="text-sm text-neutral-600 dark:text-neutral-400">Publicados</span>
                       <span className="text-sm font-medium text-black dark:text-white">
                         {stats.coursesByStatus.PUBLISHED}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600 dark:text-gray-400">Borradores</span>
+                      <span className="text-sm text-neutral-600 dark:text-neutral-400">Borradores</span>
                       <span className="text-sm font-medium text-black dark:text-white">
                         {stats.coursesByStatus.DRAFT}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600 dark:text-gray-400">Archivados</span>
+                      <span className="text-sm text-neutral-600 dark:text-neutral-400">Archivados</span>
                       <span className="text-sm font-medium text-black dark:text-white">
                         {stats.coursesByStatus.ARCHIVED}
                       </span>
@@ -279,16 +279,16 @@ export function AdminDashboardClient() {
                 <CardContent>
                   <Table>
                     <TableHeader>
-                      <TableRow className="border-gray-200 dark:border-gray-700">
-                        <TableHead className="text-gray-700 dark:text-gray-300">Curso</TableHead>
-                        <TableHead className="text-right text-gray-700 dark:text-gray-300">Inscripciones</TableHead>
+                      <TableRow className="border-neutral-200 dark:border-neutral-700">
+                        <TableHead className="text-neutral-700 dark:text-neutral-300">Curso</TableHead>
+                        <TableHead className="text-right text-neutral-700 dark:text-neutral-300">Inscripciones</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       {analytics.topCourses.slice(0, 5).map((course) => (
-                        <TableRow key={course.id} className="border-gray-200 dark:border-gray-700">
+                        <TableRow key={course.id} className="border-neutral-200 dark:border-neutral-700">
                           <TableCell className="font-medium text-black dark:text-white">{course.title}</TableCell>
-                          <TableCell className="text-right text-gray-700 dark:text-gray-300">
+                          <TableCell className="text-right text-neutral-700 dark:text-neutral-300">
                             {course.enrollments}
                           </TableCell>
                         </TableRow>
@@ -307,22 +307,22 @@ export function AdminDashboardClient() {
                 </CardHeader>
                 <CardContent>
                   {recentRegistrations.length === 0 ? (
-                    <p className="text-gray-500 dark:text-gray-400 text-sm">No hay registros recientes</p>
+                    <p className="text-neutral-500 dark:text-neutral-400 text-sm">No hay registros recientes</p>
                   ) : (
                     <div className="space-y-3">
                       {recentRegistrations.slice(0, 5).map((user) => (
-                        <div key={user.id} className="flex items-start justify-between border-b border-gray-100 dark:border-gray-700 pb-3 last:border-0">
+                        <div key={user.id} className="flex items-start justify-between border-b border-neutral-100 dark:border-neutral-700 pb-3 last:border-0">
                           <div>
                             <p className="font-medium text-black dark:text-white text-sm">{user.name}</p>
-                            <p className="text-xs text-gray-500 dark:text-gray-400">{user.email}</p>
+                            <p className="text-xs text-neutral-500 dark:text-neutral-400">{user.email}</p>
                             {(user.city || user.country) && (
-                              <p className="text-xs text-gray-600 dark:text-gray-400 flex items-center gap-1 mt-1">
+                              <p className="text-xs text-neutral-600 dark:text-neutral-400 flex items-center gap-1 mt-1">
                                 <MapPin className="w-3 h-3" />
                                 {[user.city, user.country].filter(Boolean).join(', ')}
                               </p>
                             )}
                           </div>
-                          <span className="text-xs text-gray-400 dark:text-gray-500">
+                          <span className="text-xs text-neutral-400 dark:text-neutral-500">
                             {new Date(user.createdAt).toLocaleDateString('es-ES', {
                               day: '2-digit',
                               month: 'short',
@@ -350,27 +350,27 @@ export function AdminDashboardClient() {
               <CardContent>
                 <Table>
                   <TableHeader>
-                    <TableRow className="border-gray-200 dark:border-gray-700">
-                      <TableHead className="text-gray-700 dark:text-gray-300">Estudiante</TableHead>
-                      <TableHead className="text-gray-700 dark:text-gray-300">Curso</TableHead>
-                      <TableHead className="text-gray-700 dark:text-gray-300">Monto</TableHead>
-                      <TableHead className="text-gray-700 dark:text-gray-300">Fecha</TableHead>
+                    <TableRow className="border-neutral-200 dark:border-neutral-700">
+                      <TableHead className="text-neutral-700 dark:text-neutral-300">Estudiante</TableHead>
+                      <TableHead className="text-neutral-700 dark:text-neutral-300">Curso</TableHead>
+                      <TableHead className="text-neutral-700 dark:text-neutral-300">Monto</TableHead>
+                      <TableHead className="text-neutral-700 dark:text-neutral-300">Fecha</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {analytics.recentEnrollments.map((enrollment) => (
-                      <TableRow key={enrollment.id} className="border-gray-200 dark:border-gray-700">
+                      <TableRow key={enrollment.id} className="border-neutral-200 dark:border-neutral-700">
                         <TableCell>
                           <div>
                             <p className="font-medium text-black dark:text-white">{enrollment.studentName}</p>
-                            <p className="text-xs text-gray-600 dark:text-gray-400">{enrollment.studentEmail}</p>
+                            <p className="text-xs text-neutral-600 dark:text-neutral-400">{enrollment.studentEmail}</p>
                           </div>
                         </TableCell>
-                        <TableCell className="text-gray-700 dark:text-gray-300">{enrollment.courseName}</TableCell>
-                        <TableCell className="font-medium text-gray-900 dark:text-white">
+                        <TableCell className="text-neutral-700 dark:text-neutral-300">{enrollment.courseName}</TableCell>
+                        <TableCell className="font-medium text-neutral-900 dark:text-white">
                           ${enrollment.amount} {enrollment.currency}
                         </TableCell>
-                        <TableCell className="text-gray-600 dark:text-gray-400 text-sm">
+                        <TableCell className="text-neutral-600 dark:text-neutral-400 text-sm">
                           {new Date(enrollment.enrolledAt).toLocaleDateString('es-ES')}
                         </TableCell>
                       </TableRow>
@@ -410,15 +410,15 @@ export function AdminDashboardClient() {
                   <Workflow className="w-5 h-5 text-blue-900 dark:text-blue-400" />
                   Automatizaciones n8n
                 </CardTitle>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-neutral-600 dark:text-neutral-400">
                   Gestiona workflows automatizados para emails, notificaciones y reportes.
                 </p>
               </CardHeader>
               <CardContent>
                 <div className="space-y-6">
-                  <div className="bg-gray-50 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                  <div className="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg p-6">
                     <h3 className="font-semibold text-black dark:text-white mb-2">Panel de Automatizaciones</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
                       Accede al panel de n8n para crear, editar y monitorear los workflows de automatización.
                     </p>
                     <a
@@ -433,29 +433,29 @@ export function AdminDashboardClient() {
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
+                    <div className="border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
                       <h4 className="font-medium text-black dark:text-white mb-1">Emails Automáticos</h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Bienvenida, certificados, recordatorios</p>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400">Bienvenida, certificados, recordatorios</p>
                     </div>
-                    <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
+                    <div className="border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
                       <h4 className="font-medium text-black dark:text-white mb-1">Notificaciones</h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Pagos, inscripciones, reviews</p>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400">Pagos, inscripciones, reviews</p>
                     </div>
-                    <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
+                    <div className="border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
                       <h4 className="font-medium text-black dark:text-white mb-1">Reportes</h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Diarios, semanales, mensuales</p>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400">Diarios, semanales, mensuales</p>
                     </div>
-                    <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
+                    <div className="border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
                       <h4 className="font-medium text-black dark:text-white mb-1">Integraciones</h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Stripe, SharePoint, OneDrive</p>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400">Stripe, SharePoint, OneDrive</p>
                     </div>
-                    <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
+                    <div className="border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
                       <h4 className="font-medium text-black dark:text-white mb-1">Backups</h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Respaldos automáticos semanales</p>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400">Respaldos automáticos semanales</p>
                     </div>
-                    <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
+                    <div className="border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
                       <h4 className="font-medium text-black dark:text-white mb-1">Alertas</h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Pagos fallidos, cursos inactivos</p>
+                      <p className="text-sm text-neutral-600 dark:text-neutral-400">Pagos fallidos, cursos inactivos</p>
                     </div>
                   </div>
                 </div>
@@ -483,8 +483,8 @@ function StatsCard({
     <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
       <CardContent className="p-6">
         <div className="flex items-center justify-between mb-4">
-          <p className="text-sm font-medium text-gray-600 dark:text-gray-400">{title}</p>
-          <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full">{icon}</div>
+          <p className="text-sm font-medium text-neutral-600 dark:text-neutral-400">{title}</p>
+          <div className="p-2 bg-neutral-100 dark:bg-neutral-700 rounded-full">{icon}</div>
         </div>
         <div className="flex items-end justify-between">
           <h3 className="text-2xl font-bold text-black dark:text-white">{value}</h3>

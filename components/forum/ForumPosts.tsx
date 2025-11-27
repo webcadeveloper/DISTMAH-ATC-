@@ -49,7 +49,7 @@ export function ForumPosts({ categoryId }: { categoryId: string }) {
         <ForumPostCard key={post.id} post={post} />
       ))}
       {posts.length === 0 && (
-        <div className="text-center py-12 text-gray-500">
+        <div className="text-center py-12 text-neutral-500">
           No hay discusiones aún. Sé el primero en crear una.
         </div>
       )}

@@ -65,17 +65,17 @@ export function OneDriveFileBrowser() {
       ) : (
         <div className="space-y-2">
           {files.map((file) => (
-            <div key={file.id} className="flex items-center justify-between p-3 hover:bg-gray-50 rounded border">
+            <div key={file.id} className="flex items-center justify-between p-3 hover:bg-neutral-50 rounded border">
               <div className="flex items-center gap-3">
                 {file.folder ? (
                   <Folder className="w-5 h-5 text-blue-500" />
                 ) : (
-                  <File className="w-5 h-5 text-gray-500" />
+                  <File className="w-5 h-5 text-neutral-500" />
                 )}
                 <div>
                   <span className="font-medium">{file.name}</span>
                   {file.size && (
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-neutral-500">
                       {(file.size / 1024 / 1024).toFixed(2)} MB
                     </p>
                   )}

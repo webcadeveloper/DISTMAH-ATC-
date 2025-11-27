@@ -96,13 +96,13 @@ export default function DashboardEstudianteExample() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-neutral-50">
       {/* Header */}
       <div className="bg-white border-b">
         <div className="container mx-auto px-4 py-6">
           <ScrollReveal direction="up">
-            <h1 className="text-3xl font-bold text-gray-900">Mi Dashboard</h1>
-            <p className="text-gray-600 mt-2">
+            <h1 className="text-3xl font-bold text-neutral-900">Mi Dashboard</h1>
+            <p className="text-neutral-600 mt-2">
               Bienvenido de nuevo, continúa tu aprendizaje
             </p>
           </ScrollReveal>
@@ -121,14 +121,14 @@ export default function DashboardEstudianteExample() {
                       <stat.icon className="w-6 h-6 text-white" />
                     </div>
                   </div>
-                  <div className="text-3xl font-bold text-gray-900 mb-1">
+                  <div className="text-3xl font-bold text-neutral-900 mb-1">
                     <AnimatedCounter
                       to={stat.value}
                       suffix={stat.suffix}
                       duration={2500}
                     />
                   </div>
-                  <p className="text-sm text-gray-600">{stat.label}</p>
+                  <p className="text-sm text-neutral-600">{stat.label}</p>
                 </CardContent>
               </Card>
             </ScrollReveal>
@@ -138,7 +138,7 @@ export default function DashboardEstudianteExample() {
         {/* Cursos en Progreso */}
         <ScrollReveal direction="up" delay={0.4}>
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl font-bold text-neutral-900 mb-6">
               Continúa donde lo dejaste
             </h2>
 
@@ -149,9 +149,9 @@ export default function DashboardEstudianteExample() {
                     <CardContent className="p-6">
                       <div className="flex flex-col md:flex-row gap-6">
                         {/* Course Image */}
-                        <div className="w-full md:w-48 h-32 bg-gray-200 rounded-lg flex-shrink-0">
+                        <div className="w-full md:w-48 h-32 bg-neutral-200 rounded-lg flex-shrink-0">
                           {/* Image placeholder */}
-                          <div className="w-full h-full flex items-center justify-center text-gray-400">
+                          <div className="w-full h-full flex items-center justify-center text-neutral-400">
                             <BookOpen className="w-12 h-12" />
                           </div>
                         </div>
@@ -160,10 +160,10 @@ export default function DashboardEstudianteExample() {
                         <div className="flex-grow">
                           <div className="flex items-start justify-between mb-3">
                             <div>
-                              <h3 className="text-lg font-bold text-gray-900 mb-1">
+                              <h3 className="text-lg font-bold text-neutral-900 mb-1">
                                 {course.title}
                               </h3>
-                              <p className="text-sm text-gray-600">
+                              <p className="text-sm text-neutral-600">
                                 Lección {course.completedLessons} de {course.totalLessons}:{' '}
                                 {course.nextLesson}
                               </p>
@@ -222,7 +222,7 @@ export default function DashboardEstudianteExample() {
         {/* Recommended Courses */}
         <ScrollReveal direction="up" delay={0.8}>
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl font-bold text-neutral-900 mb-6">
               Cursos Recomendados
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -230,11 +230,11 @@ export default function DashboardEstudianteExample() {
                 <ScrollReveal key={i} delay={0.9 + i * 0.1}>
                   <Card className="hover:shadow-lg transition-shadow">
                     <CardContent className="p-6">
-                      <div className="h-40 bg-gray-200 rounded-lg mb-4" />
-                      <h3 className="font-bold text-gray-900 mb-2">
+                      <div className="h-40 bg-neutral-200 rounded-lg mb-4" />
+                      <h3 className="font-bold text-neutral-900 mb-2">
                         Navisworks 2026 - Coordinación BIM
                       </h3>
-                      <p className="text-sm text-gray-600 mb-4">
+                      <p className="text-sm text-neutral-600 mb-4">
                         25 horas • Nivel Intermedio
                       </p>
                       <AnimatedButton size="sm" variant="outline" className="w-full">

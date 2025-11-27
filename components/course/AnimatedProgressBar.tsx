@@ -41,17 +41,17 @@ export function AnimatedProgressBar({
     <div className={cn('w-full', className)}>
       {showLabel && (
         <div className="flex justify-between items-center mb-2">
-          <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300">
             Progreso
           </span>
-          <span className="text-sm font-bold text-gray-900 dark:text-white">
+          <span className="text-sm font-bold text-neutral-900 dark:text-white">
             {clampedProgress.toFixed(0)}%
           </span>
         </div>
       )}
       <div
         className={cn(
-          'w-full bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden',
+          'w-full bg-neutral-200 dark:bg-neutral-700 rounded-full overflow-hidden',
           heightConfig[height]
         )}
       >

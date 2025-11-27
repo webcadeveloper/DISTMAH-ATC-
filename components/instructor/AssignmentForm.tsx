@@ -348,19 +348,19 @@ export default function AssignmentForm({
           className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition ${
             isDragActive
               ? 'border-blue-500 bg-blue-50'
-              : 'border-gray-300 hover:border-gray-400'
+              : 'border-neutral-300 hover:border-neutral-400'
           }`}
         >
           <input {...getInputProps()} />
-          <Upload className="mx-auto h-12 w-12 text-gray-400 mb-3" />
+          <Upload className="mx-auto h-12 w-12 text-neutral-400 mb-3" />
           {uploadingFile ? (
-            <p className="text-sm text-gray-600">Subiendo archivos...</p>
+            <p className="text-sm text-neutral-600">Subiendo archivos...</p>
           ) : (
             <>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-neutral-600">
                 Arrastra archivos aquí o haz clic para seleccionar
               </p>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-neutral-500 mt-1">
                 PDF, DOCX, ZIP, imágenes (máx. 100MB)
               </p>
             </>
@@ -372,13 +372,13 @@ export default function AssignmentForm({
             {uploadedFiles.map(file => (
               <div
                 key={file.id}
-                className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                className="flex items-center justify-between p-3 bg-neutral-50 rounded-lg"
               >
                 <div className="flex items-center gap-3">
                   <FileText className="w-5 h-5 text-blue-500" />
                   <div>
                     <p className="text-sm font-medium">{file.title}</p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-neutral-500">
                       {(file.size / 1024 / 1024).toFixed(2)} MB
                     </p>
                   </div>
@@ -419,7 +419,7 @@ export default function AssignmentForm({
         <button
           type="button"
           onClick={() => router.back()}
-          className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
+          className="px-6 py-2 border border-neutral-300 rounded-lg hover:bg-neutral-50"
         >
           Cancelar
         </button>

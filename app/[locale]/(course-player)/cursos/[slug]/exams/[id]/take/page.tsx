@@ -121,7 +121,7 @@ export default function TakeExamPage() {
           <CardContent className="pt-6 text-center">
             <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-4" />
             <h2 className="text-2xl font-bold mb-2">Examen no disponible</h2>
-            <p className="text-gray-600 mb-6">
+            <p className="text-neutral-600 mb-6">
               Este examen no está disponible o no tienes acceso a él
             </p>
             <Button onClick={() => router.push(`/cursos/${slug}`)}>
@@ -158,7 +158,7 @@ export default function TakeExamPage() {
         <div className="mb-6">
           <h1 className="text-3xl font-bold">{examData.exam.title}</h1>
           {examData.exam.description && (
-            <p className="text-gray-600 mt-2">{examData.exam.description}</p>
+            <p className="text-neutral-600 mt-2">{examData.exam.description}</p>
           )}
         </div>
         <ExamPlayer
@@ -178,7 +178,7 @@ export default function TakeExamPage() {
           <h1 className="text-3xl font-bold mb-4">{examData.exam.title}</h1>
 
           {examData.exam.description && (
-            <p className="text-gray-700 mb-6">{examData.exam.description}</p>
+            <p className="text-neutral-700 mb-6">{examData.exam.description}</p>
           )}
 
           {examData.exam.instructions && (
@@ -191,34 +191,34 @@ export default function TakeExamPage() {
           )}
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            <div className="p-4 bg-gray-50 rounded-lg">
+            <div className="p-4 bg-neutral-50 rounded-lg">
               <div className="flex items-center gap-2 mb-2">
-                <Clock className="w-5 h-5 text-gray-600" />
-                <p className="text-sm text-gray-600">Duración</p>
+                <Clock className="w-5 h-5 text-neutral-600" />
+                <p className="text-sm text-neutral-600">Duración</p>
               </div>
               <p className="text-xl font-bold">{examData.exam.duration} min</p>
             </div>
 
-            <div className="p-4 bg-gray-50 rounded-lg">
+            <div className="p-4 bg-neutral-50 rounded-lg">
               <div className="flex items-center gap-2 mb-2">
-                <CheckCircle className="w-5 h-5 text-gray-600" />
-                <p className="text-sm text-gray-600">Preguntas</p>
+                <CheckCircle className="w-5 h-5 text-neutral-600" />
+                <p className="text-sm text-neutral-600">Preguntas</p>
               </div>
               <p className="text-xl font-bold">{examData.exam.questions.length}</p>
             </div>
 
-            <div className="p-4 bg-gray-50 rounded-lg">
+            <div className="p-4 bg-neutral-50 rounded-lg">
               <div className="flex items-center gap-2 mb-2">
-                <AlertCircle className="w-5 h-5 text-gray-600" />
-                <p className="text-sm text-gray-600">Puntaje mínimo</p>
+                <AlertCircle className="w-5 h-5 text-neutral-600" />
+                <p className="text-sm text-neutral-600">Puntaje mínimo</p>
               </div>
               <p className="text-xl font-bold">{examData.exam.passingScore}%</p>
             </div>
 
-            <div className="p-4 bg-gray-50 rounded-lg">
+            <div className="p-4 bg-neutral-50 rounded-lg">
               <div className="flex items-center gap-2 mb-2">
-                <AlertCircle className="w-5 h-5 text-gray-600" />
-                <p className="text-sm text-gray-600">Intentos</p>
+                <AlertCircle className="w-5 h-5 text-neutral-600" />
+                <p className="text-sm text-neutral-600">Intentos</p>
               </div>
               <p className="text-xl font-bold">
                 {examData.attemptsUsed} / {examData.exam.maxAttempts}
@@ -257,7 +257,7 @@ export default function TakeExamPage() {
 
             <Button
               onClick={handleStartExam}
-              className="w-full bg-black text-white hover:bg-gray-800 py-6 text-lg"
+              className="w-full bg-black text-white hover:bg-neutral-800 py-6 text-lg"
             >
               Comenzar Examen
             </Button>

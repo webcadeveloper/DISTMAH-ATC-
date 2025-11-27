@@ -40,7 +40,7 @@ export const LazyVideoPlayer = dynamic(
   () => import('@/components/lesson-player/VideoPlayer'),
   {
     loading: () => (
-      <div className="w-full aspect-video bg-gray-900 rounded-lg flex items-center justify-center">
+      <div className="w-full aspect-video bg-neutral-900 rounded-lg flex items-center justify-center">
         <div className="text-white text-center">
           <Skeleton className="h-16 w-16 mx-auto mb-4 rounded-full" />
           <p>Cargando reproductor...</p>
@@ -58,7 +58,7 @@ export const LazyMarkdownEditor = dynamic(
     })),
   {
     loading: () => (
-      <div className="border border-gray-300 rounded-lg p-4">
+      <div className="border border-neutral-300 rounded-lg p-4">
         <Skeleton className="h-10 w-full mb-4" />
         <Skeleton className="h-64 w-full" />
       </div>
@@ -74,7 +74,7 @@ export const LazyTipTapEditor = dynamic(
     })),
   {
     loading: () => (
-      <div className="border border-gray-300 rounded-lg p-4">
+      <div className="border border-neutral-300 rounded-lg p-4">
         <div className="flex gap-2 mb-4">
           {[1, 2, 3, 4, 5, 6].map((i) => (
             <Skeleton key={i} className="h-8 w-8" />
@@ -97,7 +97,7 @@ export const LazyExamPlayer = dynamic(
       <div className="space-y-6">
         <Skeleton className="h-12 w-3/4" />
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="border border-gray-300 rounded-lg p-6">
+          <div key={i} className="border border-neutral-300 rounded-lg p-6">
             <Skeleton className="h-6 w-full mb-4" />
             <div className="space-y-2">
               {[1, 2, 3, 4].map((j) => (
@@ -119,7 +119,7 @@ export const LazyCertificatePDF = dynamic(
     })),
   {
     loading: () => (
-      <div className="border border-gray-300 rounded-lg p-8 bg-white">
+      <div className="border border-neutral-300 rounded-lg p-8 bg-white">
         <Skeleton className="h-8 w-48 mb-4 mx-auto" />
         <Skeleton className="h-64 w-full" />
       </div>
@@ -148,7 +148,7 @@ export const LazyCalendar = dynamic(
   () => import('@/components/ui/calendar').then((mod) => ({ default: mod.Calendar })),
   {
     loading: () => (
-      <div className="border border-gray-300 rounded-lg p-4">
+      <div className="border border-neutral-300 rounded-lg p-4">
         <Skeleton className="h-6 w-32 mb-4 mx-auto" />
         <div className="grid grid-cols-7 gap-2">
           {Array.from({ length: 35 }).map((_, i) => (

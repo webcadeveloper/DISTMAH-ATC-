@@ -41,7 +41,7 @@ export function ForumCategories({ courseId }: { courseId: string }) {
         <ForumCategoryCard key={cat.id} category={cat} />
       ))}
       {categories.length === 0 && (
-        <div className="text-center py-12 text-gray-500">
+        <div className="text-center py-12 text-neutral-500">
           No hay categorías de foro aún.
         </div>
       )}

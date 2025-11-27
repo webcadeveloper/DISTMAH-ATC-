@@ -35,7 +35,7 @@ export default async function ExamenesPage({
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">Exámenes</h1>
-          <p className="text-gray-500 mt-1">
+          <p className="text-neutral-500 mt-1">
             Gestiona los exámenes de tu curso
           </p>
         </div>
@@ -50,9 +50,9 @@ export default async function ExamenesPage({
       {exams.length === 0 ? (
         <Card>
           <CardContent className="flex flex-col items-center justify-center py-12">
-            <FileText className="w-16 h-16 text-gray-300 mb-4" />
+            <FileText className="w-16 h-16 text-neutral-300 mb-4" />
             <h3 className="text-xl font-semibold mb-2">No hay exámenes aún</h3>
-            <p className="text-gray-500 mb-6 text-center max-w-md">
+            <p className="text-neutral-500 mb-6 text-center max-w-md">
               Crea tu primer examen para evaluar el conocimiento de tus estudiantes
             </p>
             <Link href={`/instructor/cursos/${cursoId}/examenes/nuevo`}>
@@ -72,7 +72,7 @@ export default async function ExamenesPage({
                   <div className="flex-1">
                     <CardTitle className="text-xl mb-2">{exam.title}</CardTitle>
                     {exam.description && (
-                      <p className="text-gray-600 text-sm">{exam.description}</p>
+                      <p className="text-neutral-600 text-sm">{exam.description}</p>
                     )}
                   </div>
                   <Link href={`/instructor/cursos/${cursoId}/examenes/${exam.id}`}>
@@ -85,30 +85,30 @@ export default async function ExamenesPage({
               <CardContent>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                   <div className="flex items-center gap-2">
-                    <FileText className="w-4 h-4 text-gray-500" />
+                    <FileText className="w-4 h-4 text-neutral-500" />
                     <div>
-                      <p className="text-sm text-gray-500">Preguntas</p>
+                      <p className="text-sm text-neutral-500">Preguntas</p>
                       <p className="font-semibold">{exam.questions?.length || 0}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Users className="w-4 h-4 text-gray-500" />
+                    <Users className="w-4 h-4 text-neutral-500" />
                     <div>
-                      <p className="text-sm text-gray-500">Intentos</p>
+                      <p className="text-sm text-neutral-500">Intentos</p>
                       <p className="font-semibold">{exam._count?.attempts || 0}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Clock className="w-4 h-4 text-gray-500" />
+                    <Clock className="w-4 h-4 text-neutral-500" />
                     <div>
-                      <p className="text-sm text-gray-500">Duración</p>
+                      <p className="text-sm text-neutral-500">Duración</p>
                       <p className="font-semibold">{exam.duration} min</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-gray-500" />
+                    <Calendar className="w-4 h-4 text-neutral-500" />
                     <div>
-                      <p className="text-sm text-gray-500">Puntaje mínimo</p>
+                      <p className="text-sm text-neutral-500">Puntaje mínimo</p>
                       <p className="font-semibold">{exam.passingScore}%</p>
                     </div>
                   </div>

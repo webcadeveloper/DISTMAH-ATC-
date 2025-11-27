@@ -144,8 +144,8 @@ export default function CourseSchedulePage() {
   if (loading) {
     return (
       <div className="p-8 max-w-4xl mx-auto text-center">
-        <Loader2 className="w-8 h-8 animate-spin mx-auto text-gray-400" />
-        <p className="mt-2 text-gray-500">Cargando...</p>
+        <Loader2 className="w-8 h-8 animate-spin mx-auto text-neutral-400" />
+        <p className="mt-2 text-neutral-500">Cargando...</p>
       </div>
     );
   }
@@ -154,7 +154,7 @@ export default function CourseSchedulePage() {
     return (
       <div className="p-8 max-w-4xl mx-auto">
         <div className="text-center py-16">
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">Curso no encontrado</h2>
+          <h2 className="text-xl font-semibold text-neutral-900 mb-2">Curso no encontrado</h2>
           <Link href={`/${locale}/instructor/cursos`}>
             <Button variant="outline">Volver a Mis Cursos</Button>
           </Link>
@@ -168,12 +168,12 @@ export default function CourseSchedulePage() {
       <div className="mb-8">
         <Link
           href={`/${locale}/instructor/cursos`}
-          className="text-sm text-gray-500 hover:text-gray-900 flex items-center gap-1 mb-4"
+          className="text-sm text-neutral-500 hover:text-neutral-900 flex items-center gap-1 mb-4"
         >
           <ArrowLeft className="w-4 h-4" /> Volver a mis cursos
         </Link>
-        <h1 className="text-3xl font-bold text-gray-900">Horarios de Clases en Vivo</h1>
-        <p className="text-gray-500 mt-1">{course.title}</p>
+        <h1 className="text-3xl font-bold text-neutral-900">Horarios de Clases en Vivo</h1>
+        <p className="text-neutral-500 mt-1">{course.title}</p>
       </div>
 
       <div className="space-y-6">
@@ -194,12 +194,12 @@ export default function CourseSchedulePage() {
                   className={`p-4 rounded-lg border-2 text-left transition-all ${
                     formData.shift === shift.value
                       ? 'border-blue-900 bg-blue-50'
-                      : 'border-gray-200 hover:border-gray-300'
+                      : 'border-neutral-200 hover:border-neutral-300'
                   }`}
                 >
                   <span className="text-2xl mb-2 block">{shift.icon}</span>
-                  <p className="font-semibold text-gray-900">{shift.label}</p>
-                  <p className="text-sm text-gray-500">{shift.time}</p>
+                  <p className="font-semibold text-neutral-900">{shift.label}</p>
+                  <p className="text-sm text-neutral-500">{shift.time}</p>
                 </button>
               ))}
             </div>
@@ -223,14 +223,14 @@ export default function CourseSchedulePage() {
                   className={`px-4 py-3 rounded-lg border-2 font-medium transition-all ${
                     formData.daysOfWeek.includes(day.value)
                       ? 'border-blue-900 bg-blue-900 text-white'
-                      : 'border-gray-200 text-gray-700 hover:border-gray-300'
+                      : 'border-neutral-200 text-neutral-700 hover:border-neutral-300'
                   }`}
                 >
                   {day.label}
                 </button>
               ))}
             </div>
-            <p className="text-sm text-gray-500 mt-4">
+            <p className="text-sm text-neutral-500 mt-4">
               Seleccionados:{' '}
               {formData.daysOfWeek.length > 0
                 ? formData.daysOfWeek.map((d) => DAYS.find((day) => day.value === d)?.label).join(', ')
@@ -247,7 +247,7 @@ export default function CourseSchedulePage() {
           <CardContent>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-neutral-700 mb-1">
                   Fecha de Inicio
                 </label>
                 <Input
@@ -257,7 +257,7 @@ export default function CourseSchedulePage() {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-neutral-700 mb-1">
                   Fecha de Fin
                 </label>
                 <Input
@@ -282,17 +282,17 @@ export default function CourseSchedulePage() {
           <CardContent>
             <div className="space-y-4">
               <div className="p-3 bg-white rounded-lg border border-blue-200">
-                <p className="text-sm text-gray-700 mb-2">
+                <p className="text-sm text-neutral-700 mb-2">
                   <strong>Owncast</strong> permite transmitir video en vivo que los estudiantes pueden ver embebido en DISTMAH.
                 </p>
-                <ol className="text-xs text-gray-600 list-decimal list-inside space-y-1">
+                <ol className="text-xs text-neutral-600 list-decimal list-inside space-y-1">
                   <li>Configura tu servidor Owncast (ej: stream.distmah.com)</li>
                   <li>En OBS, configura Stream hacia tu servidor Owncast (RTMP)</li>
                   <li>Pega la URL del embed aquí abajo</li>
                 </ol>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-neutral-700 mb-1">
                   URL de Owncast Embed
                 </label>
                 <Input
@@ -301,7 +301,7 @@ export default function CourseSchedulePage() {
                   onChange={(e) => setFormData({ ...formData, streamUrl: e.target.value })}
                   placeholder="https://stream.distmah.com/embed/video"
                 />
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-neutral-500 mt-1">
                   Ejemplo: https://tu-servidor-owncast.com/embed/video
                 </p>
               </div>
@@ -330,14 +330,14 @@ export default function CourseSchedulePage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <div className="p-3 bg-gray-50 rounded-lg">
-                <p className="text-sm text-gray-600">
+              <div className="p-3 bg-neutral-50 rounded-lg">
+                <p className="text-sm text-neutral-600">
                   Usa Teams para que los estudiantes puedan hacer preguntas y participar en la clase.
                   El video principal se transmite por Owncast.
                 </p>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-neutral-700 mb-1">
                   URL de la reunión de Teams
                 </label>
                 <Input
@@ -346,7 +346,7 @@ export default function CourseSchedulePage() {
                   onChange={(e) => setFormData({ ...formData, teamsUrl: e.target.value })}
                   placeholder="https://teams.microsoft.com/l/meetup-join/..."
                 />
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-neutral-500 mt-1">
                   Crea una reunión recurrente en Teams y pega el link aquí
                 </p>
               </div>

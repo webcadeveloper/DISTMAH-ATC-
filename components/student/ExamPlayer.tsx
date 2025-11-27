@@ -138,7 +138,7 @@ export function ExamPlayer({
           <div className="flex items-center gap-4">
             <div
               className={`flex items-center gap-2 px-4 py-2 rounded ${
-                timeRemaining < 300 ? 'bg-red-100 text-red-700' : 'bg-gray-100'
+                timeRemaining < 300 ? 'bg-red-100 text-red-700' : 'bg-neutral-100'
               }`}
             >
               <Clock className="w-5 h-5" />
@@ -146,14 +146,14 @@ export function ExamPlayer({
                 {formatTime(timeRemaining)}
               </span>
             </div>
-            <div className="text-sm text-gray-600">
+            <div className="text-sm text-neutral-600">
               Pregunta {currentQuestion + 1} de {questions.length}
             </div>
           </div>
           <Button
             onClick={handleSubmit}
             disabled={isSubmitting}
-            className="bg-black text-white hover:bg-gray-800"
+            className="bg-black text-white hover:bg-neutral-800"
           >
             <Send className="w-4 h-4 mr-2" />
             {isSubmitting ? 'Enviando...' : 'Enviar Examen'}
@@ -161,7 +161,7 @@ export function ExamPlayer({
         </div>
 
         <div className="space-y-2">
-          <div className="flex justify-between text-sm text-gray-600">
+          <div className="flex justify-between text-sm text-neutral-600">
             <span>Progreso</span>
             <span>
               {getAnsweredCount()} / {questions.length} respondidas
@@ -176,7 +176,7 @@ export function ExamPlayer({
           <div className="flex items-start justify-between">
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-2">
-                <CardTitle className="text-sm font-medium text-gray-500">
+                <CardTitle className="text-sm font-medium text-neutral-500">
                   Pregunta {currentQuestion + 1}
                 </CardTitle>
                 {answers[question.id] !== undefined && (
@@ -185,7 +185,7 @@ export function ExamPlayer({
                 {flagged.has(question.id) && <Flag className="w-4 h-4 text-red-500" />}
               </div>
               <p className="text-lg font-medium">{question.question}</p>
-              <p className="text-sm text-gray-500 mt-1">{question.points} puntos</p>
+              <p className="text-sm text-neutral-500 mt-1">{question.points} puntos</p>
             </div>
             <Button
               variant="ghost"
@@ -203,8 +203,8 @@ export function ExamPlayer({
               {question.options?.map((option: any, index: number) => (
                 <div
                   key={index}
-                  className={`flex items-center gap-3 p-4 border rounded cursor-pointer hover:bg-gray-50 ${
-                    answers[question.id] === index ? 'border-black bg-gray-50' : ''
+                  className={`flex items-center gap-3 p-4 border rounded cursor-pointer hover:bg-neutral-50 ${
+                    answers[question.id] === index ? 'border-black bg-neutral-50' : ''
                   }`}
                   onClick={() => handleAnswerChange(question.id, index)}
                 >
@@ -224,8 +224,8 @@ export function ExamPlayer({
           {question.type === 'TRUE_FALSE' && (
             <div className="space-y-3">
               <div
-                className={`flex items-center gap-3 p-4 border rounded cursor-pointer hover:bg-gray-50 ${
-                  answers[question.id] === 'true' ? 'border-black bg-gray-50' : ''
+                className={`flex items-center gap-3 p-4 border rounded cursor-pointer hover:bg-neutral-50 ${
+                  answers[question.id] === 'true' ? 'border-black bg-neutral-50' : ''
                 }`}
                 onClick={() => handleAnswerChange(question.id, 'true')}
               >
@@ -239,8 +239,8 @@ export function ExamPlayer({
                 <span>Verdadero</span>
               </div>
               <div
-                className={`flex items-center gap-3 p-4 border rounded cursor-pointer hover:bg-gray-50 ${
-                  answers[question.id] === 'false' ? 'border-black bg-gray-50' : ''
+                className={`flex items-center gap-3 p-4 border rounded cursor-pointer hover:bg-neutral-50 ${
+                  answers[question.id] === 'false' ? 'border-black bg-neutral-50' : ''
                 }`}
                 onClick={() => handleAnswerChange(question.id, 'false')}
               >
@@ -278,7 +278,7 @@ export function ExamPlayer({
           {question.type === 'FILE_UPLOAD' && (
             <div className="border-2 border-dashed rounded-lg p-8 text-center">
               <Input type="file" className="max-w-md mx-auto" />
-              <p className="text-sm text-gray-500 mt-2">
+              <p className="text-sm text-neutral-500 mt-2">
                 Sube tu archivo (PDF, DWG, RVT, etc.)
               </p>
             </div>
@@ -307,7 +307,7 @@ export function ExamPlayer({
                   ? 'bg-green-100 border-green-500 text-green-700'
                   : flagged.has(q.id)
                   ? 'bg-red-100 border-red-500 text-red-700'
-                  : 'bg-white border-gray-300'
+                  : 'bg-white border-neutral-300'
               }`}
             >
               {index + 1}

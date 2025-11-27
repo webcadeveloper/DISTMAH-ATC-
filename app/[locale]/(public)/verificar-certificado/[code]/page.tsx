@@ -32,7 +32,7 @@ export default async function VerificarCertificadoPage({
 
   if (!data || !data.valid) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12">
+      <div className="min-h-screen bg-neutral-50 py-12">
         <div className="max-w-2xl mx-auto px-4">
           <Card className="border-red-500">
             <CardContent className="pt-6">
@@ -43,10 +43,10 @@ export default async function VerificarCertificadoPage({
                 <h1 className="text-3xl font-bold text-red-700 mb-4">
                   Certificado No Válido
                 </h1>
-                <p className="text-gray-600 mb-4">
+                <p className="text-neutral-600 mb-4">
                   No se encontró ningún certificado con el código de verificación proporcionado.
                 </p>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-neutral-500">
                   Código: <span className="font-mono">{code.slice(0, 8).toUpperCase()}</span>
                 </p>
               </div>
@@ -60,11 +60,11 @@ export default async function VerificarCertificadoPage({
   const { certificate } = data;
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-neutral-50 py-12">
       <div className="max-w-4xl mx-auto px-4">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold mb-2">Verificación de Certificado</h1>
-          <p className="text-gray-600">DISTMAH - Authorized Training Center</p>
+          <p className="text-neutral-600">DISTMAH - Authorized Training Center</p>
         </div>
 
         <Card className="border-green-500 mb-8">
@@ -83,7 +83,7 @@ export default async function VerificarCertificadoPage({
 
             <div className="border-t border-b py-6 my-6">
               <div className="flex items-center justify-center gap-2 mb-4">
-                <Award className="w-8 h-8 text-gray-700" />
+                <Award className="w-8 h-8 text-neutral-700" />
                 <h3 className="text-2xl font-bold">
                   Certificado: {certificate.certificateNumber}
                 </h3>
@@ -91,34 +91,34 @@ export default async function VerificarCertificadoPage({
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-neutral-50 p-6 rounded-lg">
                 <div className="flex items-center gap-3 mb-3">
-                  <User className="w-5 h-5 text-gray-600" />
-                  <h4 className="font-semibold text-gray-700">Estudiante</h4>
+                  <User className="w-5 h-5 text-neutral-600" />
+                  <h4 className="font-semibold text-neutral-700">Estudiante</h4>
                 </div>
                 <p className="text-xl font-bold">{certificate.studentName}</p>
               </div>
 
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-neutral-50 p-6 rounded-lg">
                 <div className="flex items-center gap-3 mb-3">
-                  <BookOpen className="w-5 h-5 text-gray-600" />
-                  <h4 className="font-semibold text-gray-700">Curso</h4>
+                  <BookOpen className="w-5 h-5 text-neutral-600" />
+                  <h4 className="font-semibold text-neutral-700">Curso</h4>
                 </div>
                 <p className="text-xl font-bold">{certificate.courseName}</p>
               </div>
 
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-neutral-50 p-6 rounded-lg">
                 <div className="flex items-center gap-3 mb-3">
-                  <User className="w-5 h-5 text-gray-600" />
-                  <h4 className="font-semibold text-gray-700">Instructor</h4>
+                  <User className="w-5 h-5 text-neutral-600" />
+                  <h4 className="font-semibold text-neutral-700">Instructor</h4>
                 </div>
                 <p className="text-xl font-bold">{certificate.instructorName}</p>
               </div>
 
-              <div className="bg-gray-50 p-6 rounded-lg">
+              <div className="bg-neutral-50 p-6 rounded-lg">
                 <div className="flex items-center gap-3 mb-3">
-                  <Calendar className="w-5 h-5 text-gray-600" />
-                  <h4 className="font-semibold text-gray-700">Fecha de Completación</h4>
+                  <Calendar className="w-5 h-5 text-neutral-600" />
+                  <h4 className="font-semibold text-neutral-700">Fecha de Completación</h4>
                 </div>
                 <p className="text-xl font-bold">
                   {format(new Date(certificate.completionDate), 'dd/MM/yyyy')}
@@ -131,7 +131,7 @@ export default async function VerificarCertificadoPage({
                 <span className="px-4 py-2 bg-black text-white rounded-full text-sm font-semibold">
                   {certificate.category}
                 </span>
-                <span className="px-4 py-2 bg-gray-200 text-gray-800 rounded-full text-sm font-semibold">
+                <span className="px-4 py-2 bg-neutral-200 text-neutral-800 rounded-full text-sm font-semibold">
                   Nivel: {certificate.level}
                 </span>
               </div>
@@ -144,15 +144,15 @@ export default async function VerificarCertificadoPage({
             <CardTitle>Sobre DISTMAH ATC</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-gray-700 mb-4">
+            <p className="text-neutral-700 mb-4">
               DISTMAH es un <strong>Authorized Training Center (ATC)</strong> oficial de Autodesk,
               autorizado para ofrecer capacitación certificada en software Autodesk.
             </p>
-            <p className="text-gray-700 mb-4">
+            <p className="text-neutral-700 mb-4">
               Todos los certificados emitidos por DISTMAH ATC cuentan con un código de
               verificación único que puede ser validado en línea para confirmar su autenticidad.
             </p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-neutral-500">
               Código de verificación: <span className="font-mono">{code.slice(0, 16).toUpperCase()}</span>
             </p>
           </CardContent>

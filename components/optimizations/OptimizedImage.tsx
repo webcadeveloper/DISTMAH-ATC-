@@ -38,7 +38,7 @@ export function OptimizedImage({
     return (
       <div
         className={cn(
-          'flex items-center justify-center bg-gray-100 text-gray-400',
+          'flex items-center justify-center bg-neutral-100 text-neutral-400',
           className
         )}
         style={

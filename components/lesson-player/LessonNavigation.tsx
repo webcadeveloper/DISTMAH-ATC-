@@ -43,11 +43,11 @@ export default function LessonNavigation({
       {previousLesson ? (
         <Link
           href={`/cursos/${courseSlug}/${moduleId}/${previousLesson.slug}`}
-          className="flex items-center gap-3 px-6 py-4 bg-white border-2 border-gray-300 rounded-lg hover:border-blue-600 hover:bg-gray-50 transition-all group flex-1 max-w-md"
+          className="flex items-center gap-3 px-6 py-4 bg-white border-2 border-neutral-300 rounded-lg hover:border-blue-600 hover:bg-neutral-50 transition-all group flex-1 max-w-md"
         >
           <div className="flex-shrink-0">
             <svg
-              className="w-6 h-6 text-gray-400 group-hover:text-blue-600 transition-colors"
+              className="w-6 h-6 text-neutral-400 group-hover:text-blue-600 transition-colors"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -56,14 +56,14 @@ export default function LessonNavigation({
             </svg>
           </div>
           <div className="text-left min-w-0">
-            <div className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-1">
+            <div className="text-xs text-neutral-500 font-medium uppercase tracking-wide mb-1">
               Lección Anterior
             </div>
-            <div className="font-semibold text-gray-900 truncate group-hover:text-blue-600 transition-colors">
+            <div className="font-semibold text-neutral-900 truncate group-hover:text-blue-600 transition-colors">
               {previousLesson.title}
             </div>
             {previousLesson.duration && (
-              <div className="text-xs text-gray-500 mt-1">
+              <div className="text-xs text-neutral-500 mt-1">
                 {previousLesson.duration} min
               </div>
             )}

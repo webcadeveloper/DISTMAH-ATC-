@@ -9,15 +9,15 @@ export default function TerminosPage() {
   return (
     <div className="min-h-screen bg-white py-12">
       <div className="container mx-auto px-4 max-w-4xl">
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">Términos y Condiciones</h1>
+        <h1 className="text-4xl font-bold text-neutral-900 mb-8">Términos y Condiciones</h1>
 
-        <div className="prose prose-lg max-w-none text-gray-700">
-          <p className="text-gray-600 mb-6">
+        <div className="prose prose-lg max-w-none text-neutral-700">
+          <p className="text-neutral-600 mb-6">
             Última actualización: 24 de noviembre de 2025
           </p>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Aceptación de los Términos</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">1. Aceptación de los Términos</h2>
             <p>
               Al acceder y utilizar la plataforma DISTMAH ATC (en adelante, "la Plataforma"),
               usted acepta estar sujeto a estos Términos y Condiciones. Si no está de acuerdo
@@ -31,7 +31,7 @@ export default function TerminosPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Descripción del Servicio</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">2. Descripción del Servicio</h2>
             <p>
               DISTMAH ATC es un Centro de Entrenamiento Autorizado (ATC) de Autodesk que
               proporciona cursos en línea profesionales de software de Autodesk, incluyendo
@@ -59,7 +59,7 @@ export default function TerminosPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Registro y Cuenta de Usuario</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">3. Registro y Cuenta de Usuario</h2>
             <p>
               Para acceder a los cursos, debe crear una cuenta proporcionando información
               precisa, actual y completa. La información requerida incluye:
@@ -86,7 +86,7 @@ export default function TerminosPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Pagos y Reembolsos</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">4. Pagos y Reembolsos</h2>
             <p>
               Los precios de los cursos están expresados en dólares estadounidenses (USD)
               y bolívares venezolanos (VEF). Los precios pueden variar según:
@@ -123,7 +123,7 @@ export default function TerminosPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Propiedad Intelectual</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">5. Propiedad Intelectual</h2>
             <p>
               Todo el contenido de la Plataforma, incluyendo pero no limitado a textos,
               gráficos, videos, ejercicios, archivos descargables, y materiales educativos,
@@ -160,7 +160,7 @@ export default function TerminosPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Certificación</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">6. Certificación</h2>
             <p>
               Los certificados de finalización se emiten exclusivamente al completar
               exitosamente un curso, cumpliendo con los siguientes requisitos:
@@ -188,7 +188,7 @@ export default function TerminosPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Conducta del Usuario</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">7. Conducta del Usuario</h2>
             <p>
               Al utilizar la Plataforma, usted se compromete a mantener una conducta
               profesional y respetuosa. Está PROHIBIDO:
@@ -211,7 +211,7 @@ export default function TerminosPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Acceso y Disponibilidad</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">8. Acceso y Disponibilidad</h2>
             <p>
               DISTMAH ATC se esfuerza por mantener la Plataforma disponible 24/7, sin embargo:
             </p>
@@ -224,7 +224,7 @@ export default function TerminosPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">9. Limitación de Responsabilidad</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">9. Limitación de Responsabilidad</h2>
             <p>
               DISTMAH ATC proporciona la Plataforma "tal cual" y "según disponibilidad".
               En la máxima medida permitida por la ley:
@@ -248,7 +248,7 @@ export default function TerminosPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">10. Privacidad y Protección de Datos</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">10. Privacidad y Protección de Datos</h2>
             <p>
               El uso de datos personales está regido por nuestra Política de Privacidad.
               Al usar la Plataforma, usted consiente la recopilación y uso de información
@@ -261,7 +261,7 @@ export default function TerminosPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">11. Modificaciones de los Términos</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">11. Modificaciones de los Términos</h2>
             <p>
               DISTMAH ATC se reserva el derecho de modificar estos Términos y Condiciones
               en cualquier momento. Los cambios significativos serán notificados mediante:
@@ -278,7 +278,7 @@ export default function TerminosPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">12. Rescisión</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">12. Rescisión</h2>
             <p>
               DISTMAH ATC puede rescindir o suspender su acceso inmediatamente, sin previo
               aviso, por cualquier motivo, incluyendo pero no limitándose a:
@@ -292,7 +292,7 @@ export default function TerminosPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">13. Ley Aplicable y Jurisdicción</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">13. Ley Aplicable y Jurisdicción</h2>
             <p>
               Estos Términos y Condiciones se rigen e interpretan de acuerdo con las leyes
               de la República Bolivariana de Venezuela, sin dar efecto a ningún principio
@@ -305,7 +305,7 @@ export default function TerminosPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">14. Disposiciones Generales</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">14. Disposiciones Generales</h2>
             <p>
               <strong>Divisibilidad:</strong> Si alguna disposición de estos términos es
               declarada inválida, las demás disposiciones permanecerán en pleno vigor.
@@ -321,12 +321,12 @@ export default function TerminosPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">15. Contacto</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">15. Contacto</h2>
             <p>
               Para preguntas, comentarios o inquietudes sobre estos Términos y Condiciones,
               contáctenos en:
             </p>
-            <div className="mt-4 p-4 bg-gray-100 rounded-lg">
+            <div className="mt-4 p-4 bg-neutral-100 rounded-lg">
               <p><strong>DISTMAH ATC</strong></p>
               <p>Email: soporte@distmah.com.ve</p>
               <p>Sitio web: https://distmah-atc.com</p>
@@ -335,7 +335,7 @@ export default function TerminosPage() {
           </section>
 
           <section className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-600 rounded">
-            <p className="font-bold text-gray-900">
+            <p className="font-bold text-neutral-900">
               Al hacer clic en "Aceptar" durante el registro, usted reconoce que ha leído,
               entendido y acepta estar sujeto a estos Términos y Condiciones.
             </p>

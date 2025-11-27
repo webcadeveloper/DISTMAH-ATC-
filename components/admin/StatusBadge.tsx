@@ -13,11 +13,11 @@ export function StatusBadge({ status }: StatusBadgeProps) {
       label: 'Activo',
     },
     inactive: {
-      className: 'bg-gray-100 text-gray-800 hover:bg-gray-100',
+      className: 'bg-neutral-100 text-neutral-800 hover:bg-neutral-100',
       label: 'Inactivo',
     },
     DRAFT: {
-      className: 'bg-gray-100 text-gray-800 hover:bg-gray-100',
+      className: 'bg-neutral-100 text-neutral-800 hover:bg-neutral-100',
       label: 'Borrador',
     },
     PUBLISHED: {
@@ -45,7 +45,7 @@ export function StatusBadge({ status }: StatusBadgeProps) {
       label: 'Expirado',
     },
     CANCELLED: {
-      className: 'bg-gray-100 text-gray-800 hover:bg-gray-100',
+      className: 'bg-neutral-100 text-neutral-800 hover:bg-neutral-100',
       label: 'Cancelado',
     },
   };

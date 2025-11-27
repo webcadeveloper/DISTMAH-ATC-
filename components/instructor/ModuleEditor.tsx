@@ -210,7 +210,7 @@ export function ModuleEditor({
           <CardContent>
             <ul className="space-y-2">
               {moduleData.lecciones.map((leccion) => (
-                <li key={leccion} className="flex items-center justify-between p-2 bg-gray-50 rounded">
+                <li key={leccion} className="flex items-center justify-between p-2 bg-neutral-50 rounded">
                   <span>{leccion}</span>
                 </li>
               ))}

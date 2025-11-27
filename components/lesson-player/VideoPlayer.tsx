@@ -68,10 +68,10 @@ export default function VideoPlayer({ videoUrl, lessonTitle }: VideoPlayerProps)
 
   if (!videoData) {
     return (
-      <div className="w-full bg-gray-100 rounded-lg p-8 text-center">
-        <div className="text-gray-600">
+      <div className="w-full bg-neutral-100 rounded-lg p-8 text-center">
+        <div className="text-neutral-600">
           <svg
-            className="w-12 h-12 mx-auto mb-4 text-gray-400"
+            className="w-12 h-12 mx-auto mb-4 text-neutral-400"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

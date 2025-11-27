@@ -39,7 +39,7 @@ export default async function EditAssignmentPage({ params }: PageProps) {
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="text-center">
-          <p className="text-gray-600">Tarea no encontrada</p>
+          <p className="text-neutral-600">Tarea no encontrada</p>
         </div>
       </div>
     );

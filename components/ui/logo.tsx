@@ -128,7 +128,7 @@ export function Logo({ size = 'md', className, variant = 'full' }: LogoProps) {
           DISTMAH
         </span>
         <span
-          className="text-xs font-medium text-gray-600 leading-none mt-1"
+          className="text-xs font-medium text-neutral-600 leading-none mt-1"
           style={{ letterSpacing: '0.1em' }}
         >
           AUTODESK TRAINING

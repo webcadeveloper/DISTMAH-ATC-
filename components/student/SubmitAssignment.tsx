@@ -183,7 +183,7 @@ export default function SubmitAssignment({ assignmentId, userId, courseSlug }: S
   if (!assignment) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-600">Tarea no encontrada</p>
+        <p className="text-neutral-600">Tarea no encontrada</p>
       </div>
     );
   }
@@ -196,23 +196,23 @@ export default function SubmitAssignment({ assignmentId, userId, courseSlug }: S
       <div>
         <button
           onClick={() => router.back()}
-          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center gap-2 text-neutral-600 hover:text-neutral-900 mb-4"
         >
           <ArrowLeft className="w-4 h-4" />
           Volver
         </button>
 
         <h1 className="text-3xl font-bold mb-2">{assignment.title}</h1>
-        <p className="text-gray-600">{assignment.description}</p>
+        <p className="text-neutral-600">{assignment.description}</p>
       </div>
 
       {/* Información */}
       <div className="bg-white border rounded-lg p-6">
         <div className="grid md:grid-cols-2 gap-4">
           <div className="flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-gray-500" />
+            <Calendar className="w-5 h-5 text-neutral-500" />
             <div>
-              <p className="text-sm text-gray-600">Fecha de entrega</p>
+              <p className="text-sm text-neutral-600">Fecha de entrega</p>
               <p className="font-medium">
                 {format(new Date(assignment.dueDate), "d 'de' MMMM, yyyy 'a las' HH:mm", { locale: es })}
               </p>
@@ -220,9 +220,9 @@ export default function SubmitAssignment({ assignmentId, userId, courseSlug }: S
           </div>
 
           <div className="flex items-center gap-2">
-            <FileText className="w-5 h-5 text-gray-500" />
+            <FileText className="w-5 h-5 text-neutral-500" />
             <div>
-              <p className="text-sm text-gray-600">Puntaje máximo</p>
+              <p className="text-sm text-neutral-600">Puntaje máximo</p>
               <p className="font-medium">{assignment.maxScore} puntos</p>
             </div>
           </div>
@@ -255,13 +255,13 @@ export default function SubmitAssignment({ assignmentId, userId, courseSlug }: S
             {assignment.attachments.map((file: any, idx: number) => (
               <div
                 key={idx}
-                className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                className="flex items-center justify-between p-3 bg-neutral-50 rounded-lg"
               >
                 <div className="flex items-center gap-3">
                   <FileText className="w-5 h-5 text-blue-500" />
                   <div>
                     <p className="text-sm font-medium">{file.title}</p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-neutral-500">
                       {(file.size / 1024 / 1024).toFixed(2)} MB
                     </p>
                   </div>
@@ -288,19 +288,19 @@ export default function SubmitAssignment({ assignmentId, userId, courseSlug }: S
           className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition ${
             isDragActive
               ? 'border-blue-500 bg-blue-50'
-              : 'border-gray-300 hover:border-gray-400'
+              : 'border-neutral-300 hover:border-neutral-400'
           }`}
         >
           <input {...getInputProps()} />
-          <Upload className="mx-auto h-12 w-12 text-gray-400 mb-3" />
+          <Upload className="mx-auto h-12 w-12 text-neutral-400 mb-3" />
           {uploadingFile ? (
-            <p className="text-sm text-gray-600">Subiendo archivos...</p>
+            <p className="text-sm text-neutral-600">Subiendo archivos...</p>
           ) : (
             <>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-neutral-600">
                 Arrastra archivos aquí o haz clic para seleccionar
               </p>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-neutral-500 mt-1">
                 PDF, DOCX, DWG, RVT, ZIP, imágenes (máx. 100MB)
               </p>
             </>
@@ -312,13 +312,13 @@ export default function SubmitAssignment({ assignmentId, userId, courseSlug }: S
             {uploadedFiles.map(file => (
               <div
                 key={file.id}
-                className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                className="flex items-center justify-between p-3 bg-neutral-50 rounded-lg"
               >
                 <div className="flex items-center gap-3">
                   <FileText className="w-5 h-5 text-blue-500" />
                   <div>
                     <p className="text-sm font-medium">{file.title}</p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-neutral-500">
                       {(file.size / 1024 / 1024).toFixed(2)} MB
                     </p>
                   </div>
@@ -371,7 +371,7 @@ export default function SubmitAssignment({ assignmentId, userId, courseSlug }: S
 
         <button
           onClick={() => router.back()}
-          className="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50"
+          className="px-6 py-3 border border-neutral-300 rounded-lg hover:bg-neutral-50"
         >
           Cancelar
         </button>

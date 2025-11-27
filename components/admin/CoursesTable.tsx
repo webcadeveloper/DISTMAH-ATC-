@@ -167,7 +167,7 @@ export function CoursesTable({ courses, onUpdate }: CoursesTableProps) {
               <TableCell>
                 <div>
                   <p className="font-medium text-black">{course.title}</p>
-                  <p className="text-xs text-gray-600">{course.software}</p>
+                  <p className="text-xs text-neutral-600">{course.software}</p>
                   <div className="flex items-center gap-1 mt-1">
                     {course.featured && (
                       <Badge className="bg-yellow-100 text-yellow-800 hover:bg-yellow-100 text-xs">
@@ -191,16 +191,16 @@ export function CoursesTable({ courses, onUpdate }: CoursesTableProps) {
               <TableCell>{getLevelBadge(course.level)}</TableCell>
               <TableCell>
                 <div>
-                  <p className="text-sm font-medium text-gray-900">{course.instructor.name}</p>
-                  <p className="text-xs text-gray-600">{course.instructor.email}</p>
+                  <p className="text-sm font-medium text-neutral-900">{course.instructor.name}</p>
+                  <p className="text-xs text-neutral-600">{course.instructor.email}</p>
                 </div>
               </TableCell>
-              <TableCell className="text-gray-700">{course.duration} hrs</TableCell>
-              <TableCell className="text-gray-700 font-medium">${course.price}</TableCell>
+              <TableCell className="text-neutral-700">{course.duration} hrs</TableCell>
+              <TableCell className="text-neutral-700 font-medium">${course.price}</TableCell>
               <TableCell>
                 <StatusBadge status={course.status} />
               </TableCell>
-              <TableCell className="text-gray-700">{course.enrollmentsCount}</TableCell>
+              <TableCell className="text-neutral-700">{course.enrollmentsCount}</TableCell>
               <TableCell className="text-right">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
@@ -242,7 +242,7 @@ export function CoursesTable({ courses, onUpdate }: CoursesTableProps) {
           </DialogHeader>
           <div className="space-y-4 py-4">
             <div>
-              <label className="text-sm font-medium text-gray-900 mb-2 block">Estado</label>
+              <label className="text-sm font-medium text-neutral-900 mb-2 block">Estado</label>
               <Select value={newStatus} onValueChange={(value: any) => setNewStatus(value)}>
                 <SelectTrigger>
                   <SelectValue />
@@ -260,18 +260,18 @@ export function CoursesTable({ courses, onUpdate }: CoursesTableProps) {
                   type="checkbox"
                   checked={newFeatured}
                   onChange={(e) => setNewFeatured(e.target.checked)}
-                  className="w-4 h-4 rounded border-gray-300"
+                  className="w-4 h-4 rounded border-neutral-300"
                 />
-                <span className="text-sm font-medium text-gray-900">Marcar como Featured</span>
+                <span className="text-sm font-medium text-neutral-900">Marcar como Featured</span>
               </label>
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={newPopular}
                   onChange={(e) => setNewPopular(e.target.checked)}
-                  className="w-4 h-4 rounded border-gray-300"
+                  className="w-4 h-4 rounded border-neutral-300"
                 />
-                <span className="text-sm font-medium text-gray-900">Marcar como Popular</span>
+                <span className="text-sm font-medium text-neutral-900">Marcar como Popular</span>
               </label>
             </div>
           </div>

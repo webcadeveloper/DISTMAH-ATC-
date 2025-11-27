@@ -184,8 +184,8 @@ export default function LiveClassesPage() {
       <div className="mb-8">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Clases en Vivo</h1>
-            <p className="text-gray-600 mt-2">Programa y gestiona clases en vivo para tu curso</p>
+            <h1 className="text-3xl font-bold text-neutral-900">Clases en Vivo</h1>
+            <p className="text-neutral-600 mt-2">Programa y gestiona clases en vivo para tu curso</p>
           </div>
           <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
             <DialogTrigger asChild>
@@ -288,17 +288,17 @@ export default function LiveClassesPage() {
       </div>
 
       {classes.length === 0 ? (
-        <div className="text-center py-16 bg-white rounded-lg border border-gray-200">
-          <Calendar className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">No hay clases programadas</h3>
-          <p className="text-gray-600 mb-4">Comienza programando tu primera clase en vivo</p>
+        <div className="text-center py-16 bg-white rounded-lg border border-neutral-200">
+          <Calendar className="w-16 h-16 text-neutral-400 mx-auto mb-4" />
+          <h3 className="text-lg font-semibold text-neutral-900 mb-2">No hay clases programadas</h3>
+          <p className="text-neutral-600 mb-4">Comienza programando tu primera clase en vivo</p>
           <Button onClick={() => setDialogOpen(true)}>
             <Plus className="w-4 h-4 mr-2" />
             Programar clase
           </Button>
         </div>
       ) : (
-        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+        <div className="bg-white rounded-lg border border-neutral-200 overflow-hidden">
           <Table>
             <TableHeader>
               <TableRow>
@@ -314,13 +314,13 @@ export default function LiveClassesPage() {
                 <TableRow key={clase.id}>
                   <TableCell>
                     <div>
-                      <div className="font-medium text-gray-900">{clase.title}</div>
-                      <div className="text-sm text-gray-500 line-clamp-1">{clase.description}</div>
+                      <div className="font-medium text-neutral-900">{clase.title}</div>
+                      <div className="text-sm text-neutral-500 line-clamp-1">{clase.description}</div>
                     </div>
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2 text-sm">
-                      <Calendar className="w-4 h-4 text-gray-400" />
+                      <Calendar className="w-4 h-4 text-neutral-400" />
                       <span>
                         {format(new Date(clase.scheduledStart), "d 'de' MMMM, yyyy 'a las' HH:mm", {
                           locale: es,
@@ -330,7 +330,7 @@ export default function LiveClassesPage() {
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2 text-sm">
-                      <Clock className="w-4 h-4 text-gray-400" />
+                      <Clock className="w-4 h-4 text-neutral-400" />
                       <span>{getDuration(clase.scheduledStart, clase.scheduledEnd)} min</span>
                     </div>
                   </TableCell>

@@ -48,15 +48,15 @@ export default function CourseAssignmentsPage() {
     <div className="container mx-auto px-4 py-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Tareas del Curso</h1>
-        <p className="text-gray-600">
+        <p className="text-neutral-600">
           {assignments.length} {assignments.length === 1 ? 'tarea' : 'tareas'} disponibles
         </p>
       </div>
 
       {assignments.length === 0 ? (
-        <div className="text-center py-12 bg-gray-50 rounded-lg">
-          <FileText className="mx-auto h-12 w-12 text-gray-400 mb-3" />
-          <p className="text-gray-600">No hay tareas disponibles en este momento</p>
+        <div className="text-center py-12 bg-neutral-50 rounded-lg">
+          <FileText className="mx-auto h-12 w-12 text-neutral-400 mb-3" />
+          <p className="text-neutral-600">No hay tareas disponibles en este momento</p>
         </div>
       ) : (
         <div className="grid gap-6">

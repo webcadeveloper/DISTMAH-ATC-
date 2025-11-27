@@ -36,9 +36,9 @@ export default function ProgressSidebar({
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
-      <div className="p-6 border-b border-gray-200">
-        <h3 className="font-bold text-gray-900 text-lg">Contenido del Curso</h3>
+    <div className="bg-white rounded-lg shadow-sm border border-neutral-200 sticky top-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
+      <div className="p-6 border-b border-neutral-200">
+        <h3 className="font-bold text-neutral-900 text-lg">Contenido del Curso</h3>
       </div>
 
       <div className="p-4">
@@ -58,13 +58,13 @@ export default function ProgressSidebar({
                 className={`w-full text-left p-3 rounded-lg transition-colors ${
                   isCurrentModule
                     ? 'bg-blue-50 border-2 border-blue-200'
-                    : 'hover:bg-gray-50 border-2 border-transparent'
+                    : 'hover:bg-neutral-50 border-2 border-transparent'
                 }`}
               >
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-semibold text-gray-500">
+                      <span className="text-xs font-semibold text-neutral-500">
                         MÓDULO {module.number}
                       </span>
                       {progressPercentage === 100 && (
@@ -81,19 +81,19 @@ export default function ProgressSidebar({
                         </svg>
                       )}
                     </div>
-                    <h4 className="text-sm font-semibold text-gray-900 mt-1 line-clamp-2">
+                    <h4 className="text-sm font-semibold text-neutral-900 mt-1 line-clamp-2">
                       {module.title}
                     </h4>
                     <div className="flex items-center gap-3 mt-2">
-                      <div className="text-xs text-gray-500">
+                      <div className="text-xs text-neutral-500">
                         {completedCount}/{totalLessons} lecciones
                       </div>
-                      <div className="text-xs text-gray-500">
+                      <div className="text-xs text-neutral-500">
                         {module.duration}
                       </div>
                     </div>
                     {progressPercentage > 0 && progressPercentage < 100 && (
-                      <div className="mt-2 bg-gray-200 rounded-full h-1.5 overflow-hidden">
+                      <div className="mt-2 bg-neutral-200 rounded-full h-1.5 overflow-hidden">
                         <div
                           className="bg-blue-600 h-full transition-all duration-300"
                           style={{ width: `${progressPercentage}%` }}
@@ -102,7 +102,7 @@ export default function ProgressSidebar({
                     )}
                   </div>
                   <svg
-                    className={`w-5 h-5 text-gray-400 flex-shrink-0 transition-transform ${
+                    className={`w-5 h-5 text-neutral-400 flex-shrink-0 transition-transform ${
                       isExpanded ? 'transform rotate-180' : ''
                     }`}
                     fill="none"
@@ -127,7 +127,7 @@ export default function ProgressSidebar({
                         className={`flex items-start gap-3 p-2 rounded-lg transition-colors ${
                           isCurrent
                             ? 'bg-blue-600 text-white'
-                            : 'hover:bg-gray-100 text-gray-700'
+                            : 'hover:bg-neutral-100 text-neutral-700'
                         }`}
                       >
                         <div className="flex-shrink-0 w-5 h-5 mt-0.5">
@@ -148,7 +148,7 @@ export default function ProgressSidebar({
                               className={`w-5 h-5 rounded-full border-2 flex items-center justify-center text-xs font-medium ${
                                 isCurrent
                                   ? 'border-white text-white'
-                                  : 'border-gray-300 text-gray-500'
+                                  : 'border-neutral-300 text-neutral-500'
                               }`}
                             >
                               {index + 1}
@@ -157,13 +157,13 @@ export default function ProgressSidebar({
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className={`text-sm font-medium line-clamp-2 ${
-                            isCurrent ? 'text-white' : 'text-gray-900'
+                            isCurrent ? 'text-white' : 'text-neutral-900'
                           }`}>
                             {lesson.title}
                           </div>
                           {lesson.duration && (
                             <div className={`text-xs mt-1 ${
-                              isCurrent ? 'text-blue-100' : 'text-gray-500'
+                              isCurrent ? 'text-blue-100' : 'text-neutral-500'
                             }`}>
                               {lesson.duration} min
                             </div>

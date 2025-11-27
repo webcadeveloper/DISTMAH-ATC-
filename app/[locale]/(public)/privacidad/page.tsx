@@ -9,15 +9,15 @@ export default function PrivacidadPage() {
   return (
     <div className="min-h-screen bg-white py-12">
       <div className="container mx-auto px-4 max-w-4xl">
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">Política de Privacidad</h1>
+        <h1 className="text-4xl font-bold text-neutral-900 mb-8">Política de Privacidad</h1>
 
-        <div className="prose prose-lg max-w-none text-gray-700">
-          <p className="text-gray-600 mb-6">
+        <div className="prose prose-lg max-w-none text-neutral-700">
+          <p className="text-neutral-600 mb-6">
             Última actualización: 24 de noviembre de 2025
           </p>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Introducción</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">1. Introducción</h2>
             <p>
               DISTMAH ATC ("nosotros", "nuestro" o "la Plataforma") se compromete a proteger
               la privacidad y seguridad de la información personal de nuestros usuarios.
@@ -32,9 +32,9 @@ export default function PrivacidadPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Información que Recopilamos</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">2. Información que Recopilamos</h2>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">2.1 Información Proporcionada Directamente</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">2.1 Información Proporcionada Directamente</h3>
             <p>
               Recopilamos información que usted nos proporciona directamente al:
             </p>
@@ -59,7 +59,7 @@ export default function PrivacidadPage() {
               </li>
             </ul>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">2.2 Información Recopilada Automáticamente</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">2.2 Información Recopilada Automáticamente</h3>
             <p>
               Cuando utiliza la Plataforma, recopilamos automáticamente:
             </p>
@@ -82,7 +82,7 @@ export default function PrivacidadPage() {
               </li>
             </ul>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">2.3 Información de Terceros</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">2.3 Información de Terceros</h3>
             <p>
               Podemos recibir información de servicios de terceros:
             </p>
@@ -101,12 +101,12 @@ export default function PrivacidadPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Cómo Usamos su Información</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">3. Cómo Usamos su Información</h2>
             <p>
               Utilizamos la información recopilada para los siguientes propósitos:
             </p>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">3.1 Provisión de Servicios</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">3.1 Provisión de Servicios</h3>
             <ul className="list-disc pl-6 space-y-2">
               <li>Crear y gestionar su cuenta de usuario</li>
               <li>Procesar inscripciones a cursos y pagos</li>
@@ -115,7 +115,7 @@ export default function PrivacidadPage() {
               <li>Responder a consultas de soporte técnico</li>
             </ul>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">3.2 Comunicación</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">3.2 Comunicación</h3>
             <ul className="list-disc pl-6 space-y-2">
               <li>Enviar confirmaciones de inscripción y recibos</li>
               <li>Notificar sobre actualizaciones de cursos</li>
@@ -124,7 +124,7 @@ export default function PrivacidadPage() {
               <li>Responder a solicitudes de soporte</li>
             </ul>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">3.3 Mejora de la Plataforma</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">3.3 Mejora de la Plataforma</h3>
             <ul className="list-disc pl-6 space-y-2">
               <li>Analizar patrones de uso para mejorar contenido</li>
               <li>Identificar y corregir errores técnicos</li>
@@ -133,7 +133,7 @@ export default function PrivacidadPage() {
               <li>Realizar investigación y análisis de datos agregados</li>
             </ul>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">3.4 Marketing (con consentimiento)</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">3.4 Marketing (con consentimiento)</h3>
             <ul className="list-disc pl-6 space-y-2">
               <li>Enviar boletines informativos sobre nuevos cursos</li>
               <li>Notificar sobre promociones y descuentos</li>
@@ -144,7 +144,7 @@ export default function PrivacidadPage() {
               haciendo clic en "Cancelar suscripción" en los correos electrónicos.
             </p>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">3.5 Seguridad y Cumplimiento Legal</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">3.5 Seguridad y Cumplimiento Legal</h3>
             <ul className="list-disc pl-6 space-y-2">
               <li>Prevenir fraude y actividades ilícitas</li>
               <li>Proteger la seguridad de la Plataforma y usuarios</li>
@@ -154,13 +154,13 @@ export default function PrivacidadPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Compartir Información con Terceros</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">4. Compartir Información con Terceros</h2>
             <p>
               NO vendemos, alquilamos ni compartimos su información personal con terceros
               para fines de marketing. Compartimos información únicamente en los siguientes casos:
             </p>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">4.1 Proveedores de Servicios</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">4.1 Proveedores de Servicios</h3>
             <ul className="list-disc pl-6 space-y-2 mt-4">
               <li>
                 <strong>Stripe:</strong> Procesamiento de pagos (PCI-DSS compliant)
@@ -184,7 +184,7 @@ export default function PrivacidadPage() {
               información y usarla solo para los fines específicos establecidos.
             </p>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">4.2 Obligaciones Legales</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">4.2 Obligaciones Legales</h3>
             <p>
               Podemos divulgar información si es requerido por ley o para:
             </p>
@@ -194,7 +194,7 @@ export default function PrivacidadPage() {
               <li>Prevenir fraude o actividades ilegales</li>
             </ul>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">4.3 Transferencias Comerciales</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">4.3 Transferencias Comerciales</h3>
             <p>
               En caso de fusión, adquisición o venta de activos, su información puede ser
               transferida al nuevo propietario (se le notificará previamente).
@@ -202,13 +202,13 @@ export default function PrivacidadPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Cookies y Tecnologías Similares</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">5. Cookies y Tecnologías Similares</h2>
             <p>
               Utilizamos cookies y tecnologías similares para mejorar la funcionalidad y
               experiencia de la Plataforma. Los tipos de cookies que usamos incluyen:
             </p>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">5.1 Cookies Esenciales</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">5.1 Cookies Esenciales</h3>
             <p>
               Necesarias para el funcionamiento básico de la Plataforma:
             </p>
@@ -218,14 +218,14 @@ export default function PrivacidadPage() {
               <li>Balanceo de carga</li>
             </ul>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">5.2 Cookies de Funcionalidad</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">5.2 Cookies de Funcionalidad</h3>
             <ul className="list-disc pl-6 space-y-2">
               <li>Recordar preferencias de idioma</li>
               <li>Guardar progreso de video</li>
               <li>Configuraciones de visualización</li>
             </ul>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">5.3 Cookies Analíticas</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">5.3 Cookies Analíticas</h3>
             <ul className="list-disc pl-6 space-y-2">
               <li>Google Analytics (análisis de uso anonimizado)</li>
               <li>Métricas de rendimiento</li>
@@ -242,7 +242,7 @@ export default function PrivacidadPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Seguridad de Datos</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">6. Seguridad de Datos</h2>
             <p>
               Implementamos medidas de seguridad técnicas y organizativas para proteger su
               información personal contra acceso no autorizado, pérdida o destrucción:
@@ -277,7 +277,7 @@ export default function PrivacidadPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Retención de Datos</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">7. Retención de Datos</h2>
             <p>
               Conservamos su información personal durante el tiempo necesario para cumplir
               los fines descritos en esta política:
@@ -304,13 +304,13 @@ export default function PrivacidadPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Sus Derechos (GDPR y Leyes Locales)</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">8. Sus Derechos (GDPR y Leyes Locales)</h2>
             <p>
               Dependiendo de su ubicación, puede tener los siguientes derechos sobre su
               información personal:
             </p>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">8.1 Derechos GDPR (Unión Europea)</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">8.1 Derechos GDPR (Unión Europea)</h3>
             <ul className="list-disc pl-6 space-y-2 mt-4">
               <li>
                 <strong>Acceso:</strong> Solicitar copia de sus datos personales
@@ -333,11 +333,11 @@ export default function PrivacidadPage() {
               </li>
             </ul>
 
-            <h3 className="text-xl font-bold text-gray-900 mb-3 mt-6">8.2 Cómo Ejercer sus Derechos</h3>
+            <h3 className="text-xl font-bold text-neutral-900 mb-3 mt-6">8.2 Cómo Ejercer sus Derechos</h3>
             <p>
               Para ejercer cualquiera de estos derechos, contáctenos en:
             </p>
-            <div className="mt-4 p-4 bg-gray-100 rounded-lg">
+            <div className="mt-4 p-4 bg-neutral-100 rounded-lg">
               <p>Email: privacidad@distmah.com.ve</p>
               <p>Asunto: "Solicitud de Datos Personales"</p>
             </div>
@@ -348,7 +348,7 @@ export default function PrivacidadPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">9. Privacidad de Menores</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">9. Privacidad de Menores</h2>
             <p>
               La Plataforma NO está dirigida a menores de 18 años. No recopilamos
               intencionalmente información de menores de edad.
@@ -361,7 +361,7 @@ export default function PrivacidadPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">10. Transferencias Internacionales</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">10. Transferencias Internacionales</h2>
             <p>
               Sus datos pueden ser procesados y almacenados en servidores ubicados fuera de
               Venezuela, incluyendo Estados Unidos y la Unión Europea. Al usar la Plataforma,
@@ -375,7 +375,7 @@ export default function PrivacidadPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">11. Cambios a esta Política</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">11. Cambios a esta Política</h2>
             <p>
               Podemos actualizar esta Política de Privacidad periódicamente para reflejar
               cambios en nuestras prácticas o requisitos legales. Los cambios significativos
@@ -393,12 +393,12 @@ export default function PrivacidadPage() {
           </section>
 
           <section className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">12. Contacto</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-4">12. Contacto</h2>
             <p>
               Si tiene preguntas, inquietudes o solicitudes relacionadas con esta Política
               de Privacidad o el manejo de sus datos personales, contáctenos:
             </p>
-            <div className="mt-4 p-4 bg-gray-100 rounded-lg">
+            <div className="mt-4 p-4 bg-neutral-100 rounded-lg">
               <p><strong>DISTMAH ATC - Oficial de Privacidad</strong></p>
               <p>Email: privacidad@distmah.com.ve</p>
               <p>Email alternativo: soporte@distmah.com.ve</p>
@@ -408,7 +408,7 @@ export default function PrivacidadPage() {
           </section>
 
           <section className="mb-8 p-6 bg-blue-50 border-l-4 border-blue-600 rounded">
-            <p className="font-bold text-gray-900">
+            <p className="font-bold text-neutral-900">
               Su privacidad es importante para nosotros. Nos comprometemos a proteger sus
               datos personales y usarlos de manera responsable y transparente.
             </p>

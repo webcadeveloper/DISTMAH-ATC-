@@ -135,13 +135,13 @@ export default function ConfigurationPage() {
     <div className="p-8 max-w-7xl mx-auto">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-black">Configuración del Sistema</h1>
-        <p className="text-gray-600 mt-1">
+        <p className="text-neutral-600 mt-1">
           Gestiona roles, permisos y configuración general de DISTMAH ATC
         </p>
       </div>
 
       <Tabs defaultValue="roles" className="space-y-6">
-        <TabsList className="bg-gray-100">
+        <TabsList className="bg-neutral-100">
           <TabsTrigger value="roles">
             <Shield className="w-4 h-4 mr-2" />
             Roles y Permisos
@@ -183,7 +183,7 @@ export default function ConfigurationPage() {
                                 ? 'bg-blue-100 text-blue-900'
                                 : role.name === 'INSTRUCTOR'
                                 ? 'bg-green-100 text-green-800'
-                                : 'bg-gray-100 text-gray-800'
+                                : 'bg-neutral-100 text-neutral-800'
                             }
                           >
                             {role.displayName}
@@ -195,7 +195,7 @@ export default function ConfigurationPage() {
                           {role.permissions[permission] ? (
                             <CheckCircle2 className="w-5 h-5 text-green-600 mx-auto" />
                           ) : (
-                            <XCircle className="w-5 h-5 text-gray-300 mx-auto" />
+                            <XCircle className="w-5 h-5 text-neutral-300 mx-auto" />
                           )}
                         </TableCell>
                       ))}
@@ -223,11 +223,11 @@ export default function ConfigurationPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-600 mb-3">
+                <p className="text-sm text-neutral-600 mb-3">
                   Acceso completo al sistema. Pueden gestionar usuarios, cursos, pagos y
                   configuración.
                 </p>
-                <ul className="text-xs text-gray-600 space-y-1">
+                <ul className="text-xs text-neutral-600 space-y-1">
                   <li>• Gestión total de usuarios</li>
                   <li>• Publicar/archivar cursos</li>
                   <li>• Acceso a reportes financieros</li>
@@ -244,11 +244,11 @@ export default function ConfigurationPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-600 mb-3">
+                <p className="text-sm text-neutral-600 mb-3">
                   Pueden crear y gestionar sus propios cursos. Acceso a estadísticas de sus
                   estudiantes.
                 </p>
-                <ul className="text-xs text-gray-600 space-y-1">
+                <ul className="text-xs text-neutral-600 space-y-1">
                   <li>• Crear y editar cursos propios</li>
                   <li>• Gestionar contenido y lecciones</li>
                   <li>• Ver progreso de estudiantes</li>
@@ -260,15 +260,15 @@ export default function ConfigurationPage() {
             <Card>
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
-                  <Users className="w-5 h-5 text-gray-700" />
+                  <Users className="w-5 h-5 text-neutral-700" />
                   Estudiantes
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-gray-600 mb-3">
+                <p className="text-sm text-neutral-600 mb-3">
                   Pueden inscribirse a cursos, acceder al contenido y obtener certificados.
                 </p>
-                <ul className="text-xs text-gray-600 space-y-1">
+                <ul className="text-xs text-neutral-600 space-y-1">
                   <li>• Inscribirse a cursos</li>
                   <li>• Acceder a lecciones y recursos</li>
                   <li>• Seguir progreso personal</li>
@@ -330,7 +330,7 @@ export default function ConfigurationPage() {
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
                     <Label>Permitir Auto-registro</Label>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-neutral-600">
                       Los usuarios pueden crear cuentas sin invitación
                     </p>
                   </div>
@@ -344,7 +344,7 @@ export default function ConfigurationPage() {
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
                     <Label>Requerir Verificación de Email</Label>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-neutral-600">
                       Los usuarios deben verificar su email antes de acceder
                     </p>
                   </div>
@@ -381,7 +381,7 @@ export default function ConfigurationPage() {
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
                     <Label>Certificados Habilitados</Label>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-neutral-600">
                       Permitir generación de certificados al completar cursos
                     </p>
                   </div>
@@ -395,7 +395,7 @@ export default function ConfigurationPage() {
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
                     <Label>Pagos Habilitados</Label>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-neutral-600">
                       Permitir procesamiento de pagos para inscripciones
                     </p>
                   </div>
@@ -432,7 +432,7 @@ export default function ConfigurationPage() {
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
                     <Label>Activar Modo Mantenimiento</Label>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-neutral-600">
                       Solo los administradores podrán acceder al sitio
                     </p>
                   </div>

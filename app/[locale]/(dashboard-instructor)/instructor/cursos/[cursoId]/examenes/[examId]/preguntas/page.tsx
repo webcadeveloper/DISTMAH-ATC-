@@ -69,7 +69,7 @@ export default function PreguntasExamenPage() {
           </Button>
           <div>
             <h1 className="text-3xl font-bold">Gestionar Preguntas</h1>
-            <p className="text-gray-500 mt-1">
+            <p className="text-neutral-500 mt-1">
               {questions.length} pregunta{questions.length !== 1 ? 's' : ''}
             </p>
           </div>
@@ -105,7 +105,7 @@ export default function PreguntasExamenPage() {
           <Card>
             <CardContent className="flex flex-col items-center justify-center py-12">
               <h3 className="text-xl font-semibold mb-2">No hay preguntas aún</h3>
-              <p className="text-gray-500 mb-6">
+              <p className="text-neutral-500 mb-6">
                 Agrega preguntas para completar tu examen
               </p>
               <Button onClick={() => setShowNewQuestion(true)}>

@@ -138,7 +138,7 @@ export default function PaymentsManagementPage() {
       COMPLETED: 'bg-green-100 text-green-800',
       PENDING: 'bg-yellow-100 text-yellow-800',
       FAILED: 'bg-red-100 text-red-800',
-      REFUNDED: 'bg-gray-100 text-gray-800',
+      REFUNDED: 'bg-neutral-100 text-neutral-800',
     };
 
     const labels = {
@@ -160,7 +160,7 @@ export default function PaymentsManagementPage() {
       <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-3xl font-bold text-black">Gestión de Pagos</h1>
-          <p className="text-gray-600 mt-1">Transacciones y facturación de la plataforma</p>
+          <p className="text-neutral-600 mt-1">Transacciones y facturación de la plataforma</p>
         </div>
         <Button
           onClick={handleExportCSV}
@@ -176,7 +176,7 @@ export default function PaymentsManagementPage() {
           <Card>
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-4">
-                <p className="text-sm font-medium text-gray-600">Ingresos Totales</p>
+                <p className="text-sm font-medium text-neutral-600">Ingresos Totales</p>
                 <div className="p-2 bg-green-50 rounded-full">
                   <DollarSign className="w-5 h-5 text-green-700" />
                 </div>
@@ -195,7 +195,7 @@ export default function PaymentsManagementPage() {
           <Card>
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-4">
-                <p className="text-sm font-medium text-gray-600">Ingresos del Mes</p>
+                <p className="text-sm font-medium text-neutral-600">Ingresos del Mes</p>
                 <div className="p-2 bg-blue-50 rounded-full">
                   <TrendingUp className="w-5 h-5 text-blue-900" />
                 </div>
@@ -214,7 +214,7 @@ export default function PaymentsManagementPage() {
           <Card>
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-4">
-                <p className="text-sm font-medium text-gray-600">Pagos Completados</p>
+                <p className="text-sm font-medium text-neutral-600">Pagos Completados</p>
                 <div className="p-2 bg-green-50 rounded-full">
                   <CreditCard className="w-5 h-5 text-green-700" />
                 </div>
@@ -231,7 +231,7 @@ export default function PaymentsManagementPage() {
           <Card>
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-4">
-                <p className="text-sm font-medium text-gray-600">Pagos Pendientes</p>
+                <p className="text-sm font-medium text-neutral-600">Pagos Pendientes</p>
                 <div className="p-2 bg-yellow-50 rounded-full">
                   <CreditCard className="w-5 h-5 text-yellow-700" />
                 </div>
@@ -256,7 +256,7 @@ export default function PaymentsManagementPage() {
         <CardContent>
           <div className="flex items-center gap-4 mb-6">
             <div className="flex items-center gap-2 flex-1 max-w-md">
-              <Search className="w-4 h-4 text-gray-600" />
+              <Search className="w-4 h-4 text-neutral-600" />
               <Input
                 placeholder="Buscar por estudiante, curso o ID transacción..."
                 value={search}
@@ -268,7 +268,7 @@ export default function PaymentsManagementPage() {
               />
             </div>
             <div className="flex items-center gap-2">
-              <Filter className="w-4 h-4 text-gray-600" />
+              <Filter className="w-4 h-4 text-neutral-600" />
               <Select
                 value={statusFilter}
                 onValueChange={(value) => {
@@ -293,11 +293,11 @@ export default function PaymentsManagementPage() {
           {loading ? (
             <div className="text-center py-12">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mx-auto mb-4"></div>
-              <p className="text-gray-600">Cargando pagos...</p>
+              <p className="text-neutral-600">Cargando pagos...</p>
             </div>
           ) : payments.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-gray-600">No se encontraron pagos</p>
+              <p className="text-neutral-600">No se encontraron pagos</p>
             </div>
           ) : (
             <>
@@ -316,7 +316,7 @@ export default function PaymentsManagementPage() {
                 <TableBody>
                   {payments.map((payment) => (
                     <TableRow key={payment.id}>
-                      <TableCell className="text-gray-700">
+                      <TableCell className="text-neutral-700">
                         {new Date(payment.createdAt).toLocaleDateString('es-ES', {
                           year: 'numeric',
                           month: 'short',
@@ -328,21 +328,21 @@ export default function PaymentsManagementPage() {
                       <TableCell>
                         <div>
                           <p className="font-medium text-black">{payment.student.name}</p>
-                          <p className="text-xs text-gray-600">{payment.student.email}</p>
+                          <p className="text-xs text-neutral-600">{payment.student.email}</p>
                         </div>
                       </TableCell>
-                      <TableCell className="text-gray-900">{payment.course.title}</TableCell>
+                      <TableCell className="text-neutral-900">{payment.course.title}</TableCell>
                       <TableCell className="text-right font-medium text-black">
                         ${payment.amount} {payment.currency}
                       </TableCell>
                       <TableCell className="text-center">{getStatusBadge(payment.status)}</TableCell>
-                      <TableCell className="text-gray-700">
+                      <TableCell className="text-neutral-700">
                         {payment.paymentMethod === 'STRIPE' && 'Tarjeta de Crédito'}
                         {payment.paymentMethod === 'PAYPAL' && 'PayPal'}
                         {payment.paymentMethod === 'TRANSFER' && 'Transferencia'}
                         {payment.paymentMethod === 'FREE' && 'Gratis'}
                       </TableCell>
-                      <TableCell className="font-mono text-xs text-gray-600">
+                      <TableCell className="font-mono text-xs text-neutral-600">
                         {payment.transactionId}
                       </TableCell>
                     </TableRow>
@@ -352,7 +352,7 @@ export default function PaymentsManagementPage() {
 
               {pagination.totalPages > 1 && (
                 <div className="flex items-center justify-between mt-6">
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-neutral-600">
                     Mostrando {(page - 1) * pagination.limit + 1} -{' '}
                     {Math.min(page * pagination.limit, pagination.total)} de {pagination.total}{' '}
                     transacciones
@@ -365,7 +365,7 @@ export default function PaymentsManagementPage() {
                     >
                       Anterior
                     </Button>
-                    <span className="text-sm text-gray-600">
+                    <span className="text-sm text-neutral-600">
                       Página {page} de {pagination.totalPages}
                     </span>
                     <Button

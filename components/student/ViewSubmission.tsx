@@ -95,7 +95,7 @@ export default function ViewSubmission({ assignmentId, userId }: ViewSubmissionP
   if (!submission) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-600">No se encontró tu entrega</p>
+        <p className="text-neutral-600">No se encontró tu entrega</p>
         <button
           onClick={() => router.back()}
           className="mt-4 text-blue-600 hover:underline"
@@ -112,7 +112,7 @@ export default function ViewSubmission({ assignmentId, userId }: ViewSubmissionP
       <div>
         <button
           onClick={() => router.back()}
-          className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-4"
+          className="flex items-center gap-2 text-neutral-600 hover:text-neutral-900 mb-4"
         >
           <ArrowLeft className="w-4 h-4" />
           Volver
@@ -121,7 +121,7 @@ export default function ViewSubmission({ assignmentId, userId }: ViewSubmissionP
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-3xl font-bold mb-2">{submission.assignment.title}</h1>
-            <p className="text-gray-600">Intento #{submission.attemptNumber}</p>
+            <p className="text-neutral-600">Intento #{submission.attemptNumber}</p>
           </div>
           {getStatusBadge(submission.status)}
         </div>
@@ -133,9 +133,9 @@ export default function ViewSubmission({ assignmentId, userId }: ViewSubmissionP
 
         <div className="grid md:grid-cols-2 gap-4">
           <div className="flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-gray-500" />
+            <Calendar className="w-5 h-5 text-neutral-500" />
             <div>
-              <p className="text-sm text-gray-600">Fecha de entrega</p>
+              <p className="text-sm text-neutral-600">Fecha de entrega</p>
               <p className="font-medium">
                 {format(new Date(submission.submittedAt), "d 'de' MMMM, yyyy 'a las' HH:mm", { locale: es })}
               </p>
@@ -143,9 +143,9 @@ export default function ViewSubmission({ assignmentId, userId }: ViewSubmissionP
           </div>
 
           <div className="flex items-center gap-2">
-            <FileText className="w-5 h-5 text-gray-500" />
+            <FileText className="w-5 h-5 text-neutral-500" />
             <div>
-              <p className="text-sm text-gray-600">Fecha límite</p>
+              <p className="text-sm text-neutral-600">Fecha límite</p>
               <p className="font-medium">
                 {format(new Date(submission.assignment.dueDate), "d 'de' MMMM, yyyy", { locale: es })}
               </p>
@@ -166,7 +166,7 @@ export default function ViewSubmission({ assignmentId, userId }: ViewSubmissionP
                   <p className="text-3xl font-bold text-green-600">
                     {submission.score}/{submission.assignment.maxScore}
                   </p>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-neutral-600">
                     {((submission.score / submission.assignment.maxScore) * 100).toFixed(1)}%
                   </p>
                 </div>
@@ -175,7 +175,7 @@ export default function ViewSubmission({ assignmentId, userId }: ViewSubmissionP
 
             {submission.gradedAt && (
               <div className="text-right">
-                <p className="text-sm text-gray-600">Calificado el</p>
+                <p className="text-sm text-neutral-600">Calificado el</p>
                 <p className="font-medium">
                   {format(new Date(submission.gradedAt), "d 'de' MMMM, yyyy", { locale: es })}
                 </p>
@@ -189,8 +189,8 @@ export default function ViewSubmission({ assignmentId, userId }: ViewSubmissionP
       {submission.comments && (
         <div className="bg-white border rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-4">Tus Comentarios</h2>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <p className="text-gray-700">{submission.comments}</p>
+          <div className="bg-neutral-50 p-4 rounded-lg">
+            <p className="text-neutral-700">{submission.comments}</p>
           </div>
         </div>
       )}
@@ -203,13 +203,13 @@ export default function ViewSubmission({ assignmentId, userId }: ViewSubmissionP
             submission.files.map((file: any, idx: number) => (
               <div
                 key={idx}
-                className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                className="flex items-center justify-between p-3 bg-neutral-50 rounded-lg"
               >
                 <div className="flex items-center gap-3">
                   <FileText className="w-5 h-5 text-blue-500" />
                   <div>
                     <p className="text-sm font-medium">{file.title || file.name}</p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-neutral-500">
                       {(file.size / 1024 / 1024).toFixed(2)} MB
                     </p>
                   </div>
@@ -224,7 +224,7 @@ export default function ViewSubmission({ assignmentId, userId }: ViewSubmissionP
               </div>
             ))
           ) : (
-            <p className="text-gray-500 text-sm">No hay archivos adjuntos</p>
+            <p className="text-neutral-500 text-sm">No hay archivos adjuntos</p>
           )}
         </div>
       </div>
@@ -237,7 +237,7 @@ export default function ViewSubmission({ assignmentId, userId }: ViewSubmissionP
             Retroalimentación del Instructor
           </h2>
           <div className="bg-white p-4 rounded-lg">
-            <p className="text-gray-700 whitespace-pre-wrap">{submission.feedback}</p>
+            <p className="text-neutral-700 whitespace-pre-wrap">{submission.feedback}</p>
           </div>
         </div>
       )}

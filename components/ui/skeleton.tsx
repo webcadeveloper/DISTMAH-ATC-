@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 export function Skeleton({ className = '', ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className={cn('animate-pulse bg-gray-200 rounded', className)}
+      className={cn('animate-pulse bg-neutral-200 rounded', className)}
       {...props}
     />
   );
@@ -11,7 +11,7 @@ export function Skeleton({ className = '', ...props }: React.HTMLAttributes<HTML
 
 export function CourseCardSkeleton() {
   return (
-    <div className="border border-gray-300 rounded-lg p-4 bg-white">
+    <div className="border border-neutral-300 rounded-lg p-4 bg-white">
       <Skeleton className="h-48 w-full mb-4" />
       <Skeleton className="h-6 w-3/4 mb-2" />
       <Skeleton className="h-4 w-full mb-2" />
@@ -41,7 +41,7 @@ export function DashboardSkeleton() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[1, 2, 3].map((i) => (
-          <div key={i} className="border border-gray-300 rounded-lg p-6 bg-white">
+          <div key={i} className="border border-neutral-300 rounded-lg p-6 bg-white">
             <Skeleton className="h-8 w-20 mb-2" />
             <Skeleton className="h-10 w-32 mb-2" />
             <Skeleton className="h-4 w-24" />
@@ -49,7 +49,7 @@ export function DashboardSkeleton() {
         ))}
       </div>
 
-      <div className="border border-gray-300 rounded-lg p-6 bg-white">
+      <div className="border border-neutral-300 rounded-lg p-6 bg-white">
         <Skeleton className="h-8 w-48 mb-4" />
         <div className="space-y-3">
           {[1, 2, 3, 4].map((i) => (
@@ -112,7 +112,7 @@ export function ProfileSkeleton() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {[1, 2].map((i) => (
-          <div key={i} className="border border-gray-300 rounded-lg p-6 bg-white space-y-4">
+          <div key={i} className="border border-neutral-300 rounded-lg p-6 bg-white space-y-4">
             <Skeleton className="h-6 w-32" />
             <div className="space-y-3">
               {[1, 2, 3, 4].map((j) => (
@@ -131,15 +131,15 @@ export function ProfileSkeleton() {
 
 export function TableSkeleton({ rows = 5 }: { rows?: number }) {
   return (
-    <div className="border border-gray-300 rounded-lg overflow-hidden">
-      <div className="bg-gray-100 p-4">
+    <div className="border border-neutral-300 rounded-lg overflow-hidden">
+      <div className="bg-neutral-100 p-4">
         <div className="flex gap-4">
           {[1, 2, 3, 4].map((i) => (
             <Skeleton key={i} className="h-5 flex-1" />
           ))}
         </div>
       </div>
-      <div className="divide-y divide-gray-300">
+      <div className="divide-y divide-neutral-300">
         {Array.from({ length: rows }).map((_, i) => (
           <div key={i} className="p-4">
             <div className="flex gap-4">
@@ -156,7 +156,7 @@ export function TableSkeleton({ rows = 5 }: { rows?: number }) {
 
 export function ChartSkeleton() {
   return (
-    <div className="border border-gray-300 rounded-lg p-6 bg-white">
+    <div className="border border-neutral-300 rounded-lg p-6 bg-white">
       <Skeleton className="h-6 w-48 mb-6" />
       <div className="flex items-end gap-2 h-64">
         {[40, 70, 50, 80, 60, 90, 75, 55].map((height, i) => (

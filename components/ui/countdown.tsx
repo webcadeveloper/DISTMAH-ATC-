@@ -62,27 +62,27 @@ export function Countdown({ targetDate, onComplete }: CountdownProps) {
     <div className="flex gap-4 justify-center">
       {timeLeft.days > 0 && (
         <div className="text-center">
-          <div className="text-3xl font-bold text-gray-900">{timeLeft.days}</div>
-          <div className="text-xs text-gray-500 uppercase">d\u00edas</div>
+          <div className="text-3xl font-bold text-neutral-900">{timeLeft.days}</div>
+          <div className="text-xs text-neutral-500 uppercase">d\u00edas</div>
         </div>
       )}
       <div className="text-center">
-        <div className="text-3xl font-bold text-gray-900">
+        <div className="text-3xl font-bold text-neutral-900">
           {String(timeLeft.hours).padStart(2, '0')}
         </div>
-        <div className="text-xs text-gray-500 uppercase">horas</div>
+        <div className="text-xs text-neutral-500 uppercase">horas</div>
       </div>
       <div className="text-center">
-        <div className="text-3xl font-bold text-gray-900">
+        <div className="text-3xl font-bold text-neutral-900">
           {String(timeLeft.minutes).padStart(2, '0')}
         </div>
-        <div className="text-xs text-gray-500 uppercase">min</div>
+        <div className="text-xs text-neutral-500 uppercase">min</div>
       </div>
       <div className="text-center">
-        <div className="text-3xl font-bold text-gray-900">
+        <div className="text-3xl font-bold text-neutral-900">
           {String(timeLeft.seconds).padStart(2, '0')}
         </div>
-        <div className="text-xs text-gray-500 uppercase">seg</div>
+        <div className="text-xs text-neutral-500 uppercase">seg</div>
       </div>
     </div>
   );

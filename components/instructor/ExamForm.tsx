@@ -191,10 +191,10 @@ export function ExamForm({ courseId, examId, initialData, onSuccess }: ExamFormP
             </div>
           </div>
 
-          <div className="flex items-center justify-between space-x-2 p-4 bg-gray-50 rounded">
+          <div className="flex items-center justify-between space-x-2 p-4 bg-neutral-50 rounded">
             <div className="space-y-0.5">
               <Label htmlFor="shuffleQuestions">Mezclar preguntas</Label>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-neutral-500">
                 Las preguntas aparecerán en orden aleatorio para cada estudiante
               </p>
             </div>
@@ -205,10 +205,10 @@ export function ExamForm({ courseId, examId, initialData, onSuccess }: ExamFormP
             />
           </div>
 
-          <div className="flex items-center justify-between space-x-2 p-4 bg-gray-50 rounded">
+          <div className="flex items-center justify-between space-x-2 p-4 bg-neutral-50 rounded">
             <div className="space-y-0.5">
               <Label htmlFor="showResults">Mostrar resultados al terminar</Label>
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-neutral-500">
                 Los estudiantes verán su puntaje y respuestas al finalizar
               </p>
             </div>

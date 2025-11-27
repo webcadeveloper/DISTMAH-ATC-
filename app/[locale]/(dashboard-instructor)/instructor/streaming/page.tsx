@@ -45,6 +45,13 @@ interface Course {
   hasSchedule: boolean;
 }
 
+interface StreamConfig {
+  rtmpUrl: string;
+  streamKey: string;
+  owncastUrl: string;
+  embedUrl: string;
+}
+
 export default function StreamingControlPage() {
   const params = useParams();
   const locale = (params.locale as string) || 'es';
@@ -57,17 +64,30 @@ export default function StreamingControlPage() {
   const [selectedCourse, setSelectedCourse] = useState<string>('');
   const [classActive, setClassActive] = useState(false);
   const [togglingClass, setTogglingClass] = useState(false);
-
-  const streamKey = '9VvfiAApPWU#06KUpyI6R3f3Por*@r';
-  const rtmpUrl = 'rtmp://casa.tailc67ac4.ts.net:1935/live';
-  const owncastUrl = 'https://casa.tailc67ac4.ts.net:8088';
+  const [config, setConfig] = useState<StreamConfig | null>(null);
+  const [configLoading, setConfigLoading] = useState(true);
 
   useEffect(() => {
+    loadConfig();
     checkStatus();
     loadCourses();
     const interval = setInterval(checkStatus, 5000);
     return () => clearInterval(interval);
   }, []);
+
+  const loadConfig = async () => {
+    try {
+      const res = await fetch('/api/stream/config');
+      if (res.ok) {
+        const data = await res.json();
+        setConfig(data);
+      }
+    } catch (error) {
+      console.error('Error loading config:', error);
+    } finally {
+      setConfigLoading(false);
+    }
+  };
 
   const loadCourses = async () => {
     try {
@@ -154,15 +174,39 @@ export default function StreamingControlPage() {
     }
   };
 
+  if (configLoading) {
+    return (
+      <div className="p-8 max-w-6xl mx-auto">
+        <div className="flex items-center justify-center h-96">
+          <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+          <span className="ml-3 text-neutral-600">Cargando configuración...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (!config) {
+    return (
+      <div className="p-8 max-w-6xl mx-auto">
+        <div className="flex items-center justify-center h-96">
+          <AlertCircle className="w-8 h-8 text-red-600" />
+          <span className="ml-3 text-red-600">Error al cargar configuración del streaming</span>
+        </div>
+      </div>
+    );
+  }
+
+  const { rtmpUrl, streamKey, owncastUrl } = config;
+
   return (
     <div className="p-8 max-w-6xl mx-auto">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Centro de Control de Streaming</h1>
-        <p className="text-gray-500 mt-1">Monitorea y controla tus transmisiones en vivo</p>
+        <h1 className="text-3xl font-bold text-neutral-900">Centro de Control de Streaming</h1>
+        <p className="text-neutral-500 mt-1">Monitorea y controla tus transmisiones en vivo</p>
       </div>
 
       {/* Status Banner */}
-      <Card className={`mb-6 ${isLive ? 'bg-red-600 text-white' : 'bg-gray-100'}`}>
+      <Card className={`mb-6 ${isLive ? 'bg-red-600 text-white' : 'bg-neutral-100'}`}>
         <CardContent className="p-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -179,10 +223,10 @@ export default function StreamingControlPage() {
                 </>
               ) : (
                 <>
-                  <Video className="w-8 h-8 text-gray-400" />
+                  <Video className="w-8 h-8 text-neutral-400" />
                   <div>
-                    <span className="text-2xl font-bold text-gray-700">FUERA DE LÍNEA</span>
-                    <p className="text-gray-500">Inicia OBS para comenzar a transmitir</p>
+                    <span className="text-2xl font-bold text-neutral-700">FUERA DE LÍNEA</span>
+                    <p className="text-neutral-500">Inicia OBS para comenzar a transmitir</p>
                   </div>
                 </>
               )}
@@ -219,7 +263,7 @@ export default function StreamingControlPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="aspect-video bg-gray-900 rounded-lg overflow-hidden relative">
+              <div className="aspect-video bg-neutral-900 rounded-lg overflow-hidden relative">
                 {isLive ? (
                   <iframe
                     src={`${owncastUrl}/embed/video`}
@@ -228,7 +272,7 @@ export default function StreamingControlPage() {
                     allowFullScreen
                   />
                 ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center text-gray-400">
+                  <div className="w-full h-full flex flex-col items-center justify-center text-neutral-400">
                     <Video className="w-16 h-16 mb-4" />
                     <p className="text-lg font-medium">Sin señal</p>
                     <p className="text-sm">Inicia OBS para ver la vista previa</p>
@@ -255,17 +299,17 @@ export default function StreamingControlPage() {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <div className="p-4 bg-gray-50 rounded-lg">
-                <p className="text-sm text-gray-600 mb-4">
+              <div className="p-4 bg-neutral-50 rounded-lg">
+                <p className="text-sm text-neutral-600 mb-4">
                   Configura estos valores en OBS Studio: <strong>Archivo → Configuración → Emisión</strong>
                 </p>
                 <div className="space-y-3">
                   <div>
-                    <label className="text-xs text-gray-500 block mb-1">Servicio</label>
+                    <label className="text-xs text-neutral-500 block mb-1">Servicio</label>
                     <p className="font-mono text-sm bg-white p-2 rounded border">Personalizado</p>
                   </div>
                   <div>
-                    <label className="text-xs text-gray-500 block mb-1">Servidor (RTMP URL)</label>
+                    <label className="text-xs text-neutral-500 block mb-1">Servidor (RTMP URL)</label>
                     <div className="flex gap-2">
                       <p className="font-mono text-sm bg-white p-2 rounded border flex-grow">{rtmpUrl}</p>
                       <Button variant="outline" size="sm" onClick={() => copyToClipboard(rtmpUrl, 'URL RTMP')}>
@@ -274,7 +318,7 @@ export default function StreamingControlPage() {
                     </div>
                   </div>
                   <div>
-                    <label className="text-xs text-gray-500 block mb-1">Clave de transmisión (Stream Key)</label>
+                    <label className="text-xs text-neutral-500 block mb-1">Clave de transmisión (Stream Key)</label>
                     <div className="flex gap-2">
                       <p className="font-mono text-sm bg-white p-2 rounded border flex-grow">••••••••••••••••</p>
                       <Button variant="outline" size="sm" onClick={() => copyToClipboard(streamKey, 'Stream Key')}>
@@ -304,7 +348,7 @@ export default function StreamingControlPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-500">Servidor</span>
+                <span className="text-sm text-neutral-500">Servidor</span>
                 {status?.serverReachable ? (
                   <Badge className="bg-green-100 text-green-700">Conectado</Badge>
                 ) : (
@@ -312,16 +356,16 @@ export default function StreamingControlPage() {
                 )}
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-500">Transmisión</span>
+                <span className="text-sm text-neutral-500">Transmisión</span>
                 {isLive ? (
                   <Badge className="bg-red-100 text-red-700">En vivo</Badge>
                 ) : (
-                  <Badge className="bg-gray-100 text-gray-700">Inactiva</Badge>
+                  <Badge className="bg-neutral-100 text-neutral-700">Inactiva</Badge>
                 )}
               </div>
               {status?.lastConnectTime && (
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">Última conexión</span>
+                  <span className="text-sm text-neutral-500">Última conexión</span>
                   <span className="text-sm font-medium">{formatTime(status.lastConnectTime)}</span>
                 </div>
               )}
@@ -338,31 +382,31 @@ export default function StreamingControlPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-500">Espectadores actuales</span>
+                <span className="text-sm text-neutral-500">Espectadores actuales</span>
                 <span className="text-xl font-bold">{status?.viewerCount || 0}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-500">Pico de sesión</span>
+                <span className="text-sm text-neutral-500">Pico de sesión</span>
                 <span className="font-medium">{status?.sessionPeakViewerCount || 0}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-500">Pico histórico</span>
+                <span className="text-sm text-neutral-500">Pico histórico</span>
                 <span className="font-medium">{status?.overallPeakViewerCount || 0}</span>
               </div>
             </CardContent>
           </Card>
 
           {/* GO LIVE Control */}
-          <Card className={classActive ? 'border-2 border-green-500 bg-green-50' : 'border-2 border-gray-200'}>
+          <Card className={classActive ? 'border-2 border-green-500 bg-green-50' : 'border-2 border-neutral-200'}>
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
-                <Power className={`w-5 h-5 ${classActive ? 'text-green-600' : 'text-gray-500'}`} />
+                <Power className={`w-5 h-5 ${classActive ? 'text-green-600' : 'text-neutral-500'}`} />
                 Control de Clase
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Seleccionar Curso
                 </label>
                 <select

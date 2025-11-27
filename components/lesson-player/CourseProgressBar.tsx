@@ -14,12 +14,12 @@ export default function CourseProgressBar({
   const progressPercentage = totalLessons > 0 ? (completedLessons / totalLessons) * 100 : 0;
 
   return (
-    <div className="bg-white border-b border-gray-200 shadow-sm">
+    <div className="bg-white border-b border-neutral-200 shadow-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between gap-4 mb-3">
           <div>
-            <h2 className="font-semibold text-gray-900 text-sm">{courseTitle}</h2>
-            <p className="text-xs text-gray-500 mt-0.5">
+            <h2 className="font-semibold text-neutral-900 text-sm">{courseTitle}</h2>
+            <p className="text-xs text-neutral-500 mt-0.5">
               {completedLessons} de {totalLessons} lecciones completadas
             </p>
           </div>
@@ -27,10 +27,10 @@ export default function CourseProgressBar({
             <div className="text-2xl font-bold text-blue-600">
               {Math.round(progressPercentage)}%
             </div>
-            <div className="text-xs text-gray-500">Progreso</div>
+            <div className="text-xs text-neutral-500">Progreso</div>
           </div>
         </div>
-        <div className="w-full bg-gray-200 rounded-full h-2.5 overflow-hidden">
+        <div className="w-full bg-neutral-200 rounded-full h-2.5 overflow-hidden">
           <div
             className="bg-blue-600 h-full transition-all duration-500 ease-out relative overflow-hidden"
             style={{ width: `${progressPercentage}%` }}

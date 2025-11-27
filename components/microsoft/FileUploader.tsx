@@ -46,8 +46,8 @@ export function FileUploader({ destination, path, onUploadComplete }: FileUpload
 
   return (
     <div className="border-2 border-dashed rounded-lg p-6 text-center">
-      <Upload className="w-12 h-12 mx-auto mb-4 text-gray-400" />
-      <p className="mb-4 text-sm text-gray-600">
+      <Upload className="w-12 h-12 mx-auto mb-4 text-neutral-400" />
+      <p className="mb-4 text-sm text-neutral-600">
         Arrastra un archivo aquí o haz clic para seleccionar
       </p>
       <input
@@ -65,7 +65,7 @@ export function FileUploader({ destination, path, onUploadComplete }: FileUpload
 
       {uploading && (
         <div className="mt-4">
-          <div className="w-full bg-gray-200 rounded-full h-2">
+          <div className="w-full bg-neutral-200 rounded-full h-2">
             <div
               className="bg-blue-600 h-2 rounded-full transition-all"
               style={{ width: `${progress}%` }}

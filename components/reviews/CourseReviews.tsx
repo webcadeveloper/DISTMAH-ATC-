@@ -86,13 +86,13 @@ export function CourseReviews({ courseId, userEnrolled, userReview: initialUserR
                   className={`w-6 h-6 ${
                     i <= Math.round(stats.avgRating)
                       ? 'fill-yellow-400 text-yellow-400'
-                      : 'text-gray-300'
+                      : 'text-neutral-300'
                   }`}
                 />
               ))}
             </div>
           </div>
-          <p className="text-gray-600">{stats.totalReviews} reseñas</p>
+          <p className="text-neutral-600">{stats.totalReviews} reseñas</p>
         </div>
 
         {userEnrolled && !userReview && (
@@ -100,7 +100,7 @@ export function CourseReviews({ courseId, userEnrolled, userReview: initialUserR
         )}
       </div>
 
-      <div className="bg-gray-50 rounded-lg p-4">
+      <div className="bg-neutral-50 rounded-lg p-4">
         <h3 className="font-semibold mb-3">Distribución de calificaciones</h3>
         <div className="space-y-2">
           {[5, 4, 3, 2, 1].map((rating) => {
@@ -110,13 +110,13 @@ export function CourseReviews({ courseId, userEnrolled, userReview: initialUserR
             return (
               <div key={rating} className="flex items-center gap-3">
                 <span className="text-sm font-medium w-12">{rating} ★</span>
-                <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div className="flex-1 h-2 bg-neutral-200 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-yellow-400"
                     style={{ width: `${percentage}%` }}
                   />
                 </div>
-                <span className="text-sm text-gray-600 w-12 text-right">{count}</span>
+                <span className="text-sm text-neutral-600 w-12 text-right">{count}</span>
               </div>
             );
           })}
@@ -138,7 +138,7 @@ export function CourseReviews({ courseId, userEnrolled, userReview: initialUserR
 
       <div className="space-y-4">
         {reviews.length === 0 ? (
-          <div className="text-center py-8 text-gray-500">
+          <div className="text-center py-8 text-neutral-500">
             No hay reseñas aún. ¡Sé el primero en dejar una!
           </div>
         ) : (

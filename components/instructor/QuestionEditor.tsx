@@ -313,7 +313,7 @@ export function QuestionEditor({
                     )}
                   </div>
                 ))}
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-neutral-500">
                   Marca la casilla de la respuesta correcta
                 </p>
               </div>
@@ -351,7 +351,7 @@ export function QuestionEditor({
                   }
                   placeholder="Palabras clave separadas por comas"
                 />
-                <p className="text-sm text-gray-500 mt-1">
+                <p className="text-sm text-neutral-500 mt-1">
                   El sistema buscará estas palabras clave en la respuesta del estudiante
                 </p>
               </div>
@@ -392,7 +392,7 @@ export function QuestionEditor({
           </>
         ) : (
           <div className="space-y-4">
-            <div className="p-4 bg-gray-50 rounded-lg">
+            <div className="p-4 bg-neutral-50 rounded-lg">
               <p className="font-medium mb-2">{questionData.question}</p>
               {questionData.type === 'MULTIPLE_CHOICE' &&
                 questionData.options?.map((option, index) => (
@@ -453,7 +453,7 @@ export function QuestionEditor({
                 <Textarea className="mt-2" placeholder="Ensayo del estudiante" disabled rows={4} />
               )}
               {questionData.type === 'FILE_UPLOAD' && (
-                <div className="mt-2 p-4 border-2 border-dashed rounded text-center text-gray-500">
+                <div className="mt-2 p-4 border-2 border-dashed rounded text-center text-neutral-500">
                   Subir archivo
                 </div>
               )}
