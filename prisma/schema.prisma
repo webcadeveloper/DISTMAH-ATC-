@@ -19,9 +19,18 @@ model User {
   role              Role     @default(STUDENT)
   emailVerified     Boolean  @default(false)
   phoneNumber       String?
+
+  // Geolocation (from IP at registration)
   country           String?
+  countryCode       String?
+  region            String?
   city              String?
-  
+  zip               String?
+  latitude          Float?
+  longitude         Float?
+  registrationIp    String?
+  isp               String?
+
   // Profile info
   bio               String?
   avatar            String?  // URL OneDrive
