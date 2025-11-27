@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
+import { notifyNewInstructor } from '@/lib/n8n-webhooks';
 
 export async function POST(
   request: Request,
@@ -52,6 +53,18 @@ export async function POST(
     });
 
     console.log(`[ADMIN] User ${userId} (${user.email}) approved as ${user.role} by ${session.user.id}`);
+
+    if (user.role === 'INSTRUCTOR') {
+      notifyNewInstructor({
+        instructor: {
+          id: updatedUser.id,
+          name: updatedUser.name,
+          email: updatedUser.email,
+          specialty: 'Autodesk',
+          registeredAt: new Date().toISOString(),
+        },
+      }).catch(console.error);
+    }
 
     return NextResponse.json({
       success: true,

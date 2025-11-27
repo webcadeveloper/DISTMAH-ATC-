@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { PrismaClient } from '@prisma/client';
 import { apiLimiter, getClientIp } from '@/lib/rate-limit';
+import { notifyNewReview } from '@/lib/n8n-webhooks';
 
 const prisma = new PrismaClient();
 
@@ -185,13 +186,26 @@ export async function POST(
       }),
     ]);
 
-    await prisma.course.update({
+    const course = await prisma.course.update({
       where: { id },
       data: {
         rating: avgRating._avg.rating,
         reviewsCount: totalReviews,
       },
+      select: { id: true, title: true, slug: true },
     });
+
+    notifyNewReview({
+      review: {
+        rating,
+        comment: comment.trim(),
+        courseName: course.title,
+        courseSlug: course.slug,
+        studentName: review.user.name || 'Estudiante',
+        studentEmail: session.user.email || '',
+        createdAt: new Date().toISOString(),
+      },
+    }).catch(console.error);
 
     return NextResponse.json(review, { status: 201 });
   } catch (error) {

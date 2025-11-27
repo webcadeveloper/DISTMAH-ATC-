@@ -3,7 +3,7 @@ import { stripe } from '@/lib/stripe';
 import { prisma } from '@/lib/prisma';
 import { notifyCourseEnrollment } from '@/lib/notifications';
 import { sendEnrollmentEmail } from '@/lib/email';
-import { notifyPaymentCompleted, notifyEnrollmentCreated } from '@/lib/n8n-webhooks';
+import { notifyPaymentCompleted, notifyEnrollmentCreated, notifyPaymentFailed } from '@/lib/n8n-webhooks';
 import Stripe from 'stripe';
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
@@ -48,6 +48,7 @@ export async function POST(request: NextRequest) {
       case 'payment_intent.payment_failed': {
         const paymentIntent = event.data.object as Stripe.PaymentIntent;
         console.error('PaymentIntent failed:', paymentIntent.id);
+        await handlePaymentFailed(paymentIntent);
         break;
       }
 
@@ -223,5 +224,63 @@ async function handleCheckoutSessionCompleted(
   } catch (error) {
     console.error('Error creating enrollment:', error);
     throw error;
+  }
+}
+
+async function handlePaymentFailed(paymentIntent: Stripe.PaymentIntent) {
+  const { courseId, userId } = paymentIntent.metadata || {};
+  const customerEmail = typeof paymentIntent.receipt_email === 'string'
+    ? paymentIntent.receipt_email
+    : '';
+
+  if (!courseId) {
+    console.error('Missing courseId in payment metadata');
+    return;
+  }
+
+  try {
+    const course = await prisma.course.findUnique({
+      where: { id: courseId },
+      select: { id: true, title: true },
+    });
+
+    let customerName = 'Cliente';
+    let customerId = userId || '';
+
+    if (userId) {
+      const user = await prisma.user.findUnique({
+        where: { id: userId },
+        select: { id: true, name: true, email: true },
+      });
+      if (user) {
+        customerName = user.name;
+        customerId = user.id;
+      }
+    }
+
+    const errorMessage = paymentIntent.last_payment_error?.message || 'Pago rechazado';
+
+    await notifyPaymentFailed({
+      customer: {
+        id: customerId,
+        name: customerName,
+        email: customerEmail || 'unknown@email.com',
+      },
+      course: {
+        id: courseId,
+        title: course?.title || 'Curso',
+      },
+      payment: {
+        stripeId: paymentIntent.id,
+        amount: (paymentIntent.amount || 0) / 100,
+        currency: (paymentIntent.currency || 'usd').toUpperCase(),
+        errorMessage,
+        failedAt: new Date().toISOString(),
+      },
+    });
+
+    console.log(`Payment failed notification sent for ${paymentIntent.id}`);
+  } catch (error) {
+    console.error('Error handling payment failed:', error);
   }
 }
