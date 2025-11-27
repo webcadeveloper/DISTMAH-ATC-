@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
-import { PlayCircle, Clock, Award, BookOpen } from 'lucide-react';
+import { PlayCircle, Clock, Award, BookOpen, Radio, Video } from 'lucide-react';
 import Link from 'next/link';
+import { Badge } from '@/components/ui/badge';
 
 interface CourseProgress {
   courseId: string;
@@ -43,6 +44,15 @@ interface ProgressData {
   courses: CourseProgress[];
 }
 
+interface LiveClassInfo {
+  courseId: string;
+  courseSlug: string;
+  courseTitle: string;
+  isLive: boolean;
+  nextClass: string | null;
+  teamsUrl: string | null;
+}
+
 interface StudentDashboardClientProps {
   userId: string;
 }
@@ -50,9 +60,12 @@ interface StudentDashboardClientProps {
 export default function StudentDashboardClient({ userId }: StudentDashboardClientProps) {
   const [data, setData] = useState<ProgressData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [liveClasses, setLiveClasses] = useState<LiveClassInfo[]>([]);
 
   useEffect(() => {
     fetchProgress();
+    const interval = setInterval(fetchLiveClasses, 60000);
+    return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
@@ -62,12 +75,48 @@ export default function StudentDashboardClient({ userId }: StudentDashboardClien
       if (response.ok) {
         const progressData = await response.json();
         setData(progressData);
+        fetchLiveClassesForCourses(progressData.courses);
       }
     } catch (error) {
       console.error('Error al cargar progreso:', error);
     } finally {
       setLoading(false);
     }
+  };
+
+  const fetchLiveClasses = async () => {
+    if (data?.courses) {
+      fetchLiveClassesForCourses(data.courses);
+    }
+  };
+
+  const fetchLiveClassesForCourses = async (courses: CourseProgress[]) => {
+    const liveInfo: LiveClassInfo[] = [];
+    for (const course of courses) {
+      try {
+        const res = await fetch(`/api/courses/by-slug/${course.courseSlug}`);
+        if (res.ok) {
+          const courseData = await res.json();
+          const scheduleRes = await fetch(`/api/courses/${courseData.id}/schedule`);
+          if (scheduleRes.ok) {
+            const scheduleData = await scheduleRes.json();
+            if (scheduleData.schedule) {
+              liveInfo.push({
+                courseId: course.courseId,
+                courseSlug: course.courseSlug,
+                courseTitle: course.courseTitle,
+                isLive: scheduleData.isLive,
+                nextClass: scheduleData.nextClass,
+                teamsUrl: scheduleData.schedule.teamsUrl,
+              });
+            }
+          }
+        }
+      } catch (error) {
+        console.error('Error checking live status:', error);
+      }
+    }
+    setLiveClasses(liveInfo);
   };
 
   const getLastActivity = (course: CourseProgress) => {
@@ -130,12 +179,93 @@ export default function StudentDashboardClient({ userId }: StudentDashboardClien
 
   const currentCourse = data.courses.find((c) => c.progressPercent > 0 && c.progressPercent < 100) || data.courses[0];
 
+  const activeLiveClass = liveClasses.find((lc) => lc.isLive);
+  const upcomingClass = liveClasses.find((lc) => !lc.isLive && lc.nextClass);
+
+  const formatNextClass = (dateStr: string) => {
+    const date = new Date(dateStr);
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    if (date.toDateString() === today.toDateString()) {
+      return `Hoy a las ${date.toLocaleTimeString('es', { hour: '2-digit', minute: '2-digit' })}`;
+    } else if (date.toDateString() === tomorrow.toDateString()) {
+      return `Mañana a las ${date.toLocaleTimeString('es', { hour: '2-digit', minute: '2-digit' })}`;
+    }
+    return date.toLocaleDateString('es', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+  };
+
   return (
     <div className="p-8 max-w-7xl mx-auto">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-neutral-900">Hola, Estudiante</h1>
         <p className="text-neutral-600">Continúa donde lo dejaste.</p>
       </div>
+
+      {activeLiveClass && (
+        <div className="mb-6">
+          <Card className="bg-red-600 text-white border-none overflow-hidden">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2">
+                    <Radio className="w-6 h-6 animate-pulse" />
+                    <Badge className="bg-white text-red-600 font-bold">EN VIVO</Badge>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold">{activeLiveClass.courseTitle}</h3>
+                    <p className="text-red-100">Tu clase está en progreso ahora mismo</p>
+                  </div>
+                </div>
+                <div className="flex gap-3">
+                  <Link href={`/cursos/${activeLiveClass.courseSlug}/clase-en-vivo`}>
+                    <Button className="bg-white text-red-600 hover:bg-red-50">
+                      <Video className="w-4 h-4 mr-2" /> Ver en DISTMAH
+                    </Button>
+                  </Link>
+                  {activeLiveClass.teamsUrl && (
+                    <a href={activeLiveClass.teamsUrl} target="_blank" rel="noopener noreferrer">
+                      <Button variant="outline" className="border-white text-white hover:bg-red-700">
+                        Abrir en Teams
+                      </Button>
+                    </a>
+                  )}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+
+      {!activeLiveClass && upcomingClass && upcomingClass.nextClass && (
+        <div className="mb-6">
+          <Card className="bg-blue-900 text-white border-none overflow-hidden">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <Clock className="w-6 h-6" />
+                  <div>
+                    <h3 className="text-lg font-bold">Próxima clase: {upcomingClass.courseTitle}</h3>
+                    <p className="text-blue-200">{formatNextClass(upcomingClass.nextClass)}</p>
+                  </div>
+                </div>
+                <Link href={`/cursos/${upcomingClass.courseSlug}/clase-en-vivo`}>
+                  <Button variant="outline" className="border-white text-white hover:bg-blue-800">
+                    Ver horario
+                  </Button>
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
 
       {currentCourse && (
         <div className="mb-10">

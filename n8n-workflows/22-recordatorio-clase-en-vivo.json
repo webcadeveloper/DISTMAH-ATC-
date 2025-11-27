@@ -1,0 +1,163 @@
+{
+  "name": "DISTMAH - Recordatorio Clase en Vivo",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 15
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Cada 15 minutos",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT \n  cs.id as schedule_id,\n  cs.\"courseId\",\n  cs.shift,\n  cs.\"startTime\",\n  cs.\"endTime\",\n  cs.\"daysOfWeek\",\n  cs.\"teamsUrl\",\n  c.title as course_title,\n  c.slug as course_slug\nFROM course_schedules cs\nJOIN courses c ON c.id = cs.\"courseId\"\nWHERE cs.active = true\n  AND cs.\"startDate\" <= NOW()\n  AND cs.\"endDate\" >= NOW()",
+        "options": {}
+      },
+      "id": "get-schedules",
+      "name": "Obtener Horarios Activos",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.3,
+      "position": [450, 300],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "Neon PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const schedules = $input.all();\nconst now = new Date();\nconst currentDay = now.getDay();\nconst currentHour = now.getHours();\nconst currentMinutes = now.getMinutes();\nconst currentTime = currentHour * 60 + currentMinutes;\n\nconst classesStartingSoon = [];\n\nfor (const schedule of schedules) {\n  const data = schedule.json;\n  const daysOfWeek = data.daysOfWeek;\n  \n  // Verificar si hoy es día de clase\n  if (!daysOfWeek.includes(currentDay)) continue;\n  \n  // Parsear hora de inicio\n  const [startHour, startMin] = data.startTime.split(':').map(Number);\n  const classStartTime = startHour * 60 + startMin;\n  \n  // Verificar si la clase empieza en los próximos 60 minutos\n  const minutesUntilClass = classStartTime - currentTime;\n  \n  if (minutesUntilClass > 0 && minutesUntilClass <= 60) {\n    classesStartingSoon.push({\n      ...data,\n      minutesUntilClass,\n      classStartsAt: `${String(startHour).padStart(2,'0')}:${String(startMin).padStart(2,'0')}`\n    });\n  }\n}\n\nreturn classesStartingSoon.map(c => ({ json: c }));"
+      },
+      "id": "check-upcoming",
+      "name": "Verificar Clases Próximas",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.minutesUntilClass }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "filter-valid",
+      "name": "Filtrar Válidos",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [850, 300]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT DISTINCT\n  u.id,\n  u.name,\n  u.email\nFROM enrollments e\nJOIN users u ON u.id = e.\"userId\"\nWHERE e.\"courseId\" = '{{ $json.courseId }}'\n  AND e.status = 'ACTIVE'\n  AND u.notifications = true",
+        "options": {}
+      },
+      "id": "get-students",
+      "name": "Obtener Estudiantes",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.3,
+      "position": [1050, 200],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "Neon PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@distmah.com",
+        "toEmail": "={{ $json.email }}",
+        "subject": "🔴 Tu clase de {{ $('Verificar Clases Próximas').item.json.course_title }} comienza en {{ $('Verificar Clases Próximas').item.json.minutesUntilClass }} minutos",
+        "emailType": "html",
+        "html": "<!DOCTYPE html>\n<html>\n<head>\n  <style>\n    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }\n    .container { max-width: 600px; margin: 0 auto; padding: 20px; }\n    .header { background: #1F4E79; color: white; padding: 20px; text-align: center; }\n    .content { padding: 30px; background: #f9f9f9; }\n    .button { display: inline-block; background: #1F4E79; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; margin: 20px 0; }\n    .info { background: white; padding: 15px; border-left: 4px solid #1F4E79; margin: 20px 0; }\n    .footer { text-align: center; padding: 20px; color: #666; font-size: 12px; }\n  </style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"header\">\n      <h1>🔴 Clase en Vivo</h1>\n    </div>\n    <div class=\"content\">\n      <p>Hola <strong>{{ $json.name }}</strong>,</p>\n      \n      <p>Tu clase de <strong>{{ $('Verificar Clases Próximas').item.json.course_title }}</strong> está por comenzar.</p>\n      \n      <div class=\"info\">\n        <p><strong>⏰ Hora:</strong> {{ $('Verificar Clases Próximas').item.json.classStartsAt }}</p>\n        <p><strong>📚 Curso:</strong> {{ $('Verificar Clases Próximas').item.json.course_title }}</p>\n        <p><strong>⏱️ Comienza en:</strong> {{ $('Verificar Clases Próximas').item.json.minutesUntilClass }} minutos</p>\n      </div>\n      \n      <p style=\"text-align: center;\">\n        <a href=\"{{ $('Verificar Clases Próximas').item.json.teamsUrl }}\" class=\"button\">Unirse a la Clase en Teams</a>\n      </p>\n      \n      <p style=\"text-align: center;\">\n        <a href=\"https://distmah.com/es/cursos/{{ $('Verificar Clases Próximas').item.json.course_slug }}/clase-en-vivo\">O ver desde la plataforma DISTMAH</a>\n      </p>\n      \n      <p>¡No llegues tarde!</p>\n    </div>\n    <div class=\"footer\">\n      <p>DISTMAH - Authorized Training Center</p>\n      <p>Este es un mensaje automático, por favor no responder.</p>\n    </div>\n  </div>\n</body>\n</html>",
+        "options": {}
+      },
+      "id": "send-email",
+      "name": "Enviar Recordatorio",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [1250, 200],
+      "credentials": {
+        "smtp": {
+          "id": "1",
+          "name": "SMTP Brevo"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nreturn [{\n  json: {\n    message: `Recordatorios enviados: ${items.length}`,\n    timestamp: new Date().toISOString()\n  }\n}];"
+      },
+      "id": "log-result",
+      "name": "Log Resultado",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1450, 200]
+    }
+  ],
+  "connections": {
+    "Cada 15 minutos": {
+      "main": [
+        [
+          { "node": "Obtener Horarios Activos", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Obtener Horarios Activos": {
+      "main": [
+        [
+          { "node": "Verificar Clases Próximas", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Verificar Clases Próximas": {
+      "main": [
+        [
+          { "node": "Filtrar Válidos", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Filtrar Válidos": {
+      "main": [
+        [
+          { "node": "Obtener Estudiantes", "type": "main", "index": 0 }
+        ],
+        []
+      ]
+    },
+    "Obtener Estudiantes": {
+      "main": [
+        [
+          { "node": "Enviar Recordatorio", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Enviar Recordatorio": {
+      "main": [
+        [
+          { "node": "Log Resultado", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "clases" }, { "name": "recordatorios" }]
+}

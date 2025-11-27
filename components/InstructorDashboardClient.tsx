@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { PlusCircle, BookOpen, Users, BarChart3, Edit, MoreVertical, Bell, MessageSquare, TrendingUp, Award, Workflow } from 'lucide-react';
+import { PlusCircle, BookOpen, Users, BarChart3, Edit, MoreVertical, Bell, MessageSquare, TrendingUp, Award, Workflow, Radio, Copy, ExternalLink, Play, Square, Loader2 } from 'lucide-react';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -92,10 +92,83 @@ export default function InstructorDashboardClient() {
     const [notifications, setNotifications] = useState<Notification[]>([]);
     const [loading, setLoading] = useState(true);
     const [selectedCourse, setSelectedCourse] = useState('all');
+    const [streamStatus, setStreamStatus] = useState<{ online: boolean; viewerCount: number } | null>(null);
+    const [instructorCourses, setInstructorCourses] = useState<{ id: string; title: string }[]>([]);
+    const [selectedStreamCourse, setSelectedStreamCourse] = useState<string>('');
+    const [classActive, setClassActive] = useState(false);
+    const [togglingClass, setTogglingClass] = useState(false);
+    const [streamConfig, setStreamConfig] = useState<{ rtmpUrl: string; streamKey: string; owncastUrl: string; embedUrl: string } | null>(null);
 
     useEffect(() => {
         loadDashboardData();
+        loadStreamStatus();
+        loadInstructorCourses();
+        loadStreamConfig();
+        const interval = setInterval(loadStreamStatus, 5000);
+        return () => clearInterval(interval);
     }, []);
+
+    const loadStreamConfig = async () => {
+        try {
+            const res = await fetch('/api/stream/config');
+            if (res.ok) {
+                const data = await res.json();
+                setStreamConfig(data);
+            }
+        } catch (error) {
+            console.error('Error loading stream config:', error);
+        }
+    };
+
+    const loadStreamStatus = async () => {
+        try {
+            const res = await fetch('/api/stream/status');
+            if (res.ok) {
+                const data = await res.json();
+                setStreamStatus({ online: data.online, viewerCount: data.viewerCount || 0 });
+            }
+        } catch (error) {
+            console.error('Error loading stream status:', error);
+        }
+    };
+
+    const loadInstructorCourses = async () => {
+        try {
+            const res = await fetch('/api/instructor/courses');
+            if (res.ok) {
+                const data = await res.json();
+                setInstructorCourses(data.courses || []);
+            }
+        } catch (error) {
+            console.error('Error loading instructor courses:', error);
+        }
+    };
+
+    const toggleClass = async () => {
+        if (!selectedStreamCourse) return;
+        if (!streamStatus?.online) return;
+
+        setTogglingClass(true);
+        try {
+            const res = await fetch('/api/stream/toggle', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    courseId: selectedStreamCourse,
+                    isLive: !classActive,
+                }),
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                setClassActive(data.isLive);
+            }
+        } catch (error) {
+            console.error('Error toggling class:', error);
+        } finally {
+            setTogglingClass(false);
+        }
+    };
 
     const loadDashboardData = async () => {
         try {
@@ -271,11 +344,15 @@ export default function InstructorDashboardClient() {
             )}
 
             <Tabs defaultValue="overview" className="mt-8">
-                <TabsList className="grid w-full grid-cols-5 max-w-3xl">
+                <TabsList className="grid w-full grid-cols-6 max-w-4xl">
                     <TabsTrigger value="overview">Vista General</TabsTrigger>
                     <TabsTrigger value="students">Estudiantes</TabsTrigger>
                     <TabsTrigger value="grades">Calificaciones</TabsTrigger>
                     <TabsTrigger value="analytics">Analíticas</TabsTrigger>
+                    <TabsTrigger value="streaming" className="flex items-center gap-1">
+                        <Radio className="w-4 h-4" />
+                        Streaming
+                    </TabsTrigger>
                     <TabsTrigger value="automations" className="flex items-center gap-1">
                         <Workflow className="w-4 h-4" />
                         Automatizaciones
@@ -549,6 +626,236 @@ export default function InstructorDashboardClient() {
                             </Card>
                         </div>
                     )}
+                </TabsContent>
+
+                <TabsContent value="streaming" className="mt-6">
+                    <div className="space-y-6">
+                        {/* Banner de estado EN VIVO */}
+                        <Card className={streamStatus?.online ? 'bg-red-600 text-white' : 'bg-neutral-100'}>
+                            <CardContent className="p-6">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-4">
+                                        {streamStatus?.online ? (
+                                            <>
+                                                <Radio className="w-8 h-8 animate-pulse" />
+                                                <div>
+                                                    <h3 className="text-xl font-bold">EN VIVO</h3>
+                                                    <p className="text-red-100">{streamStatus.viewerCount} espectadores</p>
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Radio className="w-8 h-8 text-neutral-400" />
+                                                <div>
+                                                    <h3 className="text-xl font-bold text-neutral-700">Fuera de linea</h3>
+                                                    <p className="text-neutral-500">No hay transmision activa</p>
+                                                </div>
+                                            </>
+                                        )}
+                                    </div>
+                                    <Link href="/es/instructor/streaming">
+                                        <Button className={streamStatus?.online ? 'bg-white text-red-600 hover:bg-red-50' : 'bg-blue-600 hover:bg-blue-700 text-white'}>
+                                            <Radio className="w-4 h-4 mr-2" />
+                                            Centro de Control
+                                        </Button>
+                                    </Link>
+                                </div>
+                            </CardContent>
+                        </Card>
+
+                        {/* GO LIVE Panel */}
+                        <Card className={classActive ? 'border-2 border-green-500 bg-green-50' : ''}>
+                            <CardHeader>
+                                <CardTitle>Iniciar Clase en Vivo</CardTitle>
+                                <p className="text-sm text-neutral-600">Selecciona el curso y activa la transmision para tus estudiantes</p>
+                            </CardHeader>
+                            <CardContent className="space-y-4">
+                                <div>
+                                    <label className="block text-sm font-medium text-neutral-700 mb-2">
+                                        Seleccionar Curso
+                                    </label>
+                                    <select
+                                        value={selectedStreamCourse}
+                                        onChange={(e) => setSelectedStreamCourse(e.target.value)}
+                                        className="w-full p-3 border rounded-lg text-sm"
+                                        disabled={classActive}
+                                    >
+                                        <option value="">-- Selecciona un curso --</option>
+                                        {instructorCourses.map((course) => (
+                                            <option key={course.id} value={course.id}>
+                                                {course.title}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+
+                                {!streamStatus?.online && (
+                                    <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                                        <p className="text-sm text-yellow-800">
+                                            Primero inicia la transmision en OBS para activar la clase.
+                                        </p>
+                                    </div>
+                                )}
+
+                                <Button
+                                    onClick={toggleClass}
+                                    disabled={!streamStatus?.online || !selectedStreamCourse || togglingClass}
+                                    className={`w-full h-14 text-lg font-bold ${
+                                        classActive
+                                            ? 'bg-red-600 hover:bg-red-700 text-white'
+                                            : 'bg-green-600 hover:bg-green-700 text-white'
+                                    }`}
+                                >
+                                    {togglingClass ? (
+                                        <Loader2 className="w-6 h-6 animate-spin" />
+                                    ) : classActive ? (
+                                        <>
+                                            <Square className="w-6 h-6 mr-2" />
+                                            TERMINAR CLASE
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Play className="w-6 h-6 mr-2" />
+                                            GO LIVE
+                                        </>
+                                    )}
+                                </Button>
+
+                                {classActive && (
+                                    <p className="text-center text-sm text-green-700 font-medium">
+                                        Los estudiantes pueden ver la clase ahora
+                                    </p>
+                                )}
+                            </CardContent>
+                        </Card>
+
+                        {/* Vista previa del stream */}
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Vista Previa</CardTitle>
+                                <p className="text-sm text-neutral-600">Verifica que tu video y audio lleguen correctamente</p>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="aspect-video bg-black rounded-lg overflow-hidden">
+                                    {streamConfig?.embedUrl ? (
+                                        <iframe
+                                            src={streamConfig.embedUrl}
+                                            className="w-full h-full"
+                                            allowFullScreen
+                                        />
+                                    ) : (
+                                        <div className="w-full h-full flex items-center justify-center text-neutral-400">
+                                            Cargando vista previa...
+                                        </div>
+                                    )}
+                                </div>
+                            </CardContent>
+                        </Card>
+
+                        <Card>
+                            <CardHeader>
+                                <CardTitle className="flex items-center gap-2">
+                                    <Radio className="w-5 h-5 text-red-600" />
+                                    Configuracion de Streaming
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <div className="space-y-6">
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div className="border border-neutral-200 rounded-lg p-4">
+                                        <h4 className="font-semibold text-neutral-900 mb-3">Configuracion OBS</h4>
+                                        <div className="space-y-3">
+                                            <div>
+                                                <label className="text-xs text-neutral-500 block mb-1">Servidor RTMP</label>
+                                                <div className="flex items-center gap-2">
+                                                    <code className="flex-1 bg-neutral-100 px-3 py-2 rounded text-sm font-mono">
+                                                        {streamConfig?.rtmpUrl || 'Cargando...'}
+                                                    </code>
+                                                    <Button
+                                                        variant="outline"
+                                                        size="sm"
+                                                        onClick={() => {
+                                                            if (streamConfig?.rtmpUrl) navigator.clipboard.writeText(streamConfig.rtmpUrl);
+                                                        }}
+                                                        disabled={!streamConfig?.rtmpUrl}
+                                                    >
+                                                        <Copy className="w-4 h-4" />
+                                                    </Button>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label className="text-xs text-neutral-500 block mb-1">Clave de Transmision</label>
+                                                <div className="flex items-center gap-2">
+                                                    <code className="flex-1 bg-neutral-100 px-3 py-2 rounded text-sm font-mono">
+                                                        {streamConfig?.streamKey || 'Cargando...'}
+                                                    </code>
+                                                    <Button
+                                                        variant="outline"
+                                                        size="sm"
+                                                        onClick={() => {
+                                                            if (streamConfig?.streamKey) navigator.clipboard.writeText(streamConfig.streamKey);
+                                                        }}
+                                                        disabled={!streamConfig?.streamKey}
+                                                    >
+                                                        <Copy className="w-4 h-4" />
+                                                    </Button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="border border-neutral-200 rounded-lg p-4">
+                                        <h4 className="font-semibold text-neutral-900 mb-3">Panel Owncast</h4>
+                                        <div className="space-y-3">
+                                            <div>
+                                                <label className="text-xs text-neutral-500 block mb-1">URL del Servidor</label>
+                                                <code className="block bg-neutral-100 px-3 py-2 rounded text-sm font-mono">
+                                                    {streamConfig?.owncastUrl || 'Cargando...'}
+                                                </code>
+                                            </div>
+                                            <div className="flex gap-2 mt-4">
+                                                <a
+                                                    href={streamConfig?.owncastUrl || '#'}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    <Button variant="outline" size="sm" disabled={!streamConfig?.owncastUrl}>
+                                                        <ExternalLink className="w-4 h-4 mr-2" />
+                                                        Ver Stream
+                                                    </Button>
+                                                </a>
+                                                <a
+                                                    href={streamConfig?.owncastUrl ? `${streamConfig.owncastUrl}/admin` : '#'}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    <Button variant="outline" size="sm" disabled={!streamConfig?.owncastUrl}>
+                                                        <ExternalLink className="w-4 h-4 mr-2" />
+                                                        Panel Admin
+                                                    </Button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
+                                    <h4 className="font-semibold text-neutral-900 mb-2">Como usar el sistema</h4>
+                                    <ol className="list-decimal list-inside space-y-2 text-sm text-neutral-600">
+                                        <li>Abre OBS Studio y ve a Configuracion → Emision</li>
+                                        <li>Selecciona Servicio: <strong>Personalizado</strong></li>
+                                        <li>Pega el servidor RTMP y la clave de transmision de arriba</li>
+                                        <li>Inicia la transmision en OBS</li>
+                                        <li>Ve al <strong>Centro de Control</strong> para verificar que llega la senal</li>
+                                        <li>Selecciona el curso y presiona <strong>GO LIVE</strong></li>
+                                        <li>Los estudiantes veran la clase en vivo en la pagina del curso</li>
+                                    </ol>
+                                </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
                 </TabsContent>
 
                 <TabsContent value="automations" className="mt-6">
