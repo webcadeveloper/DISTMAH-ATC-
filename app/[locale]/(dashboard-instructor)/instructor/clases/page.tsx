@@ -128,8 +128,8 @@ export default function ClasesInstructorPage() {
         <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
             <div className="flex justify-between items-center mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-neutral-900">Clases en Vivo</h1>
-                    <p className="text-neutral-600">Programa y gestiona tus sesiones en Microsoft Teams.</p>
+                    <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Clases en Vivo</h1>
+                    <p className="text-neutral-600 dark:text-neutral-400">Programa y gestiona tus sesiones en Microsoft Teams.</p>
                 </div>
                 <Button className="bg-neutral-900 hover:bg-neutral-800">
                     <Plus className="w-4 h-4 mr-2" /> Programar Clase
@@ -137,45 +137,45 @@ export default function ClasesInstructorPage() {
             </div>
 
             <div className="grid md:grid-cols-4 gap-4 mb-6">
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-600">Próximas Clases</p>
-                                <p className="text-2xl font-bold text-neutral-900">{stats.upcoming}</p>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Próximas Clases</p>
+                                <p className="text-2xl font-bold text-neutral-900 dark:text-white">{stats.upcoming}</p>
                             </div>
                             <Calendar className="w-8 h-8 text-blue-400" />
                         </div>
                     </CardContent>
                 </Card>
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-600">Esta Semana</p>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Esta Semana</p>
                                 <p className="text-2xl font-bold text-green-600">{stats.thisWeek}</p>
                             </div>
                             <Clock className="w-8 h-8 text-green-400" />
                         </div>
                     </CardContent>
                 </Card>
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-600">Total Asistentes</p>
-                                <p className="text-2xl font-bold text-neutral-900">{stats.totalAttendees}</p>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Total Asistentes</p>
+                                <p className="text-2xl font-bold text-neutral-900 dark:text-white">{stats.totalAttendees}</p>
                             </div>
                             <Users className="w-8 h-8 text-neutral-400" />
                         </div>
                     </CardContent>
                 </Card>
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-600">Horas Totales</p>
-                                <p className="text-2xl font-bold text-neutral-900">{stats.totalHours}</p>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Horas Totales</p>
+                                <p className="text-2xl font-bold text-neutral-900 dark:text-white">{stats.totalHours}</p>
                             </div>
                             <Video className="w-8 h-8 text-blue-600" />
                         </div>
@@ -184,11 +184,11 @@ export default function ClasesInstructorPage() {
             </div>
 
             {clases.length === 0 ? (
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-12 text-center">
                         <Video className="w-12 h-12 text-neutral-300 mx-auto mb-4" />
-                        <h3 className="text-lg font-semibold text-neutral-900 mb-2">No hay clases programadas</h3>
-                        <p className="text-neutral-600 mb-4">Programa tu primera clase en vivo con Microsoft Teams</p>
+                        <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">No hay clases programadas</h3>
+                        <p className="text-neutral-600 dark:text-neutral-400 mb-4">Programa tu primera clase en vivo con Microsoft Teams</p>
                         <Button className="bg-neutral-900 hover:bg-neutral-800">
                             <Plus className="w-4 h-4 mr-2" /> Programar Clase
                         </Button>
@@ -199,19 +199,19 @@ export default function ClasesInstructorPage() {
                     {clases.map((clase) => {
                         const estado = getEstado(clase);
                         return (
-                            <Card key={clase.id} className="bg-white border-neutral-200 hover:shadow-md transition-shadow">
+                            <Card key={clase.id} className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700 hover:shadow-md transition-shadow">
                                 <CardContent className="p-6">
                                     <div className="flex items-start justify-between mb-4">
                                         <div className="flex-grow">
                                             <div className="flex items-center gap-3 mb-2">
-                                                <h3 className="text-xl font-bold text-neutral-900">{clase.title}</h3>
+                                                <h3 className="text-xl font-bold text-neutral-900 dark:text-white">{clase.title}</h3>
                                                 <Badge variant="outline" className={getEstadoColor(estado)}>
                                                     {estado}
                                                 </Badge>
                                             </div>
-                                            <p className="text-sm text-neutral-600 mb-3">{clase.course.title}</p>
+                                            <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">{clase.course.title}</p>
 
-                                            <div className="flex flex-wrap items-center gap-4 text-sm text-neutral-600">
+                                            <div className="flex flex-wrap items-center gap-4 text-sm text-neutral-600 dark:text-neutral-400">
                                                 <div className="flex items-center gap-2">
                                                     <Calendar className="w-4 h-4" />
                                                     <span>{formatDate(clase.scheduledStart)}</span>
@@ -234,7 +234,7 @@ export default function ClasesInstructorPage() {
                                         </div>
                                     </div>
 
-                                    <div className="flex items-center gap-3 pt-4 border-t border-neutral-100">
+                                    <div className="flex items-center gap-3 pt-4 border-t border-neutral-100 dark:border-neutral-700">
                                         {estado !== 'Finalizada' && (
                                             <>
                                                 <Button

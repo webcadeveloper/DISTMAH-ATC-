@@ -197,13 +197,13 @@ export default function PerfilInstructorPage() {
         return (
             <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
                 <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-neutral-900">Mi Perfil</h1>
-                    <p className="text-neutral-600">Gestiona tu informacion personal y profesional.</p>
+                    <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Mi Perfil</h1>
+                    <p className="text-neutral-600 dark:text-neutral-400">Gestiona tu informacion personal y profesional.</p>
                 </div>
                 <Card>
                     <CardContent className="p-12 text-center">
                         <Loader2 className="w-12 h-12 text-blue-600 mx-auto mb-4 animate-spin" />
-                        <p className="text-neutral-600">Cargando perfil...</p>
+                        <p className="text-neutral-600 dark:text-neutral-400">Cargando perfil...</p>
                     </CardContent>
                 </Card>
             </div>
@@ -214,8 +214,8 @@ export default function PerfilInstructorPage() {
         <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
             <div className="flex justify-between items-center mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-neutral-900">Mi Perfil</h1>
-                    <p className="text-neutral-600">Gestiona tu informacion personal y profesional.</p>
+                    <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Mi Perfil</h1>
+                    <p className="text-neutral-600 dark:text-neutral-400">Gestiona tu informacion personal y profesional.</p>
                 </div>
                 {!editMode ? (
                     <Button className="bg-neutral-900 hover:bg-neutral-800" onClick={() => setEditMode(true)}>
@@ -236,9 +236,9 @@ export default function PerfilInstructorPage() {
 
             <div className="grid md:grid-cols-3 gap-6">
                 <div className="md:col-span-2 space-y-6">
-                    <Card className="bg-white border-neutral-200">
+                    <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                         <CardHeader>
-                            <CardTitle className="text-lg font-bold text-neutral-900">Informacion Personal</CardTitle>
+                            <CardTitle className="text-lg font-bold text-neutral-900 dark:text-white">Informacion Personal</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
                             <div className="grid md:grid-cols-2 gap-4">
@@ -307,9 +307,9 @@ export default function PerfilInstructorPage() {
                         </CardContent>
                     </Card>
 
-                    <Card className="bg-white border-neutral-200">
+                    <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                         <CardHeader>
-                            <CardTitle className="text-lg font-bold text-neutral-900">Biografia Profesional</CardTitle>
+                            <CardTitle className="text-lg font-bold text-neutral-900 dark:text-white">Biografia Profesional</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <textarea
@@ -322,9 +322,9 @@ export default function PerfilInstructorPage() {
                         </CardContent>
                     </Card>
 
-                    <Card className="bg-white border-neutral-200">
+                    <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                         <CardHeader>
-                            <CardTitle className="text-lg font-bold text-neutral-900">Certificaciones</CardTitle>
+                            <CardTitle className="text-lg font-bold text-neutral-900 dark:text-white">Certificaciones</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <div className="space-y-3">
@@ -334,8 +334,8 @@ export default function PerfilInstructorPage() {
                                             <Award className="w-6 h-6 text-blue-600" />
                                         </div>
                                         <div>
-                                            <p className="font-semibold text-neutral-900">Instructor Certificado ATC</p>
-                                            <p className="text-sm text-neutral-600">Autodesk Authorized Training Center</p>
+                                            <p className="font-semibold text-neutral-900 dark:text-white">Instructor Certificado ATC</p>
+                                            <p className="text-sm text-neutral-600 dark:text-neutral-400">Autodesk Authorized Training Center</p>
                                         </div>
                                     </div>
                                     <Badge className="bg-green-100 text-green-800 border-green-200">Vigente</Badge>
@@ -347,9 +347,9 @@ export default function PerfilInstructorPage() {
                         </CardContent>
                     </Card>
 
-                    <Card className="bg-white border-neutral-200">
+                    <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                         <CardHeader>
-                            <CardTitle className="text-lg font-bold text-neutral-900">Seguridad</CardTitle>
+                            <CardTitle className="text-lg font-bold text-neutral-900 dark:text-white">Seguridad</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
                             <div>
@@ -400,7 +400,7 @@ export default function PerfilInstructorPage() {
                 </div>
 
                 <div className="space-y-6">
-                    <Card className="bg-white border-neutral-200">
+                    <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                         <CardContent className="p-6 text-center">
                             <input
                                 type="file"
@@ -431,70 +431,70 @@ export default function PerfilInstructorPage() {
                                     )}
                                 </div>
                             </div>
-                            <h3 className="font-bold text-neutral-900 text-lg">{profile?.name || 'Instructor'}</h3>
-                            <p className="text-sm text-neutral-600 mb-4">Instructor Certificado ATC</p>
+                            <h3 className="font-bold text-neutral-900 dark:text-white text-lg">{profile?.name || 'Instructor'}</h3>
+                            <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">Instructor Certificado ATC</p>
                             <Button variant="outline" className="w-full border-neutral-300" onClick={handleAvatarClick}>
                                 Cambiar Foto
                             </Button>
                         </CardContent>
                     </Card>
 
-                    <Card className="bg-white border-neutral-200">
+                    <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                         <CardHeader>
-                            <CardTitle className="text-lg font-bold text-neutral-900">Estadisticas</CardTitle>
+                            <CardTitle className="text-lg font-bold text-neutral-900 dark:text-white">Estadisticas</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-3">
                                     <BookOpen className="w-5 h-5 text-blue-600" />
-                                    <span className="text-sm text-neutral-600">Cursos Activos</span>
+                                    <span className="text-sm text-neutral-600 dark:text-neutral-400">Cursos Activos</span>
                                 </div>
-                                <span className="font-bold text-neutral-900">{stats?.totalCourses || 0}</span>
+                                <span className="font-bold text-neutral-900 dark:text-white">{stats?.totalCourses || 0}</span>
                             </div>
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-3">
                                     <User className="w-5 h-5 text-green-600" />
-                                    <span className="text-sm text-neutral-600">Estudiantes</span>
+                                    <span className="text-sm text-neutral-600 dark:text-neutral-400">Estudiantes</span>
                                 </div>
-                                <span className="font-bold text-neutral-900">{stats?.totalStudents || 0}</span>
+                                <span className="font-bold text-neutral-900 dark:text-white">{stats?.totalStudents || 0}</span>
                             </div>
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-3">
                                     <Award className="w-5 h-5 text-yellow-600" />
-                                    <span className="text-sm text-neutral-600">Calificacion</span>
+                                    <span className="text-sm text-neutral-600 dark:text-neutral-400">Calificacion</span>
                                 </div>
-                                <span className="font-bold text-neutral-900">
+                                <span className="font-bold text-neutral-900 dark:text-white">
                                     {stats?.averageRating ? `${stats.averageRating.toFixed(1)}/5.0` : 'N/A'}
                                 </span>
                             </div>
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-3">
                                     <Calendar className="w-5 h-5 text-blue-600" />
-                                    <span className="text-sm text-neutral-600">Desde</span>
+                                    <span className="text-sm text-neutral-600 dark:text-neutral-400">Desde</span>
                                 </div>
-                                <span className="font-bold text-neutral-900">2024</span>
+                                <span className="font-bold text-neutral-900 dark:text-white">2024</span>
                             </div>
                         </CardContent>
                     </Card>
 
-                    <Card className="bg-white border-neutral-200">
+                    <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                         <CardHeader>
-                            <CardTitle className="text-lg font-bold text-neutral-900">Contacto</CardTitle>
+                            <CardTitle className="text-lg font-bold text-neutral-900 dark:text-white">Contacto</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-3">
                             <div className="flex items-start gap-3">
                                 <Mail className="w-5 h-5 text-neutral-600 mt-0.5" />
                                 <div>
-                                    <p className="text-xs text-neutral-500">Email</p>
-                                    <p className="text-sm font-medium text-neutral-900">{profile?.email}</p>
+                                    <p className="text-xs text-neutral-500 dark:text-neutral-400">Email</p>
+                                    <p className="text-sm font-medium text-neutral-900 dark:text-white">{profile?.email}</p>
                                 </div>
                             </div>
                             {profile?.phoneNumber && (
                                 <div className="flex items-start gap-3">
                                     <Phone className="w-5 h-5 text-neutral-600 mt-0.5" />
                                     <div>
-                                        <p className="text-xs text-neutral-500">Telefono</p>
-                                        <p className="text-sm font-medium text-neutral-900">{profile.phoneNumber}</p>
+                                        <p className="text-xs text-neutral-500 dark:text-neutral-400">Telefono</p>
+                                        <p className="text-sm font-medium text-neutral-900 dark:text-white">{profile.phoneNumber}</p>
                                     </div>
                                 </div>
                             )}
@@ -502,8 +502,8 @@ export default function PerfilInstructorPage() {
                                 <div className="flex items-start gap-3">
                                     <MapPin className="w-5 h-5 text-neutral-600 mt-0.5" />
                                     <div>
-                                        <p className="text-xs text-neutral-500">Ubicacion</p>
-                                        <p className="text-sm font-medium text-neutral-900">{profile.city}</p>
+                                        <p className="text-xs text-neutral-500 dark:text-neutral-400">Ubicacion</p>
+                                        <p className="text-sm font-medium text-neutral-900 dark:text-white">{profile.city}</p>
                                     </div>
                                 </div>
                             )}

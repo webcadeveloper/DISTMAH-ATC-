@@ -209,13 +209,13 @@ export default function ArchivosInstructorPage() {
         return (
             <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
                 <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-neutral-900">Archivos</h1>
-                    <p className="text-neutral-600">Gestiona los archivos y recursos de tus cursos.</p>
+                    <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Archivos</h1>
+                    <p className="text-neutral-600 dark:text-neutral-400">Gestiona los archivos y recursos de tus cursos.</p>
                 </div>
                 <Card>
                     <CardContent className="p-12 text-center">
                         <Loader2 className="w-12 h-12 text-blue-600 mx-auto mb-4 animate-spin" />
-                        <p className="text-neutral-600">Cargando archivos de OneDrive...</p>
+                        <p className="text-neutral-600 dark:text-neutral-400">Cargando archivos de OneDrive...</p>
                     </CardContent>
                 </Card>
             </div>
@@ -269,15 +269,15 @@ export default function ArchivosInstructorPage() {
         <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
             <div className="flex justify-between items-center mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-neutral-900">Archivos</h1>
-                    <p className="text-neutral-600">Gestiona los archivos y recursos de tus cursos en OneDrive.</p>
+                    <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Archivos</h1>
+                    <p className="text-neutral-600 dark:text-neutral-400">Gestiona los archivos y recursos de tus cursos en OneDrive.</p>
                 </div>
                 <Button onClick={() => setShowUploadDialog(true)} className="bg-neutral-900 hover:bg-neutral-800">
                     <Upload className="w-4 h-4 mr-2" /> Subir Archivo
                 </Button>
             </div>
 
-            <Card className="mb-6 bg-white border-neutral-200">
+            <Card className="mb-6 bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                 <CardContent className="p-4">
                     <div className="flex gap-4 items-center">
                         <div className="flex-grow relative">
@@ -297,45 +297,45 @@ export default function ArchivosInstructorPage() {
             </Card>
 
             <div className="grid md:grid-cols-4 gap-4 mb-6">
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-600">Total Archivos</p>
-                                <p className="text-2xl font-bold text-neutral-900">{stats.total}</p>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Total Archivos</p>
+                                <p className="text-2xl font-bold text-neutral-900 dark:text-white">{stats.total}</p>
                             </div>
                             <File className="w-8 h-8 text-neutral-400" />
                         </div>
                     </CardContent>
                 </Card>
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-600">Videos</p>
-                                <p className="text-2xl font-bold text-neutral-900">{stats.videos}</p>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Videos</p>
+                                <p className="text-2xl font-bold text-neutral-900 dark:text-white">{stats.videos}</p>
                             </div>
                             <FileVideo className="w-8 h-8 text-blue-400" />
                         </div>
                     </CardContent>
                 </Card>
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-600">Documentos</p>
-                                <p className="text-2xl font-bold text-neutral-900">{stats.documentos}</p>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Documentos</p>
+                                <p className="text-2xl font-bold text-neutral-900 dark:text-white">{stats.documentos}</p>
                             </div>
                             <File className="w-8 h-8 text-neutral-400" />
                         </div>
                     </CardContent>
                 </Card>
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-600">Espacio Usado</p>
-                                <p className="text-2xl font-bold text-neutral-900">{stats.espacioUsado}</p>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Espacio Usado</p>
+                                <p className="text-2xl font-bold text-neutral-900 dark:text-white">{stats.espacioUsado}</p>
                             </div>
                             <Folder className="w-8 h-8 text-yellow-400" />
                         </div>
@@ -363,7 +363,7 @@ export default function ArchivosInstructorPage() {
                                             <div className="flex items-center gap-3">
                                                 {getFileIcon(archivo)}
                                                 <div>
-                                                    <p className="font-medium text-neutral-900">{archivo.name}</p>
+                                                    <p className="font-medium text-neutral-900 dark:text-white">{archivo.name}</p>
                                                 </div>
                                             </div>
                                         </td>

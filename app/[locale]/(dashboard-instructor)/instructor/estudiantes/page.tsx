@@ -125,13 +125,13 @@ export default function EstudiantesInstructorPage() {
         return (
             <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
                 <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-neutral-900">Estudiantes</h1>
-                    <p className="text-neutral-600">Gestiona y monitorea el progreso de tus estudiantes.</p>
+                    <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Estudiantes</h1>
+                    <p className="text-neutral-600 dark:text-neutral-400">Gestiona y monitorea el progreso de tus estudiantes.</p>
                 </div>
                 <Card>
                     <CardContent className="p-12 text-center">
                         <Loader2 className="w-12 h-12 text-blue-600 mx-auto mb-4 animate-spin" />
-                        <p className="text-neutral-600">Cargando estudiantes...</p>
+                        <p className="text-neutral-600 dark:text-neutral-400">Cargando estudiantes...</p>
                     </CardContent>
                 </Card>
             </div>
@@ -142,14 +142,14 @@ export default function EstudiantesInstructorPage() {
         return (
             <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
                 <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-neutral-900">Estudiantes</h1>
-                    <p className="text-neutral-600">Gestiona y monitorea el progreso de tus estudiantes.</p>
+                    <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Estudiantes</h1>
+                    <p className="text-neutral-600 dark:text-neutral-400">Gestiona y monitorea el progreso de tus estudiantes.</p>
                 </div>
                 <Card>
                     <CardContent className="p-12 text-center">
                         <Users className="w-16 h-16 text-neutral-300 mx-auto mb-4" />
-                        <h3 className="text-xl font-bold text-neutral-900 mb-2">No tienes estudiantes inscritos</h3>
-                        <p className="text-neutral-600">Los estudiantes aparecerán aquí cuando se inscriban en tus cursos</p>
+                        <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">No tienes estudiantes inscritos</h3>
+                        <p className="text-neutral-600 dark:text-neutral-400">Los estudiantes aparecerán aquí cuando se inscriban en tus cursos</p>
                     </CardContent>
                 </Card>
             </div>
@@ -160,8 +160,8 @@ export default function EstudiantesInstructorPage() {
         <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
             <div className="flex justify-between items-center mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-neutral-900">Estudiantes</h1>
-                    <p className="text-neutral-600">Gestiona y monitorea el progreso de tus estudiantes.</p>
+                    <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Estudiantes</h1>
+                    <p className="text-neutral-600 dark:text-neutral-400">Gestiona y monitorea el progreso de tus estudiantes.</p>
                 </div>
                 <div className="flex gap-3">
                     <Button variant="outline" className="border-neutral-300">
@@ -174,45 +174,45 @@ export default function EstudiantesInstructorPage() {
             </div>
 
             <div className="grid md:grid-cols-4 gap-4 mb-6">
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-600">Total Estudiantes</p>
-                                <p className="text-2xl font-bold text-neutral-900">{stats.total}</p>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Total Estudiantes</p>
+                                <p className="text-2xl font-bold text-neutral-900 dark:text-white">{stats.total}</p>
                             </div>
                             <User className="w-8 h-8 text-neutral-400" />
                         </div>
                     </CardContent>
                 </Card>
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-600">Activos</p>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Activos</p>
                                 <p className="text-2xl font-bold text-green-600">{stats.activos}</p>
                             </div>
                             <BookOpen className="w-8 h-8 text-green-400" />
                         </div>
                     </CardContent>
                 </Card>
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-600">Completados</p>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Completados</p>
                                 <p className="text-2xl font-bold text-blue-600">{stats.completados}</p>
                             </div>
                             <User className="w-8 h-8 text-blue-400" />
                         </div>
                     </CardContent>
                 </Card>
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-600">Promedio Progreso</p>
-                                <p className="text-2xl font-bold text-neutral-900">{stats.promedioProgreso}%</p>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Promedio Progreso</p>
+                                <p className="text-2xl font-bold text-neutral-900 dark:text-white">{stats.promedioProgreso}%</p>
                             </div>
                             <Clock className="w-8 h-8 text-yellow-400" />
                         </div>
@@ -220,7 +220,7 @@ export default function EstudiantesInstructorPage() {
                 </Card>
             </div>
 
-            <Card className="mb-6 bg-white border-neutral-200">
+            <Card className="mb-6 bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                 <CardContent className="p-4">
                     <div className="flex gap-4 items-center">
                         <div className="flex-grow relative">
@@ -284,8 +284,8 @@ export default function EstudiantesInstructorPage() {
                                                     )}
                                                 </div>
                                                 <div>
-                                                    <p className="font-medium text-neutral-900">{estudiante.name}</p>
-                                                    <p className="text-xs text-neutral-500">{estudiante.email}</p>
+                                                    <p className="font-medium text-neutral-900 dark:text-white">{estudiante.name}</p>
+                                                    <p className="text-xs text-neutral-500 dark:text-neutral-400">{estudiante.email}</p>
                                                 </div>
                                             </div>
                                         </td>
@@ -297,7 +297,7 @@ export default function EstudiantesInstructorPage() {
                                         <td className="px-6 py-4">
                                             <div className="w-full">
                                                 <div className="flex items-center gap-2 mb-1">
-                                                    <span className="text-sm font-medium text-neutral-900">{estudiante.progress}%</span>
+                                                    <span className="text-sm font-medium text-neutral-900 dark:text-white">{estudiante.progress}%</span>
                                                 </div>
                                                 <div className="w-full bg-neutral-200 rounded-full h-2">
                                                     <div

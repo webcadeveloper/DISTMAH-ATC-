@@ -116,13 +116,13 @@ export default function InstructorUsuariosPage() {
         return (
             <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
                 <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-neutral-900">Gestion de Usuarios M365</h1>
-                    <p className="text-neutral-600">Activa cuentas Microsoft 365 Education A1 para tus estudiantes.</p>
+                    <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Gestion de Usuarios M365</h1>
+                    <p className="text-neutral-600 dark:text-neutral-400">Activa cuentas Microsoft 365 Education A1 para tus estudiantes.</p>
                 </div>
                 <Card>
                     <CardContent className="p-12 text-center">
                         <Loader2 className="w-12 h-12 text-blue-600 mx-auto mb-4 animate-spin" />
-                        <p className="text-neutral-600">Cargando estudiantes...</p>
+                        <p className="text-neutral-600 dark:text-neutral-400">Cargando estudiantes...</p>
                     </CardContent>
                 </Card>
             </div>
@@ -132,8 +132,8 @@ export default function InstructorUsuariosPage() {
     return (
         <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
             <div className="mb-8">
-                <h1 className="text-3xl font-bold text-neutral-900">Gestion de Usuarios M365</h1>
-                <p className="text-neutral-600">Activa cuentas Microsoft 365 Education A1 para tus estudiantes.</p>
+                <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Gestion de Usuarios M365</h1>
+                <p className="text-neutral-600 dark:text-neutral-400">Activa cuentas Microsoft 365 Education A1 para tus estudiantes.</p>
             </div>
 
             <Card className="mb-6 bg-yellow-50 border-yellow-200">
@@ -154,33 +154,33 @@ export default function InstructorUsuariosPage() {
             </Card>
 
             <div className="grid md:grid-cols-3 gap-4 mb-6">
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-600">Total Estudiantes</p>
-                                <p className="text-2xl font-bold text-neutral-900">{students.length}</p>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Total Estudiantes</p>
+                                <p className="text-2xl font-bold text-neutral-900 dark:text-white">{students.length}</p>
                             </div>
                             <Users className="w-8 h-8 text-neutral-400" />
                         </div>
                     </CardContent>
                 </Card>
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-600">Pendientes Activar</p>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Pendientes Activar</p>
                                 <p className="text-2xl font-bold text-yellow-600">{pendingCount}</p>
                             </div>
                             <CloudOff className="w-8 h-8 text-yellow-400" />
                         </div>
                     </CardContent>
                 </Card>
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-600">M365 Activados</p>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">M365 Activados</p>
                                 <p className="text-2xl font-bold text-green-600">{activatedCount}</p>
                             </div>
                             <Cloud className="w-8 h-8 text-green-400" />
@@ -189,7 +189,7 @@ export default function InstructorUsuariosPage() {
                 </Card>
             </div>
 
-            <Card className="mb-6 bg-white border-neutral-200">
+            <Card className="mb-6 bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                 <CardContent className="p-4">
                     <div className="flex gap-4 items-center">
                         <div className="relative flex-grow">
@@ -216,13 +216,13 @@ export default function InstructorUsuariosPage() {
 
             <div className="grid gap-4">
                 {filteredStudents.length === 0 ? (
-                    <Card className="bg-white border-neutral-200">
+                    <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                         <CardContent className="p-12 text-center">
                             <Users className="w-16 h-16 text-neutral-300 mx-auto mb-4" />
-                            <h3 className="text-xl font-bold text-neutral-900 mb-2">
+                            <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">
                                 {searchTerm || filter !== 'all' ? 'No se encontraron estudiantes' : 'Sin estudiantes'}
                             </h3>
-                            <p className="text-neutral-600">
+                            <p className="text-neutral-600 dark:text-neutral-400">
                                 {searchTerm || filter !== 'all'
                                     ? 'Intenta con otros criterios de busqueda'
                                     : 'Los estudiantes apareceran aqui cuando se inscriban a tus cursos'}
@@ -236,7 +236,7 @@ export default function InstructorUsuariosPage() {
                                 <div className="flex items-center justify-between">
                                     <div className="flex-grow">
                                         <div className="flex items-center gap-3 mb-2">
-                                            <h3 className="text-lg font-bold text-neutral-900">{student.name}</h3>
+                                            <h3 className="text-lg font-bold text-neutral-900 dark:text-white">{student.name}</h3>
                                             {student.m365UserId ? (
                                                 <Badge className="bg-green-100 text-green-800 border-green-200">
                                                     <Cloud className="w-3 h-3 mr-1" /> M365 Activo
@@ -322,7 +322,7 @@ export default function InstructorUsuariosPage() {
                                 </p>
                                 <div className="bg-neutral-100 p-3 rounded-md">
                                     <p className="font-bold">{activatingUser?.name}</p>
-                                    <p className="text-sm text-neutral-600">{activatingUser?.email}</p>
+                                    <p className="text-sm text-neutral-600 dark:text-neutral-400">{activatingUser?.email}</p>
                                 </div>
                                 <div className="bg-red-50 border border-red-200 p-3 rounded-md">
                                     <p className="text-red-800 font-bold text-sm">Esta accion es IRREVERSIBLE:</p>

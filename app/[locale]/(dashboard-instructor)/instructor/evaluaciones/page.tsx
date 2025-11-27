@@ -125,8 +125,8 @@ export default function EvaluacionesInstructorPage() {
         <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
             <div className="flex justify-between items-center mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-neutral-900">Evaluaciones</h1>
-                    <p className="text-neutral-600">Gestiona tareas, exámenes y calificaciones de tus cursos.</p>
+                    <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Evaluaciones</h1>
+                    <p className="text-neutral-600 dark:text-neutral-400">Gestiona tareas, exámenes y calificaciones de tus cursos.</p>
                 </div>
                 <Button className="bg-neutral-900 hover:bg-neutral-800">
                     <Plus className="w-4 h-4 mr-2" /> Nueva Evaluación
@@ -135,45 +135,45 @@ export default function EvaluacionesInstructorPage() {
 
             {/* Estadísticas */}
             <div className="grid md:grid-cols-4 gap-4 mb-6">
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-600">Total Evaluaciones</p>
-                                <p className="text-2xl font-bold text-neutral-900">32</p>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Total Evaluaciones</p>
+                                <p className="text-2xl font-bold text-neutral-900 dark:text-white">32</p>
                             </div>
                             <FileText className="w-8 h-8 text-neutral-400" />
                         </div>
                     </CardContent>
                 </Card>
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-600">Pendientes Calificar</p>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Pendientes Calificar</p>
                                 <p className="text-2xl font-bold text-yellow-600">24</p>
                             </div>
                             <Clock className="w-8 h-8 text-yellow-400" />
                         </div>
                     </CardContent>
                 </Card>
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-600">Calificadas</p>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Calificadas</p>
                                 <p className="text-2xl font-bold text-green-600">87</p>
                             </div>
                             <CheckCircle className="w-8 h-8 text-green-400" />
                         </div>
                     </CardContent>
                 </Card>
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-600">Promedio General</p>
-                                <p className="text-2xl font-bold text-neutral-900">89%</p>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Promedio General</p>
+                                <p className="text-2xl font-bold text-neutral-900 dark:text-white">89%</p>
                             </div>
                             <Users className="w-8 h-8 text-blue-400" />
                         </div>
@@ -213,7 +213,7 @@ export default function EvaluacionesInstructorPage() {
                             <div className="flex items-start justify-between mb-4">
                                 <div className="flex-grow">
                                     <div className="flex items-center gap-3 mb-2">
-                                        <h3 className="text-xl font-bold text-neutral-900">{evaluacion.titulo}</h3>
+                                        <h3 className="text-xl font-bold text-neutral-900 dark:text-white">{evaluacion.titulo}</h3>
                                         <Badge variant="outline" className={getTipoColor(evaluacion.tipo)}>
                                             {evaluacion.tipo}
                                         </Badge>
@@ -221,50 +221,50 @@ export default function EvaluacionesInstructorPage() {
                                             {evaluacion.estado}
                                         </Badge>
                                     </div>
-                                    <p className="text-sm text-neutral-600 mb-3">{evaluacion.curso}</p>
+                                    <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">{evaluacion.curso}</p>
 
                                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                         <div>
-                                            <p className="text-xs text-neutral-500">Fecha Límite</p>
+                                            <p className="text-xs text-neutral-500 dark:text-neutral-400">Fecha Límite</p>
                                             <p className="text-sm font-medium text-neutral-900">{evaluacion.fechaLimite}</p>
                                         </div>
                                         {evaluacion.duracion !== 'N/A' && (
                                             <div>
-                                                <p className="text-xs text-neutral-500">Duración</p>
-                                                <p className="text-sm font-medium text-neutral-900">{evaluacion.duracion}</p>
+                                                <p className="text-xs text-neutral-500 dark:text-neutral-400">Duración</p>
+                                                <p className="text-sm font-medium text-neutral-900 dark:text-white">{evaluacion.duracion}</p>
                                             </div>
                                         )}
                                         {evaluacion.totalPreguntas && (
                                             <div>
-                                                <p className="text-xs text-neutral-500">Preguntas</p>
-                                                <p className="text-sm font-medium text-neutral-900">{evaluacion.totalPreguntas}</p>
+                                                <p className="text-xs text-neutral-500 dark:text-neutral-400">Preguntas</p>
+                                                <p className="text-sm font-medium text-neutral-900 dark:text-white">{evaluacion.totalPreguntas}</p>
                                             </div>
                                         )}
                                         <div>
-                                            <p className="text-xs text-neutral-500">Entregas</p>
+                                            <p className="text-xs text-neutral-500 dark:text-neutral-400">Entregas</p>
                                             <p className="text-sm font-medium text-neutral-900">{evaluacion.entregas}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="flex items-center justify-between pt-4 border-t border-neutral-100">
+                            <div className="flex items-center justify-between pt-4 border-t border-neutral-100 dark:border-neutral-700">
                                 <div className="flex items-center gap-6 text-sm">
                                     <div className="flex items-center gap-2">
                                         <Clock className="w-4 h-4 text-yellow-600" />
-                                        <span className="text-neutral-600">
+                                        <span className="text-neutral-600 dark:text-neutral-400">
                                             <span className="font-semibold text-yellow-600">{evaluacion.pendientes}</span> pendientes
                                         </span>
                                     </div>
                                     <div className="flex items-center gap-2">
                                         <CheckCircle className="w-4 h-4 text-green-600" />
-                                        <span className="text-neutral-600">
+                                        <span className="text-neutral-600 dark:text-neutral-400">
                                             <span className="font-semibold text-green-600">{evaluacion.calificadas}</span> calificadas
                                         </span>
                                     </div>
                                     <div className="flex items-center gap-2">
-                                        <span className="text-neutral-600">
-                                            Promedio: <span className="font-semibold text-neutral-900">{evaluacion.promedioCalificacion}%</span>
+                                        <span className="text-neutral-600 dark:text-neutral-400">
+                                            Promedio: <span className="font-semibold text-neutral-900 dark:text-white">{evaluacion.promedioCalificacion}%</span>
                                         </span>
                                     </div>
                                 </div>

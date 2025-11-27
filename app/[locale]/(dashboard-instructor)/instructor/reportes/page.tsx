@@ -73,13 +73,13 @@ export default function ReportesInstructorPage() {
         return (
             <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
                 <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-neutral-900">Reportes y Estadisticas</h1>
-                    <p className="text-neutral-600">Analiza el rendimiento de tus cursos y estudiantes.</p>
+                    <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Reportes y Estadisticas</h1>
+                    <p className="text-neutral-600 dark:text-neutral-400">Analiza el rendimiento de tus cursos y estudiantes.</p>
                 </div>
                 <Card>
                     <CardContent className="p-12 text-center">
                         <Loader2 className="w-12 h-12 text-blue-600 mx-auto mb-4 animate-spin" />
-                        <p className="text-neutral-600">Cargando reportes...</p>
+                        <p className="text-neutral-600 dark:text-neutral-400">Cargando reportes...</p>
                     </CardContent>
                 </Card>
             </div>
@@ -90,8 +90,8 @@ export default function ReportesInstructorPage() {
         <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
             <div className="flex justify-between items-center mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-neutral-900">Reportes y Estadisticas</h1>
-                    <p className="text-neutral-600">Analiza el rendimiento de tus cursos y estudiantes.</p>
+                    <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Reportes y Estadisticas</h1>
+                    <p className="text-neutral-600 dark:text-neutral-400">Analiza el rendimiento de tus cursos y estudiantes.</p>
                 </div>
                 <div className="flex gap-3">
                     <Button variant="outline" className="border-neutral-300">
@@ -104,7 +104,7 @@ export default function ReportesInstructorPage() {
             </div>
 
             <div className="grid md:grid-cols-4 gap-4 mb-8">
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between mb-2">
                             <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
@@ -116,83 +116,83 @@ export default function ReportesInstructorPage() {
                                 </Badge>
                             )}
                         </div>
-                        <p className="text-sm text-neutral-600">Total Estudiantes</p>
-                        <p className="text-3xl font-bold text-neutral-900">{stats?.totalStudents || 0}</p>
-                        <p className="text-xs text-neutral-500 mt-1">+{analytics?.newEnrollmentsThisMonth || 0} este mes</p>
+                        <p className="text-sm text-neutral-600 dark:text-neutral-400">Total Estudiantes</p>
+                        <p className="text-3xl font-bold text-neutral-900 dark:text-white">{stats?.totalStudents || 0}</p>
+                        <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">+{analytics?.newEnrollmentsThisMonth || 0} este mes</p>
                     </CardContent>
                 </Card>
 
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between mb-2">
                             <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
                                 <BookOpen className="w-6 h-6 text-green-600" />
                             </div>
                         </div>
-                        <p className="text-sm text-neutral-600">Cursos Activos</p>
-                        <p className="text-3xl font-bold text-neutral-900">{stats?.totalCourses || 0}</p>
-                        <p className="text-xs text-neutral-500 mt-1">Publicados</p>
+                        <p className="text-sm text-neutral-600 dark:text-neutral-400">Cursos Activos</p>
+                        <p className="text-3xl font-bold text-neutral-900 dark:text-white">{stats?.totalCourses || 0}</p>
+                        <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">Publicados</p>
                     </CardContent>
                 </Card>
 
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between mb-2">
                             <div className="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center">
                                 <Award className="w-6 h-6 text-yellow-600" />
                             </div>
                         </div>
-                        <p className="text-sm text-neutral-600">Calificacion Promedio</p>
-                        <p className="text-3xl font-bold text-neutral-900">
+                        <p className="text-sm text-neutral-600 dark:text-neutral-400">Calificacion Promedio</p>
+                        <p className="text-3xl font-bold text-neutral-900 dark:text-white">
                             {stats?.averageRating ? stats.averageRating.toFixed(1) : 'N/A'}
                         </p>
-                        <p className="text-xs text-neutral-500 mt-1">De 5.0 estrellas</p>
+                        <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">De 5.0 estrellas</p>
                     </CardContent>
                 </Card>
 
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between mb-2">
                             <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
                                 <TrendingUp className="w-6 h-6 text-blue-600" />
                             </div>
                         </div>
-                        <p className="text-sm text-neutral-600">Estudiantes Activos</p>
-                        <p className="text-3xl font-bold text-neutral-900">{analytics?.totalActiveStudents || 0}</p>
-                        <p className="text-xs text-neutral-500 mt-1">En progreso</p>
+                        <p className="text-sm text-neutral-600 dark:text-neutral-400">Estudiantes Activos</p>
+                        <p className="text-3xl font-bold text-neutral-900 dark:text-white">{analytics?.totalActiveStudents || 0}</p>
+                        <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">En progreso</p>
                     </CardContent>
                 </Card>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6 mb-6">
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardHeader>
-                        <CardTitle className="text-lg font-bold text-neutral-900">Rendimiento por Curso</CardTitle>
+                        <CardTitle className="text-lg font-bold text-neutral-900 dark:text-white">Rendimiento por Curso</CardTitle>
                     </CardHeader>
                     <CardContent>
                         {analytics?.courseAnalytics && analytics.courseAnalytics.length > 0 ? (
                             <div className="space-y-4">
                                 {analytics.courseAnalytics.map((curso) => (
-                                    <div key={curso.courseId} className="border-b border-neutral-100 pb-4 last:border-0 last:pb-0">
+                                    <div key={curso.courseId} className="border-b border-neutral-100 dark:border-neutral-700 pb-4 last:border-0 last:pb-0">
                                         <div className="flex items-center justify-between mb-2">
-                                            <h4 className="font-semibold text-neutral-900">{curso.courseTitle}</h4>
+                                            <h4 className="font-semibold text-neutral-900 dark:text-white">{curso.courseTitle}</h4>
                                             <Badge variant="outline" className="text-neutral-700 border-neutral-300">
                                                 {curso.students} estudiantes
                                             </Badge>
                                         </div>
                                         <div className="grid grid-cols-3 gap-4 mt-3">
                                             <div>
-                                                <p className="text-xs text-neutral-500">Completados</p>
+                                                <p className="text-xs text-neutral-500 dark:text-neutral-400">Completados</p>
                                                 <p className="text-lg font-bold text-green-600">{curso.completionRate}%</p>
                                             </div>
                                             <div>
-                                                <p className="text-xs text-neutral-500">Calificacion</p>
+                                                <p className="text-xs text-neutral-500 dark:text-neutral-400">Calificacion</p>
                                                 <p className="text-lg font-bold text-blue-600">
                                                     {curso.rating > 0 ? curso.rating.toFixed(1) : 'N/A'}
                                                 </p>
                                             </div>
                                             <div>
-                                                <p className="text-xs text-neutral-500">Reviews</p>
+                                                <p className="text-xs text-neutral-500 dark:text-neutral-400">Reviews</p>
                                                 <p className="text-lg font-bold text-neutral-600">{curso.reviewsCount}</p>
                                             </div>
                                         </div>
@@ -202,15 +202,15 @@ export default function ReportesInstructorPage() {
                         ) : (
                             <div className="text-center py-8">
                                 <BookOpen className="w-12 h-12 text-neutral-300 mx-auto mb-3" />
-                                <p className="text-neutral-600">No hay cursos publicados</p>
+                                <p className="text-neutral-600 dark:text-neutral-400">No hay cursos publicados</p>
                             </div>
                         )}
                     </CardContent>
                 </Card>
 
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardHeader>
-                        <CardTitle className="text-lg font-bold text-neutral-900">Inscripciones Mensuales</CardTitle>
+                        <CardTitle className="text-lg font-bold text-neutral-900 dark:text-white">Inscripciones Mensuales</CardTitle>
                     </CardHeader>
                     <CardContent>
                         {analytics?.enrollmentsByMonth && analytics.enrollmentsByMonth.length > 0 ? (
@@ -236,7 +236,7 @@ export default function ReportesInstructorPage() {
                         ) : (
                             <div className="text-center py-8">
                                 <BarChart3 className="w-12 h-12 text-neutral-300 mx-auto mb-3" />
-                                <p className="text-neutral-600">No hay datos de inscripciones</p>
+                                <p className="text-neutral-600 dark:text-neutral-400">No hay datos de inscripciones</p>
                             </div>
                         )}
                     </CardContent>
@@ -244,9 +244,9 @@ export default function ReportesInstructorPage() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-6 mb-6">
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardHeader>
-                        <CardTitle className="text-lg font-bold text-neutral-900">Tasa de Completacion</CardTitle>
+                        <CardTitle className="text-lg font-bold text-neutral-900 dark:text-white">Tasa de Completacion</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <div className="flex items-center justify-center">
@@ -274,10 +274,10 @@ export default function ReportesInstructorPage() {
                                         </svg>
                                         <div className="absolute inset-0 flex items-center justify-center">
                                             <div className="text-center">
-                                                <p className="text-3xl font-bold text-neutral-900">
+                                                <p className="text-3xl font-bold text-neutral-900 dark:text-white">
                                                     {Math.round(analytics.courseAnalytics.reduce((acc, c) => acc + c.completionRate, 0) / analytics.courseAnalytics.length)}%
                                                 </p>
-                                                <p className="text-xs text-neutral-500">Promedio</p>
+                                                <p className="text-xs text-neutral-500 dark:text-neutral-400">Promedio</p>
                                             </div>
                                         </div>
                                     </>
@@ -291,16 +291,16 @@ export default function ReportesInstructorPage() {
                     </CardContent>
                 </Card>
 
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardHeader>
-                        <CardTitle className="text-lg font-bold text-neutral-900">Engagement</CardTitle>
+                        <CardTitle className="text-lg font-bold text-neutral-900 dark:text-white">Engagement</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <div className="space-y-4">
                             <div>
                                 <div className="flex items-center justify-between mb-2">
-                                    <span className="text-sm text-neutral-600">Estudiantes Activos</span>
-                                    <span className="text-sm font-semibold text-neutral-900">
+                                    <span className="text-sm text-neutral-600 dark:text-neutral-400">Estudiantes Activos</span>
+                                    <span className="text-sm font-semibold text-neutral-900 dark:text-white">
                                         {stats?.totalStudents && analytics?.totalActiveStudents
                                             ? Math.round((analytics.totalActiveStudents / stats.totalStudents) * 100)
                                             : 0}%
@@ -319,8 +319,8 @@ export default function ReportesInstructorPage() {
                             </div>
                             <div>
                                 <div className="flex items-center justify-between mb-2">
-                                    <span className="text-sm text-neutral-600">Nuevos este Mes</span>
-                                    <span className="text-sm font-semibold text-neutral-900">
+                                    <span className="text-sm text-neutral-600 dark:text-neutral-400">Nuevos este Mes</span>
+                                    <span className="text-sm font-semibold text-neutral-900 dark:text-white">
                                         {analytics?.newEnrollmentsThisMonth || 0}
                                     </span>
                                 </div>
@@ -335,7 +335,7 @@ export default function ReportesInstructorPage() {
                             </div>
                             <div>
                                 <div className="flex items-center justify-between mb-2">
-                                    <span className="text-sm text-neutral-600">Crecimiento MoM</span>
+                                    <span className="text-sm text-neutral-600 dark:text-neutral-400">Crecimiento MoM</span>
                                     <span className={`text-sm font-semibold ${(analytics?.monthOverMonthChange || 0) >= 0 ? 'text-green-600' : 'text-red-600'}`}>
                                         {analytics?.monthOverMonthChange || 0}%
                                     </span>
@@ -353,23 +353,23 @@ export default function ReportesInstructorPage() {
                     </CardContent>
                 </Card>
 
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardHeader>
-                        <CardTitle className="text-lg font-bold text-neutral-900">Resumen</CardTitle>
+                        <CardTitle className="text-lg font-bold text-neutral-900 dark:text-white">Resumen</CardTitle>
                     </CardHeader>
                     <CardContent>
                         <div className="space-y-4">
                             <div className="flex items-center justify-between p-3 bg-neutral-50 rounded-lg">
                                 <span className="text-sm text-neutral-600">Total Cursos</span>
-                                <span className="font-bold text-neutral-900">{stats?.totalCourses || 0}</span>
+                                <span className="font-bold text-neutral-900 dark:text-white">{stats?.totalCourses || 0}</span>
                             </div>
                             <div className="flex items-center justify-between p-3 bg-neutral-50 rounded-lg">
                                 <span className="text-sm text-neutral-600">Total Estudiantes</span>
-                                <span className="font-bold text-neutral-900">{stats?.totalStudents || 0}</span>
+                                <span className="font-bold text-neutral-900 dark:text-white">{stats?.totalStudents || 0}</span>
                             </div>
                             <div className="flex items-center justify-between p-3 bg-neutral-50 rounded-lg">
                                 <span className="text-sm text-neutral-600">Calificacion</span>
-                                <span className="font-bold text-neutral-900">
+                                <span className="font-bold text-neutral-900 dark:text-white">
                                     {stats?.averageRating ? `${stats.averageRating.toFixed(1)}/5.0` : 'N/A'}
                                 </span>
                             </div>
@@ -400,7 +400,7 @@ export default function ReportesInstructorPage() {
                                         }}
                                     />
                                     <p className="text-xs text-neutral-600 mt-2 text-center">{mes.month}</p>
-                                    <p className="text-sm font-semibold text-neutral-900">{mes.enrollments}</p>
+                                    <p className="text-sm font-semibold text-neutral-900 dark:text-white">{mes.enrollments}</p>
                                 </div>
                             ))}
                         </div>

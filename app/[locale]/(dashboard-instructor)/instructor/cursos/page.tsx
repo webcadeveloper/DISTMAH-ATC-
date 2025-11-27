@@ -101,13 +101,13 @@ export default function InstructorCoursesPage() {
         return (
             <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
                 <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-neutral-900">Mis Cursos</h1>
-                    <p className="text-neutral-600">Gestiona tus cursos y contenido academico.</p>
+                    <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Mis Cursos</h1>
+                    <p className="text-neutral-600 dark:text-neutral-400">Gestiona tus cursos y contenido academico.</p>
                 </div>
                 <Card>
                     <CardContent className="p-12 text-center">
                         <Loader2 className="w-12 h-12 text-blue-600 mx-auto mb-4 animate-spin" />
-                        <p className="text-neutral-600">Cargando cursos...</p>
+                        <p className="text-neutral-600 dark:text-neutral-400">Cargando cursos...</p>
                     </CardContent>
                 </Card>
             </div>
@@ -131,8 +131,8 @@ export default function InstructorCoursesPage() {
                 <Card>
                     <CardContent className="p-12 text-center">
                         <BookOpen className="w-16 h-16 text-neutral-300 mx-auto mb-4" />
-                        <h3 className="text-xl font-bold text-neutral-900 mb-2">No tienes cursos creados</h3>
-                        <p className="text-neutral-600 mb-6">Crea tu primer curso para comenzar a ensenar</p>
+                        <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">No tienes cursos creados</h3>
+                        <p className="text-neutral-600 dark:text-neutral-400 mb-6">Crea tu primer curso para comenzar a ensenar</p>
                         <Link href="/es/instructor/cursos/crear-curso">
                             <Button className="bg-blue-600 hover:bg-blue-700">
                                 <Plus className="w-4 h-4 mr-2" /> Crear Curso
@@ -148,8 +148,8 @@ export default function InstructorCoursesPage() {
         <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
             <div className="flex justify-between items-center mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-neutral-900">Mis Cursos</h1>
-                    <p className="text-neutral-600">Gestiona tus cursos y contenido academico.</p>
+                    <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Mis Cursos</h1>
+                    <p className="text-neutral-600 dark:text-neutral-400">Gestiona tus cursos y contenido academico.</p>
                 </div>
                 <Link href="/es/instructor/cursos/crear-curso">
                     <Button className="bg-neutral-900 hover:bg-neutral-800">
@@ -159,22 +159,22 @@ export default function InstructorCoursesPage() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-4 mb-8">
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-600">Total Cursos</p>
-                                <p className="text-2xl font-bold text-neutral-900">{courses.length}</p>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Total Cursos</p>
+                                <p className="text-2xl font-bold text-neutral-900 dark:text-white">{courses.length}</p>
                             </div>
                             <BookOpen className="w-8 h-8 text-blue-400" />
                         </div>
                     </CardContent>
                 </Card>
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-600">Publicados</p>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Publicados</p>
                                 <p className="text-2xl font-bold text-green-600">
                                     {courses.filter(c => c.status === 'PUBLISHED').length}
                                 </p>
@@ -183,12 +183,12 @@ export default function InstructorCoursesPage() {
                         </div>
                     </CardContent>
                 </Card>
-                <Card className="bg-white border-neutral-200">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-600">Total Estudiantes</p>
-                                <p className="text-2xl font-bold text-neutral-900">
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Total Estudiantes</p>
+                                <p className="text-2xl font-bold text-neutral-900 dark:text-white">
                                     {analytics.reduce((acc, c) => acc + c.students, 0)}
                                 </p>
                             </div>
@@ -202,7 +202,7 @@ export default function InstructorCoursesPage() {
                 {courses.map((course) => {
                     const courseAnalytics = getCourseAnalytics(course.id);
                     return (
-                        <Card key={course.id} className="overflow-hidden hover:shadow-md transition-shadow bg-white border-neutral-200">
+                        <Card key={course.id} className="overflow-hidden hover:shadow-md transition-shadow bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                             <div className="flex flex-col md:flex-row">
                                 <div className="w-full md:w-64 h-48 md:h-auto bg-neutral-200 relative">
                                     {course.thumbnail ? (
@@ -241,10 +241,10 @@ export default function InstructorCoursesPage() {
                                             </Button>
                                         </div>
 
-                                        <h3 className="text-xl font-bold text-neutral-900 mb-2">{course.title}</h3>
-                                        <p className="text-neutral-500 text-sm line-clamp-2 mb-4">{course.description}</p>
+                                        <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">{course.title}</h3>
+                                        <p className="text-neutral-500 dark:text-neutral-400 text-sm line-clamp-2 mb-4">{course.description}</p>
 
-                                        <div className="flex items-center gap-6 text-sm text-neutral-500">
+                                        <div className="flex items-center gap-6 text-sm text-neutral-500 dark:text-neutral-400">
                                             <div className="flex items-center gap-2">
                                                 <Users className="w-4 h-4" />
                                                 <span>{courseAnalytics?.students || course.enrollmentCount || 0} Estudiantes</span>
@@ -263,7 +263,7 @@ export default function InstructorCoursesPage() {
                                         </div>
                                     </div>
 
-                                    <div className="flex items-center gap-3 mt-6 pt-4 border-t border-neutral-100">
+                                    <div className="flex items-center gap-3 mt-6 pt-4 border-t border-neutral-100 dark:border-neutral-700">
                                         <Link href={`/es/instructor/cursos/${course.slug}/contenido`}>
                                             <Button variant="default" size="sm" className="bg-neutral-900 hover:bg-neutral-800">
                                                 <Edit className="w-4 h-4 mr-2" /> Editar Contenido
@@ -280,7 +280,7 @@ export default function InstructorCoursesPage() {
                                             </Button>
                                         </Link>
                                         <div className="flex-grow" />
-                                        <span className="text-lg font-bold text-neutral-900">${course.price} USD</span>
+                                        <span className="text-lg font-bold text-neutral-900 dark:text-white">${course.price} USD</span>
                                     </div>
                                 </div>
                             </div>
