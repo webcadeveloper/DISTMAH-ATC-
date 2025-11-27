@@ -146,7 +146,6 @@ export default function InstructorDashboardClient() {
 
     const toggleClass = async () => {
         if (!selectedStreamCourse) return;
-        if (!streamStatus?.online) return;
 
         setTogglingClass(true);
         try {
@@ -699,7 +698,7 @@ export default function InstructorDashboardClient() {
 
                                 <Button
                                     onClick={toggleClass}
-                                    disabled={!streamStatus?.online || !selectedStreamCourse || togglingClass}
+                                    disabled={!selectedStreamCourse || togglingClass}
                                     className={`w-full h-14 text-lg font-bold ${
                                         classActive
                                             ? 'bg-red-600 hover:bg-red-700 text-white'
