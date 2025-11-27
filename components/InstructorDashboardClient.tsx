@@ -98,6 +98,8 @@ export default function InstructorDashboardClient() {
     const [classActive, setClassActive] = useState(false);
     const [togglingClass, setTogglingClass] = useState(false);
     const [streamConfig, setStreamConfig] = useState<{ rtmpUrl: string; streamKey: string; owncastUrl: string; embedUrl: string } | null>(null);
+    const [countdown, setCountdown] = useState<number | null>(null);
+    const [toggleError, setToggleError] = useState<string | null>(null);
 
     useEffect(() => {
         loadDashboardData();
@@ -146,6 +148,16 @@ export default function InstructorDashboardClient() {
 
     const toggleClass = async () => {
         if (!selectedStreamCourse) return;
+        setToggleError(null);
+
+        if (!classActive) {
+            setCountdown(3);
+            for (let i = 3; i >= 1; i--) {
+                setCountdown(i);
+                await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+            setCountdown(null);
+        }
 
         setTogglingClass(true);
         try {
@@ -161,9 +173,13 @@ export default function InstructorDashboardClient() {
             if (res.ok) {
                 const data = await res.json();
                 setClassActive(data.isLive);
+            } else {
+                const data = await res.json();
+                setToggleError(data.error || 'Error al cambiar estado');
             }
         } catch (error) {
             console.error('Error toggling class:', error);
+            setToggleError('Error de conexion');
         } finally {
             setTogglingClass(false);
         }
@@ -688,17 +704,22 @@ export default function InstructorDashboardClient() {
                                     </select>
                                 </div>
 
-                                {!streamStatus?.online && (
-                                    <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-                                        <p className="text-sm text-yellow-800">
-                                            Primero inicia la transmision en OBS para activar la clase.
-                                        </p>
+                                {countdown !== null && (
+                                    <div className="p-6 bg-black text-white rounded-lg text-center">
+                                        <p className="text-sm mb-2">Tu clase empieza en...</p>
+                                        <p className="text-6xl font-bold animate-pulse">{countdown}</p>
+                                    </div>
+                                )}
+
+                                {toggleError && (
+                                    <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+                                        <p className="text-sm text-red-800">{toggleError}</p>
                                     </div>
                                 )}
 
                                 <Button
                                     onClick={toggleClass}
-                                    disabled={!selectedStreamCourse || togglingClass}
+                                    disabled={!selectedStreamCourse || togglingClass || countdown !== null}
                                     className={`w-full h-14 text-lg font-bold ${
                                         classActive
                                             ? 'bg-red-600 hover:bg-red-700 text-white'
@@ -721,9 +742,10 @@ export default function InstructorDashboardClient() {
                                 </Button>
 
                                 {classActive && (
-                                    <p className="text-center text-sm text-green-700 font-medium">
-                                        Los estudiantes pueden ver la clase ahora
-                                    </p>
+                                    <div className="p-4 bg-green-100 border border-green-300 rounded-lg text-center">
+                                        <p className="text-lg font-bold text-green-800">EN VIVO</p>
+                                        <p className="text-sm text-green-700">Los estudiantes pueden ver la clase ahora</p>
+                                    </div>
                                 )}
                             </CardContent>
                         </Card>
