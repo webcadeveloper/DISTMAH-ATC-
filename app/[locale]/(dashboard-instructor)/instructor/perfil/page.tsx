@@ -218,7 +218,7 @@ export default function PerfilInstructorPage() {
                     <p className="text-neutral-600 dark:text-neutral-400">Gestiona tu informacion personal y profesional.</p>
                 </div>
                 {!editMode ? (
-                    <Button className="bg-neutral-900 hover:bg-neutral-800" onClick={() => setEditMode(true)}>
+                    <Button className="bg-neutral-900 hover:bg-neutral-800 text-white" onClick={() => setEditMode(true)}>
                         <Edit className="w-4 h-4 mr-2" /> Editar Perfil
                     </Button>
                 ) : (
@@ -226,7 +226,7 @@ export default function PerfilInstructorPage() {
                         <Button variant="outline" onClick={() => setEditMode(false)}>
                             Cancelar
                         </Button>
-                        <Button className="bg-neutral-900 hover:bg-neutral-800" onClick={handleSaveProfile} disabled={saving}>
+                        <Button className="bg-neutral-900 hover:bg-neutral-800 text-white" onClick={handleSaveProfile} disabled={saving}>
                             {saving ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Save className="w-4 h-4 mr-2" />}
                             Guardar
                         </Button>
@@ -243,64 +243,64 @@ export default function PerfilInstructorPage() {
                         <CardContent className="space-y-4">
                             <div className="grid md:grid-cols-2 gap-4">
                                 <div>
-                                    <label className="text-sm font-medium text-neutral-700 mb-2 block">Nombre Completo</label>
+                                    <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2 block">Nombre Completo</label>
                                     <Input
                                         value={name}
                                         onChange={(e) => setName(e.target.value)}
                                         disabled={!editMode}
-                                        className="bg-neutral-50 border-neutral-200"
+                                        className="bg-neutral-50 dark:bg-neutral-700 border-neutral-200 dark:border-neutral-600 dark:text-white"
                                     />
                                 </div>
                                 <div>
-                                    <label className="text-sm font-medium text-neutral-700 mb-2 block">Email</label>
+                                    <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2 block">Email</label>
                                     <Input
                                         value={profile?.email || ''}
                                         disabled
-                                        className="bg-neutral-100 border-neutral-200"
+                                        className="bg-neutral-100 dark:bg-neutral-700 border-neutral-200 dark:border-neutral-600 dark:text-white"
                                     />
                                 </div>
                             </div>
                             <div className="grid md:grid-cols-2 gap-4">
                                 <div>
-                                    <label className="text-sm font-medium text-neutral-700 mb-2 block">Telefono</label>
+                                    <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2 block">Telefono</label>
                                     <Input
                                         value={phoneNumber}
                                         onChange={(e) => setPhoneNumber(e.target.value)}
                                         disabled={!editMode}
                                         placeholder="+52 (614) 123-4567"
-                                        className="bg-neutral-50 border-neutral-200"
+                                        className="bg-neutral-50 dark:bg-neutral-700 border-neutral-200 dark:border-neutral-600 dark:text-white"
                                     />
                                 </div>
                                 <div>
-                                    <label className="text-sm font-medium text-neutral-700 mb-2 block">Ciudad</label>
+                                    <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2 block">Ciudad</label>
                                     <Input
                                         value={city}
                                         onChange={(e) => setCity(e.target.value)}
                                         disabled={!editMode}
                                         placeholder="Ciudad, Pais"
-                                        className="bg-neutral-50 border-neutral-200"
+                                        className="bg-neutral-50 dark:bg-neutral-700 border-neutral-200 dark:border-neutral-600 dark:text-white"
                                     />
                                 </div>
                             </div>
                             <div className="grid md:grid-cols-2 gap-4">
                                 <div>
-                                    <label className="text-sm font-medium text-neutral-700 mb-2 block">Profesion</label>
+                                    <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2 block">Profesion</label>
                                     <Input
                                         value={profession}
                                         onChange={(e) => setProfession(e.target.value)}
                                         disabled={!editMode}
                                         placeholder="Ingeniero Civil"
-                                        className="bg-neutral-50 border-neutral-200"
+                                        className="bg-neutral-50 dark:bg-neutral-700 border-neutral-200 dark:border-neutral-600 dark:text-white"
                                     />
                                 </div>
                                 <div>
-                                    <label className="text-sm font-medium text-neutral-700 mb-2 block">Institucion</label>
+                                    <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2 block">Institucion</label>
                                     <Input
                                         value={institution}
                                         onChange={(e) => setInstitution(e.target.value)}
                                         disabled={!editMode}
                                         placeholder="DISTMAH ATC"
-                                        className="bg-neutral-50 border-neutral-200"
+                                        className="bg-neutral-50 dark:bg-neutral-700 border-neutral-200 dark:border-neutral-600 dark:text-white"
                                     />
                                 </div>
                             </div>
@@ -313,7 +313,7 @@ export default function PerfilInstructorPage() {
                         </CardHeader>
                         <CardContent>
                             <textarea
-                                className="w-full h-32 p-3 border border-neutral-200 rounded-md bg-neutral-50 text-neutral-900 text-sm disabled:bg-neutral-100"
+                                className="w-full h-32 p-3 border border-neutral-200 dark:border-neutral-600 rounded-md bg-neutral-50 dark:bg-neutral-700 text-neutral-900 dark:text-white text-sm disabled:bg-neutral-100 dark:disabled:bg-neutral-600"
                                 value={bio}
                                 onChange={(e) => setBio(e.target.value)}
                                 disabled={!editMode}
@@ -328,7 +328,7 @@ export default function PerfilInstructorPage() {
                         </CardHeader>
                         <CardContent>
                             <div className="space-y-3">
-                                <div className="flex items-center justify-between p-3 bg-neutral-50 rounded-lg border border-neutral-200">
+                                <div className="flex items-center justify-between p-3 bg-neutral-50 dark:bg-neutral-700 rounded-lg border border-neutral-200 dark:border-neutral-600">
                                     <div className="flex items-center gap-3">
                                         <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
                                             <Award className="w-6 h-6 text-blue-600" />
@@ -341,7 +341,7 @@ export default function PerfilInstructorPage() {
                                     <Badge className="bg-green-100 text-green-800 border-green-200">Vigente</Badge>
                                 </div>
                             </div>
-                            <Button variant="outline" className="w-full mt-4 border-neutral-300">
+                            <Button variant="outline" className="w-full mt-4 border-neutral-300 dark:border-neutral-600">
                                 <Award className="w-4 h-4 mr-2" /> Agregar Certificacion
                             </Button>
                         </CardContent>
@@ -353,38 +353,38 @@ export default function PerfilInstructorPage() {
                         </CardHeader>
                         <CardContent className="space-y-4">
                             <div>
-                                <label className="text-sm font-medium text-neutral-700 mb-2 block">Contrasena Actual</label>
+                                <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2 block">Contrasena Actual</label>
                                 <Input
                                     type="password"
                                     value={currentPassword}
                                     onChange={(e) => setCurrentPassword(e.target.value)}
                                     placeholder="********"
-                                    className="bg-neutral-50 border-neutral-200"
+                                    className="bg-neutral-50 dark:bg-neutral-700 border-neutral-200 dark:border-neutral-600 dark:text-white"
                                 />
                             </div>
                             <div>
-                                <label className="text-sm font-medium text-neutral-700 mb-2 block">Nueva Contrasena</label>
+                                <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2 block">Nueva Contrasena</label>
                                 <Input
                                     type="password"
                                     value={newPassword}
                                     onChange={(e) => setNewPassword(e.target.value)}
                                     placeholder="********"
-                                    className="bg-neutral-50 border-neutral-200"
+                                    className="bg-neutral-50 dark:bg-neutral-700 border-neutral-200 dark:border-neutral-600 dark:text-white"
                                 />
                             </div>
                             <div>
-                                <label className="text-sm font-medium text-neutral-700 mb-2 block">Confirmar Nueva Contrasena</label>
+                                <label className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2 block">Confirmar Nueva Contrasena</label>
                                 <Input
                                     type="password"
                                     value={confirmPassword}
                                     onChange={(e) => setConfirmPassword(e.target.value)}
                                     placeholder="********"
-                                    className="bg-neutral-50 border-neutral-200"
+                                    className="bg-neutral-50 dark:bg-neutral-700 border-neutral-200 dark:border-neutral-600 dark:text-white"
                                 />
                             </div>
                             <Button
                                 variant="outline"
-                                className="w-full border-neutral-300"
+                                className="w-full border-neutral-300 dark:border-neutral-600"
                                 onClick={handleChangePassword}
                                 disabled={changingPassword || !currentPassword || !newPassword}
                             >
@@ -410,7 +410,7 @@ export default function PerfilInstructorPage() {
                                 onChange={handleAvatarChange}
                             />
                             <div
-                                className="w-32 h-32 rounded-full bg-neutral-200 mx-auto mb-4 flex items-center justify-center overflow-hidden relative cursor-pointer group"
+                                className="w-32 h-32 rounded-full bg-neutral-200 dark:bg-neutral-700 mx-auto mb-4 flex items-center justify-center overflow-hidden relative cursor-pointer group"
                                 onClick={handleAvatarClick}
                             >
                                 {profile?.avatar ? (
@@ -433,7 +433,7 @@ export default function PerfilInstructorPage() {
                             </div>
                             <h3 className="font-bold text-neutral-900 dark:text-white text-lg">{profile?.name || 'Instructor'}</h3>
                             <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">Instructor Certificado ATC</p>
-                            <Button variant="outline" className="w-full border-neutral-300" onClick={handleAvatarClick}>
+                            <Button variant="outline" className="w-full border-neutral-300 dark:border-neutral-600" onClick={handleAvatarClick}>
                                 Cambiar Foto
                             </Button>
                         </CardContent>
