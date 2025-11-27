@@ -24,21 +24,49 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Curso no encontrado' }, { status: 404 });
     }
 
-    const schedule = await (prisma as any).courseSchedule.findFirst({
+    let schedule = await (prisma as any).courseSchedule.findFirst({
       where: { courseId },
     });
 
     if (!schedule) {
-      return NextResponse.json({ error: 'No hay horario configurado para este curso' }, { status: 404 });
+      schedule = await (prisma as any).courseSchedule.create({
+        data: {
+          courseId,
+          shift: 'MORNING',
+          daysOfWeek: [1, 2, 3, 4, 5],
+          startTime: '08:00',
+          endTime: '17:00',
+          timezone: 'America/Caracas',
+          startDate: new Date(),
+          endDate: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000),
+          active: false,
+          streamUrl: process.env.OWNCAST_EMBED_URL || 'https://casa.tailc67ac4.ts.net:8088/embed/video',
+        },
+      });
     }
 
     const updated = await (prisma as any).courseSchedule.update({
       where: { id: schedule.id },
       data: {
         active: isLive,
-        streamUrl: isLive ? process.env.OWNCAST_EMBED_URL : schedule.streamUrl,
+        streamUrl: isLive ? (process.env.OWNCAST_EMBED_URL || 'https://casa.tailc67ac4.ts.net:8088/embed/video') : schedule.streamUrl,
       },
     });
+
+    if (isLive) {
+      try {
+        await fetch(`${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/api/stream/notify`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Cookie': request.headers.get('cookie') || '',
+          },
+          body: JSON.stringify({ courseId }),
+        });
+      } catch (error) {
+        console.error('Error sending notifications:', error);
+      }
+    }
 
     return NextResponse.json({
       success: true,
