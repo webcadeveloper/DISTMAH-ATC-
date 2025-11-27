@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { PlusCircle, BookOpen, Users, BarChart3, Edit, MoreVertical, Bell, MessageSquare, TrendingUp, Award } from 'lucide-react';
+import { PlusCircle, BookOpen, Users, BarChart3, Edit, MoreVertical, Bell, MessageSquare, TrendingUp, Award, Workflow } from 'lucide-react';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -271,11 +271,15 @@ export default function InstructorDashboardClient() {
             )}
 
             <Tabs defaultValue="overview" className="mt-8">
-                <TabsList className="grid w-full grid-cols-4 max-w-2xl">
+                <TabsList className="grid w-full grid-cols-5 max-w-3xl">
                     <TabsTrigger value="overview">Vista General</TabsTrigger>
                     <TabsTrigger value="students">Estudiantes</TabsTrigger>
                     <TabsTrigger value="grades">Calificaciones</TabsTrigger>
                     <TabsTrigger value="analytics">Analíticas</TabsTrigger>
+                    <TabsTrigger value="automations" className="flex items-center gap-1">
+                        <Workflow className="w-4 h-4" />
+                        Automatizaciones
+                    </TabsTrigger>
                 </TabsList>
 
                 <TabsContent value="overview" className="mt-6">
@@ -545,6 +549,29 @@ export default function InstructorDashboardClient() {
                             </Card>
                         </div>
                     )}
+                </TabsContent>
+
+                <TabsContent value="automations" className="mt-6">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle className="flex items-center gap-2">
+                                <Workflow className="w-5 h-5 text-blue-600" />
+                                Automatizaciones n8n
+                            </CardTitle>
+                            <p className="text-sm text-neutral-600">
+                                Gestiona workflows automatizados para emails, notificaciones y reportes de tus cursos.
+                            </p>
+                        </CardHeader>
+                        <CardContent className="p-0">
+                            <iframe
+                                src="https://casa.tailc67ac4.ts.net:9443/home/workflows"
+                                className="w-full border-0 rounded-b-lg"
+                                style={{ height: 'calc(100vh - 350px)', minHeight: '600px' }}
+                                title="n8n Workflows"
+                                allow="clipboard-read; clipboard-write"
+                            />
+                        </CardContent>
+                    </Card>
                 </TabsContent>
             </Tabs>
         </div>

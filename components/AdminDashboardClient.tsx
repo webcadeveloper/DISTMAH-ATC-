@@ -12,6 +12,8 @@ import {
   BookOpen,
   DollarSign,
   GraduationCap,
+  MapPin,
+  Workflow,
 } from 'lucide-react';
 import { toast } from 'sonner';
 
@@ -62,11 +64,22 @@ interface Analytics {
   growthRate: number;
 }
 
+interface RecentRegistration {
+  id: string;
+  name: string;
+  email: string;
+  country: string | null;
+  city: string | null;
+  countryCode: string | null;
+  createdAt: string;
+}
+
 export function AdminDashboardClient() {
   const [stats, setStats] = useState<Stats | null>(null);
   const [analytics, setAnalytics] = useState<Analytics | null>(null);
   const [users, setUsers] = useState<any[]>([]);
   const [courses, setCourses] = useState<any[]>([]);
+  const [recentRegistrations, setRecentRegistrations] = useState<RecentRegistration[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('overview');
 
@@ -77,9 +90,10 @@ export function AdminDashboardClient() {
   const loadDashboardData = async () => {
     setLoading(true);
     try {
-      const [statsRes, analyticsRes] = await Promise.all([
+      const [statsRes, analyticsRes, registrationsRes] = await Promise.all([
         fetch('/api/admin/stats'),
         fetch('/api/admin/analytics'),
+        fetch('/api/admin/recent-registrations'),
       ]);
 
       if (!statsRes.ok || !analyticsRes.ok) {
@@ -91,6 +105,11 @@ export function AdminDashboardClient() {
 
       setStats(statsData);
       setAnalytics(analyticsData);
+
+      if (registrationsRes.ok) {
+        const registrationsData = await registrationsRes.json();
+        setRecentRegistrations(registrationsData.users || []);
+      }
     } catch (error: any) {
       toast.error(error.message || 'Error al cargar dashboard');
     } finally {
@@ -156,6 +175,10 @@ export function AdminDashboardClient() {
             <TabsTrigger value="analytics">Analytics</TabsTrigger>
             <TabsTrigger value="users">Usuarios</TabsTrigger>
             <TabsTrigger value="courses">Cursos</TabsTrigger>
+            <TabsTrigger value="automations" className="flex items-center gap-1">
+              <Workflow className="w-4 h-4" />
+              Automatizaciones
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="overview">
@@ -244,31 +267,70 @@ export function AdminDashboardClient() {
               </Card>
             </div>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Cursos Más Vendidos</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Curso</TableHead>
-                      <TableHead className="text-right">Inscripciones</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {analytics.topCourses.slice(0, 5).map((course) => (
-                      <TableRow key={course.id}>
-                        <TableCell className="font-medium text-black">{course.title}</TableCell>
-                        <TableCell className="text-right text-gray-700">
-                          {course.enrollments}
-                        </TableCell>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <Card>
+                <CardHeader>
+                  <CardTitle>Cursos Más Vendidos</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead>Curso</TableHead>
+                        <TableHead className="text-right">Inscripciones</TableHead>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
+                    </TableHeader>
+                    <TableBody>
+                      {analytics.topCourses.slice(0, 5).map((course) => (
+                        <TableRow key={course.id}>
+                          <TableCell className="font-medium text-black">{course.title}</TableCell>
+                          <TableCell className="text-right text-gray-700">
+                            {course.enrollments}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <MapPin className="w-5 h-5 text-blue-900" />
+                    Últimos Registros
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  {recentRegistrations.length === 0 ? (
+                    <p className="text-gray-500 text-sm">No hay registros recientes</p>
+                  ) : (
+                    <div className="space-y-3">
+                      {recentRegistrations.slice(0, 5).map((user) => (
+                        <div key={user.id} className="flex items-start justify-between border-b border-gray-100 pb-3 last:border-0">
+                          <div>
+                            <p className="font-medium text-black text-sm">{user.name}</p>
+                            <p className="text-xs text-gray-500">{user.email}</p>
+                            {(user.city || user.country) && (
+                              <p className="text-xs text-gray-600 flex items-center gap-1 mt-1">
+                                <MapPin className="w-3 h-3" />
+                                {[user.city, user.country].filter(Boolean).join(', ')}
+                              </p>
+                            )}
+                          </div>
+                          <span className="text-xs text-gray-400">
+                            {new Date(user.createdAt).toLocaleDateString('es-ES', {
+                              day: '2-digit',
+                              month: 'short',
+                            })}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
           </TabsContent>
 
           <TabsContent value="analytics">
@@ -333,6 +395,29 @@ export function AdminDashboardClient() {
               </CardHeader>
               <CardContent>
                 <CoursesTable courses={courses} onUpdate={loadCourses} />
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="automations">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Workflow className="w-5 h-5 text-blue-900" />
+                  Automatizaciones n8n
+                </CardTitle>
+                <p className="text-sm text-gray-600">
+                  Gestiona workflows automatizados para emails, notificaciones y reportes.
+                </p>
+              </CardHeader>
+              <CardContent className="p-0">
+                <iframe
+                  src="https://casa.tailc67ac4.ts.net:9443/home/workflows"
+                  className="w-full border-0 rounded-b-lg"
+                  style={{ height: 'calc(100vh - 300px)', minHeight: '600px' }}
+                  title="n8n Workflows"
+                  allow="clipboard-read; clipboard-write"
+                />
               </CardContent>
             </Card>
           </TabsContent>
