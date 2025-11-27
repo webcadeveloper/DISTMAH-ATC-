@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { PlayCircle, Clock, Award, BookOpen, Radio, Video } from 'lucide-react';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 
@@ -160,14 +161,14 @@ export default function StudentDashboardClient({ userId }: StudentDashboardClien
     return (
       <div className="p-8 max-w-7xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-neutral-900">Hola, Estudiante</h1>
-          <p className="text-neutral-600">Inscríbete en un curso para comenzar tu aprendizaje.</p>
+          <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Hola, Estudiante</h1>
+          <p className="text-neutral-600 dark:text-neutral-300">Inscríbete en un curso para comenzar tu aprendizaje.</p>
         </div>
-        <Card>
+        <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
           <CardContent className="p-12 text-center">
-            <BookOpen className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-gray-900 mb-2">No tienes cursos inscritos</h3>
-            <p className="text-gray-600 mb-6">Explora nuestro catálogo y comienza a aprender hoy</p>
+            <BookOpen className="w-16 h-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">No tienes cursos inscritos</h3>
+            <p className="text-gray-600 dark:text-gray-400 mb-6">Explora nuestro catálogo y comienza a aprender hoy</p>
             <Link href="/cursos">
               <Button className="bg-blue-600 hover:bg-blue-700">Ver Cursos Disponibles</Button>
             </Link>
@@ -204,9 +205,12 @@ export default function StudentDashboardClient({ userId }: StudentDashboardClien
 
   return (
     <div className="p-8 max-w-7xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-neutral-900">Hola, Estudiante</h1>
-        <p className="text-neutral-600">Continúa donde lo dejaste.</p>
+      <div className="flex justify-between items-center mb-8">
+        <div>
+          <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Hola, Estudiante</h1>
+          <p className="text-neutral-600 dark:text-neutral-300">Continúa donde lo dejaste.</p>
+        </div>
+        <ThemeToggle />
       </div>
 
       {activeLiveClass && (
@@ -269,25 +273,25 @@ export default function StudentDashboardClient({ userId }: StudentDashboardClien
 
       {currentCourse && (
         <div className="mb-10">
-          <h2 className="text-xl font-bold text-neutral-900 mb-4">Continuar Aprendiendo</h2>
-          <Card className="bg-neutral-900 text-white border-none overflow-hidden relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-neutral-900 opacity-90" />
+          <h2 className="text-xl font-bold text-neutral-900 dark:text-white mb-4">Continuar Aprendiendo</h2>
+          <Card className="bg-neutral-900 dark:bg-neutral-800 text-white border-none overflow-hidden relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-neutral-900 dark:from-blue-950 dark:to-neutral-900 opacity-90" />
             <div className="relative z-10 p-8 flex flex-col md:flex-row gap-8 items-center">
               <div className="flex-grow">
-                <div className="flex items-center gap-2 text-blue-300 mb-2 text-sm font-medium">
+                <div className="flex items-center gap-2 text-blue-300 dark:text-blue-400 mb-2 text-sm font-medium">
                   <Clock className="w-4 h-4" />
                   <span>Última actividad: {getLastActivity(currentCourse)}</span>
                 </div>
                 <h3 className="text-2xl font-bold mb-2">{currentCourse.courseTitle}</h3>
                 {currentCourse.lastLesson && (
-                  <p className="text-neutral-300 mb-6">Última lección: {currentCourse.lastLesson.title}</p>
+                  <p className="text-neutral-300 dark:text-neutral-400 mb-6">Última lección: {currentCourse.lastLesson.title}</p>
                 )}
 
                 <div className="flex items-center gap-4 mb-2">
                   <span className="text-sm font-medium">Progreso del curso</span>
                   <span className="text-sm font-bold text-blue-400">{currentCourse.progressPercent}%</span>
                 </div>
-                <Progress value={currentCourse.progressPercent} className="h-2 bg-neutral-700 mb-6" />
+                <Progress value={currentCourse.progressPercent} className="h-2 bg-neutral-700 dark:bg-neutral-600 mb-6" />
 
                 {currentCourse.nextLesson ? (
                   <Link
@@ -323,36 +327,36 @@ export default function StudentDashboardClient({ userId }: StudentDashboardClien
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-bold text-neutral-900">Mis Cursos</h2>
-            <Link href="/estudiante/mis-cursos" className="text-sm text-blue-600 hover:underline">
+            <h2 className="text-xl font-bold text-neutral-900 dark:text-white">Mis Cursos</h2>
+            <Link href="/estudiante/mis-cursos" className="text-sm text-blue-600 dark:text-blue-400 hover:underline">
               Ver todos
             </Link>
           </div>
 
           <div className="grid gap-4">
             {data.courses.slice(0, 3).map((course) => (
-              <Card key={course.courseId} className="hover:shadow-md transition-shadow">
+              <Card key={course.courseId} className="hover:shadow-md transition-shadow bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                 <CardContent className="p-4 flex gap-4">
-                  <div className="w-24 h-24 bg-neutral-100 rounded-md flex-shrink-0 overflow-hidden">
+                  <div className="w-24 h-24 bg-neutral-100 dark:bg-neutral-700 rounded-md flex-shrink-0 overflow-hidden">
                     {course.courseThumbnail ? (
                       <img src={course.courseThumbnail} alt={course.courseTitle} className="w-full h-full object-cover" />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-gray-400">
+                      <div className="w-full h-full flex items-center justify-center text-gray-400 dark:text-gray-500">
                         <BookOpen className="w-8 h-8" />
                       </div>
                     )}
                   </div>
                   <div className="flex-grow flex flex-col justify-between">
                     <div>
-                      <h4 className="font-bold text-neutral-900">{course.courseTitle}</h4>
-                      <p className="text-sm text-neutral-500">Nivel {course.level}</p>
+                      <h4 className="font-bold text-neutral-900 dark:text-white">{course.courseTitle}</h4>
+                      <p className="text-sm text-neutral-500 dark:text-neutral-400">Nivel {course.level}</p>
                     </div>
                     <div>
-                      <div className="flex justify-between text-xs text-neutral-500 mb-1">
+                      <div className="flex justify-between text-xs text-neutral-500 dark:text-neutral-400 mb-1">
                         <span>Progreso</span>
                         <span>{course.progressPercent}%</span>
                       </div>
-                      <Progress value={course.progressPercent} className="h-1.5" />
+                      <Progress value={course.progressPercent} className="h-1.5 bg-neutral-200 dark:bg-neutral-700" />
                     </div>
                   </div>
                 </CardContent>
@@ -362,36 +366,36 @@ export default function StudentDashboardClient({ userId }: StudentDashboardClien
         </div>
 
         <div>
-          <h2 className="text-xl font-bold text-neutral-900 mb-4">Mis Logros</h2>
-          <Card>
+          <h2 className="text-xl font-bold text-neutral-900 dark:text-white mb-4">Mis Logros</h2>
+          <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
             <CardContent className="p-6 space-y-6">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600">
+                <div className="w-12 h-12 rounded-full bg-yellow-100 dark:bg-yellow-900/30 flex items-center justify-center text-yellow-600 dark:text-yellow-400">
                   <Award className="w-6 h-6" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-neutral-900">{data.summary.totalCoursesCompleted}</p>
-                  <p className="text-sm text-neutral-500">Certificados Obtenidos</p>
+                  <p className="text-2xl font-bold text-neutral-900 dark:text-white">{data.summary.totalCoursesCompleted}</p>
+                  <p className="text-sm text-neutral-500 dark:text-neutral-400">Certificados Obtenidos</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600">
+                <div className="w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
                   <Clock className="w-6 h-6" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-neutral-900">{data.summary.totalHoursStudied}h</p>
-                  <p className="text-sm text-neutral-500">Horas de Aprendizaje</p>
+                  <p className="text-2xl font-bold text-neutral-900 dark:text-white">{data.summary.totalHoursStudied}h</p>
+                  <p className="text-sm text-neutral-500 dark:text-neutral-400">Horas de Aprendizaje</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+                <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
                   <BookOpen className="w-6 h-6" />
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-neutral-900">{data.summary.totalCoursesEnrolled}</p>
-                  <p className="text-sm text-neutral-500">Cursos Inscritos</p>
+                  <p className="text-2xl font-bold text-neutral-900 dark:text-white">{data.summary.totalCoursesEnrolled}</p>
+                  <p className="text-sm text-neutral-500 dark:text-neutral-400">Cursos Inscritos</p>
                 </div>
               </div>
             </CardContent>

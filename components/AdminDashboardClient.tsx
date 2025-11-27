@@ -15,6 +15,7 @@ import {
   MapPin,
   Workflow,
 } from 'lucide-react';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { toast } from 'sonner';
 
 interface Stats {
@@ -160,13 +161,16 @@ export function AdminDashboardClient() {
   }
 
   return (
-    <div className="min-h-screen bg-white p-8">
+    <div className="min-h-screen bg-white dark:bg-neutral-900 p-8">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-black">Panel de Administración</h1>
-          <p className="text-gray-600 mt-1">
-            Gestión completa de DISTMAH ATC - Authorized Training Center
-          </p>
+        <div className="flex justify-between items-center mb-8">
+          <div>
+            <h1 className="text-3xl font-bold text-black dark:text-white">Panel de Administración</h1>
+            <p className="text-gray-600 dark:text-gray-400 mt-1">
+              Gestión completa de DISTMAH ATC - Authorized Training Center
+            </p>
+          </div>
+          <ThemeToggle />
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
@@ -210,27 +214,27 @@ export function AdminDashboardClient() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-              <Card>
+              <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                 <CardHeader>
-                  <CardTitle>Distribución por Rol</CardTitle>
+                  <CardTitle className="text-black dark:text-white">Distribución por Rol</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Estudiantes</span>
-                      <span className="text-sm font-medium text-black">
+                      <span className="text-sm text-gray-600 dark:text-gray-400">Estudiantes</span>
+                      <span className="text-sm font-medium text-black dark:text-white">
                         {stats.usersByRole.STUDENT}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Instructores</span>
-                      <span className="text-sm font-medium text-black">
+                      <span className="text-sm text-gray-600 dark:text-gray-400">Instructores</span>
+                      <span className="text-sm font-medium text-black dark:text-white">
                         {stats.usersByRole.INSTRUCTOR}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Administradores</span>
-                      <span className="text-sm font-medium text-black">
+                      <span className="text-sm text-gray-600 dark:text-gray-400">Administradores</span>
+                      <span className="text-sm font-medium text-black dark:text-white">
                         {stats.usersByRole.ADMIN}
                       </span>
                     </div>
@@ -238,27 +242,27 @@ export function AdminDashboardClient() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                 <CardHeader>
-                  <CardTitle>Cursos por Estado</CardTitle>
+                  <CardTitle className="text-black dark:text-white">Cursos por Estado</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Publicados</span>
-                      <span className="text-sm font-medium text-black">
+                      <span className="text-sm text-gray-600 dark:text-gray-400">Publicados</span>
+                      <span className="text-sm font-medium text-black dark:text-white">
                         {stats.coursesByStatus.PUBLISHED}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Borradores</span>
-                      <span className="text-sm font-medium text-black">
+                      <span className="text-sm text-gray-600 dark:text-gray-400">Borradores</span>
+                      <span className="text-sm font-medium text-black dark:text-white">
                         {stats.coursesByStatus.DRAFT}
                       </span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Archivados</span>
-                      <span className="text-sm font-medium text-black">
+                      <span className="text-sm text-gray-600 dark:text-gray-400">Archivados</span>
+                      <span className="text-sm font-medium text-black dark:text-white">
                         {stats.coursesByStatus.ARCHIVED}
                       </span>
                     </div>
@@ -268,23 +272,23 @@ export function AdminDashboardClient() {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <Card>
+              <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                 <CardHeader>
-                  <CardTitle>Cursos Más Vendidos</CardTitle>
+                  <CardTitle className="text-black dark:text-white">Cursos Más Vendidos</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <Table>
                     <TableHeader>
-                      <TableRow>
-                        <TableHead>Curso</TableHead>
-                        <TableHead className="text-right">Inscripciones</TableHead>
+                      <TableRow className="border-gray-200 dark:border-gray-700">
+                        <TableHead className="text-gray-700 dark:text-gray-300">Curso</TableHead>
+                        <TableHead className="text-right text-gray-700 dark:text-gray-300">Inscripciones</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       {analytics.topCourses.slice(0, 5).map((course) => (
-                        <TableRow key={course.id}>
-                          <TableCell className="font-medium text-black">{course.title}</TableCell>
-                          <TableCell className="text-right text-gray-700">
+                        <TableRow key={course.id} className="border-gray-200 dark:border-gray-700">
+                          <TableCell className="font-medium text-black dark:text-white">{course.title}</TableCell>
+                          <TableCell className="text-right text-gray-700 dark:text-gray-300">
                             {course.enrollments}
                           </TableCell>
                         </TableRow>
@@ -294,31 +298,31 @@ export function AdminDashboardClient() {
                 </CardContent>
               </Card>
 
-              <Card>
+              <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <MapPin className="w-5 h-5 text-blue-900" />
+                  <CardTitle className="flex items-center gap-2 text-black dark:text-white">
+                    <MapPin className="w-5 h-5 text-blue-900 dark:text-blue-400" />
                     Últimos Registros
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   {recentRegistrations.length === 0 ? (
-                    <p className="text-gray-500 text-sm">No hay registros recientes</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm">No hay registros recientes</p>
                   ) : (
                     <div className="space-y-3">
                       {recentRegistrations.slice(0, 5).map((user) => (
-                        <div key={user.id} className="flex items-start justify-between border-b border-gray-100 pb-3 last:border-0">
+                        <div key={user.id} className="flex items-start justify-between border-b border-gray-100 dark:border-gray-700 pb-3 last:border-0">
                           <div>
-                            <p className="font-medium text-black text-sm">{user.name}</p>
-                            <p className="text-xs text-gray-500">{user.email}</p>
+                            <p className="font-medium text-black dark:text-white text-sm">{user.name}</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">{user.email}</p>
                             {(user.city || user.country) && (
-                              <p className="text-xs text-gray-600 flex items-center gap-1 mt-1">
+                              <p className="text-xs text-gray-600 dark:text-gray-400 flex items-center gap-1 mt-1">
                                 <MapPin className="w-3 h-3" />
                                 {[user.city, user.country].filter(Boolean).join(', ')}
                               </p>
                             )}
                           </div>
-                          <span className="text-xs text-gray-400">
+                          <span className="text-xs text-gray-400 dark:text-gray-500">
                             {new Date(user.createdAt).toLocaleDateString('es-ES', {
                               day: '2-digit',
                               month: 'short',
@@ -339,34 +343,34 @@ export function AdminDashboardClient() {
               userGrowth={analytics.userGrowth}
             />
 
-            <Card className="mt-6">
+            <Card className="mt-6 bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
               <CardHeader>
-                <CardTitle>Inscripciones Recientes</CardTitle>
+                <CardTitle className="text-black dark:text-white">Inscripciones Recientes</CardTitle>
               </CardHeader>
               <CardContent>
                 <Table>
                   <TableHeader>
-                    <TableRow>
-                      <TableHead>Estudiante</TableHead>
-                      <TableHead>Curso</TableHead>
-                      <TableHead>Monto</TableHead>
-                      <TableHead>Fecha</TableHead>
+                    <TableRow className="border-gray-200 dark:border-gray-700">
+                      <TableHead className="text-gray-700 dark:text-gray-300">Estudiante</TableHead>
+                      <TableHead className="text-gray-700 dark:text-gray-300">Curso</TableHead>
+                      <TableHead className="text-gray-700 dark:text-gray-300">Monto</TableHead>
+                      <TableHead className="text-gray-700 dark:text-gray-300">Fecha</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {analytics.recentEnrollments.map((enrollment) => (
-                      <TableRow key={enrollment.id}>
+                      <TableRow key={enrollment.id} className="border-gray-200 dark:border-gray-700">
                         <TableCell>
                           <div>
-                            <p className="font-medium text-black">{enrollment.studentName}</p>
-                            <p className="text-xs text-gray-600">{enrollment.studentEmail}</p>
+                            <p className="font-medium text-black dark:text-white">{enrollment.studentName}</p>
+                            <p className="text-xs text-gray-600 dark:text-gray-400">{enrollment.studentEmail}</p>
                           </div>
                         </TableCell>
-                        <TableCell className="text-gray-700">{enrollment.courseName}</TableCell>
-                        <TableCell className="font-medium text-gray-900">
+                        <TableCell className="text-gray-700 dark:text-gray-300">{enrollment.courseName}</TableCell>
+                        <TableCell className="font-medium text-gray-900 dark:text-white">
                           ${enrollment.amount} {enrollment.currency}
                         </TableCell>
-                        <TableCell className="text-gray-600 text-sm">
+                        <TableCell className="text-gray-600 dark:text-gray-400 text-sm">
                           {new Date(enrollment.enrolledAt).toLocaleDateString('es-ES')}
                         </TableCell>
                       </TableRow>
@@ -378,9 +382,9 @@ export function AdminDashboardClient() {
           </TabsContent>
 
           <TabsContent value="users">
-            <Card>
+            <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
               <CardHeader>
-                <CardTitle>Gestión de Usuarios</CardTitle>
+                <CardTitle className="text-black dark:text-white">Gestión de Usuarios</CardTitle>
               </CardHeader>
               <CardContent>
                 <UsersTable users={users} onUpdate={loadUsers} />
@@ -389,9 +393,9 @@ export function AdminDashboardClient() {
           </TabsContent>
 
           <TabsContent value="courses">
-            <Card>
+            <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
               <CardHeader>
-                <CardTitle>Gestión de Cursos</CardTitle>
+                <CardTitle className="text-black dark:text-white">Gestión de Cursos</CardTitle>
               </CardHeader>
               <CardContent>
                 <CoursesTable courses={courses} onUpdate={loadCourses} />
@@ -400,21 +404,21 @@ export function AdminDashboardClient() {
           </TabsContent>
 
           <TabsContent value="automations">
-            <Card>
+            <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Workflow className="w-5 h-5 text-blue-900" />
+                <CardTitle className="flex items-center gap-2 text-black dark:text-white">
+                  <Workflow className="w-5 h-5 text-blue-900 dark:text-blue-400" />
                   Automatizaciones n8n
                 </CardTitle>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-600 dark:text-gray-400">
                   Gestiona workflows automatizados para emails, notificaciones y reportes.
                 </p>
               </CardHeader>
               <CardContent>
                 <div className="space-y-6">
-                  <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                    <h3 className="font-semibold text-black mb-2">Panel de Automatizaciones</h3>
-                    <p className="text-sm text-gray-600 mb-4">
+                  <div className="bg-gray-50 dark:bg-neutral-900 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                    <h3 className="font-semibold text-black dark:text-white mb-2">Panel de Automatizaciones</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                       Accede al panel de n8n para crear, editar y monitorear los workflows de automatización.
                     </p>
                     <a
@@ -429,29 +433,29 @@ export function AdminDashboardClient() {
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div className="border border-gray-200 rounded-lg p-4">
-                      <h4 className="font-medium text-black mb-1">Emails Automáticos</h4>
-                      <p className="text-sm text-gray-600">Bienvenida, certificados, recordatorios</p>
+                    <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
+                      <h4 className="font-medium text-black dark:text-white mb-1">Emails Automáticos</h4>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Bienvenida, certificados, recordatorios</p>
                     </div>
-                    <div className="border border-gray-200 rounded-lg p-4">
-                      <h4 className="font-medium text-black mb-1">Notificaciones</h4>
-                      <p className="text-sm text-gray-600">Pagos, inscripciones, reviews</p>
+                    <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
+                      <h4 className="font-medium text-black dark:text-white mb-1">Notificaciones</h4>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Pagos, inscripciones, reviews</p>
                     </div>
-                    <div className="border border-gray-200 rounded-lg p-4">
-                      <h4 className="font-medium text-black mb-1">Reportes</h4>
-                      <p className="text-sm text-gray-600">Diarios, semanales, mensuales</p>
+                    <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
+                      <h4 className="font-medium text-black dark:text-white mb-1">Reportes</h4>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Diarios, semanales, mensuales</p>
                     </div>
-                    <div className="border border-gray-200 rounded-lg p-4">
-                      <h4 className="font-medium text-black mb-1">Integraciones</h4>
-                      <p className="text-sm text-gray-600">Stripe, SharePoint, OneDrive</p>
+                    <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
+                      <h4 className="font-medium text-black dark:text-white mb-1">Integraciones</h4>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Stripe, SharePoint, OneDrive</p>
                     </div>
-                    <div className="border border-gray-200 rounded-lg p-4">
-                      <h4 className="font-medium text-black mb-1">Backups</h4>
-                      <p className="text-sm text-gray-600">Respaldos automáticos semanales</p>
+                    <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
+                      <h4 className="font-medium text-black dark:text-white mb-1">Backups</h4>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Respaldos automáticos semanales</p>
                     </div>
-                    <div className="border border-gray-200 rounded-lg p-4">
-                      <h4 className="font-medium text-black mb-1">Alertas</h4>
-                      <p className="text-sm text-gray-600">Pagos fallidos, cursos inactivos</p>
+                    <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
+                      <h4 className="font-medium text-black dark:text-white mb-1">Alertas</h4>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Pagos fallidos, cursos inactivos</p>
                     </div>
                   </div>
                 </div>
@@ -476,16 +480,16 @@ function StatsCard({
   trend?: string;
 }) {
   return (
-    <Card>
+    <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
       <CardContent className="p-6">
         <div className="flex items-center justify-between mb-4">
-          <p className="text-sm font-medium text-gray-600">{title}</p>
-          <div className="p-2 bg-gray-100 rounded-full">{icon}</div>
+          <p className="text-sm font-medium text-gray-600 dark:text-gray-400">{title}</p>
+          <div className="p-2 bg-gray-100 dark:bg-gray-700 rounded-full">{icon}</div>
         </div>
         <div className="flex items-end justify-between">
-          <h3 className="text-2xl font-bold text-black">{value}</h3>
+          <h3 className="text-2xl font-bold text-black dark:text-white">{value}</h3>
           {trend && (
-            <span className="text-xs text-green-700 font-medium bg-green-50 px-2 py-1 rounded-full">
+            <span className="text-xs text-green-700 dark:text-green-400 font-medium bg-green-50 dark:bg-green-900/30 px-2 py-1 rounded-full">
               {trend}
             </span>
           )}

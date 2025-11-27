@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { PlusCircle, BookOpen, Users, BarChart3, Edit, MoreVertical, Bell, MessageSquare, TrendingUp, Award, Workflow, Radio, Copy, ExternalLink, Play, Square, Loader2 } from 'lucide-react';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -254,10 +255,11 @@ export default function InstructorDashboardClient() {
         <div className="p-8 max-w-7xl mx-auto">
             <div className="flex justify-between items-center mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-neutral-900">Panel del Instructor</h1>
-                    <p className="text-neutral-600">Gestiona tus cursos y estudiantes.</p>
+                    <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Panel del Instructor</h1>
+                    <p className="text-neutral-600 dark:text-neutral-300">Gestiona tus cursos y estudiantes.</p>
                 </div>
                 <div className="flex items-center gap-3">
+                    <ThemeToggle />
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button variant="outline" size="icon" className="relative">
@@ -269,27 +271,27 @@ export default function InstructorDashboardClient() {
                                 )}
                             </Button>
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end" className="w-80">
-                            <div className="p-3 border-b">
-                                <h4 className="font-semibold">Notificaciones</h4>
+                        <DropdownMenuContent align="end" className="w-80 bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
+                            <div className="p-3 border-b border-neutral-200 dark:border-neutral-700">
+                                <h4 className="font-semibold text-neutral-900 dark:text-white">Notificaciones</h4>
                             </div>
                             <div className="max-h-96 overflow-y-auto">
                                 {notifications.length === 0 ? (
-                                    <div className="p-4 text-center text-sm text-neutral-500">
+                                    <div className="p-4 text-center text-sm text-neutral-500 dark:text-neutral-400">
                                         No hay notificaciones
                                     </div>
                                 ) : (
                                     notifications.map((notif) => (
                                         <DropdownMenuItem
                                             key={notif.id}
-                                            className={`p-3 cursor-pointer ${!notif.read ? 'bg-blue-50' : ''}`}
+                                            className={`p-3 cursor-pointer ${!notif.read ? 'bg-blue-50 dark:bg-blue-900/20' : ''}`}
                                             onClick={() => !notif.read && markAsRead(notif.id)}
                                         >
                                             <div className="flex gap-3">
-                                                <div className={`w-2 h-2 rounded-full mt-1.5 ${!notif.read ? 'bg-blue-600' : 'bg-neutral-300'}`} />
+                                                <div className={`w-2 h-2 rounded-full mt-1.5 ${!notif.read ? 'bg-blue-600' : 'bg-neutral-300 dark:bg-neutral-600'}`} />
                                                 <div className="flex-1">
-                                                    <p className="text-sm text-neutral-900">{notif.message}</p>
-                                                    <p className="text-xs text-neutral-500 mt-1">{notif.timeAgo}</p>
+                                                    <p className="text-sm text-neutral-900 dark:text-white">{notif.message}</p>
+                                                    <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">{notif.timeAgo}</p>
                                                 </div>
                                             </div>
                                         </DropdownMenuItem>
@@ -309,49 +311,49 @@ export default function InstructorDashboardClient() {
 
             {stats && (
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
-                    <Card>
+                    <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                         <CardContent className="p-6 flex items-center gap-4">
-                            <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
+                            <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400">
                                 <BookOpen className="w-6 h-6" />
                             </div>
                             <div>
-                                <p className="text-sm font-medium text-neutral-500">Cursos Activos</p>
-                                <h3 className="text-2xl font-bold text-neutral-900">{stats.totalCourses}</h3>
+                                <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400">Cursos Activos</p>
+                                <h3 className="text-2xl font-bold text-neutral-900 dark:text-white">{stats.totalCourses}</h3>
                             </div>
                         </CardContent>
                     </Card>
-                    <Card>
+                    <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                         <CardContent className="p-6 flex items-center gap-4">
-                            <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                            <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center text-green-600 dark:text-green-400">
                                 <Users className="w-6 h-6" />
                             </div>
                             <div>
-                                <p className="text-sm font-medium text-neutral-500">Estudiantes Totales</p>
-                                <h3 className="text-2xl font-bold text-neutral-900">{stats.totalStudents}</h3>
+                                <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400">Estudiantes Totales</p>
+                                <h3 className="text-2xl font-bold text-neutral-900 dark:text-white">{stats.totalStudents}</h3>
                             </div>
                         </CardContent>
                     </Card>
-                    <Card>
+                    <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                         <CardContent className="p-6 flex items-center gap-4">
-                            <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600">
+                            <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-full flex items-center justify-center text-orange-600 dark:text-orange-400">
                                 <BarChart3 className="w-6 h-6" />
                             </div>
                             <div>
-                                <p className="text-sm font-medium text-neutral-500">Calificación Promedio</p>
-                                <h3 className="text-2xl font-bold text-neutral-900">
+                                <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400">Calificación Promedio</p>
+                                <h3 className="text-2xl font-bold text-neutral-900 dark:text-white">
                                     {stats.averageRating > 0 ? `${stats.averageRating.toFixed(1)}/5.0` : 'N/A'}
                                 </h3>
                             </div>
                         </CardContent>
                     </Card>
-                    <Card>
+                    <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                         <CardContent className="p-6 flex items-center gap-4">
-                            <div className="w-12 h-12 bg-neutral-100 rounded-full flex items-center justify-center text-neutral-600">
+                            <div className="w-12 h-12 bg-neutral-100 dark:bg-neutral-700 rounded-full flex items-center justify-center text-neutral-600 dark:text-neutral-300">
                                 <TrendingUp className="w-6 h-6" />
                             </div>
                             <div>
-                                <p className="text-sm font-medium text-neutral-500">Ingresos Totales</p>
-                                <h3 className="text-2xl font-bold text-neutral-900">${stats.totalRevenue.toFixed(2)}</h3>
+                                <p className="text-sm font-medium text-neutral-500 dark:text-neutral-400">Ingresos Totales</p>
+                                <h3 className="text-2xl font-bold text-neutral-900 dark:text-white">${stats.totalRevenue.toFixed(2)}</h3>
                             </div>
                         </CardContent>
                     </Card>
@@ -376,23 +378,23 @@ export default function InstructorDashboardClient() {
 
                 <TabsContent value="overview" className="mt-6">
                     <div className="space-y-6">
-                        <h2 className="text-xl font-bold text-neutral-900">Mis Cursos</h2>
+                        <h2 className="text-xl font-bold text-neutral-900 dark:text-white">Mis Cursos</h2>
 
                         {analytics && analytics.courseAnalytics.length > 0 ? (
                             <div className="grid gap-6">
                                 {analytics.courseAnalytics.map((course) => (
-                                    <Card key={course.courseId} className="overflow-hidden hover:shadow-md transition-shadow">
+                                    <Card key={course.courseId} className="overflow-hidden hover:shadow-md transition-shadow bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                                         <div className="flex flex-col md:flex-row">
-                                            <div className="w-full md:w-48 h-32 bg-neutral-200 relative">
-                                                <div className="absolute inset-0 flex items-center justify-center text-neutral-400 bg-neutral-100">
+                                            <div className="w-full md:w-48 h-32 bg-neutral-200 dark:bg-neutral-700 relative">
+                                                <div className="absolute inset-0 flex items-center justify-center text-neutral-400 dark:text-neutral-500 bg-neutral-100 dark:bg-neutral-800">
                                                     <BookOpen className="w-8 h-8" />
                                                 </div>
                                             </div>
                                             <div className="flex-grow p-6 flex flex-col justify-between">
                                                 <div className="flex justify-between items-start">
                                                     <div>
-                                                        <h3 className="text-lg font-bold text-neutral-900 mb-1">{course.courseTitle}</h3>
-                                                        <p className="text-sm text-neutral-500">
+                                                        <h3 className="text-lg font-bold text-neutral-900 dark:text-white mb-1">{course.courseTitle}</h3>
+                                                        <p className="text-sm text-neutral-500 dark:text-neutral-400">
                                                             {course.students} estudiante{course.students !== 1 ? 's' : ''} • {course.completionRate}% completado
                                                         </p>
                                                     </div>
@@ -417,20 +419,20 @@ export default function InstructorDashboardClient() {
                                                     </DropdownMenu>
                                                 </div>
 
-                                                <div className="flex items-center gap-6 mt-4 pt-4 border-t border-neutral-100">
-                                                    <div className="flex items-center gap-2 text-sm text-neutral-600">
+                                                <div className="flex items-center gap-6 mt-4 pt-4 border-t border-neutral-100 dark:border-neutral-700">
+                                                    <div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-300">
                                                         <Users className="w-4 h-4" />
                                                         <span>{course.students} estudiantes</span>
                                                     </div>
                                                     {course.rating > 0 && (
-                                                        <div className="flex items-center gap-2 text-sm text-neutral-600">
+                                                        <div className="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-300">
                                                             <Award className="w-4 h-4" />
                                                             <span>{course.rating.toFixed(1)}/5.0 ({course.reviewsCount} reviews)</span>
                                                         </div>
                                                     )}
                                                     <div className="flex-grow"></div>
                                                     <Link href={`/instructor/cursos/${course.courseSlug}/contenido`}>
-                                                        <Button variant="outline" size="sm">
+                                                        <Button variant="outline" size="sm" className="border-neutral-200 dark:border-neutral-600 text-neutral-900 dark:text-white">
                                                             <Edit className="w-4 h-4 mr-2" /> Gestionar Contenido
                                                         </Button>
                                                     </Link>
@@ -452,10 +454,10 @@ export default function InstructorDashboardClient() {
                 </TabsContent>
 
                 <TabsContent value="students" className="mt-6">
-                    <Card>
+                    <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                         <CardHeader>
                             <div className="flex justify-between items-center">
-                                <CardTitle>Estudiantes Inscritos</CardTitle>
+                                <CardTitle className="text-neutral-900 dark:text-white">Estudiantes Inscritos</CardTitle>
                                 {courses.length > 0 && (
                                     <Select value={selectedCourse} onValueChange={setSelectedCourse}>
                                         <SelectTrigger className="w-64">
@@ -493,28 +495,28 @@ export default function InstructorDashboardClient() {
                                     </TableHeader>
                                     <TableBody>
                                         {filteredStudents.map((student) => (
-                                            <TableRow key={student.id}>
-                                                <TableCell className="font-medium">{student.name}</TableCell>
-                                                <TableCell className="text-neutral-600">{student.email}</TableCell>
-                                                <TableCell className="text-neutral-600">{student.course.title}</TableCell>
+                                            <TableRow key={student.id} className="border-neutral-200 dark:border-neutral-700">
+                                                <TableCell className="font-medium text-neutral-900 dark:text-white">{student.name}</TableCell>
+                                                <TableCell className="text-neutral-600 dark:text-neutral-300">{student.email}</TableCell>
+                                                <TableCell className="text-neutral-600 dark:text-neutral-300">{student.course.title}</TableCell>
                                                 <TableCell>
                                                     <div className="flex items-center gap-2">
-                                                        <div className="w-24 h-2 bg-neutral-200 rounded-full overflow-hidden">
+                                                        <div className="w-24 h-2 bg-neutral-200 dark:bg-neutral-700 rounded-full overflow-hidden">
                                                             <div
                                                                 className="h-full bg-blue-600 rounded-full transition-all"
                                                                 style={{ width: `${student.progress}%` }}
                                                             />
                                                         </div>
-                                                        <span className="text-sm text-neutral-600">{student.progress}%</span>
+                                                        <span className="text-sm text-neutral-600 dark:text-neutral-300">{student.progress}%</span>
                                                     </div>
                                                 </TableCell>
-                                                <TableCell className="text-neutral-600">
+                                                <TableCell className="text-neutral-600 dark:text-neutral-300">
                                                     {student.lastActivity
                                                         ? new Date(student.lastActivity).toLocaleDateString()
                                                         : 'N/A'}
                                                 </TableCell>
                                                 <TableCell>
-                                                    <Button variant="outline" size="sm">Ver Perfil</Button>
+                                                    <Button variant="outline" size="sm" className="border-neutral-200 dark:border-neutral-600 text-neutral-900 dark:text-white">Ver Perfil</Button>
                                                 </TableCell>
                                             </TableRow>
                                         ))}
@@ -526,9 +528,9 @@ export default function InstructorDashboardClient() {
                 </TabsContent>
 
                 <TabsContent value="grades" className="mt-6">
-                    <Card>
+                    <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                         <CardHeader>
-                            <CardTitle>Sistema de Calificaciones</CardTitle>
+                            <CardTitle className="text-neutral-900 dark:text-white">Sistema de Calificaciones</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <EmptyState
@@ -543,18 +545,18 @@ export default function InstructorDashboardClient() {
                     {analytics && (
                         <div className="grid gap-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <Card>
+                                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                                     <CardHeader>
-                                        <CardTitle className="flex items-center gap-2">
-                                            <TrendingUp className="w-5 h-5 text-blue-600" />
+                                        <CardTitle className="flex items-center gap-2 text-neutral-900 dark:text-white">
+                                            <TrendingUp className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                                             Inscripciones (30 días)
                                         </CardTitle>
                                     </CardHeader>
                                     <CardContent>
-                                        <div className="text-3xl font-bold text-neutral-900 mb-2">
+                                        <div className="text-3xl font-bold text-neutral-900 dark:text-white mb-2">
                                             +{analytics.newEnrollmentsThisMonth}
                                         </div>
-                                        <p className="text-sm text-neutral-600">Nuevos estudiantes este mes</p>
+                                        <p className="text-sm text-neutral-600 dark:text-neutral-300">Nuevos estudiantes este mes</p>
                                         {analytics.monthOverMonthChange !== 0 && (
                                             <div className={`mt-4 flex items-center gap-2 text-sm ${analytics.monthOverMonthChange > 0 ? 'text-green-600' : 'text-red-600'}`}>
                                                 <TrendingUp className="w-4 h-4" />
@@ -564,25 +566,25 @@ export default function InstructorDashboardClient() {
                                     </CardContent>
                                 </Card>
 
-                                <Card>
+                                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                                     <CardHeader>
-                                        <CardTitle className="flex items-center gap-2">
-                                            <Users className="w-5 h-5 text-green-600" />
+                                        <CardTitle className="flex items-center gap-2 text-neutral-900 dark:text-white">
+                                            <Users className="w-5 h-5 text-green-600 dark:text-green-400" />
                                             Estudiantes Activos
                                         </CardTitle>
                                     </CardHeader>
                                     <CardContent>
-                                        <div className="text-3xl font-bold text-neutral-900 mb-2">
+                                        <div className="text-3xl font-bold text-neutral-900 dark:text-white mb-2">
                                             {analytics.totalActiveStudents}
                                         </div>
-                                        <p className="text-sm text-neutral-600">Estudiantes activos en todos los cursos</p>
+                                        <p className="text-sm text-neutral-600 dark:text-neutral-300">Estudiantes activos en todos los cursos</p>
                                     </CardContent>
                                 </Card>
                             </div>
 
-                            <Card>
+                            <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                                 <CardHeader>
-                                    <CardTitle>Inscripciones por Mes (últimos 6 meses)</CardTitle>
+                                    <CardTitle className="text-neutral-900 dark:text-white">Inscripciones por Mes (últimos 6 meses)</CardTitle>
                                 </CardHeader>
                                 <CardContent>
                                     {analytics.enrollmentsByMonth.length > 0 ? (
@@ -596,14 +598,14 @@ export default function InstructorDashboardClient() {
                                             </BarChart>
                                         </ResponsiveContainer>
                                     ) : (
-                                        <p className="text-center text-neutral-500 py-8">No hay datos de inscripciones</p>
+                                        <p className="text-center text-neutral-500 dark:text-neutral-400 py-8">No hay datos de inscripciones</p>
                                     )}
                                 </CardContent>
                             </Card>
 
-                            <Card>
+                            <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                                 <CardHeader>
-                                    <CardTitle>Estadísticas por Curso</CardTitle>
+                                    <CardTitle className="text-neutral-900 dark:text-white">Estadísticas por Curso</CardTitle>
                                 </CardHeader>
                                 <CardContent>
                                     {analytics.courseAnalytics.length > 0 ? (
@@ -611,16 +613,16 @@ export default function InstructorDashboardClient() {
                                             {analytics.courseAnalytics.map((data, index) => (
                                                 <div key={index} className="space-y-2">
                                                     <div className="flex justify-between items-center">
-                                                        <h4 className="font-medium text-neutral-900">{data.courseTitle}</h4>
-                                                        <span className="text-sm text-neutral-600">{data.students} estudiantes</span>
+                                                        <h4 className="font-medium text-neutral-900 dark:text-white">{data.courseTitle}</h4>
+                                                        <span className="text-sm text-neutral-600 dark:text-neutral-300">{data.students} estudiantes</span>
                                                     </div>
                                                     <div className="flex items-center gap-4">
                                                         <div className="flex-1">
-                                                            <div className="flex justify-between text-sm text-neutral-600 mb-1">
+                                                            <div className="flex justify-between text-sm text-neutral-600 dark:text-neutral-300 mb-1">
                                                                 <span>Tasa de Completitud</span>
                                                                 <span className="font-medium">{data.completionRate}%</span>
                                                             </div>
-                                                            <div className="w-full h-3 bg-neutral-200 rounded-full overflow-hidden">
+                                                            <div className="w-full h-3 bg-neutral-200 dark:bg-neutral-700 rounded-full overflow-hidden">
                                                                 <div
                                                                     className="h-full bg-blue-600 rounded-full transition-all"
                                                                     style={{ width: `${data.completionRate}%` }}
@@ -646,7 +648,7 @@ export default function InstructorDashboardClient() {
                 <TabsContent value="streaming" className="mt-6">
                     <div className="space-y-6">
                         {/* Banner de estado EN VIVO */}
-                        <Card className={streamStatus?.online ? 'bg-red-600 text-white' : 'bg-neutral-100'}>
+                        <Card className={streamStatus?.online ? 'bg-red-600 text-white border-red-600' : 'bg-neutral-100 dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700'}>
                             <CardContent className="p-6">
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-4">
@@ -660,10 +662,10 @@ export default function InstructorDashboardClient() {
                                             </>
                                         ) : (
                                             <>
-                                                <Radio className="w-8 h-8 text-neutral-400" />
+                                                <Radio className="w-8 h-8 text-neutral-400 dark:text-neutral-500" />
                                                 <div>
-                                                    <h3 className="text-xl font-bold text-neutral-700">Fuera de linea</h3>
-                                                    <p className="text-neutral-500">No hay transmision activa</p>
+                                                    <h3 className="text-xl font-bold text-neutral-700 dark:text-neutral-300">Fuera de linea</h3>
+                                                    <p className="text-neutral-500 dark:text-neutral-400">No hay transmision activa</p>
                                                 </div>
                                             </>
                                         )}
@@ -679,20 +681,20 @@ export default function InstructorDashboardClient() {
                         </Card>
 
                         {/* GO LIVE Panel */}
-                        <Card className={classActive ? 'border-2 border-green-500 bg-green-50' : ''}>
+                        <Card className={classActive ? 'border-2 border-green-500 bg-green-50 dark:bg-green-900/20' : 'bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700'}>
                             <CardHeader>
-                                <CardTitle>Iniciar Clase en Vivo</CardTitle>
-                                <p className="text-sm text-neutral-600">Selecciona el curso y activa la transmision para tus estudiantes</p>
+                                <CardTitle className="text-neutral-900 dark:text-white">Iniciar Clase en Vivo</CardTitle>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-300">Selecciona el curso y activa la transmision para tus estudiantes</p>
                             </CardHeader>
                             <CardContent className="space-y-4">
                                 <div>
-                                    <label className="block text-sm font-medium text-neutral-700 mb-2">
+                                    <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                                         Seleccionar Curso
                                     </label>
                                     <select
                                         value={selectedStreamCourse}
                                         onChange={(e) => setSelectedStreamCourse(e.target.value)}
-                                        className="w-full p-3 border rounded-lg text-sm"
+                                        className="w-full p-3 border border-neutral-200 dark:border-neutral-700 rounded-lg text-sm bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white"
                                         disabled={classActive}
                                     >
                                         <option value="">-- Selecciona un curso --</option>
@@ -751,10 +753,10 @@ export default function InstructorDashboardClient() {
                         </Card>
 
                         {/* Vista previa del stream */}
-                        <Card>
+                        <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                             <CardHeader>
-                                <CardTitle>Vista Previa</CardTitle>
-                                <p className="text-sm text-neutral-600">Verifica que tu video y audio lleguen correctamente</p>
+                                <CardTitle className="text-neutral-900 dark:text-white">Vista Previa</CardTitle>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-300">Verifica que tu video y audio lleguen correctamente</p>
                             </CardHeader>
                             <CardContent>
                                 <div className="aspect-video bg-black rounded-lg overflow-hidden">
@@ -773,9 +775,9 @@ export default function InstructorDashboardClient() {
                             </CardContent>
                         </Card>
 
-                        <Card>
+                        <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                             <CardHeader>
-                                <CardTitle className="flex items-center gap-2">
+                                <CardTitle className="flex items-center gap-2 text-neutral-900 dark:text-white">
                                     <Radio className="w-5 h-5 text-red-600" />
                                     Configuracion de Streaming
                                 </CardTitle>
@@ -784,13 +786,13 @@ export default function InstructorDashboardClient() {
                                 <div className="space-y-6">
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div className="border border-neutral-200 rounded-lg p-4">
-                                        <h4 className="font-semibold text-neutral-900 mb-3">Configuracion OBS</h4>
+                                    <div className="border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
+                                        <h4 className="font-semibold text-neutral-900 dark:text-white mb-3">Configuracion OBS</h4>
                                         <div className="space-y-3">
                                             <div>
-                                                <label className="text-xs text-neutral-500 block mb-1">Servidor RTMP</label>
+                                                <label className="text-xs text-neutral-500 dark:text-neutral-400 block mb-1">Servidor RTMP</label>
                                                 <div className="flex items-center gap-2">
-                                                    <code className="flex-1 bg-neutral-100 px-3 py-2 rounded text-sm font-mono">
+                                                    <code className="flex-1 bg-neutral-100 dark:bg-neutral-800 px-3 py-2 rounded text-sm font-mono text-neutral-900 dark:text-white">
                                                         {streamConfig?.rtmpUrl || 'Cargando...'}
                                                     </code>
                                                     <Button
@@ -806,9 +808,9 @@ export default function InstructorDashboardClient() {
                                                 </div>
                                             </div>
                                             <div>
-                                                <label className="text-xs text-neutral-500 block mb-1">Clave de Transmision</label>
+                                                <label className="text-xs text-neutral-500 dark:text-neutral-400 block mb-1">Clave de Transmision</label>
                                                 <div className="flex items-center gap-2">
-                                                    <code className="flex-1 bg-neutral-100 px-3 py-2 rounded text-sm font-mono">
+                                                    <code className="flex-1 bg-neutral-100 dark:bg-neutral-800 px-3 py-2 rounded text-sm font-mono text-neutral-900 dark:text-white">
                                                         {streamConfig?.streamKey || 'Cargando...'}
                                                     </code>
                                                     <Button
@@ -826,12 +828,12 @@ export default function InstructorDashboardClient() {
                                         </div>
                                     </div>
 
-                                    <div className="border border-neutral-200 rounded-lg p-4">
-                                        <h4 className="font-semibold text-neutral-900 mb-3">Panel Owncast</h4>
+                                    <div className="border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
+                                        <h4 className="font-semibold text-neutral-900 dark:text-white mb-3">Panel Owncast</h4>
                                         <div className="space-y-3">
                                             <div>
-                                                <label className="text-xs text-neutral-500 block mb-1">URL del Servidor</label>
-                                                <code className="block bg-neutral-100 px-3 py-2 rounded text-sm font-mono">
+                                                <label className="text-xs text-neutral-500 dark:text-neutral-400 block mb-1">URL del Servidor</label>
+                                                <code className="block bg-neutral-100 dark:bg-neutral-800 px-3 py-2 rounded text-sm font-mono text-neutral-900 dark:text-white">
                                                     {streamConfig?.owncastUrl || 'Cargando...'}
                                                 </code>
                                             </div>
@@ -861,9 +863,9 @@ export default function InstructorDashboardClient() {
                                     </div>
                                 </div>
 
-                                <div className="bg-neutral-50 border border-neutral-200 rounded-lg p-4">
-                                    <h4 className="font-semibold text-neutral-900 mb-2">Como usar el sistema</h4>
-                                    <ol className="list-decimal list-inside space-y-2 text-sm text-neutral-600">
+                                <div className="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg p-4">
+                                    <h4 className="font-semibold text-neutral-900 dark:text-white mb-2">Como usar el sistema</h4>
+                                    <ol className="list-decimal list-inside space-y-2 text-sm text-neutral-600 dark:text-neutral-300">
                                         <li>Abre OBS Studio y ve a Configuracion → Emision</li>
                                         <li>Selecciona Servicio: <strong>Personalizado</strong></li>
                                         <li>Pega el servidor RTMP y la clave de transmision de arriba</li>
@@ -880,21 +882,21 @@ export default function InstructorDashboardClient() {
                 </TabsContent>
 
                 <TabsContent value="automations" className="mt-6">
-                    <Card>
+                    <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                         <CardHeader>
-                            <CardTitle className="flex items-center gap-2">
-                                <Workflow className="w-5 h-5 text-blue-600" />
+                            <CardTitle className="flex items-center gap-2 text-neutral-900 dark:text-white">
+                                <Workflow className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                                 Automatizaciones n8n
                             </CardTitle>
-                            <p className="text-sm text-neutral-600">
+                            <p className="text-sm text-neutral-600 dark:text-neutral-300">
                                 Gestiona workflows automatizados para emails, notificaciones y reportes de tus cursos.
                             </p>
                         </CardHeader>
                         <CardContent>
                             <div className="space-y-6">
-                                <div className="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
-                                    <h3 className="font-semibold text-neutral-900 mb-2">Panel de Automatizaciones</h3>
-                                    <p className="text-sm text-neutral-600 mb-4">
+                                <div className="bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg p-6">
+                                    <h3 className="font-semibold text-neutral-900 dark:text-white mb-2">Panel de Automatizaciones</h3>
+                                    <p className="text-sm text-neutral-600 dark:text-neutral-300 mb-4">
                                         Accede al panel de n8n para ver y monitorear los workflows de tus cursos.
                                     </p>
                                     <a
@@ -909,21 +911,21 @@ export default function InstructorDashboardClient() {
                                 </div>
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div className="border border-neutral-200 rounded-lg p-4">
-                                        <h4 className="font-medium text-neutral-900 mb-1">Notificaciones de Estudiantes</h4>
-                                        <p className="text-sm text-neutral-600">Nuevas inscripciones y progreso</p>
+                                    <div className="border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
+                                        <h4 className="font-medium text-neutral-900 dark:text-white mb-1">Notificaciones de Estudiantes</h4>
+                                        <p className="text-sm text-neutral-600 dark:text-neutral-300">Nuevas inscripciones y progreso</p>
                                     </div>
-                                    <div className="border border-neutral-200 rounded-lg p-4">
-                                        <h4 className="font-medium text-neutral-900 mb-1">Preguntas y Comentarios</h4>
-                                        <p className="text-sm text-neutral-600">Alertas de nuevas preguntas en lecciones</p>
+                                    <div className="border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
+                                        <h4 className="font-medium text-neutral-900 dark:text-white mb-1">Preguntas y Comentarios</h4>
+                                        <p className="text-sm text-neutral-600 dark:text-neutral-300">Alertas de nuevas preguntas en lecciones</p>
                                     </div>
-                                    <div className="border border-neutral-200 rounded-lg p-4">
-                                        <h4 className="font-medium text-neutral-900 mb-1">Reviews</h4>
-                                        <p className="text-sm text-neutral-600">Notificaciones de nuevas reseñas</p>
+                                    <div className="border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
+                                        <h4 className="font-medium text-neutral-900 dark:text-white mb-1">Reviews</h4>
+                                        <p className="text-sm text-neutral-600 dark:text-neutral-300">Notificaciones de nuevas reseñas</p>
                                     </div>
-                                    <div className="border border-neutral-200 rounded-lg p-4">
-                                        <h4 className="font-medium text-neutral-900 mb-1">Certificados</h4>
-                                        <p className="text-sm text-neutral-600">Emisión automática al completar curso</p>
+                                    <div className="border border-neutral-200 dark:border-neutral-700 rounded-lg p-4 bg-white dark:bg-neutral-900">
+                                        <h4 className="font-medium text-neutral-900 dark:text-white mb-1">Certificados</h4>
+                                        <p className="text-sm text-neutral-600 dark:text-neutral-300">Emisión automática al completar curso</p>
                                     </div>
                                 </div>
                             </div>

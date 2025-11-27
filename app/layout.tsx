@@ -4,6 +4,7 @@ import "./globals.css";
 import { CookieBanner } from "@/components/legal/CookieBanner";
 import { Toaster } from "@/components/ui/sonner";
 import { SessionProvider } from "@/components/providers/session-provider";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const rajdhani = Rajdhani({
@@ -61,9 +62,16 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <SessionProvider>
-          {children}
-          <Toaster />
-          <CookieBanner />
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+            <Toaster />
+            <CookieBanner />
+          </ThemeProvider>
         </SessionProvider>
       </body>
     </html>
