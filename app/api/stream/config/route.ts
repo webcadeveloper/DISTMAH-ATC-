@@ -10,7 +10,7 @@ export async function GET() {
 
     return NextResponse.json({
       rtmpUrl: process.env.OWNCAST_RTMP_URL || 'rtmp://casa.tailc67ac4.ts.net:1935/live',
-      streamKey: process.env.OWNCAST_STREAM_KEY,
+      streamKey: process.env.OWNCAST_STREAM_KEY || '9VvfiAApPWU#06KUpyI6R3f3Por*@r',
       owncastUrl: process.env.OWNCAST_URL || 'https://casa.tailc67ac4.ts.net:8088',
       embedUrl: process.env.OWNCAST_EMBED_URL || 'https://casa.tailc67ac4.ts.net:8088/embed/video',
     });
