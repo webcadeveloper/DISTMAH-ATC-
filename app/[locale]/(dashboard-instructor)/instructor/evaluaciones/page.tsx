@@ -122,7 +122,7 @@ export default function EvaluacionesInstructorPage() {
     };
 
     return (
-        <div className="p-8 max-w-7xl mx-auto bg-neutral-50 min-h-screen">
+        <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
             <div className="flex justify-between items-center mb-8">
                 <div>
                     <h1 className="text-3xl font-bold text-neutral-900">Evaluaciones</h1>

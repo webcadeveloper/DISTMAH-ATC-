@@ -114,7 +114,7 @@ export default function InstructorUsuariosPage() {
 
     if (loading) {
         return (
-            <div className="p-8 max-w-7xl mx-auto bg-neutral-50 min-h-screen">
+            <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
                 <div className="mb-8">
                     <h1 className="text-3xl font-bold text-neutral-900">Gestion de Usuarios M365</h1>
                     <p className="text-neutral-600">Activa cuentas Microsoft 365 Education A1 para tus estudiantes.</p>
@@ -130,7 +130,7 @@ export default function InstructorUsuariosPage() {
     }
 
     return (
-        <div className="p-8 max-w-7xl mx-auto bg-neutral-50 min-h-screen">
+        <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
             <div className="mb-8">
                 <h1 className="text-3xl font-bold text-neutral-900">Gestion de Usuarios M365</h1>
                 <p className="text-neutral-600">Activa cuentas Microsoft 365 Education A1 para tus estudiantes.</p>

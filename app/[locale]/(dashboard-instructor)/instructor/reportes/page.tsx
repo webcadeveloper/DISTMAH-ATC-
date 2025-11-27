@@ -71,7 +71,7 @@ export default function ReportesInstructorPage() {
 
     if (loading) {
         return (
-            <div className="p-8 max-w-7xl mx-auto bg-neutral-50 min-h-screen">
+            <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
                 <div className="mb-8">
                     <h1 className="text-3xl font-bold text-neutral-900">Reportes y Estadisticas</h1>
                     <p className="text-neutral-600">Analiza el rendimiento de tus cursos y estudiantes.</p>
@@ -87,7 +87,7 @@ export default function ReportesInstructorPage() {
     }
 
     return (
-        <div className="p-8 max-w-7xl mx-auto bg-neutral-50 min-h-screen">
+        <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
             <div className="flex justify-between items-center mb-8">
                 <div>
                     <h1 className="text-3xl font-bold text-neutral-900">Reportes y Estadisticas</h1>

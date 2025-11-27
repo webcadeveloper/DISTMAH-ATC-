@@ -118,14 +118,14 @@ export default function ClasesInstructorPage() {
 
     if (loading) {
         return (
-            <div className="p-8 max-w-7xl mx-auto bg-neutral-50 min-h-screen flex items-center justify-center">
+            <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen flex items-center justify-center">
                 <Loader2 className="w-8 h-8 animate-spin text-neutral-600" />
             </div>
         );
     }
 
     return (
-        <div className="p-8 max-w-7xl mx-auto bg-neutral-50 min-h-screen">
+        <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
             <div className="flex justify-between items-center mb-8">
                 <div>
                     <h1 className="text-3xl font-bold text-neutral-900">Clases en Vivo</h1>
