@@ -49,9 +49,9 @@ export function CoursePlayerSidebar() {
 
     if (loading) {
         return (
-            <aside className="w-80 bg-white border-r border-neutral-200 h-screen flex flex-col fixed left-0 top-0 z-40">
-                <div className="p-4 border-b border-neutral-100 flex items-center gap-2">
-                    <Link href="/es/estudiante/mis-cursos" className="text-neutral-500 hover:text-neutral-900">
+            <aside className="w-80 bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 h-screen flex flex-col fixed left-0 top-0 z-40">
+                <div className="p-4 border-b border-neutral-100 dark:border-neutral-800 flex items-center gap-2">
+                    <Link href="/es/estudiante/mis-cursos" className="text-neutral-500 hover:text-neutral-900 dark:hover:text-white">
                         <ChevronLeft className="w-5 h-5" />
                     </Link>
                     <span className="text-sm text-neutral-500">Cargando...</span>
@@ -65,9 +65,9 @@ export function CoursePlayerSidebar() {
 
     if (!course) {
         return (
-            <aside className="w-80 bg-white border-r border-neutral-200 h-screen flex flex-col fixed left-0 top-0 z-40">
-                <div className="p-4 border-b border-neutral-100 flex items-center gap-2">
-                    <Link href="/es/estudiante/mis-cursos" className="text-neutral-500 hover:text-neutral-900">
+            <aside className="w-80 bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 h-screen flex flex-col fixed left-0 top-0 z-40">
+                <div className="p-4 border-b border-neutral-100 dark:border-neutral-800 flex items-center gap-2">
+                    <Link href="/es/estudiante/mis-cursos" className="text-neutral-500 hover:text-neutral-900 dark:hover:text-white">
                         <ChevronLeft className="w-5 h-5" />
                     </Link>
                     <span className="text-sm text-neutral-500">Curso no encontrado</span>
@@ -79,19 +79,19 @@ export function CoursePlayerSidebar() {
     const modules = course.modules || [];
 
     return (
-        <aside className="w-80 bg-white border-r border-neutral-200 h-screen flex flex-col fixed left-0 top-0 z-40">
-            <div className="p-4 border-b border-neutral-100 flex items-center gap-2">
-                <Link href="/es/estudiante/mis-cursos" className="text-neutral-500 hover:text-neutral-900">
+        <aside className="w-80 bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 h-screen flex flex-col fixed left-0 top-0 z-40">
+            <div className="p-4 border-b border-neutral-100 dark:border-neutral-800 flex items-center gap-2">
+                <Link href="/es/estudiante/mis-cursos" className="text-neutral-500 hover:text-neutral-900 dark:hover:text-white">
                     <ChevronLeft className="w-5 h-5" />
                 </Link>
-                <h2 className="font-bold text-sm line-clamp-2">{course.titulo}</h2>
+                <h2 className="font-bold text-sm line-clamp-2 text-neutral-900 dark:text-white">{course.titulo}</h2>
             </div>
 
             <ScrollArea className="flex-grow">
                 <Accordion type="multiple" defaultValue={modules.map((m: Module) => m.id)} className="w-full">
                     {modules.map((module: Module, index: number) => (
                         <AccordionItem key={module.id} value={module.id} className="border-b-neutral-100">
-                            <AccordionTrigger className="px-4 py-3 hover:bg-neutral-50 text-sm font-semibold text-neutral-900">
+                            <AccordionTrigger className="px-4 py-3 hover:bg-neutral-50 dark:hover:bg-neutral-800 text-sm font-semibold text-neutral-900 dark:text-white">
                                 <div className="text-left">
                                     <div className="text-xs text-neutral-500 font-normal mb-0.5">Modulo {index + 1}</div>
                                     {module.title}
@@ -109,15 +109,15 @@ export function CoursePlayerSidebar() {
                                                 className={cn(
                                                     "flex items-start gap-3 px-4 py-3 text-sm transition-colors border-l-2",
                                                     isActive
-                                                        ? "bg-primary-50 border-primary-500 text-primary-900"
-                                                        : "border-transparent hover:bg-neutral-50 text-neutral-600"
+                                                        ? "bg-primary-50 dark:bg-primary-900/30 border-primary-500 text-primary-900 dark:text-primary-400"
+                                                        : "border-transparent hover:bg-neutral-50 dark:hover:bg-neutral-800 text-neutral-600 dark:text-neutral-400"
                                                 )}
                                             >
                                                 <div className="mt-0.5">
                                                     <FileText className={cn("w-4 h-4", isActive ? "text-primary-600" : "text-neutral-400")} />
                                                 </div>
                                                 <div className="flex-grow">
-                                                    <p className={cn("font-medium mb-0.5", isActive ? "text-primary-900" : "text-neutral-700")}>
+                                                    <p className={cn("font-medium mb-0.5", isActive ? "text-primary-900 dark:text-primary-400" : "text-neutral-700 dark:text-neutral-300")}>
                                                         {lesson.title}
                                                     </p>
                                                     {lesson.duration && (
@@ -134,7 +134,7 @@ export function CoursePlayerSidebar() {
                 </Accordion>
             </ScrollArea>
 
-            <div className="p-4 border-t border-neutral-100">
+            <div className="p-4 border-t border-neutral-100 dark:border-neutral-800">
                 <div className="text-xs text-neutral-500">
                     {modules.length} modulos - {modules.reduce((acc, m) => acc + (m.lessons?.length || 0), 0)} lecciones
                 </div>

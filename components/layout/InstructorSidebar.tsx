@@ -34,8 +34,8 @@ export function InstructorSidebar() {
     const pathname = usePathname();
 
     return (
-        <aside className="w-64 bg-white border-r border-neutral-200 h-screen flex flex-col fixed left-0 top-0 z-40">
-            <div className="p-6 border-b border-neutral-100">
+        <aside className="w-64 bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 h-screen flex flex-col fixed left-0 top-0 z-40">
+            <div className="p-6 border-b border-neutral-100 dark:border-neutral-800">
                 <Link href="/es/instructor/dashboard">
                     <LogoDistmah variant="horizontal" className="scale-90 origin-left" />
                 </Link>
@@ -54,10 +54,10 @@ export function InstructorSidebar() {
                                     <div className={cn(
                                         "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors text-sm font-medium",
                                         isActive
-                                            ? "bg-primary-50 text-primary-700"
-                                            : "text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900"
+                                            ? "bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400"
+                                            : "text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white"
                                     )}>
-                                        <item.icon className={cn("w-5 h-5", isActive ? "text-primary-600" : "text-neutral-400")} />
+                                        <item.icon className={cn("w-5 h-5", isActive ? "text-primary-600 dark:text-primary-400" : "text-neutral-400")} />
                                         {item.label}
                                     </div>
                                 </Link>
@@ -72,7 +72,7 @@ export function InstructorSidebar() {
                     </p>
                     <nav className="space-y-1">
                         <Link href="/es/instructor/perfil">
-                            <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900 text-sm font-medium">
+                            <div className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-white text-sm font-medium">
                                 <Settings className="w-5 h-5 text-neutral-400" />
                                 Mi Perfil
                             </div>
@@ -81,19 +81,19 @@ export function InstructorSidebar() {
                 </div>
             </div>
 
-            <div className="p-4 border-t border-neutral-100">
+            <div className="p-4 border-t border-neutral-100 dark:border-neutral-800">
                 <div className="flex items-center gap-3 mb-4 px-2">
-                    <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-700 font-bold">
+                    <div className="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center text-primary-700 dark:text-primary-400 font-bold">
                         IN
                     </div>
                     <div className="overflow-hidden">
-                        <p className="text-sm font-medium text-neutral-900 truncate">Instructor Demo</p>
+                        <p className="text-sm font-medium text-neutral-900 dark:text-white truncate">Instructor Demo</p>
                         <p className="text-xs text-neutral-500 truncate">instructor@distmah.com</p>
                     </div>
                 </div>
                 <Button
                     variant="outline"
-                    className="w-full justify-start text-neutral-600"
+                    className="w-full justify-start text-neutral-600 dark:text-neutral-400 dark:border-neutral-700 dark:hover:bg-neutral-800"
                     size="sm"
                     onClick={() => signOut({ callbackUrl: '/es/login' })}
                 >
