@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
+import { notifyProgressUpdated } from '@/lib/n8n-webhooks';
 
 const prisma = new PrismaClient();
 
@@ -102,8 +103,39 @@ export async function POST(request: NextRequest) {
         progressPercent,
         completedLessons,
         totalLessons,
+        courseId,
+        courseTitle: lesson.module.course.title,
+        courseSlug: lesson.module.course.slug,
+        totalModules: lesson.module.course.modules.length,
       };
     });
+
+    if (result.progressPercent === 50 || result.progressPercent === 100) {
+      const user = await prisma.user.findUnique({
+        where: { id: userId },
+        select: { name: true, email: true },
+      });
+
+      if (user) {
+        const completedModules = Math.round(
+          (result.progressPercent / 100) * result.totalModules
+        );
+
+        await notifyProgressUpdated({
+          student: { id: userId, name: user.name, email: user.email },
+          course: {
+            id: result.courseId,
+            title: result.courseTitle,
+            slug: result.courseSlug,
+          },
+          progress: {
+            percentage: result.progressPercent,
+            modulesCompleted: completedModules,
+            totalModules: result.totalModules,
+          },
+        });
+      }
+    }
 
     return NextResponse.json(result);
   } catch (error) {

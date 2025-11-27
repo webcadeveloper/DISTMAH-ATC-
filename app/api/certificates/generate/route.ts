@@ -3,6 +3,7 @@ import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
 import { notifyCertificateIssued } from '@/lib/notifications';
 import { sendCertificateEmail } from '@/lib/email';
+import { notifyCertificateGenerated } from '@/lib/n8n-webhooks';
 
 export async function POST(request: Request) {
   try {
@@ -114,6 +115,24 @@ export async function POST(request: Request) {
         certificateNumber,
         certificate.pdfUrl || undefined
       ),
+      notifyCertificateGenerated({
+        student: {
+          id: session.user.id,
+          name: enrollment.user.name,
+          email: enrollment.user.email,
+        },
+        course: {
+          id: courseId,
+          title: enrollment.course.title,
+          duration: `${enrollment.course.duration || 40} horas`,
+          level: enrollment.course.level || 'Básico',
+        },
+        certificate: {
+          id: certificate.id,
+          verificationCode,
+          issuedAt: certificate.completionDate.toISOString(),
+        },
+      }),
     ]);
 
     return NextResponse.json(certificate, { status: 201 });

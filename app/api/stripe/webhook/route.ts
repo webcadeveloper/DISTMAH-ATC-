@@ -3,6 +3,7 @@ import { stripe } from '@/lib/stripe';
 import { prisma } from '@/lib/prisma';
 import { notifyCourseEnrollment } from '@/lib/notifications';
 import { sendEnrollmentEmail } from '@/lib/email';
+import { notifyPaymentCompleted, notifyEnrollmentCreated } from '@/lib/n8n-webhooks';
 import Stripe from 'stripe';
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
@@ -161,6 +162,11 @@ async function handleCheckoutSessionCompleted(
             increment: 1,
           },
         },
+        include: {
+          instructor: {
+            select: { name: true, email: true },
+          },
+        },
       }),
       prisma.user.findUnique({
         where: { id: enrollmentUserId },
@@ -172,6 +178,29 @@ async function handleCheckoutSessionCompleted(
       await Promise.all([
         notifyCourseEnrollment(enrollmentUserId, course.title, courseId),
         sendEnrollmentEmail(user.email, user.name, course.title, courseId),
+        notifyPaymentCompleted({
+          customer: { id: enrollmentUserId, name: user.name, email: user.email },
+          course: { id: courseId, title: course.title },
+          payment: {
+            stripeId: session.payment_intent as string,
+            amount: (session.amount_total || 0) / 100,
+            currency: (session.currency || 'USD').toUpperCase(),
+            paidAt: new Date().toISOString(),
+          },
+        }),
+        notifyEnrollmentCreated({
+          enrollment: { id: enrollment.id, enrolledAt: enrollment.enrolledAt.toISOString() },
+          student: { id: enrollmentUserId, name: user.name, email: user.email },
+          course: {
+            id: courseId,
+            title: course.title,
+            slug: course.slug,
+            instructor: course.instructor?.name || 'DISTMAH',
+            instructorEmail: course.instructor?.email || 'info@distmah.com.ve',
+            duration: `${course.duration || 40} horas`,
+            level: course.level || 'Básico',
+          },
+        }),
       ]);
     }
 

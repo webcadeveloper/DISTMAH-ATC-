@@ -1,0 +1,164 @@
+{
+  "name": "DISTMAH - Nuevo Usuario Registrado",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "8bd651b5-c4aa-4cb4-bcd9-4648facd261a",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook",
+      "name": "Webhook Registro",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\"status\": \"received\", \"userId\": \"{{ $json.user.id }}\"}"
+      },
+      "id": "response",
+      "name": "Responder OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@distmah.com.ve",
+        "toEmail": "={{ $json.user.email }}",
+        "subject": "Bienvenido a DISTMAH ATC - Universidad Autodesk",
+        "emailType": "html",
+        "html": "=<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f5f5f5; padding: 20px;\">\n  <div style=\"background: #1F4E79; padding: 30px; text-align: center;\">\n    <h1 style=\"color: white; margin: 0;\">DISTMAH ATC</h1>\n    <p style=\"color: #ccc; margin: 5px 0 0 0;\">Universidad Autodesk</p>\n  </div>\n  \n  <div style=\"background: white; padding: 30px;\">\n    <h2 style=\"color: #333;\">Bienvenido, {{ $json.user.name }}!</h2>\n    \n    <p style=\"color: #666; line-height: 1.6;\">Gracias por registrarte en DISTMAH ATC, Centro de Entrenamiento Autorizado de Autodesk.</p>\n    \n    <p style=\"color: #666; line-height: 1.6;\">Tu cuenta ha sido creada exitosamente. Ahora puedes:</p>\n    \n    <ul style=\"color: #666; line-height: 1.8;\">\n      <li>Explorar nuestro catalogo de cursos certificados</li>\n      <li>Inscribirte en cursos de AutoCAD, Revit y Civil 3D 2026</li>\n      <li>Obtener certificaciones oficiales de Autodesk</li>\n    </ul>\n    \n    <div style=\"text-align: center; margin: 30px 0;\">\n      <a href=\"https://distmah-atc.vercel.app/es/cursos\" style=\"background: #1F4E79; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;\">Ver Cursos Disponibles</a>\n    </div>\n    \n    <hr style=\"border: none; border-top: 1px solid #eee; margin: 30px 0;\">\n    \n    <p style=\"color: #999; font-size: 12px;\">Registrado desde: {{ $json.location.city }}, {{ $json.location.country }}</p>\n  </div>\n  \n  <div style=\"text-align: center; padding: 20px; color: #999; font-size: 12px;\">\n    <p>DISTMAH ATC - Centro de Entrenamiento Autorizado Autodesk</p>\n    <p>soporte@distmah.com.ve</p>\n  </div>\n</div>"
+      },
+      "id": "email",
+      "name": "Enviar Email Bienvenida",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [650, 200],
+      "credentials": {
+        "smtp": {
+          "id": "1",
+          "name": "SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "listItem",
+        "operation": "create",
+        "siteId": "={{ $env.SHAREPOINT_SITE_ID }}",
+        "listId": "Registros",
+        "fieldsUi": {
+          "fieldValues": [
+            { "fieldName": "Title", "fieldValue": "={{ $json.user.name }}" },
+            { "fieldName": "Email", "fieldValue": "={{ $json.user.email }}" },
+            { "fieldName": "Telefono", "fieldValue": "={{ $json.user.phone }}" },
+            { "fieldName": "Pais", "fieldValue": "={{ $json.location.country }}" },
+            { "fieldName": "Ciudad", "fieldValue": "={{ $json.location.city }}" },
+            { "fieldName": "IP", "fieldValue": "={{ $json.location.ip }}" },
+            { "fieldName": "ISP", "fieldValue": "={{ $json.location.isp }}" },
+            { "fieldName": "FechaRegistro", "fieldValue": "={{ $json.user.registeredAt }}" }
+          ]
+        }
+      },
+      "id": "sharepoint",
+      "name": "Guardar en SharePoint",
+      "type": "n8n-nodes-base.microsoftSharePoint",
+      "typeVersion": 1,
+      "position": [650, 300],
+      "credentials": {
+        "microsoftSharePointOAuth2Api": {
+          "id": "2",
+          "name": "Microsoft SharePoint"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT id FROM users WHERE role = 'INSTRUCTOR' OR role = 'ADMIN'",
+        "options": {}
+      },
+      "id": "get-instructors",
+      "name": "Obtener Instructores",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [650, 400],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "Neon PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const user = $('Webhook Registro').item.json.user;\nconst location = $('Webhook Registro').item.json.location;\nconst instructors = $input.all();\n\nconst notifications = instructors.map(instructor => ({\n  json: {\n    id: crypto.randomUUID(),\n    userId: instructor.json.id,\n    type: 'SYSTEM_ANNOUNCEMENT',\n    title: 'Nuevo estudiante registrado',\n    message: `${user.name} se ha registrado desde ${location.city || 'ubicacion desconocida'}, ${location.country || 'pais desconocido'}`,\n    link: '/admin/usuarios',\n    read: false,\n    createdAt: new Date().toISOString(),\n    updatedAt: new Date().toISOString()\n  }\n}));\n\nreturn notifications;"
+      },
+      "id": "prepare-notifications",
+      "name": "Preparar Notificaciones",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [850, 400]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "=INSERT INTO notifications (id, \"userId\", type, title, message, link, read, \"createdAt\", \"updatedAt\") VALUES ('{{ $json.id }}', '{{ $json.userId }}', '{{ $json.type }}', '{{ $json.title }}', '{{ $json.message }}', '{{ $json.link }}', {{ $json.read }}, '{{ $json.createdAt }}', '{{ $json.updatedAt }}')",
+        "options": {}
+      },
+      "id": "insert-notifications",
+      "name": "Insertar Notificaciones",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [1050, 400],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "Neon PostgreSQL"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Registro": {
+      "main": [
+        [
+          { "node": "Responder OK", "type": "main", "index": 0 },
+          { "node": "Enviar Email Bienvenida", "type": "main", "index": 0 },
+          { "node": "Guardar en SharePoint", "type": "main", "index": 0 },
+          { "node": "Obtener Instructores", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Obtener Instructores": {
+      "main": [
+        [
+          { "node": "Preparar Notificaciones", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Preparar Notificaciones": {
+      "main": [
+        [
+          { "node": "Insertar Notificaciones", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    { "name": "registro" },
+    { "name": "usuarios" },
+    { "name": "notificaciones" }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-01T00:00:00.000Z",
+  "versionId": "1"
+}
