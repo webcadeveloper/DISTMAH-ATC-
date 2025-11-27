@@ -410,14 +410,51 @@ export function AdminDashboardClient() {
                   Gestiona workflows automatizados para emails, notificaciones y reportes.
                 </p>
               </CardHeader>
-              <CardContent className="p-0">
-                <iframe
-                  src="https://casa.tailc67ac4.ts.net:9443/home/workflows"
-                  className="w-full border-0 rounded-b-lg"
-                  style={{ height: 'calc(100vh - 300px)', minHeight: '600px' }}
-                  title="n8n Workflows"
-                  allow="clipboard-read; clipboard-write"
-                />
+              <CardContent>
+                <div className="space-y-6">
+                  <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                    <h3 className="font-semibold text-black mb-2">Panel de Automatizaciones</h3>
+                    <p className="text-sm text-gray-600 mb-4">
+                      Accede al panel de n8n para crear, editar y monitorear los workflows de automatización.
+                    </p>
+                    <a
+                      href="https://casa.tailc67ac4.ts.net:9443/home/workflows"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-blue-900 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition-colors"
+                    >
+                      <Workflow className="w-4 h-4" />
+                      Abrir n8n
+                    </a>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <h4 className="font-medium text-black mb-1">Emails Automáticos</h4>
+                      <p className="text-sm text-gray-600">Bienvenida, certificados, recordatorios</p>
+                    </div>
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <h4 className="font-medium text-black mb-1">Notificaciones</h4>
+                      <p className="text-sm text-gray-600">Pagos, inscripciones, reviews</p>
+                    </div>
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <h4 className="font-medium text-black mb-1">Reportes</h4>
+                      <p className="text-sm text-gray-600">Diarios, semanales, mensuales</p>
+                    </div>
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <h4 className="font-medium text-black mb-1">Integraciones</h4>
+                      <p className="text-sm text-gray-600">Stripe, SharePoint, OneDrive</p>
+                    </div>
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <h4 className="font-medium text-black mb-1">Backups</h4>
+                      <p className="text-sm text-gray-600">Respaldos automáticos semanales</p>
+                    </div>
+                    <div className="border border-gray-200 rounded-lg p-4">
+                      <h4 className="font-medium text-black mb-1">Alertas</h4>
+                      <p className="text-sm text-gray-600">Pagos fallidos, cursos inactivos</p>
+                    </div>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </TabsContent>

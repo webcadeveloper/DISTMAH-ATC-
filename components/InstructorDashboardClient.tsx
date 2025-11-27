@@ -562,14 +562,43 @@ export default function InstructorDashboardClient() {
                                 Gestiona workflows automatizados para emails, notificaciones y reportes de tus cursos.
                             </p>
                         </CardHeader>
-                        <CardContent className="p-0">
-                            <iframe
-                                src="https://casa.tailc67ac4.ts.net:9443/home/workflows"
-                                className="w-full border-0 rounded-b-lg"
-                                style={{ height: 'calc(100vh - 350px)', minHeight: '600px' }}
-                                title="n8n Workflows"
-                                allow="clipboard-read; clipboard-write"
-                            />
+                        <CardContent>
+                            <div className="space-y-6">
+                                <div className="bg-neutral-50 border border-neutral-200 rounded-lg p-6">
+                                    <h3 className="font-semibold text-neutral-900 mb-2">Panel de Automatizaciones</h3>
+                                    <p className="text-sm text-neutral-600 mb-4">
+                                        Accede al panel de n8n para ver y monitorear los workflows de tus cursos.
+                                    </p>
+                                    <a
+                                        href="https://casa.tailc67ac4.ts.net:9443/home/workflows"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                                    >
+                                        <Workflow className="w-4 h-4" />
+                                        Abrir n8n
+                                    </a>
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div className="border border-neutral-200 rounded-lg p-4">
+                                        <h4 className="font-medium text-neutral-900 mb-1">Notificaciones de Estudiantes</h4>
+                                        <p className="text-sm text-neutral-600">Nuevas inscripciones y progreso</p>
+                                    </div>
+                                    <div className="border border-neutral-200 rounded-lg p-4">
+                                        <h4 className="font-medium text-neutral-900 mb-1">Preguntas y Comentarios</h4>
+                                        <p className="text-sm text-neutral-600">Alertas de nuevas preguntas en lecciones</p>
+                                    </div>
+                                    <div className="border border-neutral-200 rounded-lg p-4">
+                                        <h4 className="font-medium text-neutral-900 mb-1">Reviews</h4>
+                                        <p className="text-sm text-neutral-600">Notificaciones de nuevas reseñas</p>
+                                    </div>
+                                    <div className="border border-neutral-200 rounded-lg p-4">
+                                        <h4 className="font-medium text-neutral-900 mb-1">Certificados</h4>
+                                        <p className="text-sm text-neutral-600">Emisión automática al completar curso</p>
+                                    </div>
+                                </div>
+                            </div>
                         </CardContent>
                     </Card>
                 </TabsContent>
