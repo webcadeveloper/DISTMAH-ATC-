@@ -97,7 +97,7 @@ export default function ReportesInstructorPage() {
                     <Button variant="outline" className="border-neutral-300">
                         <Calendar className="w-4 h-4 mr-2" /> Ultimos 30 dias
                     </Button>
-                    <Button className="bg-neutral-900 hover:bg-neutral-800">
+                    <Button className="bg-neutral-900 hover:bg-neutral-800 text-white">
                         <Download className="w-4 h-4 mr-2" /> Exportar Reporte
                     </Button>
                 </div>
@@ -218,8 +218,8 @@ export default function ReportesInstructorPage() {
                                 {analytics.enrollmentsByMonth.map((mes) => (
                                     <div key={mes.month} className="flex items-center justify-between">
                                         <div className="flex items-center gap-3 flex-grow">
-                                            <span className="text-sm font-medium text-neutral-700 w-24">{mes.month}</span>
-                                            <div className="flex-grow bg-neutral-100 rounded-full h-6 relative overflow-hidden">
+                                            <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300 w-24">{mes.month}</span>
+                                            <div className="flex-grow bg-neutral-100 dark:bg-neutral-700 rounded-full h-6 relative overflow-hidden">
                                                 <div
                                                     className="bg-blue-500 h-full rounded-full flex items-center justify-end pr-2 transition-all"
                                                     style={{ width: `${Math.max((mes.enrollments / getMaxEnrollments()) * 100, 10)}%` }}
@@ -359,32 +359,32 @@ export default function ReportesInstructorPage() {
                     </CardHeader>
                     <CardContent>
                         <div className="space-y-4">
-                            <div className="flex items-center justify-between p-3 bg-neutral-50 rounded-lg">
-                                <span className="text-sm text-neutral-600">Total Cursos</span>
+                            <div className="flex items-center justify-between p-3 bg-neutral-50 dark:bg-neutral-700 rounded-lg">
+                                <span className="text-sm text-neutral-600 dark:text-neutral-400">Total Cursos</span>
                                 <span className="font-bold text-neutral-900 dark:text-white">{stats?.totalCourses || 0}</span>
                             </div>
-                            <div className="flex items-center justify-between p-3 bg-neutral-50 rounded-lg">
-                                <span className="text-sm text-neutral-600">Total Estudiantes</span>
+                            <div className="flex items-center justify-between p-3 bg-neutral-50 dark:bg-neutral-700 rounded-lg">
+                                <span className="text-sm text-neutral-600 dark:text-neutral-400">Total Estudiantes</span>
                                 <span className="font-bold text-neutral-900 dark:text-white">{stats?.totalStudents || 0}</span>
                             </div>
-                            <div className="flex items-center justify-between p-3 bg-neutral-50 rounded-lg">
-                                <span className="text-sm text-neutral-600">Calificacion</span>
+                            <div className="flex items-center justify-between p-3 bg-neutral-50 dark:bg-neutral-700 rounded-lg">
+                                <span className="text-sm text-neutral-600 dark:text-neutral-400">Calificacion</span>
                                 <span className="font-bold text-neutral-900 dark:text-white">
                                     {stats?.averageRating ? `${stats.averageRating.toFixed(1)}/5.0` : 'N/A'}
                                 </span>
                             </div>
-                            <div className="flex items-center justify-between p-3 bg-blue-50 rounded-lg">
-                                <span className="text-sm text-blue-700">Ingresos Totales</span>
-                                <span className="font-bold text-blue-900">${stats?.totalRevenue?.toFixed(2) || '0.00'}</span>
+                            <div className="flex items-center justify-between p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+                                <span className="text-sm text-blue-700 dark:text-blue-400">Ingresos Totales</span>
+                                <span className="font-bold text-blue-900 dark:text-blue-300">${stats?.totalRevenue?.toFixed(2) || '0.00'}</span>
                             </div>
                         </div>
                     </CardContent>
                 </Card>
             </div>
 
-            <Card className="bg-white border-neutral-200">
+            <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                 <CardHeader>
-                    <CardTitle className="text-lg font-bold text-neutral-900 flex items-center gap-2">
+                    <CardTitle className="text-lg font-bold text-neutral-900 dark:text-white flex items-center gap-2">
                         <BarChart3 className="w-5 h-5" /> Tendencia de Inscripciones
                     </CardTitle>
                 </CardHeader>
@@ -399,17 +399,17 @@ export default function ReportesInstructorPage() {
                                             height: `${Math.max((mes.enrollments / getMaxEnrollments()) * 200, 20)}px`
                                         }}
                                     />
-                                    <p className="text-xs text-neutral-600 mt-2 text-center">{mes.month}</p>
+                                    <p className="text-xs text-neutral-600 dark:text-neutral-400 mt-2 text-center">{mes.month}</p>
                                     <p className="text-sm font-semibold text-neutral-900 dark:text-white">{mes.enrollments}</p>
                                 </div>
                             ))}
                         </div>
                     ) : (
-                        <div className="h-64 bg-neutral-50 rounded-lg flex items-center justify-center border border-neutral-200">
+                        <div className="h-64 bg-neutral-50 dark:bg-neutral-700 rounded-lg flex items-center justify-center border border-neutral-200 dark:border-neutral-600">
                             <div className="text-center">
                                 <TrendingUp className="w-12 h-12 text-neutral-400 mx-auto mb-2" />
-                                <p className="text-neutral-600 font-medium">Sin datos de tendencias</p>
-                                <p className="text-sm text-neutral-500">Los datos apareceran cuando tengas inscripciones</p>
+                                <p className="text-neutral-600 dark:text-neutral-300 font-medium">Sin datos de tendencias</p>
+                                <p className="text-sm text-neutral-500 dark:text-neutral-400">Los datos apareceran cuando tengas inscripciones</p>
                             </div>
                         </div>
                     )}

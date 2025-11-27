@@ -204,7 +204,7 @@ export default function InstructorUsuariosPage() {
                         <select
                             value={filter}
                             onChange={(e) => setFilter(e.target.value as any)}
-                            className="px-4 py-2 border border-neutral-300 rounded-md bg-white text-sm"
+                            className="px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-md bg-white dark:bg-neutral-700 text-sm text-neutral-900 dark:text-white"
                         >
                             <option value="all">Todos</option>
                             <option value="pending">Pendientes Activar</option>
@@ -231,7 +231,7 @@ export default function InstructorUsuariosPage() {
                     </Card>
                 ) : (
                     filteredStudents.map((student) => (
-                        <Card key={student.id} className="bg-white border-neutral-200 hover:shadow-md transition-shadow">
+                        <Card key={student.id} className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700 hover:shadow-md transition-shadow">
                             <CardContent className="p-6">
                                 <div className="flex items-center justify-between">
                                     <div className="flex-grow">
@@ -248,7 +248,7 @@ export default function InstructorUsuariosPage() {
                                             )}
                                         </div>
 
-                                        <div className="flex items-center gap-4 text-sm text-neutral-600 mb-3">
+                                        <div className="flex items-center gap-4 text-sm text-neutral-600 dark:text-neutral-400 mb-3">
                                             <div className="flex items-center gap-1">
                                                 <Mail className="w-4 h-4" />
                                                 {student.email}
@@ -289,13 +289,13 @@ export default function InstructorUsuariosPage() {
                                 </div>
 
                                 {student.m365UserId && (
-                                    <div className="mt-4 pt-4 border-t border-neutral-100">
+                                    <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700">
                                         <div className="flex items-center gap-6 text-sm">
-                                            <div className="flex items-center gap-2 text-neutral-600">
+                                            <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
                                                 <HardDrive className="w-4 h-4 text-blue-500" />
                                                 <span>1 TB OneDrive</span>
                                             </div>
-                                            <div className="flex items-center gap-2 text-neutral-600">
+                                            <div className="flex items-center gap-2 text-neutral-600 dark:text-neutral-400">
                                                 <Shield className="w-4 h-4 text-green-500" />
                                                 <span>Licencia A1 for Students</span>
                                             </div>
@@ -320,8 +320,8 @@ export default function InstructorUsuariosPage() {
                                 <p>
                                     Estas a punto de activar una cuenta Microsoft 365 Education A1 para:
                                 </p>
-                                <div className="bg-neutral-100 p-3 rounded-md">
-                                    <p className="font-bold">{activatingUser?.name}</p>
+                                <div className="bg-neutral-100 dark:bg-neutral-700 p-3 rounded-md">
+                                    <p className="font-bold text-neutral-900 dark:text-white">{activatingUser?.name}</p>
                                     <p className="text-sm text-neutral-600 dark:text-neutral-400">{activatingUser?.email}</p>
                                 </div>
                                 <div className="bg-red-50 border border-red-200 p-3 rounded-md">

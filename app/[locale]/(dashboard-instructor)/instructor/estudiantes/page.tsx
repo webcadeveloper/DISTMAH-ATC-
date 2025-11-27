@@ -167,7 +167,7 @@ export default function EstudiantesInstructorPage() {
                     <Button variant="outline" className="border-neutral-300">
                         <Download className="w-4 h-4 mr-2" /> Exportar Lista
                     </Button>
-                    <Button className="bg-neutral-900 hover:bg-neutral-800">
+                    <Button className="bg-neutral-900 hover:bg-neutral-800 text-white">
                         <Mail className="w-4 h-4 mr-2" /> Enviar Mensaje
                     </Button>
                 </div>
@@ -233,7 +233,7 @@ export default function EstudiantesInstructorPage() {
                             />
                         </div>
                         <select
-                            className="px-4 py-2 border border-neutral-300 rounded-md bg-white text-sm"
+                            className="px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-md bg-white dark:bg-neutral-700 text-sm text-neutral-900 dark:text-white"
                             value={selectedCourse}
                             onChange={(e) => setSelectedCourse(e.target.value)}
                         >
@@ -243,7 +243,7 @@ export default function EstudiantesInstructorPage() {
                             ))}
                         </select>
                         <select
-                            className="px-4 py-2 border border-neutral-300 rounded-md bg-white text-sm"
+                            className="px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-md bg-white dark:bg-neutral-700 text-sm text-neutral-900 dark:text-white"
                             value={selectedStatus}
                             onChange={(e) => setSelectedStatus(e.target.value)}
                         >
@@ -256,27 +256,27 @@ export default function EstudiantesInstructorPage() {
                 </CardContent>
             </Card>
 
-            <Card className="bg-white border-neutral-200">
+            <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                 <CardContent className="p-0">
                     <div className="overflow-x-auto">
                         <table className="w-full">
-                            <thead className="bg-neutral-50 border-b border-neutral-200">
+                            <thead className="bg-neutral-50 dark:bg-neutral-700 border-b border-neutral-200 dark:border-neutral-600">
                                 <tr>
-                                    <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700">Estudiante</th>
-                                    <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700">Curso</th>
-                                    <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700">Progreso</th>
-                                    <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700">Inscripción</th>
-                                    <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700">Última Actividad</th>
-                                    <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700">Estado</th>
-                                    <th className="text-right px-6 py-4 text-sm font-semibold text-neutral-700">Acciones</th>
+                                    <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700 dark:text-neutral-300">Estudiante</th>
+                                    <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700 dark:text-neutral-300">Curso</th>
+                                    <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700 dark:text-neutral-300">Progreso</th>
+                                    <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700 dark:text-neutral-300">Inscripción</th>
+                                    <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700 dark:text-neutral-300">Última Actividad</th>
+                                    <th className="text-left px-6 py-4 text-sm font-semibold text-neutral-700 dark:text-neutral-300">Estado</th>
+                                    <th className="text-right px-6 py-4 text-sm font-semibold text-neutral-700 dark:text-neutral-300">Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-neutral-200">
+                            <tbody className="divide-y divide-neutral-200 dark:divide-neutral-700">
                                 {filteredEstudiantes.map((estudiante) => (
-                                    <tr key={estudiante.id} className="hover:bg-neutral-50 transition-colors">
+                                    <tr key={estudiante.id} className="hover:bg-neutral-50 dark:hover:bg-neutral-700/50 transition-colors">
                                         <td className="px-6 py-4">
                                             <div className="flex items-center gap-3">
-                                                <div className="w-10 h-10 rounded-full bg-neutral-200 flex items-center justify-center overflow-hidden">
+                                                <div className="w-10 h-10 rounded-full bg-neutral-200 dark:bg-neutral-600 flex items-center justify-center overflow-hidden">
                                                     {estudiante.avatar ? (
                                                         <img src={estudiante.avatar} alt={estudiante.name} className="w-full h-full object-cover" />
                                                     ) : (
@@ -299,7 +299,7 @@ export default function EstudiantesInstructorPage() {
                                                 <div className="flex items-center gap-2 mb-1">
                                                     <span className="text-sm font-medium text-neutral-900 dark:text-white">{estudiante.progress}%</span>
                                                 </div>
-                                                <div className="w-full bg-neutral-200 rounded-full h-2">
+                                                <div className="w-full bg-neutral-200 dark:bg-neutral-600 rounded-full h-2">
                                                     <div
                                                         className={`h-2 rounded-full ${getProgresoColor(estudiante.progress)}`}
                                                         style={{ width: `${estudiante.progress}%` }}
@@ -307,10 +307,10 @@ export default function EstudiantesInstructorPage() {
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className="px-6 py-4 text-sm text-neutral-600">
+                                        <td className="px-6 py-4 text-sm text-neutral-600 dark:text-neutral-400">
                                             {formatDate(estudiante.enrolledAt)}
                                         </td>
-                                        <td className="px-6 py-4 text-sm text-neutral-600">
+                                        <td className="px-6 py-4 text-sm text-neutral-600 dark:text-neutral-400">
                                             {getLastActivityLabel(estudiante.lastActivity)}
                                         </td>
                                         <td className="px-6 py-4">

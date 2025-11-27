@@ -131,30 +131,30 @@ export default function EditLessonPage() {
 
     if (loading) {
         return (
-            <div className="p-8 max-w-5xl mx-auto">
-                <p className="text-neutral-500">Cargando leccion...</p>
+            <div className="p-8 max-w-5xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
+                <p className="text-neutral-500 dark:text-neutral-400">Cargando leccion...</p>
             </div>
         );
     }
 
     return (
-        <div className="p-8 max-w-6xl mx-auto">
+        <div className="p-8 max-w-6xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
             <div className="mb-8">
                 <Link
                     href={`/instructor/cursos/${cursoId}/contenido`}
-                    className="text-sm text-neutral-500 hover:text-neutral-900 flex items-center gap-1 mb-4"
+                    className="text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white flex items-center gap-1 mb-4"
                 >
                     <ArrowLeft className="w-4 h-4" /> Volver al Contenido
                 </Link>
                 <div className="flex justify-between items-start">
                     <div>
-                        <h1 className="text-3xl font-bold text-neutral-900 mb-2">Editar Leccion</h1>
-                        <p className="text-neutral-600">Modulo: {moduleId} / Leccion: {lessonSlug}</p>
+                        <h1 className="text-3xl font-bold text-neutral-900 dark:text-white mb-2">Editar Leccion</h1>
+                        <p className="text-neutral-600 dark:text-neutral-400">Modulo: {moduleId} / Leccion: {lessonSlug}</p>
                     </div>
                     <Button
                         onClick={handleSave}
                         disabled={saving}
-                        className="bg-twilight hover:bg-twilight-dark"
+                        className="bg-blue-600 hover:bg-blue-700 text-white"
                     >
                         <Save className="w-4 h-4 mr-2" />
                         {saving ? 'Guardando...' : 'Guardar Cambios'}
@@ -177,30 +177,30 @@ export default function EditLessonPage() {
 
             <div className="space-y-6">
                 {/* Frontmatter Fields */}
-                <div className="bg-white border border-neutral-200 rounded-lg p-6">
-                    <h3 className="text-lg font-semibold text-neutral-900 mb-4">Informacion de la Leccion</h3>
+                <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">Informacion de la Leccion</h3>
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-sm font-medium text-neutral-700 mb-2">
+                            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                                 Titulo
                             </label>
                             <input
                                 type="text"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
-                                className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-twilight"
+                                className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-md bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-twilight"
                                 placeholder="Titulo de la leccion"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-neutral-700 mb-2">
+                            <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
                                 Duracion (minutos)
                             </label>
                             <input
                                 type="number"
                                 value={duration}
                                 onChange={(e) => setDuration(parseInt(e.target.value))}
-                                className="w-full px-3 py-2 border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-twilight"
+                                className="w-full px-3 py-2 border border-neutral-300 dark:border-neutral-600 rounded-md bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-twilight"
                                 placeholder="30"
                             />
                         </div>
@@ -250,12 +250,12 @@ export default function EditLessonPage() {
                         placeholder="Escribe el contenido de la leccion..."
                     />
                 ) : (
-                    <div className="bg-white border border-neutral-200 rounded-lg overflow-hidden">
+                    <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg overflow-hidden">
                         {!showPreview ? (
                             <div className="p-4">
-                                <div className="bg-twilight/5 border border-twilight/20 rounded-md p-3 mb-3">
-                                    <p className="text-xs font-medium text-twilight-dark mb-2">Formato Markdown:</p>
-                                    <div className="grid grid-cols-3 gap-2 text-xs text-neutral-600">
+                                <div className="bg-twilight/5 dark:bg-twilight/10 border border-twilight/20 rounded-md p-3 mb-3">
+                                    <p className="text-xs font-medium text-twilight-dark dark:text-twilight mb-2">Formato Markdown:</p>
+                                    <div className="grid grid-cols-3 gap-2 text-xs text-neutral-600 dark:text-neutral-400">
                                         <div><code># Titulo 1</code></div>
                                         <div><code>## Titulo 2</code></div>
                                         <div><code>**negrita**</code></div>
@@ -270,7 +270,7 @@ export default function EditLessonPage() {
                                 <textarea
                                     value={content}
                                     onChange={(e) => setContent(e.target.value)}
-                                    className="w-full h-[500px] px-4 py-3 font-mono text-sm border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-twilight"
+                                    className="w-full h-[500px] px-4 py-3 font-mono text-sm border border-neutral-300 dark:border-neutral-600 rounded-md bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-twilight"
                                     placeholder="Escribe el contenido en Markdown..."
                                 />
                             </div>

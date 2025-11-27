@@ -128,7 +128,7 @@ export default function EvaluacionesInstructorPage() {
                     <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Evaluaciones</h1>
                     <p className="text-neutral-600 dark:text-neutral-400">Gestiona tareas, exámenes y calificaciones de tus cursos.</p>
                 </div>
-                <Button className="bg-neutral-900 hover:bg-neutral-800">
+                <Button className="bg-neutral-900 hover:bg-neutral-800 text-white">
                     <Plus className="w-4 h-4 mr-2" /> Nueva Evaluación
                 </Button>
             </div>
@@ -182,21 +182,21 @@ export default function EvaluacionesInstructorPage() {
             </div>
 
             {/* Filtros */}
-            <Card className="mb-6 bg-white border-neutral-200">
+            <Card className="mb-6 bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                 <CardContent className="p-4">
                     <div className="flex gap-4 items-center">
-                        <select className="px-4 py-2 border border-neutral-300 rounded-md bg-white text-sm">
+                        <select className="px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-md bg-white dark:bg-neutral-700 text-sm text-neutral-900 dark:text-white">
                             <option>Todos los tipos</option>
                             <option>Examen</option>
                             <option>Tarea</option>
                             <option>Quiz</option>
                         </select>
-                        <select className="px-4 py-2 border border-neutral-300 rounded-md bg-white text-sm">
+                        <select className="px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-md bg-white dark:bg-neutral-700 text-sm text-neutral-900 dark:text-white">
                             <option>Todos los cursos</option>
                             <option>Civil 3D 2026 Básico</option>
                             <option>Civil 3D 2026 Avanzado</option>
                         </select>
-                        <select className="px-4 py-2 border border-neutral-300 rounded-md bg-white text-sm">
+                        <select className="px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-md bg-white dark:bg-neutral-700 text-sm text-neutral-900 dark:text-white">
                             <option>Todos los estados</option>
                             <option>Activa</option>
                             <option>Cerrada</option>
@@ -208,7 +208,7 @@ export default function EvaluacionesInstructorPage() {
             {/* Lista de evaluaciones */}
             <div className="grid gap-4">
                 {evaluaciones.map((evaluacion) => (
-                    <Card key={evaluacion.id} className="bg-white border-neutral-200 hover:shadow-md transition-shadow">
+                    <Card key={evaluacion.id} className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700 hover:shadow-md transition-shadow">
                         <CardContent className="p-6">
                             <div className="flex items-start justify-between mb-4">
                                 <div className="flex-grow">
@@ -226,7 +226,7 @@ export default function EvaluacionesInstructorPage() {
                                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                                         <div>
                                             <p className="text-xs text-neutral-500 dark:text-neutral-400">Fecha Límite</p>
-                                            <p className="text-sm font-medium text-neutral-900">{evaluacion.fechaLimite}</p>
+                                            <p className="text-sm font-medium text-neutral-900 dark:text-white">{evaluacion.fechaLimite}</p>
                                         </div>
                                         {evaluacion.duracion !== 'N/A' && (
                                             <div>
@@ -242,13 +242,13 @@ export default function EvaluacionesInstructorPage() {
                                         )}
                                         <div>
                                             <p className="text-xs text-neutral-500 dark:text-neutral-400">Entregas</p>
-                                            <p className="text-sm font-medium text-neutral-900">{evaluacion.entregas}</p>
+                                            <p className="text-sm font-medium text-neutral-900 dark:text-white">{evaluacion.entregas}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="flex items-center justify-between pt-4 border-t border-neutral-100 dark:border-neutral-700">
+                            <div className="flex items-center justify-between pt-4 border-t border-neutral-200 dark:border-neutral-700">
                                 <div className="flex items-center gap-6 text-sm">
                                     <div className="flex items-center gap-2">
                                         <Clock className="w-4 h-4 text-yellow-600" />
@@ -271,7 +271,7 @@ export default function EvaluacionesInstructorPage() {
 
                                 <div className="flex items-center gap-3">
                                     {evaluacion.pendientes > 0 && (
-                                        <Button variant="default" size="sm" className="bg-neutral-900 hover:bg-neutral-800">
+                                        <Button variant="default" size="sm" className="bg-neutral-900 hover:bg-neutral-800 text-white">
                                             <CheckCircle className="w-4 h-4 mr-2" /> Calificar ({evaluacion.pendientes})
                                         </Button>
                                     )}
