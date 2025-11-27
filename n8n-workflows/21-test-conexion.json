@@ -1,0 +1,39 @@
+{
+  "name": "DISTMAH - Test Conexión",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "test-conexion",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "webhook-test",
+      "name": "Webhook Test",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date();\nconst input = $input.all()[0].json;\n\nreturn [{\n  json: {\n    success: true,\n    message: 'Conexión exitosa con n8n',\n    timestamp: now.toISOString(),\n    received: input,\n    server: 'n8n DISTMAH',\n    tests: {\n      webhook: 'OK',\n      javascript: 'OK',\n      response: 'OK'\n    }\n  }\n}];"
+      },
+      "id": "process-test",
+      "name": "Procesar Test",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Test": {
+      "main": [
+        [
+          { "node": "Procesar Test", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "test" }, { "name": "debug" }]
+}
