@@ -146,12 +146,12 @@ export default function StudentDashboardClient({ userId }: StudentDashboardClien
     return (
       <div className="p-8 max-w-7xl mx-auto">
         <div className="mb-8">
-          <div className="h-8 bg-gray-200 rounded w-64 mb-2 animate-pulse"></div>
-          <div className="h-4 bg-gray-200 rounded w-48 animate-pulse"></div>
+          <div className="h-8 bg-neutral-200 dark:bg-neutral-700 rounded w-64 mb-2 animate-pulse"></div>
+          <div className="h-4 bg-neutral-200 dark:bg-neutral-700 rounded w-48 animate-pulse"></div>
         </div>
         <div className="space-y-4">
-          <div className="h-64 bg-gray-200 rounded animate-pulse"></div>
-          <div className="h-32 bg-gray-200 rounded animate-pulse"></div>
+          <div className="h-64 bg-neutral-200 dark:bg-neutral-700 rounded animate-pulse"></div>
+          <div className="h-32 bg-neutral-200 dark:bg-neutral-700 rounded animate-pulse"></div>
         </div>
       </div>
     );
@@ -166,9 +166,9 @@ export default function StudentDashboardClient({ userId }: StudentDashboardClien
         </div>
         <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
           <CardContent className="p-12 text-center">
-            <BookOpen className="w-16 h-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">No tienes cursos inscritos</h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-6">Explora nuestro catálogo y comienza a aprender hoy</p>
+            <BookOpen className="w-16 h-16 text-neutral-300 dark:text-neutral-500 mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">No tienes cursos inscritos</h3>
+            <p className="text-neutral-600 dark:text-neutral-300 mb-6">Explora nuestro catálogo y comienza a aprender hoy</p>
             <Link href="/cursos">
               <Button className="bg-blue-600 hover:bg-blue-700">Ver Cursos Disponibles</Button>
             </Link>
@@ -291,7 +291,7 @@ export default function StudentDashboardClient({ userId }: StudentDashboardClien
                   <span className="text-sm font-medium">Progreso del curso</span>
                   <span className="text-sm font-bold text-blue-400">{currentCourse.progressPercent}%</span>
                 </div>
-                <Progress value={currentCourse.progressPercent} className="h-2 bg-neutral-700 dark:bg-neutral-600 mb-6" />
+                <Progress value={currentCourse.progressPercent} className="h-2 bg-neutral-200 dark:bg-neutral-700 mb-6" />
 
                 {currentCourse.nextLesson ? (
                   <Link
@@ -341,7 +341,7 @@ export default function StudentDashboardClient({ userId }: StudentDashboardClien
                     {course.courseThumbnail ? (
                       <img src={course.courseThumbnail} alt={course.courseTitle} className="w-full h-full object-cover" />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-gray-400 dark:text-gray-500">
+                      <div className="w-full h-full flex items-center justify-center text-neutral-400 dark:text-neutral-500">
                         <BookOpen className="w-8 h-8" />
                       </div>
                     )}

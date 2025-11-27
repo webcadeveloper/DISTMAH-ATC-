@@ -12,7 +12,12 @@ export function LogoDistmah({ className, variant = 'horizontal' }: Props) {
                 <img
                     src="/images/foot_logo.png"
                     alt="DISTMAH"
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain dark:hidden"
+                />
+                <img
+                    src="/images/logodis.PNG"
+                    alt="DISTMAH"
+                    className="w-full h-full object-contain hidden dark:block"
                 />
             </div>
         );
@@ -23,7 +28,12 @@ export function LogoDistmah({ className, variant = 'horizontal' }: Props) {
             <img
                 src="/images/foot_logo.png"
                 alt="DISTMAH - Centro de Entrenamiento Digital"
-                className="h-full w-auto object-contain"
+                className="h-full w-auto object-contain dark:hidden"
+            />
+            <img
+                src="/images/logodis.PNG"
+                alt="DISTMAH - Centro de Entrenamiento Digital"
+                className="h-full w-auto object-contain hidden dark:block"
             />
         </div>
     );

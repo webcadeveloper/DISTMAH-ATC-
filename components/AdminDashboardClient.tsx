@@ -151,10 +151,10 @@ export function AdminDashboardClient() {
 
   if (loading || !stats || !analytics) {
     return (
-      <div className="min-h-screen bg-white p-8 flex items-center justify-center">
+      <div className="min-h-screen bg-white dark:bg-neutral-900 p-8 flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mx-auto mb-4"></div>
-          <p className="text-gray-600">Cargando dashboard...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 dark:border-blue-400 mx-auto mb-4"></div>
+          <p className="text-neutral-600 dark:text-neutral-400">Cargando dashboard...</p>
         </div>
       </div>
     );
@@ -166,7 +166,7 @@ export function AdminDashboardClient() {
         <div className="flex justify-between items-center mb-8">
           <div>
             <h1 className="text-3xl font-bold text-black dark:text-white">Panel de Administración</h1>
-            <p className="text-gray-600 dark:text-gray-400 mt-1">
+            <p className="text-neutral-600 dark:text-neutral-400 mt-1">
               Gestión completa de DISTMAH ATC - Authorized Training Center
             </p>
           </div>
@@ -174,7 +174,7 @@ export function AdminDashboardClient() {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="bg-gray-100">
+          <TabsList className="bg-neutral-100 dark:bg-neutral-800">
             <TabsTrigger value="overview">Resumen</TabsTrigger>
             <TabsTrigger value="analytics">Analytics</TabsTrigger>
             <TabsTrigger value="users">Usuarios</TabsTrigger>
