@@ -190,6 +190,106 @@ Colección de workflows de n8n para automatización de la plataforma DISTMAH ATC
 
 ---
 
+### 07 - Reporte Semanal de Ventas
+**Archivo:** `07-reporte-semanal-ventas.json`
+**Trigger:** Schedule (cada lunes 8AM)
+
+**Acciones:**
+- Consulta ventas de la semana
+- Consulta nuevos usuarios
+- Consulta certificados emitidos
+- Envía reporte consolidado al administrador
+
+**Requiere:** Conexión a PostgreSQL (Neon)
+
+---
+
+### 08 - Promoción Curso Avanzado (Upsell)
+**Archivo:** `08-promocion-curso-avanzado.json`
+**Trigger:** Webhook POST
+**Webhook URL:** `/webhook/upsell-webhook`
+
+**Acciones:**
+- Detecta si el curso completado es nivel Básico
+- Busca el curso Avanzado del mismo software
+- Envía email promocional con 15% de descuento
+
+**Payload esperado:**
+```json
+{
+  "event": "upsell.opportunity",
+  "student": {
+    "id": "uuid",
+    "name": "Nombre",
+    "email": "email@example.com"
+  },
+  "course": {
+    "id": "uuid",
+    "title": "AutoCAD 2026 Básico",
+    "level": "Básico",
+    "software": "AutoCAD"
+  }
+}
+```
+
+---
+
+### 09 - Encuesta de Satisfacción
+**Archivo:** `09-encuesta-satisfaccion.json`
+**Trigger:** Webhook POST
+**Webhook URL:** `/webhook/survey-webhook`
+
+**Acciones:**
+- Envía email solicitando feedback post-certificación
+- Incluye sistema de calificación rápida (1-5 estrellas)
+- Link a encuesta detallada
+
+**Payload esperado:**
+```json
+{
+  "event": "survey.request",
+  "student": {
+    "id": "uuid",
+    "name": "Nombre",
+    "email": "email@example.com"
+  },
+  "course": {
+    "id": "uuid",
+    "title": "Civil 3D 2026 Básico"
+  },
+  "certificate": {
+    "id": "uuid"
+  }
+}
+```
+
+---
+
+### 10 - Sincronizar con SharePoint (Microsoft)
+**Archivo:** `10-sincronizar-sharepoint.json`
+**Trigger:** Webhook POST
+**Webhook URL:** `/webhook/sharepoint-sync-webhook`
+
+**Acciones:**
+- Guarda venta en lista "Ventas" de SharePoint
+- Guarda inscripción en lista "Inscripciones" de SharePoint
+
+**Requiere:** OAuth2 Microsoft SharePoint configurado
+
+**Payload esperado:**
+```json
+{
+  "event": "sharepoint.sync",
+  "customer": { "id": "uuid", "name": "Nombre", "email": "email@example.com" },
+  "course": { "id": "uuid", "title": "Curso" },
+  "payment": { "stripeId": "pi_xxx", "amount": 390, "currency": "USD", "paidAt": "2024-01-01" },
+  "enrollment": { "id": "uuid", "enrolledAt": "2024-01-01" },
+  "student": { "id": "uuid", "name": "Nombre", "email": "email@example.com" }
+}
+```
+
+---
+
 ## Configuración Requerida
 
 ### Credenciales necesarias en n8n:

@@ -105,3 +105,37 @@ export async function notifyUserRegistered(data: {
     ...data,
   });
 }
+
+export async function notifyUpsellOpportunity(data: {
+  student: { id: string; name: string; email: string };
+  course: { id: string; title: string; level: string; software: string };
+}) {
+  return sendWebhook('/webhook/upsell-webhook', {
+    event: 'upsell.opportunity',
+    ...data,
+  });
+}
+
+export async function notifySurveyRequest(data: {
+  student: { id: string; name: string; email: string };
+  course: { id: string; title: string };
+  certificate: { id: string };
+}) {
+  return sendWebhook('/webhook/survey-webhook', {
+    event: 'survey.request',
+    ...data,
+  });
+}
+
+export async function notifySharePointSync(data: {
+  customer: { id: string; name: string; email: string };
+  course: { id: string; title: string };
+  payment: { stripeId: string; amount: number; currency: string; paidAt: string };
+  enrollment: { id: string; enrolledAt: string };
+  student: { id: string; name: string; email: string };
+}) {
+  return sendWebhook('/webhook/sharepoint-sync-webhook', {
+    event: 'sharepoint.sync',
+    ...data,
+  });
+}

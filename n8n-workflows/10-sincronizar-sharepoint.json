@@ -1,0 +1,102 @@
+{
+  "name": "DISTMAH - Sincronizar Ventas con SharePoint",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "sharepoint-sync-webhook",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-sync",
+      "name": "Webhook Sincronización",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\"status\": \"synced\"}"
+      },
+      "id": "response",
+      "name": "Responder OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "resource": "listItem",
+        "operation": "create",
+        "siteId": "={{ $env.SHAREPOINT_SITE_ID }}",
+        "listId": "Ventas",
+        "fieldsUi": {
+          "fieldValues": [
+            { "fieldName": "Title", "fieldValue": "={{ $json.customer.name }}" },
+            { "fieldName": "Email", "fieldValue": "={{ $json.customer.email }}" },
+            { "fieldName": "Curso", "fieldValue": "={{ $json.course.title }}" },
+            { "fieldName": "Monto", "fieldValue": "={{ $json.payment.amount }}" },
+            { "fieldName": "Moneda", "fieldValue": "={{ $json.payment.currency }}" },
+            { "fieldName": "StripeID", "fieldValue": "={{ $json.payment.stripeId }}" },
+            { "fieldName": "FechaPago", "fieldValue": "={{ $json.payment.paidAt }}" }
+          ]
+        }
+      },
+      "id": "sharepoint-ventas",
+      "name": "Guardar en SharePoint Ventas",
+      "type": "n8n-nodes-base.microsoftSharePoint",
+      "typeVersion": 1,
+      "position": [650, 200],
+      "credentials": {
+        "microsoftSharePointOAuth2Api": {
+          "id": "2",
+          "name": "Microsoft SharePoint"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "listItem",
+        "operation": "create",
+        "siteId": "={{ $env.SHAREPOINT_SITE_ID }}",
+        "listId": "Inscripciones",
+        "fieldsUi": {
+          "fieldValues": [
+            { "fieldName": "Title", "fieldValue": "={{ $json.student.name }}" },
+            { "fieldName": "Email", "fieldValue": "={{ $json.student.email }}" },
+            { "fieldName": "Curso", "fieldValue": "={{ $json.course.title }}" },
+            { "fieldName": "Instructor", "fieldValue": "={{ $json.course.instructor }}" },
+            { "fieldName": "Duracion", "fieldValue": "={{ $json.course.duration }}" },
+            { "fieldName": "Nivel", "fieldValue": "={{ $json.course.level }}" },
+            { "fieldName": "FechaInscripcion", "fieldValue": "={{ $json.enrollment.enrolledAt }}" }
+          ]
+        }
+      },
+      "id": "sharepoint-inscripciones",
+      "name": "Guardar en SharePoint Inscripciones",
+      "type": "n8n-nodes-base.microsoftSharePoint",
+      "typeVersion": 1,
+      "position": [650, 400],
+      "credentials": {
+        "microsoftSharePointOAuth2Api": {
+          "id": "2",
+          "name": "Microsoft SharePoint"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Sincronización": {
+      "main": [
+        [
+          { "node": "Responder OK", "type": "main", "index": 0 },
+          { "node": "Guardar en SharePoint Ventas", "type": "main", "index": 0 },
+          { "node": "Guardar en SharePoint Inscripciones", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "sharepoint" }, { "name": "microsoft" }, { "name": "sync" }]
+}
