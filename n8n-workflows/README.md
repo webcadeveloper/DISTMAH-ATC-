@@ -290,6 +290,161 @@ Colección de workflows de n8n para automatización de la plataforma DISTMAH ATC
 
 ---
 
+### 11 - Pago Fallido (Stripe)
+**Archivo:** `11-pago-fallido-stripe.json`
+**Trigger:** Webhook POST
+**Webhook URL:** `/webhook/payment-failed-webhook`
+
+**Acciones:**
+- Envía email al cliente notificando problema de pago
+- Alerta al administrador sobre pago fallido
+
+**Payload esperado:**
+```json
+{
+  "event": "payment.failed",
+  "customer": { "id": "uuid", "name": "Nombre", "email": "email@example.com" },
+  "course": { "id": "uuid", "title": "AutoCAD 2026" },
+  "payment": { "stripeId": "pi_xxx", "amount": 390, "currency": "USD", "errorMessage": "Card declined", "failedAt": "2024-01-01" }
+}
+```
+
+---
+
+### 12 - Email de Cumpleaños
+**Archivo:** `12-email-cumpleanos.json`
+**Trigger:** Schedule (diario 8AM)
+
+**Acciones:**
+- Busca usuarios con cumpleaños hoy
+- Envía email de felicitación con cupón de descuento 20% (CUMPLE20)
+
+**Requiere:** Conexión a PostgreSQL (Neon)
+
+---
+
+### 13 - Reporte Mensual de Ingresos
+**Archivo:** `13-reporte-mensual-ingresos.json`
+**Trigger:** Schedule (primer día del mes 9AM)
+
+**Acciones:**
+- Recopila ingresos totales del mes anterior
+- Lista top 10 cursos más vendidos
+- Cuenta nuevos estudiantes y certificados
+- Envía reporte completo al administrador
+
+**Requiere:** Conexión a PostgreSQL (Neon)
+
+---
+
+### 14 - Bienvenida Nuevo Instructor
+**Archivo:** `14-nuevo-instructor.json`
+**Trigger:** Webhook POST
+**Webhook URL:** `/webhook/instructor-webhook`
+
+**Acciones:**
+- Envía email de bienvenida al nuevo instructor
+- Notifica al administrador del nuevo registro
+
+**Payload esperado:**
+```json
+{
+  "event": "instructor.registered",
+  "instructor": { "id": "uuid", "name": "Nombre", "email": "email@example.com", "specialty": "AutoCAD", "registeredAt": "2024-01-01" }
+}
+```
+
+---
+
+### 15 - Alerta Cursos Sin Actividad
+**Archivo:** `15-alerta-curso-sin-actividad.json`
+**Trigger:** Schedule (lunes 10AM)
+
+**Acciones:**
+- Busca cursos publicados sin inscripciones en 30 días
+- Envía alerta al administrador con lista de cursos inactivos
+
+**Requiere:** Conexión a PostgreSQL (Neon)
+
+---
+
+### 16 - Backup Semanal a OneDrive
+**Archivo:** `16-backup-onedrive.json`
+**Trigger:** Schedule (domingo 3AM)
+
+**Acciones:**
+- Exporta usuarios, inscripciones y certificados de la base de datos
+- Sube archivo JSON a OneDrive
+- Notifica al administrador del backup completado
+
+**Requiere:** Conexión a PostgreSQL (Neon), OAuth2 Microsoft OneDrive
+
+---
+
+### 17 - Nueva Reseña/Testimonio
+**Archivo:** `17-nueva-resena.json`
+**Trigger:** Webhook POST
+**Webhook URL:** `/webhook/review-webhook`
+
+**Acciones:**
+- Si rating >= 4: Notifica a marketing para usar en promoción
+- Si rating < 4: Alerta al administrador para seguimiento
+
+**Payload esperado:**
+```json
+{
+  "event": "review.created",
+  "review": { "rating": 5, "comment": "Excelente curso", "courseName": "AutoCAD 2026", "courseSlug": "autocad-2026", "studentName": "Juan", "studentEmail": "juan@example.com", "createdAt": "2024-01-01" }
+}
+```
+
+---
+
+### 18 - Acceso a Curso por Expirar
+**Archivo:** `18-acceso-curso-expirando.json`
+**Trigger:** Schedule (diario 9AM)
+
+**Acciones:**
+- Busca estudiantes con acceso expirando en 7 días
+- Envía recordatorio para completar el curso
+
+**Requiere:** Conexión a PostgreSQL (Neon)
+
+---
+
+### 19 - Nuevo Comentario/Pregunta
+**Archivo:** `19-nuevo-comentario-pregunta.json`
+**Trigger:** Webhook POST
+**Webhook URL:** `/webhook/comment-webhook`
+
+**Acciones:**
+- Si es pregunta: Notifica al instructor con urgencia
+- Si es comentario: Notifica al instructor (prioridad normal)
+
+**Payload esperado:**
+```json
+{
+  "event": "comment.created",
+  "comment": { "type": "question", "content": "¿Cómo hago...?", "courseName": "AutoCAD 2026", "courseSlug": "autocad-2026", "lessonTitle": "Lección 1", "lessonSlug": "leccion-1", "studentName": "Juan", "instructorEmail": "instructor@example.com", "createdAt": "2024-01-01" }
+}
+```
+
+---
+
+### 20 - Resumen Diario para Admin
+**Archivo:** `20-resumen-diario-admin.json`
+**Trigger:** Schedule (diario 6PM)
+
+**Acciones:**
+- Cuenta nuevos usuarios, inscripciones, certificados del día
+- Calcula ingresos totales
+- Lista cursos más vendidos del día
+- Envía resumen ejecutivo al administrador
+
+**Requiere:** Conexión a PostgreSQL (Neon)
+
+---
+
 ## Configuración Requerida
 
 ### Credenciales necesarias en n8n:
@@ -309,8 +464,13 @@ Colección de workflows de n8n para automatización de la plataforma DISTMAH ATC
    - User: neondb_owner
    - SSL: require
 
+4. **Microsoft OneDrive** (ID: 4)
+   - OAuth2 configurado con Azure AD
+   - Scopes: Files.ReadWrite
+
 ### Variables de entorno:
 - `SHAREPOINT_SITE_ID`: ID del sitio de SharePoint
+- `N8N_WEBHOOK_URL`: URL base de n8n (default: https://casa.tailc67ac4.ts.net:9443)
 
 ---
 

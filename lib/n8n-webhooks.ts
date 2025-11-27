@@ -139,3 +139,65 @@ export async function notifySharePointSync(data: {
     ...data,
   });
 }
+
+export async function notifyPaymentFailed(data: {
+  customer: { id: string; name: string; email: string };
+  course: { id: string; title: string };
+  payment: { stripeId: string; amount: number; currency: string; errorMessage: string; failedAt: string };
+}) {
+  return sendWebhook('/webhook/payment-failed-webhook', {
+    event: 'payment.failed',
+    ...data,
+  });
+}
+
+export async function notifyNewReview(data: {
+  review: {
+    rating: number;
+    comment: string;
+    courseName: string;
+    courseSlug: string;
+    studentName: string;
+    studentEmail: string;
+    createdAt: string;
+  };
+}) {
+  return sendWebhook('/webhook/review-webhook', {
+    event: 'review.created',
+    ...data,
+  });
+}
+
+export async function notifyNewComment(data: {
+  comment: {
+    type: 'question' | 'comment';
+    content: string;
+    courseName: string;
+    courseSlug: string;
+    lessonTitle: string;
+    lessonSlug: string;
+    studentName: string;
+    instructorEmail: string;
+    createdAt: string;
+  };
+}) {
+  return sendWebhook('/webhook/comment-webhook', {
+    event: 'comment.created',
+    ...data,
+  });
+}
+
+export async function notifyNewInstructor(data: {
+  instructor: {
+    id: string;
+    name: string;
+    email: string;
+    specialty: string;
+    registeredAt: string;
+  };
+}) {
+  return sendWebhook('/webhook/instructor-webhook', {
+    event: 'instructor.registered',
+    ...data,
+  });
+}

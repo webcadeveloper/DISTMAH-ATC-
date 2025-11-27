@@ -1,0 +1,109 @@
+{
+  "name": "DISTMAH - Nueva Reseña/Testimonio",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "review-webhook",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-review",
+      "name": "Webhook Reseña",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\"status\": \"received\"}"
+      },
+      "id": "response",
+      "name": "Responder OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.review.rating }}",
+              "operation": "largerEqual",
+              "value2": 4
+            }
+          ]
+        }
+      },
+      "id": "check-rating",
+      "name": "¿Rating >= 4?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@distmah.com.ve",
+        "toEmail": "marketing@distmah.com.ve",
+        "subject": "=Nueva Reseña Positiva - {{ $json.review.courseName }}",
+        "emailType": "html",
+        "html": "=<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;\">\n  <div style=\"background: #28a745; padding: 20px; text-align: center;\">\n    <h1 style=\"color: white; margin: 0;\">Nueva Reseña Positiva</h1>\n  </div>\n  \n  <div style=\"background: white; padding: 30px; border: 1px solid #ddd;\">\n    <div style=\"text-align: center; margin-bottom: 20px;\">\n      <span style=\"font-size: 36px;\">{{ '⭐'.repeat($json.review.rating) }}</span>\n    </div>\n    \n    <blockquote style=\"background: #f9f9f9; padding: 20px; border-left: 4px solid #1F4E79; margin: 20px 0; font-style: italic;\">\n      \"{{ $json.review.comment }}\"\n    </blockquote>\n    \n    <ul style=\"color: #666;\">\n      <li><strong>Estudiante:</strong> {{ $json.review.studentName }}</li>\n      <li><strong>Curso:</strong> {{ $json.review.courseName }}</li>\n      <li><strong>Rating:</strong> {{ $json.review.rating }}/5</li>\n      <li><strong>Fecha:</strong> {{ $json.review.createdAt }}</li>\n    </ul>\n    \n    <div style=\"background: #e8f5e9; padding: 15px; border-radius: 5px; margin-top: 20px;\">\n      <p style=\"color: #2e7d32; margin: 0;\"><strong>Acción sugerida:</strong> Considera usar esta reseña en marketing y redes sociales.</p>\n    </div>\n  </div>\n</div>"
+      },
+      "id": "notify-marketing",
+      "name": "Notificar Marketing",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [850, 200],
+      "credentials": {
+        "smtp": {
+          "id": "1",
+          "name": "SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@distmah.com.ve",
+        "toEmail": "admin@distmah.com.ve",
+        "subject": "=Reseña Negativa Recibida - {{ $json.review.courseName }}",
+        "emailType": "html",
+        "html": "=<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;\">\n  <div style=\"background: #dc3545; padding: 20px; text-align: center;\">\n    <h1 style=\"color: white; margin: 0;\">Reseña Negativa - Atención Requerida</h1>\n  </div>\n  \n  <div style=\"background: white; padding: 30px; border: 1px solid #ddd;\">\n    <div style=\"text-align: center; margin-bottom: 20px;\">\n      <span style=\"font-size: 36px;\">{{ '⭐'.repeat($json.review.rating) }}{{ '☆'.repeat(5 - $json.review.rating) }}</span>\n    </div>\n    \n    <blockquote style=\"background: #fff3cd; padding: 20px; border-left: 4px solid #ffc107; margin: 20px 0; font-style: italic;\">\n      \"{{ $json.review.comment }}\"\n    </blockquote>\n    \n    <ul style=\"color: #666;\">\n      <li><strong>Estudiante:</strong> {{ $json.review.studentName }}</li>\n      <li><strong>Email:</strong> {{ $json.review.studentEmail }}</li>\n      <li><strong>Curso:</strong> {{ $json.review.courseName }}</li>\n      <li><strong>Rating:</strong> {{ $json.review.rating }}/5</li>\n    </ul>\n    \n    <div style=\"background: #f8d7da; padding: 15px; border-radius: 5px; margin-top: 20px;\">\n      <p style=\"color: #721c24; margin: 0;\"><strong>Acción requerida:</strong> Contactar al estudiante para resolver su insatisfacción.</p>\n    </div>\n  </div>\n</div>"
+      },
+      "id": "notify-negative",
+      "name": "Alertar Reseña Negativa",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [850, 400],
+      "credentials": {
+        "smtp": {
+          "id": "1",
+          "name": "SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Reseña": {
+      "main": [
+        [
+          { "node": "Responder OK", "type": "main", "index": 0 },
+          { "node": "¿Rating >= 4?", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "¿Rating >= 4?": {
+      "main": [
+        [
+          { "node": "Notificar Marketing", "type": "main", "index": 0 }
+        ],
+        [
+          { "node": "Alertar Reseña Negativa", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "reseñas" }, { "name": "marketing" }]
+}

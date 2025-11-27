@@ -1,0 +1,142 @@
+{
+  "name": "DISTMAH - Backup Semanal a OneDrive",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [0],
+              "triggerAtHour": 3
+            }
+          ]
+        }
+      },
+      "id": "schedule",
+      "name": "Domingo 3AM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT json_agg(row_to_json(u)) as users_backup FROM (SELECT id, name, email, role, \"createdAt\" FROM users) u",
+        "options": {}
+      },
+      "id": "backup-users",
+      "name": "Backup Usuarios",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [450, 200],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "Neon PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT json_agg(row_to_json(e)) as enrollments_backup FROM (SELECT id, \"userId\", \"courseId\", status, amount, \"enrolledAt\", \"progressPercent\" FROM enrollments) e",
+        "options": {}
+      },
+      "id": "backup-enrollments",
+      "name": "Backup Inscripciones",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [450, 400],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "Neon PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT json_agg(row_to_json(c)) as certificates_backup FROM (SELECT id, \"userId\", \"courseId\", \"certificateNumber\", \"verificationCode\", \"completionDate\" FROM certificates) c",
+        "options": {}
+      },
+      "id": "backup-certs",
+      "name": "Backup Certificados",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [450, 600],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "Neon PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "upload",
+        "fileName": "=backup_distmah_{{ $now.format('yyyy-MM-dd') }}.json"
+      },
+      "id": "upload-onedrive",
+      "name": "Subir a OneDrive",
+      "type": "n8n-nodes-base.microsoftOneDrive",
+      "typeVersion": 1,
+      "position": [850, 400],
+      "credentials": {
+        "microsoftOneDriveOAuth2Api": {
+          "id": "4",
+          "name": "Microsoft OneDrive"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@distmah.com.ve",
+        "toEmail": "admin@distmah.com.ve",
+        "subject": "=Backup Semanal Completado - {{ $now.format('dd/MM/yyyy') }}",
+        "emailType": "html",
+        "html": "=<div style=\"font-family: Arial, sans-serif;\">\n  <h2 style=\"color: #28a745;\">Backup Semanal Completado</h2>\n  <p>El backup semanal de DISTMAH se ha completado exitosamente.</p>\n  <ul>\n    <li><strong>Fecha:</strong> {{ $now.format('dd/MM/yyyy HH:mm') }}</li>\n    <li><strong>Archivo:</strong> backup_distmah_{{ $now.format('yyyy-MM-dd') }}.json</li>\n    <li><strong>Ubicación:</strong> OneDrive/Backups/DISTMAH</li>\n  </ul>\n  <p style=\"color: #666;\">El backup incluye: Usuarios, Inscripciones y Certificados.</p>\n</div>"
+      },
+      "id": "notify-backup",
+      "name": "Notificar Backup",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [1050, 400],
+      "credentials": {
+        "smtp": {
+          "id": "1",
+          "name": "SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Domingo 3AM": {
+      "main": [
+        [
+          { "node": "Backup Usuarios", "type": "main", "index": 0 },
+          { "node": "Backup Inscripciones", "type": "main", "index": 0 },
+          { "node": "Backup Certificados", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Backup Usuarios": {
+      "main": [
+        [
+          { "node": "Subir a OneDrive", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Subir a OneDrive": {
+      "main": [
+        [
+          { "node": "Notificar Backup", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "backup" }, { "name": "onedrive" }, { "name": "cron" }]
+}

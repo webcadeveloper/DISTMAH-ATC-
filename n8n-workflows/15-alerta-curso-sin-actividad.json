@@ -1,0 +1,105 @@
+{
+  "name": "DISTMAH - Alerta Cursos Sin Actividad",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [1],
+              "triggerAtHour": 10
+            }
+          ]
+        }
+      },
+      "id": "schedule",
+      "name": "Cada Lunes 10AM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT c.id, c.title, c.slug, c.\"enrollmentCount\", MAX(e.\"enrolledAt\") as ultima_inscripcion FROM courses c LEFT JOIN enrollments e ON c.id = e.\"courseId\" WHERE c.\"isPublished\" = true GROUP BY c.id, c.title, c.slug, c.\"enrollmentCount\" HAVING MAX(e.\"enrolledAt\") < NOW() - INTERVAL '30 days' OR MAX(e.\"enrolledAt\") IS NULL ORDER BY ultima_inscripcion NULLS FIRST",
+        "options": {}
+      },
+      "id": "get-inactive",
+      "name": "Cursos Sin Actividad",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [450, 300],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "Neon PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.length }}",
+              "operation": "larger",
+              "value2": 0
+            }
+          ]
+        }
+      },
+      "id": "check-results",
+      "name": "¿Hay Cursos?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@distmah.com.ve",
+        "toEmail": "admin@distmah.com.ve",
+        "subject": "=Alerta: Cursos sin actividad en 30 días",
+        "emailType": "html",
+        "html": "=<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;\">\n  <div style=\"background: #ffc107; padding: 20px; text-align: center;\">\n    <h1 style=\"color: #333; margin: 0;\">Cursos Sin Actividad</h1>\n  </div>\n  \n  <div style=\"background: white; padding: 30px;\">\n    <p style=\"color: #666;\">Los siguientes cursos no han tenido inscripciones en los últimos 30 días:</p>\n    \n    <table style=\"width: 100%; border-collapse: collapse; margin-top: 20px;\">\n      <tr style=\"background: #f0f0f0;\">\n        <th style=\"padding: 10px; text-align: left; border: 1px solid #ddd;\">Curso</th>\n        <th style=\"padding: 10px; text-align: center; border: 1px solid #ddd;\">Inscripciones</th>\n        <th style=\"padding: 10px; text-align: center; border: 1px solid #ddd;\">Última</th>\n      </tr>\n      {{ $json.map(c => `<tr><td style=\"padding: 10px; border: 1px solid #ddd;\">${c.title}</td><td style=\"padding: 10px; text-align: center; border: 1px solid #ddd;\">${c.enrollmentCount || 0}</td><td style=\"padding: 10px; text-align: center; border: 1px solid #ddd;\">${c.ultima_inscripcion ? new Date(c.ultima_inscripcion).toLocaleDateString() : 'Nunca'}</td></tr>`).join('') }}\n    </table>\n    \n    <p style=\"color: #666; margin-top: 20px;\">Considera revisar precios, contenido o promocionar estos cursos.</p>\n  </div>\n</div>"
+      },
+      "id": "send-alert",
+      "name": "Enviar Alerta",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [850, 200],
+      "credentials": {
+        "smtp": {
+          "id": "1",
+          "name": "SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Cada Lunes 10AM": {
+      "main": [
+        [
+          { "node": "Cursos Sin Actividad", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Cursos Sin Actividad": {
+      "main": [
+        [
+          { "node": "¿Hay Cursos?", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "¿Hay Cursos?": {
+      "main": [
+        [
+          { "node": "Enviar Alerta", "type": "main", "index": 0 }
+        ],
+        []
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "alertas" }, { "name": "cursos" }, { "name": "cron" }]
+}
