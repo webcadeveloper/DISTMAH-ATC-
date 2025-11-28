@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { FileText, ChevronLeft, Loader2 } from 'lucide-react';
+import { FileText, ChevronLeft, Loader2, Radio } from 'lucide-react';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
@@ -80,11 +81,29 @@ export function CoursePlayerSidebar() {
 
     return (
         <aside className="w-80 bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 h-screen flex flex-col fixed left-0 top-0 z-40">
-            <div className="p-4 border-b border-neutral-100 dark:border-neutral-800 flex items-center gap-2">
-                <Link href="/es/estudiante/mis-cursos" className="text-neutral-500 hover:text-neutral-900 dark:hover:text-white">
-                    <ChevronLeft className="w-5 h-5" />
-                </Link>
+            <div className="p-4 border-b border-neutral-100 dark:border-neutral-800">
+                <div className="flex items-center justify-between mb-3">
+                    <Link href="/es/estudiante/mis-cursos" className="text-neutral-500 hover:text-neutral-900 dark:hover:text-white flex items-center gap-1">
+                        <ChevronLeft className="w-5 h-5" />
+                        <span className="text-sm">Mis Cursos</span>
+                    </Link>
+                    <ThemeToggle />
+                </div>
                 <h2 className="font-bold text-sm line-clamp-2 text-neutral-900 dark:text-white">{course.titulo}</h2>
+            </div>
+
+            {/* Boton Clase en Vivo */}
+            <div className="p-3 border-b border-neutral-100 dark:border-neutral-800">
+                <Link
+                    href={`/es/cursos/${slug}/clase-en-vivo`}
+                    className="flex items-center gap-3 px-4 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
+                >
+                    <Radio className="w-5 h-5" />
+                    <div>
+                        <p className="font-semibold text-sm">Clase en Vivo</p>
+                        <p className="text-xs text-red-200">Ver streaming del instructor</p>
+                    </div>
+                </Link>
             </div>
 
             <ScrollArea className="flex-grow">
