@@ -34,6 +34,7 @@ export async function GET() {
           },
           course: {
             select: {
+              id: true,
               title: true
             }
           }
@@ -65,6 +66,7 @@ export async function GET() {
             include: {
               course: {
                 select: {
+                  id: true,
                   title: true
                 }
               }
@@ -96,6 +98,7 @@ export async function GET() {
             include: {
               course: {
                 select: {
+                  id: true,
                   title: true
                 }
               }
@@ -115,21 +118,24 @@ export async function GET() {
         type: 'new_student',
         message: `${enrollment.user.name} se inscribió en ${enrollment.course.title}`,
         time: enrollment.enrolledAt,
-        read: false
+        read: false,
+        link: `/instructor/cursos/${enrollment.course.id}/estudiantes`
       })),
       ...forumPosts.map(post => ({
         id: `forum-${post.id}`,
         type: 'forum',
         message: `${post.user.name} creó una pregunta en ${post.category.course.title}: "${post.title}"`,
         time: post.createdAt,
-        read: false
+        read: false,
+        link: `/instructor/cursos/${post.category.course.id}/foro`
       })),
       ...pendingSubmissions.map(submission => ({
         id: `submission-${submission.id}`,
         type: 'assignment',
         message: `${submission.user.name} entregó una tarea en ${submission.assignment.course.title}`,
         time: submission.submittedAt,
-        read: false
+        read: false,
+        link: `/instructor/cursos/${submission.assignment.course.id}/tareas`
       }))
     ];
 

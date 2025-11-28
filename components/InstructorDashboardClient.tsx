@@ -83,6 +83,7 @@ interface Notification {
     time: string;
     timeAgo: string;
     read: boolean;
+    link?: string;
 }
 
 interface PendingCertificate {
@@ -385,7 +386,10 @@ export default function InstructorDashboardClient() {
                                         <DropdownMenuItem
                                             key={notif.id}
                                             className={`p-3 cursor-pointer ${!notif.read ? 'bg-blue-50 dark:bg-blue-900/20' : ''}`}
-                                            onClick={() => !notif.read && markAsRead(notif.id)}
+                                            onClick={() => {
+                                                if (!notif.read) markAsRead(notif.id);
+                                                if (notif.link) router.push(notif.link);
+                                            }}
                                         >
                                             <div className="flex gap-3">
                                                 <div className={`w-2 h-2 rounded-full mt-1.5 ${!notif.read ? 'bg-blue-600' : 'bg-neutral-300 dark:bg-neutral-600'}`} />
