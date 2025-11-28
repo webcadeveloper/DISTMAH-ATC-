@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { PlusCircle, BookOpen, Users, BarChart3, Edit, MoreVertical, Bell, MessageSquare, TrendingUp, Award, Workflow, Radio, Copy, ExternalLink, Play, Square, Loader2 } from 'lucide-react';
+import { PlusCircle, BookOpen, Users, BarChart3, Edit, MoreVertical, Bell, MessageSquare, TrendingUp, Award, Workflow, Radio, Copy, ExternalLink, Play, Square, Loader2, FileCheck, CheckCircle, XCircle, Clock, AlertCircle } from 'lucide-react';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import {
     DropdownMenu,
@@ -85,6 +85,32 @@ interface Notification {
     read: boolean;
 }
 
+interface PendingCertificate {
+    id: string;
+    folio: string;
+    createdAt: string;
+    user: {
+        id: string;
+        name: string;
+        email: string;
+        avatar?: string;
+    };
+    course: {
+        id: string;
+        title: string;
+        slug: string;
+        category: string;
+    };
+}
+
+interface CertificateStats {
+    pending: number;
+    approved: number;
+    rejected: number;
+    revoked: number;
+    total: number;
+}
+
 export default function InstructorDashboardClient() {
     const router = useRouter();
     const [stats, setStats] = useState<DashboardStats | null>(null);
@@ -101,15 +127,89 @@ export default function InstructorDashboardClient() {
     const [streamConfig, setStreamConfig] = useState<{ rtmpUrl: string; streamKey: string; owncastUrl: string; embedUrl: string } | null>(null);
     const [countdown, setCountdown] = useState<number | null>(null);
     const [toggleError, setToggleError] = useState<string | null>(null);
+    const [pendingCertificates, setPendingCertificates] = useState<PendingCertificate[]>([]);
+    const [certificateStats, setCertificateStats] = useState<CertificateStats | null>(null);
+    const [loadingCertificates, setLoadingCertificates] = useState(false);
+    const [processingCertificate, setProcessingCertificate] = useState<string | null>(null);
+    const [rejectModalOpen, setRejectModalOpen] = useState(false);
+    const [certificateToReject, setCertificateToReject] = useState<string | null>(null);
+    const [rejectReason, setRejectReason] = useState('');
 
     useEffect(() => {
         loadDashboardData();
         loadStreamStatus();
         loadInstructorCourses();
         loadStreamConfig();
+        loadPendingCertificates();
         const interval = setInterval(loadStreamStatus, 5000);
         return () => clearInterval(interval);
     }, []);
+
+    const loadPendingCertificates = async () => {
+        setLoadingCertificates(true);
+        try {
+            const res = await fetch('/api/certificates/pending');
+            if (res.ok) {
+                const data = await res.json();
+                setPendingCertificates(data.certificates || []);
+                setCertificateStats(data.stats || null);
+            }
+        } catch (error) {
+            console.error('Error loading certificates:', error);
+        } finally {
+            setLoadingCertificates(false);
+        }
+    };
+
+    const approveCertificate = async (certificateId: string) => {
+        setProcessingCertificate(certificateId);
+        try {
+            const res = await fetch('/api/certificates/approve', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ certificateId, action: 'approve' }),
+            });
+            if (res.ok) {
+                await loadPendingCertificates();
+            }
+        } catch (error) {
+            console.error('Error approving certificate:', error);
+        } finally {
+            setProcessingCertificate(null);
+        }
+    };
+
+    const openRejectModal = (certificateId: string) => {
+        setCertificateToReject(certificateId);
+        setRejectReason('');
+        setRejectModalOpen(true);
+    };
+
+    const confirmReject = async () => {
+        if (!certificateToReject || !rejectReason.trim()) return;
+        setProcessingCertificate(certificateToReject);
+        try {
+            const res = await fetch('/api/certificates/approve', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    certificateId: certificateToReject,
+                    action: 'reject',
+                    reason: rejectReason,
+                }),
+            });
+            if (res.ok) {
+                await loadPendingCertificates();
+                setRejectModalOpen(false);
+                setCertificateToReject(null);
+                setRejectReason('');
+            }
+        } catch (error) {
+            console.error('Error rejecting certificate:', error);
+        } finally {
+            setProcessingCertificate(null);
+        }
+    };
 
     const loadStreamConfig = async () => {
         try {
@@ -361,11 +461,20 @@ export default function InstructorDashboardClient() {
             )}
 
             <Tabs defaultValue="overview" className="mt-8">
-                <TabsList className="grid w-full grid-cols-6 max-w-4xl">
+                <TabsList className="grid w-full grid-cols-7 max-w-5xl">
                     <TabsTrigger value="overview">Vista General</TabsTrigger>
                     <TabsTrigger value="students">Estudiantes</TabsTrigger>
                     <TabsTrigger value="grades">Calificaciones</TabsTrigger>
                     <TabsTrigger value="analytics">Analíticas</TabsTrigger>
+                    <TabsTrigger value="certificates" className="flex items-center gap-1">
+                        <FileCheck className="w-4 h-4" />
+                        Certificados
+                        {certificateStats && certificateStats.pending > 0 && (
+                            <Badge className="ml-1 h-5 w-5 flex items-center justify-center p-0 bg-orange-500">
+                                {certificateStats.pending}
+                            </Badge>
+                        )}
+                    </TabsTrigger>
                     <TabsTrigger value="streaming" className="flex items-center gap-1">
                         <Radio className="w-4 h-4" />
                         Streaming
@@ -639,6 +748,187 @@ export default function InstructorDashboardClient() {
                                             description="Los datos aparecerán cuando tengas estudiantes inscritos"
                                         />
                                     )}
+                                </CardContent>
+                            </Card>
+                        </div>
+                    )}
+                </TabsContent>
+
+                <TabsContent value="certificates" className="mt-6">
+                    <div className="space-y-6">
+                        {certificateStats && (
+                            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                                <Card className="bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-800">
+                                    <CardContent className="p-4 flex items-center gap-3">
+                                        <Clock className="w-8 h-8 text-orange-600 dark:text-orange-400" />
+                                        <div>
+                                            <p className="text-sm text-orange-600 dark:text-orange-400">Pendientes</p>
+                                            <p className="text-2xl font-bold text-orange-700 dark:text-orange-300">{certificateStats.pending}</p>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                                <Card className="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800">
+                                    <CardContent className="p-4 flex items-center gap-3">
+                                        <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
+                                        <div>
+                                            <p className="text-sm text-green-600 dark:text-green-400">Aprobados</p>
+                                            <p className="text-2xl font-bold text-green-700 dark:text-green-300">{certificateStats.approved}</p>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                                <Card className="bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800">
+                                    <CardContent className="p-4 flex items-center gap-3">
+                                        <XCircle className="w-8 h-8 text-red-600 dark:text-red-400" />
+                                        <div>
+                                            <p className="text-sm text-red-600 dark:text-red-400">Rechazados</p>
+                                            <p className="text-2xl font-bold text-red-700 dark:text-red-300">{certificateStats.rejected}</p>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                                <Card className="bg-neutral-50 dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
+                                    <CardContent className="p-4 flex items-center gap-3">
+                                        <FileCheck className="w-8 h-8 text-neutral-600 dark:text-neutral-400" />
+                                        <div>
+                                            <p className="text-sm text-neutral-600 dark:text-neutral-400">Total</p>
+                                            <p className="text-2xl font-bold text-neutral-700 dark:text-neutral-300">{certificateStats.total}</p>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </div>
+                        )}
+
+                        <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
+                            <CardHeader>
+                                <CardTitle className="flex items-center gap-2 text-neutral-900 dark:text-white">
+                                    <Clock className="w-5 h-5 text-orange-600" />
+                                    Certificados Pendientes de Aprobacion
+                                </CardTitle>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-300">
+                                    Estudiantes que completaron el 100% del curso y esperan tu aprobacion
+                                </p>
+                            </CardHeader>
+                            <CardContent>
+                                {loadingCertificates ? (
+                                    <div className="flex justify-center py-8">
+                                        <Loader2 className="w-8 h-8 animate-spin text-neutral-400" />
+                                    </div>
+                                ) : pendingCertificates.length === 0 ? (
+                                    <EmptyState
+                                        title="No hay certificados pendientes"
+                                        description="Los certificados apareceran aqui cuando los estudiantes completen el 100% de un curso"
+                                    />
+                                ) : (
+                                    <Table>
+                                        <TableHeader>
+                                            <TableRow>
+                                                <TableHead>Estudiante</TableHead>
+                                                <TableHead>Email</TableHead>
+                                                <TableHead>Curso</TableHead>
+                                                <TableHead>Folio</TableHead>
+                                                <TableHead>Fecha</TableHead>
+                                                <TableHead>Acciones</TableHead>
+                                            </TableRow>
+                                        </TableHeader>
+                                        <TableBody>
+                                            {pendingCertificates.map((cert) => (
+                                                <TableRow key={cert.id} className="border-neutral-200 dark:border-neutral-700">
+                                                    <TableCell className="font-medium text-neutral-900 dark:text-white">
+                                                        {cert.user.name}
+                                                    </TableCell>
+                                                    <TableCell className="text-neutral-600 dark:text-neutral-300">
+                                                        {cert.user.email}
+                                                    </TableCell>
+                                                    <TableCell className="text-neutral-600 dark:text-neutral-300">
+                                                        {cert.course.title}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <code className="bg-neutral-100 dark:bg-neutral-700 px-2 py-1 rounded text-sm">
+                                                            {cert.folio}
+                                                        </code>
+                                                    </TableCell>
+                                                    <TableCell className="text-neutral-600 dark:text-neutral-300">
+                                                        {new Date(cert.createdAt).toLocaleDateString()}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <div className="flex gap-2">
+                                                            <Button
+                                                                size="sm"
+                                                                className="bg-green-600 hover:bg-green-700 text-white"
+                                                                onClick={() => approveCertificate(cert.id)}
+                                                                disabled={processingCertificate === cert.id}
+                                                            >
+                                                                {processingCertificate === cert.id ? (
+                                                                    <Loader2 className="w-4 h-4 animate-spin" />
+                                                                ) : (
+                                                                    <>
+                                                                        <CheckCircle className="w-4 h-4 mr-1" />
+                                                                        Aprobar
+                                                                    </>
+                                                                )}
+                                                            </Button>
+                                                            <Button
+                                                                size="sm"
+                                                                variant="outline"
+                                                                className="border-red-300 text-red-600 hover:bg-red-50 dark:border-red-700 dark:text-red-400 dark:hover:bg-red-900/20"
+                                                                onClick={() => openRejectModal(cert.id)}
+                                                                disabled={processingCertificate === cert.id}
+                                                            >
+                                                                <XCircle className="w-4 h-4 mr-1" />
+                                                                Rechazar
+                                                            </Button>
+                                                        </div>
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                )}
+                            </CardContent>
+                        </Card>
+                    </div>
+
+                    {rejectModalOpen && (
+                        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+                            <Card className="w-full max-w-md mx-4 bg-white dark:bg-neutral-800">
+                                <CardHeader>
+                                    <CardTitle className="flex items-center gap-2 text-neutral-900 dark:text-white">
+                                        <AlertCircle className="w-5 h-5 text-red-600" />
+                                        Rechazar Certificado
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent className="space-y-4">
+                                    <p className="text-sm text-neutral-600 dark:text-neutral-300">
+                                        Ingresa el motivo del rechazo. El estudiante recibira esta informacion.
+                                    </p>
+                                    <textarea
+                                        value={rejectReason}
+                                        onChange={(e) => setRejectReason(e.target.value)}
+                                        placeholder="Ej: El estudiante no completo todas las evaluaciones correctamente..."
+                                        className="w-full p-3 border border-neutral-200 dark:border-neutral-700 rounded-lg text-sm bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white min-h-[100px]"
+                                    />
+                                    <div className="flex gap-2 justify-end">
+                                        <Button
+                                            variant="outline"
+                                            onClick={() => {
+                                                setRejectModalOpen(false);
+                                                setCertificateToReject(null);
+                                                setRejectReason('');
+                                            }}
+                                        >
+                                            Cancelar
+                                        </Button>
+                                        <Button
+                                            className="bg-red-600 hover:bg-red-700 text-white"
+                                            onClick={confirmReject}
+                                            disabled={!rejectReason.trim() || processingCertificate !== null}
+                                        >
+                                            {processingCertificate ? (
+                                                <Loader2 className="w-4 h-4 animate-spin" />
+                                            ) : (
+                                                'Confirmar Rechazo'
+                                            )}
+                                        </Button>
+                                    </div>
                                 </CardContent>
                             </Card>
                         </div>

@@ -1,9 +1,7 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
-import { notifyCertificateIssued } from '@/lib/notifications';
-import { sendCertificateEmail } from '@/lib/email';
-import { notifyCertificateGenerated } from '@/lib/n8n-webhooks';
+import { generateFolio, generateOpenBadge, generateVerificationUrl } from '@/lib/certificates';
 
 export async function POST(request: Request) {
   try {
@@ -15,6 +13,10 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { courseId } = body;
 
+    if (!courseId) {
+      return NextResponse.json({ error: 'courseId is required' }, { status: 400 });
+    }
+
     const enrollment = await prisma.enrollment.findUnique({
       where: {
         userId_courseId: {
@@ -25,19 +27,16 @@ export async function POST(request: Request) {
       include: {
         course: {
           select: {
+            id: true,
             title: true,
             description: true,
             level: true,
             duration: true,
-            instructor: {
-              select: {
-                name: true,
-              },
-            },
           },
         },
         user: {
           select: {
+            id: true,
             name: true,
             email: true,
           },
@@ -46,51 +45,34 @@ export async function POST(request: Request) {
     });
 
     if (!enrollment) {
-      return NextResponse.json({ error: 'Not enrolled in course' }, { status: 404 });
+      return NextResponse.json({ error: 'No enrollment found' }, { status: 404 });
     }
 
     if (enrollment.progressPercent < 100) {
       return NextResponse.json(
-        { error: 'Course not completed', progress: enrollment.progressPercent },
+        {
+          error: 'Course not completed',
+          progress: enrollment.progressPercent,
+          required: 100,
+        },
         { status: 400 }
       );
-    }
-
-    const finalExam = await prisma.exam.findFirst({
-      where: { courseId },
-      orderBy: { createdAt: 'desc' },
-    });
-
-    if (finalExam) {
-      const passedAttempt = await prisma.examAttempt.findFirst({
-        where: {
-          examId: finalExam.id,
-          userId: session.user.id,
-          passed: true,
-        },
-      });
-
-      if (!passedAttempt) {
-        return NextResponse.json(
-          { error: 'Final exam not passed' },
-          { status: 400 }
-        );
-      }
     }
 
     const existingCertificate = await prisma.certificate.findFirst({
       where: {
         userId: session.user.id,
         courseId,
+        status: 'ACTIVE',
       },
     });
 
     if (existingCertificate) {
-      return NextResponse.json(existingCertificate);
+      return NextResponse.json({
+        message: 'Certificate already exists',
+        certificate: existingCertificate,
+      });
     }
-
-    // Generar folio único OpenBadges
-    const { generateFolio, generateOpenBadge, generateVerificationUrl } = await import('@/lib/certificates');
 
     let folio: string;
     let folioExists = true;
@@ -124,46 +106,34 @@ export async function POST(request: Request) {
         badgeJson: openBadge as any,
         status: 'ACTIVE',
       },
-    });
-
-    await Promise.all([
-      notifyCertificateIssued(
-        session.user.id,
-        enrollment.course.title,
-        folio!
-      ),
-      sendCertificateEmail(
-        enrollment.user.email,
-        enrollment.user.name,
-        enrollment.course.title,
-        folio!,
-        certificate.pdfUrl || undefined
-      ),
-      notifyCertificateGenerated({
-        student: {
-          id: session.user.id,
-          name: enrollment.user.name,
-          email: enrollment.user.email,
+      include: {
+        user: {
+          select: {
+            name: true,
+            email: true,
+          },
         },
         course: {
-          id: courseId,
-          title: enrollment.course.title,
-          duration: `${enrollment.course.duration || 40} horas`,
-          level: enrollment.course.level || 'Básico',
+          select: {
+            title: true,
+            level: true,
+            duration: true,
+          },
         },
-        certificate: {
-          id: certificate.id,
-          verificationCode: folio!,
-          issuedAt: certificate.issuedAt.toISOString(),
-        },
-      }),
-    ]);
+      },
+    });
 
-    return NextResponse.json(certificate, { status: 201 });
-  } catch (error) {
-    console.error('Error generating certificate:', error);
     return NextResponse.json(
-      { error: 'Failed to generate certificate' },
+      {
+        message: 'Certificate issued successfully',
+        certificate,
+      },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error('Error issuing certificate:', error);
+    return NextResponse.json(
+      { error: 'Failed to issue certificate' },
       { status: 500 }
     );
   }

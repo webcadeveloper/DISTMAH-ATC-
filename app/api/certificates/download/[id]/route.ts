@@ -1,9 +1,8 @@
-import React from 'react';
 import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/prisma';
-import { renderToStream, Document, Page } from '@react-pdf/renderer';
-import QRCode from 'qrcode';
+import { renderToStream } from '@react-pdf/renderer';
+import { generateCertificatePDFDocument } from '@/lib/certificate-generator';
 
 export async function GET(
   request: Request,
@@ -23,6 +22,8 @@ export async function GET(
         course: {
           select: {
             title: true,
+            level: true,
+            duration: true,
           },
         },
         user: {
@@ -46,38 +47,43 @@ export async function GET(
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
     }
 
-    const verificationUrl = `${process.env.NEXT_PUBLIC_APP_URL}/verificar-certificado/${certificate.verificationCode}`;
-    await QRCode.toDataURL(verificationUrl);
-
-    // Create a basic PDF document with certificate content
-    const PdfDocument = () =>
-      React.createElement(
-        Document,
-        null,
-        React.createElement(
-          Page,
-          { size: 'A4', orientation: 'landscape' },
-          React.createElement('View', null,
-            React.createElement('Text', null, 'CERTIFICADO DE COMPLETACIÓN'),
-            React.createElement('Text', null, certificate.studentName),
-            React.createElement('Text', null, certificate.courseName),
-            React.createElement('Text', null, `Certificado #: ${certificate.certificateNumber}`)
-          )
-        )
+    if (certificate.status !== 'ACTIVE') {
+      return NextResponse.json(
+        { error: `Certificate is ${certificate.status}` },
+        { status: 400 }
       );
-
-    const stream = await renderToStream(React.createElement(PdfDocument));
-
-    const chunks: (string | Buffer)[] = [];
-    for await (const chunk of stream) {
-      chunks.push(chunk);
     }
-    const buffer = Buffer.concat(chunks.map(c => typeof c === 'string' ? Buffer.from(c) : c));
 
-    return new NextResponse(buffer, {
+    const pdfDocument = await generateCertificatePDFDocument({
+      studentName: certificate.user.name,
+      courseName: certificate.course.title,
+      courseLevel: certificate.course.level,
+      courseDuration: certificate.course.duration,
+      completionDate: certificate.issuedAt,
+      folio: certificate.folio,
+      verificationUrl: certificate.verificationUrl,
+    });
+
+    const stream = await renderToStream(pdfDocument);
+
+    const readableStream = new ReadableStream({
+      start(controller) {
+        stream.on('data', (chunk) => {
+          controller.enqueue(chunk);
+        });
+        stream.on('end', () => {
+          controller.close();
+        });
+        stream.on('error', (error) => {
+          controller.error(error);
+        });
+      },
+    });
+
+    return new NextResponse(readableStream, {
       headers: {
         'Content-Type': 'application/pdf',
-        'Content-Disposition': `attachment; filename="Certificado-${certificate.certificateNumber}.pdf"`,
+        'Content-Disposition': `attachment; filename="Certificado-${certificate.folio}.pdf"`,
       },
     });
   } catch (error) {

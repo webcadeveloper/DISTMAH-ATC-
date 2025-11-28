@@ -83,41 +83,84 @@ async function main() {
         });
         console.log(`  ✅ ${course.title}`);
 
-        // 3. Seed Modules and Lessons for the first course (AutoCAD 2D)
-        if (courseData.slug === 'autocad-2d-2026') {
-            console.log(`Creating modules for ${course.title}...`);
+        // 3. Check if course already has modules, if not create them
+        const existingModules = await prisma.module.count({
+            where: { courseId: course.id }
+        });
 
-            for (let i = 0; i < courseData.syllabus.length; i++) {
-                const moduleData = courseData.syllabus[i];
-                const courseModule = await prisma.module.create({
-                    data: {
-                        title: moduleData.title,
-                        number: i + 1,
-                        order: i,
-                        duration: moduleData.duration || 2,
-                        description: moduleData.description || '',
-                        courseId: course.id,
-                    },
-                });
+        if (existingModules === 0) {
+            console.log(`  Creating modules for ${course.title}...`);
 
-                for (let j = 0; j < moduleData.lessons.length; j++) {
-                    const lessonData = moduleData.lessons[j];
-                    await prisma.lesson.create({
+            // If course has syllabus defined, use it
+            if (courseData.syllabus && courseData.syllabus.length > 0) {
+                for (let i = 0; i < courseData.syllabus.length; i++) {
+                    const moduleData = courseData.syllabus[i];
+                    const courseModule = await prisma.module.create({
                         data: {
-                            title: lessonData.title,
-                            number: j + 1,
-                            order: j,
-                            duration: lessonData.duration,
-                            type: 'VIDEO',
-                            moduleId: courseModule.id,
-                            richText: '<p>Contenido de ejemplo para la lección.</p>',
-                            description: lessonData.description || '',
-                            published: true,
+                            title: moduleData.title,
+                            number: i + 1,
+                            order: i,
+                            duration: moduleData.duration || 2,
+                            description: moduleData.description || '',
+                            courseId: course.id,
                         },
                     });
+
+                    for (let j = 0; j < moduleData.lessons.length; j++) {
+                        const lessonData = moduleData.lessons[j];
+                        await prisma.lesson.create({
+                            data: {
+                                title: lessonData.title,
+                                number: j + 1,
+                                order: j,
+                                duration: lessonData.duration || 45,
+                                type: 'VIDEO',
+                                moduleId: courseModule.id,
+                                richText: typeof lessonData.content === 'object' && lessonData.content?.richText ? lessonData.content.richText : '<p>Contenido de ejemplo para la lección.</p>',
+                                description: lessonData.description || '',
+                                published: true,
+                            },
+                        });
+                    }
+                    console.log(`    ✅ Module ${i + 1}: ${moduleData.title} (${moduleData.lessons.length} lessons)`);
                 }
-                console.log(`    ✅ Module ${i + 1}: ${moduleData.title} (${moduleData.lessons.length} lessons)`);
+            } else {
+                // Create default 6 modules with 5 lessons each for courses without syllabus
+                const moduleCount = 6;
+                const lessonsPerModule = 5;
+
+                for (let i = 0; i < moduleCount; i++) {
+                    const courseModule = await prisma.module.create({
+                        data: {
+                            title: `Módulo ${i + 1} - ${course.title.split(' ').slice(0, 3).join(' ')}`,
+                            number: i + 1,
+                            order: i,
+                            duration: Math.ceil(courseData.duration / moduleCount) || 5,
+                            description: `Módulo ${i + 1} del curso ${course.title}`,
+                            courseId: course.id,
+                        },
+                    });
+
+                    for (let j = 0; j < lessonsPerModule; j++) {
+                        await prisma.lesson.create({
+                            data: {
+                                title: `Lección ${j + 1} - Contenido del Módulo ${i + 1}`,
+                                number: j + 1,
+                                order: j,
+                                duration: 45,
+                                type: 'VIDEO',
+                                moduleId: courseModule.id,
+                                richText: `<h2>Lección ${j + 1}</h2><p>Contenido del módulo ${i + 1}, lección ${j + 1} del curso ${course.title}.</p><p>El instructor agregará el contenido detallado próximamente.</p>`,
+                                description: `Lección ${j + 1} del módulo ${i + 1}`,
+                                published: true,
+                            },
+                        });
+                    }
+                    console.log(`    ✅ Module ${i + 1} (${lessonsPerModule} lessons)`);
+                }
             }
+        } else {
+            console.log(`  ⏭️ ${course.title} already has ${existingModules} modules`);
         }
     }
 

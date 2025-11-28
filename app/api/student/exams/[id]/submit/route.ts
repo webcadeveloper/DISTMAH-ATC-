@@ -192,23 +192,44 @@ async function checkAndGenerateCertificate(userId: string, courseId: string) {
 
     const certificateCount = await prisma.certificate.count();
     const certificateNumber = `DIST-ATC-2026-${String(certificateCount + 1).padStart(4, '0')}`;
-    const verificationCode = crypto.randomUUID();
+    const { generateFolio, generateOpenBadge, generateVerificationUrl } = await import('@/lib/certificates');
 
-    const user = await prisma.user.findUnique({ where: { id: userId } });
-    const instructor = await prisma.user.findUnique({
-      where: { id: enrollment.course.instructorId },
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { name: true, email: true }
+    });
+
+    let folio: string;
+    let folioExists = true;
+
+    while (folioExists) {
+      folio = generateFolio();
+      const existing = await prisma.certificate.findUnique({
+        where: { folio },
+      });
+      folioExists = !!existing;
+    }
+
+    const verificationUrl = generateVerificationUrl(folio!);
+
+    const openBadge = generateOpenBadge({
+      folio: folio!,
+      userEmail: user?.email || '',
+      courseName: enrollment.course.title,
+      courseDescription: enrollment.course.description || '',
+      courseLevel: enrollment.course.level,
+      courseDuration: enrollment.course.duration,
+      issuedDate: new Date(),
     });
 
     await prisma.certificate.create({
       data: {
         userId,
         courseId,
-        certificateNumber,
-        studentName: user?.name || 'Student',
-        courseName: enrollment.course.title,
-        instructorName: instructor?.name || 'Instructor',
-        completionDate: new Date(),
-        verificationCode,
+        folio: folio!,
+        verificationUrl,
+        badgeJson: openBadge as any,
+        status: 'ACTIVE',
       },
     });
   } catch (error) {

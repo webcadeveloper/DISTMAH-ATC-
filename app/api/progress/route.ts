@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { notifyProgressUpdated } from '@/lib/n8n-webhooks';
+import { checkAndCreateCertificate } from '@/lib/certificates';
 
 const prisma = new PrismaClient();
 
@@ -134,6 +135,13 @@ export async function POST(request: NextRequest) {
             totalModules: result.totalModules,
           },
         });
+      }
+    }
+
+    if (result.progressPercent === 100) {
+      const certResult = await checkAndCreateCertificate(userId, result.courseId);
+      if (certResult.created) {
+        console.log(`Certificate created for user ${userId} course ${result.courseId}: ${certResult.certificate?.folio}`);
       }
     }
 

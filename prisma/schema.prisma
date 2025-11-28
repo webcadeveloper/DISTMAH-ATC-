@@ -67,6 +67,7 @@ model User {
   // Instructor relations
   taughtCourses     Course[] @relation("CourseInstructor")
   liveClasses       LiveClass[] @relation("LiveClassInstructor")
+  approvedCertificates Certificate[] @relation("CertificateApprover")
 
   @@map("users")
 }
@@ -484,34 +485,53 @@ model ExamAttempt {
   @@map("exam_attempts")
 }
 
-// CERTIFICADOS
+// CERTIFICADOS OpenBadges v2.0
 model Certificate {
   id                String   @id @default(uuid())
+
+  // Relaciones
   userId            String
   user              User     @relation(fields: [userId], references: [id])
   courseId          String
   course            Course   @relation(fields: [courseId], references: [id])
-  
-  certificateNumber String   @unique // DIST-ATC-2026-0001
-  
-  // Content
-  studentName       String
-  courseName        String
-  instructorName    String
-  completionDate    DateTime
-  
+
+  // Aprobación del instructor
+  approvedById      String?
+  approvedBy        User?    @relation("CertificateApprover", fields: [approvedById], references: [id])
+  approvedAt        DateTime?
+  rejectedAt        DateTime?
+  rejectionReason   String?
+
+  // OpenBadges
+  folio             String   @unique // 8 caracteres hex
+  issuedAt          DateTime @default(now())
+  expiresAt         DateTime?
+  status            CertificateStatus @default(PENDING_APPROVAL)
+  badgeJson         Json?    // OpenBadges JSON completo (se genera al aprobar)
+
   // PDF
   pdfUrl            String?  // URL del PDF generado
-  
-  // Verification
-  verificationCode  String   @unique
-  verified          Boolean  @default(false)
-  
+
+  // Verification URL
+  verificationUrl   String
+
   createdAt         DateTime @default(now())
-  
+  updatedAt         DateTime @updatedAt
+
   @@index([userId])
   @@index([courseId])
+  @@index([folio])
+  @@index([status])
+  @@index([approvedById])
   @@map("certificates")
+}
+
+enum CertificateStatus {
+  PENDING_APPROVAL  // Generado automáticamente, esperando aprobación del instructor
+  ACTIVE            // Aprobado y válido
+  REJECTED          // Rechazado por el instructor
+  REVOKED           // Revocado después de ser aprobado
+  EXPIRED           // Expirado
 }
 
 // FORO (por curso)

@@ -1,7 +1,26 @@
 {
-  "name": "universidad-autodesk",
-  "version": "0.1.0",
+  "name": "distmah-atc",
+  "version": "1.0.0",
   "private": true,
+  "description": "DISTMAH ATC - Authorized Training Center for Autodesk Software",
+  "author": {
+    "name": "Hector Nolivos",
+    "email": "webcadeveloper@gmail.com",
+    "url": "https://github.com/webcadeveloper"
+  },
+  "contributors": [
+    {
+      "name": "Hector Nolivos",
+      "email": "webcadeveloper@gmail.com",
+      "role": "Founder & Lead Developer"
+    }
+  ],
+  "license": "UNLICENSED",
+  "homepage": "https://edu.distmah.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webcadeveloper/DISTMAH-ATC-.git"
+  },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
   },
