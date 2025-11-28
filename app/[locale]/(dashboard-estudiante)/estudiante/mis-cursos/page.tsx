@@ -190,7 +190,7 @@ export default function MisCursosPage() {
                   <Clock className="w-3 h-3 mr-1" />
                   <span>{getLastActivity(enrollment.enrolledAt)}</span>
                 </div>
-                <Link href={`/es/cursos/${enrollment.course.slug}`}>
+                <Link href={`/es/cursos/${enrollment.course.slug}/overview`}>
                   <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
                     <PlayCircle className="w-4 h-4 mr-1" />
                     Continuar
@@ -198,7 +198,7 @@ export default function MisCursosPage() {
                 </Link>
               </div>
             ) : (
-              <Link href={`/es/cursos/${enrollment.course.slug}`}>
+              <Link href={`/es/cursos/${enrollment.course.slug}/overview`}>
                 <Button size="sm" className="w-full bg-blue-600 hover:bg-blue-700">
                   Comenzar Curso
                 </Button>
