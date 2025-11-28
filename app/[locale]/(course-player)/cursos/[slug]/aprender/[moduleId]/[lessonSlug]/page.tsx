@@ -1,9 +1,10 @@
-import { getCourse, getLesson } from '@/lib/course-loader';
+import { prisma } from '@/lib/prisma';
+import { auth } from '@/lib/auth';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ChevronLeft, ChevronRight, Clock, CheckCircle, BookOpen, Target, Lightbulb, FileText, HelpCircle, Award } from 'lucide-react';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
@@ -171,12 +172,59 @@ const MarkdownComponents = {
 export default async function LessonPage({ params }: PageProps) {
     const { slug, moduleId, lessonSlug } = await params;
 
-    const course = await getCourse(slug);
+    const session = await auth();
+    if (!session?.user) {
+        redirect('/es/auth/login');
+    }
+
+    // Extract lesson number from slug (leccion-01 -> 1)
+    const lessonNumberMatch = lessonSlug.match(/leccion-(\d+)/);
+    const lessonNumber = lessonNumberMatch ? parseInt(lessonNumberMatch[1]) : null;
+
+    // Fetch course with modules and lessons from database
+    const course = await prisma.course.findUnique({
+        where: { slug },
+        include: {
+            modules: {
+                orderBy: { order: 'asc' },
+                include: {
+                    lessons: {
+                        orderBy: { order: 'asc' },
+                    },
+                },
+            },
+        },
+    });
+
     if (!course) {
         notFound();
     }
 
-    const lesson = await getLesson(slug, moduleId, lessonSlug);
+    // Check enrollment for students
+    if (session.user.role === 'STUDENT') {
+        const enrollment = await prisma.enrollment.findUnique({
+            where: {
+                userId_courseId: {
+                    userId: session.user.id,
+                    courseId: course.id,
+                },
+            },
+        });
+
+        if (!enrollment || enrollment.status !== 'ACTIVE') {
+            redirect(`/es/cursos/${slug}/overview`);
+        }
+    }
+
+    // Find the lesson - by moduleId (UUID) and lesson number
+    const currentModule = course.modules.find(m => m.id === moduleId);
+    if (!currentModule) {
+        notFound();
+    }
+
+    const lesson = currentModule.lessons.find(l =>
+        lessonNumber !== null ? l.number === lessonNumber : false
+    );
     if (!lesson) {
         notFound();
     }
@@ -187,13 +235,17 @@ export default async function LessonPage({ params }: PageProps) {
     let prevLesson: { moduleId: string; slug: string } | null = null;
     let nextLesson: { moduleId: string; slug: string } | null = null;
 
+    // Helper to generate lesson slug from number
+    const getLessonSlug = (num: number) => `leccion-${num.toString().padStart(2, '0')}`;
+
     // Build flat list of all lessons for navigation
-    const allLessons: { moduleId: string; lessonSlug: string; moduleIndex: number; lessonIndex: number }[] = [];
+    const allLessons: { moduleId: string; lessonSlug: string; lessonNumber: number; moduleIndex: number; lessonIndex: number }[] = [];
     modules.forEach((mod, mIdx) => {
         mod.lessons?.forEach((les, lIdx) => {
             allLessons.push({
                 moduleId: mod.id,
-                lessonSlug: les.slug,
+                lessonSlug: getLessonSlug(les.number),
+                lessonNumber: les.number,
                 moduleIndex: mIdx,
                 lessonIndex: lIdx
             });
@@ -201,7 +253,7 @@ export default async function LessonPage({ params }: PageProps) {
     });
 
     const currentIndex = allLessons.findIndex(
-        l => l.moduleId === moduleId && l.lessonSlug === lessonSlug
+        l => l.moduleId === moduleId && l.lessonNumber === lessonNumber
     );
 
     if (currentIndex > 0) {
@@ -212,8 +264,6 @@ export default async function LessonPage({ params }: PageProps) {
         const next = allLessons[currentIndex + 1];
         nextLesson = { moduleId: next.moduleId, slug: next.lessonSlug };
     }
-
-    const currentModule = modules.find(m => m.id === moduleId);
 
     // Calculate progress
     const progress = Math.round(((currentIndex + 1) / allLessons.length) * 100);
@@ -257,7 +307,7 @@ export default async function LessonPage({ params }: PageProps) {
                 <div className="max-w-5xl mx-auto px-8 py-3">
                     <div className="flex items-center gap-2 text-sm text-neutral-500">
                         <Link href={`/es/cursos/${slug}`} className="hover:text-blue-600 transition-colors">
-                            {course.titulo}
+                            {course.title}
                         </Link>
                         <ChevronRight className="w-4 h-4" />
                         <span className="text-neutral-400">{currentModule?.title}</span>
@@ -310,13 +360,17 @@ export default async function LessonPage({ params }: PageProps) {
                     style={{ maxWidth: '100%' }}
                 >
                     <div className="lesson-content">
-                        <ReactMarkdown
-                            remarkPlugins={[remarkGfm]}
-                            rehypePlugins={[rehypeRaw]}
-                            components={MarkdownComponents}
-                        >
-                            {lesson.content || '*Esta lección no tiene contenido todavía.*'}
-                        </ReactMarkdown>
+                        {lesson.richText ? (
+                            <div dangerouslySetInnerHTML={{ __html: lesson.richText }} />
+                        ) : (
+                            <ReactMarkdown
+                                remarkPlugins={[remarkGfm]}
+                                rehypePlugins={[rehypeRaw]}
+                                components={MarkdownComponents}
+                            >
+                                {lesson.description || '*Esta lección no tiene contenido todavía.*'}
+                            </ReactMarkdown>
+                        )}
                     </div>
                 </article>
 
