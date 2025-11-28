@@ -122,6 +122,34 @@ async function main() {
     }
 
 
+    // 4. Enroll student in ALL courses
+    console.log('Enrolling student in all courses...');
+    const allCourses = await prisma.course.findMany();
+
+    for (const course of allCourses) {
+        await prisma.enrollment.upsert({
+            where: {
+                userId_courseId: {
+                    userId: student.id,
+                    courseId: course.id,
+                }
+            },
+            update: {
+                status: 'ACTIVE',
+            },
+            create: {
+                userId: student.id,
+                courseId: course.id,
+                status: 'ACTIVE',
+                amount: 0,
+                currency: 'USD',
+                paymentMethod: 'demo',
+                progressPercent: Math.floor(Math.random() * 30),
+            },
+        });
+        console.log(`  ✅ Enrolled in: ${course.title}`);
+    }
+
     console.log('🌱 Seeding finished.');
 }
 

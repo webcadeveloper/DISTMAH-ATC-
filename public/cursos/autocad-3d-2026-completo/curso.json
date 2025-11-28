@@ -1,0 +1,33 @@
+{
+  "id": "autocad-3d-2026-completo",
+  "titulo": "AutoCAD Tridimensional 3D 2026",
+  "descripcion": "Curso completo de modelado 3D con AutoCAD 2026. Aprende fundamentos de modelado 3D y sistema UCS, modelado de sólidos (Extrude, Revolve, Sweep, Loft), modelado de superficies avanzadas, visualización 3D y estilos visuales, rendering con materiales y luces, cámaras y animaciones walkthrough.",
+  "precio": 245,
+  "duracion": 24,
+  "nivel": "Intermedio",
+  "version": "2026",
+  "categoria": "AutoCAD",
+  "idioma": "Español",
+  "instructor": "DISTMAH ATC",
+  "objetivos": [
+    "Dominar workspace 3D y sistema UCS",
+    "Crear sólidos 3D con operaciones booleanas",
+    "Modelar superficies complejas",
+    "Aplicar materiales y texturas realistas",
+    "Configurar iluminación y cámaras",
+    "Generar renders de presentación"
+  ],
+  "prerequisitos": [
+    "AutoCAD Básico 2D 2026 o experiencia equivalente",
+    "Comprensión de geometría tridimensional",
+    "Computadora con tarjeta gráfica compatible"
+  ],
+  "certificacion": {
+    "nombre": "Certificado Digital - AutoCAD 3D 2026",
+    "requisitos": ["Completar todas las lecciones", "Aprobar ejercicios con 80%"],
+    "validez": "2 años",
+    "verificable": true
+  },
+  "actualizacion": "Noviembre 2025",
+  "vigencia": "Hasta noviembre 2027"
+}
