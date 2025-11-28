@@ -32,6 +32,7 @@ interface CourseProgress {
     id: string;
     moduleId: string;
     title: string;
+    number?: number;
   } | null;
 }
 
@@ -133,7 +134,10 @@ export default function StudentDashboardClient({ userId }: StudentDashboardClien
     return 'Hace menos de 1 hora';
   };
 
-  const getNextLessonSlug = (lesson: { id: string; title: string }) => {
+  const getNextLessonSlug = (lesson: { id: string; title: string }, lessonNumber?: number) => {
+    if (lessonNumber) {
+      return `leccion-${lessonNumber.toString().padStart(2, '0')}`;
+    }
     return lesson.title
       .toLowerCase()
       .normalize('NFD')
@@ -229,7 +233,7 @@ export default function StudentDashboardClient({ userId }: StudentDashboardClien
                   </div>
                 </div>
                 <div className="flex gap-3">
-                  <Link href={`/cursos/${activeLiveClass.courseSlug}/clase-en-vivo`}>
+                  <Link href={`/es/cursos/${activeLiveClass.courseSlug}/clase-en-vivo`}>
                     <Button className="bg-white text-red-600 hover:bg-red-50">
                       <Video className="w-4 h-4 mr-2" /> Ver en DISTMAH
                     </Button>
@@ -260,7 +264,7 @@ export default function StudentDashboardClient({ userId }: StudentDashboardClien
                     <p className="text-blue-200">{formatNextClass(upcomingClass.nextClass)}</p>
                   </div>
                 </div>
-                <Link href={`/cursos/${upcomingClass.courseSlug}/clase-en-vivo`}>
+                <Link href={`/es/cursos/${upcomingClass.courseSlug}/clase-en-vivo`}>
                   <Button variant="outline" className="border-white text-white hover:bg-blue-800">
                     Ver horario
                   </Button>
@@ -295,14 +299,14 @@ export default function StudentDashboardClient({ userId }: StudentDashboardClien
 
                 {currentCourse.nextLesson ? (
                   <Link
-                    href={`/cursos/${currentCourse.courseSlug}/${currentCourse.nextLesson.moduleId}/${getNextLessonSlug(currentCourse.nextLesson)}`}
+                    href={`/es/cursos/${currentCourse.courseSlug}/aprender/${currentCourse.nextLesson.moduleId}/${getNextLessonSlug(currentCourse.nextLesson, currentCourse.nextLesson.number)}`}
                   >
                     <Button className="bg-blue-600 hover:bg-blue-700 text-white border-none">
                       <PlayCircle className="w-4 h-4 mr-2" /> Continuar Lección
                     </Button>
                   </Link>
                 ) : (
-                  <Link href={`/cursos/${currentCourse.courseSlug}`}>
+                  <Link href={`/es/cursos/${currentCourse.courseSlug}/overview`}>
                     <Button className="bg-green-600 hover:bg-green-700 text-white border-none">
                       <Award className="w-4 h-4 mr-2" /> Ver Certificado
                     </Button>

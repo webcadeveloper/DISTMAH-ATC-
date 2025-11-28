@@ -90,6 +90,7 @@ export async function GET(
               id: nextLesson.id,
               moduleId: nextLesson.moduleId,
               title: nextLesson.title,
+              number: nextLesson.number,
             }
           : null,
       };
