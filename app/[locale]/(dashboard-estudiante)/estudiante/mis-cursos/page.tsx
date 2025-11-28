@@ -124,7 +124,7 @@ export default function MisCursosPage() {
             <BookOpen className="w-16 h-16 text-neutral-300 dark:text-neutral-600 mx-auto mb-4" />
             <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">No tienes cursos inscritos</h3>
             <p className="text-neutral-600 dark:text-neutral-400 mb-6">Explora nuestro catálogo y comienza a aprender hoy</p>
-            <Link href="/cursos">
+            <Link href="/es/cursos">
               <Button className="bg-blue-600 hover:bg-blue-700 text-white">Ver Cursos Disponibles</Button>
             </Link>
           </CardContent>
@@ -179,7 +179,7 @@ export default function MisCursosPage() {
             </div>
 
             {isCompleted ? (
-              <Link href="/estudiante/certificados">
+              <Link href="/es/estudiante/certificados">
                 <Button size="sm" className="w-full bg-green-600 hover:bg-green-700">
                   Ver Certificado
                 </Button>
@@ -190,7 +190,7 @@ export default function MisCursosPage() {
                   <Clock className="w-3 h-3 mr-1" />
                   <span>{getLastActivity(enrollment.enrolledAt)}</span>
                 </div>
-                <Link href={`/cursos/${enrollment.course.slug}`}>
+                <Link href={`/es/cursos/${enrollment.course.slug}`}>
                   <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
                     <PlayCircle className="w-4 h-4 mr-1" />
                     Continuar
@@ -198,7 +198,7 @@ export default function MisCursosPage() {
                 </Link>
               </div>
             ) : (
-              <Link href={`/cursos/${enrollment.course.slug}`}>
+              <Link href={`/es/cursos/${enrollment.course.slug}`}>
                 <Button size="sm" className="w-full bg-blue-600 hover:bg-blue-700">
                   Comenzar Curso
                 </Button>
