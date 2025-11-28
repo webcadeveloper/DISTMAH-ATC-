@@ -11,7 +11,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 
 interface Lesson {
     id: string;
-    slug: string;
+    number: number;
     title: string;
     duration?: number;
 }
@@ -23,9 +23,14 @@ interface Module {
 }
 
 interface CourseData {
-    titulo: string;
+    id: string;
+    title: string;
     modules: Module[];
 }
+
+const getLessonSlug = (lesson: Lesson) => {
+    return `leccion-${lesson.number.toString().padStart(2, '0')}`;
+};
 
 export function CoursePlayerSidebar() {
     const params = useParams();
@@ -39,7 +44,7 @@ export function CoursePlayerSidebar() {
     useEffect(() => {
         if (!slug) return;
 
-        fetch(`/api/courses/${slug}`)
+        fetch(`/api/courses/by-slug/${slug}`)
             .then(res => res.ok ? res.json() : null)
             .then(data => {
                 setCourse(data);
@@ -89,7 +94,7 @@ export function CoursePlayerSidebar() {
                     </Link>
                     <ThemeToggle />
                 </div>
-                <h2 className="font-bold text-sm line-clamp-2 text-neutral-900 dark:text-white">{course.titulo}</h2>
+                <h2 className="font-bold text-sm line-clamp-2 text-neutral-900 dark:text-white">{course.title}</h2>
             </div>
 
             {/* Boton Clase en Vivo */}
@@ -119,12 +124,13 @@ export function CoursePlayerSidebar() {
                             <AccordionContent className="pt-0 pb-0">
                                 <div className="flex flex-col">
                                     {module.lessons && module.lessons.map((lesson: Lesson) => {
-                                        const isActive = moduleId === module.id && lessonSlug === lesson.slug;
+                                        const lessonSlugGen = getLessonSlug(lesson);
+                                        const isActive = moduleId === module.id && lessonSlug === lessonSlugGen;
 
                                         return (
                                             <Link
                                                 key={lesson.id}
-                                                href={`/es/cursos/${slug}/aprender/${module.id}/${lesson.slug}`}
+                                                href={`/es/cursos/${slug}/aprender/${module.id}/${lessonSlugGen}`}
                                                 className={cn(
                                                     "flex items-start gap-3 px-4 py-3 text-sm transition-colors border-l-2",
                                                     isActive
