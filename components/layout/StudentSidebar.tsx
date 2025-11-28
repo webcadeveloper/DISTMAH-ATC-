@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { LogoDistmah } from '@/components/brand/LogoDistmah';
 import { Button } from '@/components/ui/button';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 
 const sidebarItems = [
     { icon: LayoutDashboard, label: 'Dashboard', href: '/es/estudiante/dashboard' },
@@ -34,9 +35,12 @@ export function StudentSidebar() {
     return (
         <aside className="w-64 bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 h-screen flex flex-col fixed left-0 top-0 z-40">
             <div className="p-6 border-b border-neutral-100 dark:border-neutral-800">
-                <Link href="/es/estudiante/dashboard">
-                    <LogoDistmah variant="horizontal" className="scale-90 origin-left" />
-                </Link>
+                <div className="flex items-center justify-between">
+                    <Link href="/es/estudiante/dashboard">
+                        <LogoDistmah variant="horizontal" className="scale-90 origin-left" />
+                    </Link>
+                    <ThemeToggle />
+                </div>
             </div>
 
             <div className="flex-grow py-6 px-4 overflow-y-auto">
