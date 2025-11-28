@@ -119,7 +119,7 @@ export async function GET() {
         message: `${enrollment.user.name} se inscribió en ${enrollment.course.title}`,
         time: enrollment.enrolledAt,
         read: false,
-        link: `/instructor/cursos/${enrollment.course.id}/estudiantes`
+        link: `/es/instructor/cursos/${enrollment.course.id}/contenido`
       })),
       ...forumPosts.map(post => ({
         id: `forum-${post.id}`,
@@ -127,7 +127,7 @@ export async function GET() {
         message: `${post.user.name} creó una pregunta en ${post.category.course.title}: "${post.title}"`,
         time: post.createdAt,
         read: false,
-        link: `/instructor/cursos/${post.category.course.id}/foro`
+        link: `/es/instructor/cursos/${post.category.course.id}/contenido`
       })),
       ...pendingSubmissions.map(submission => ({
         id: `submission-${submission.id}`,
@@ -135,7 +135,7 @@ export async function GET() {
         message: `${submission.user.name} entregó una tarea en ${submission.assignment.course.title}`,
         time: submission.submittedAt,
         read: false,
-        link: `/instructor/cursos/${submission.assignment.course.id}/tareas`
+        link: `/es/instructor/cursos/${submission.assignment.course.id}/assignments`
       }))
     ];
 
