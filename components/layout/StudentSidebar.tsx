@@ -12,7 +12,8 @@ import {
     MessageSquare,
     Settings,
     LogOut,
-    ShoppingBag
+    ShoppingBag,
+    ShoppingCart
 } from 'lucide-react';
 import { LogoDistmah } from '@/components/brand/LogoDistmah';
 import { Button } from '@/components/ui/button';
@@ -20,6 +21,7 @@ import { Button } from '@/components/ui/button';
 const sidebarItems = [
     { icon: LayoutDashboard, label: 'Dashboard', href: '/es/estudiante/dashboard' },
     { icon: ShoppingBag, label: 'Explorar Cursos', href: '/es/estudiante/catalogo' },
+    { icon: ShoppingCart, label: 'Mi Carrito', href: '/es/estudiante/carrito' },
     { icon: BookOpen, label: 'Mis Cursos', href: '/es/estudiante/mis-cursos' },
     { icon: Award, label: 'Mis Certificados', href: '/es/estudiante/certificados' },
     { icon: Calendar, label: 'Calendario', href: '/es/estudiante/calendario' },

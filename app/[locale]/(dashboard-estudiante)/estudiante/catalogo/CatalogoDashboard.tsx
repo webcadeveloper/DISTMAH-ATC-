@@ -4,10 +4,12 @@ import { useState, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { CourseMetadata } from '@/lib/course-loader';
-import { Search, X, Clock, BookOpen, Star, Award, Users, CheckCircle2, ShoppingCart } from 'lucide-react';
+import { useCartStore } from '@/lib/cart-store';
+import { Search, X, Clock, BookOpen, Star, Award, Users, CheckCircle2, ShoppingCart, Check } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { toast } from 'sonner';
 import {
   Select,
   SelectContent,
@@ -36,6 +38,17 @@ export default function CatalogoDashboard({ courses }: CatalogoDashboardProps) {
   const [priceRange, setPriceRange] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<SortOption>('newest');
   const [selectedCourse, setSelectedCourse] = useState<CourseMetadata | null>(null);
+  const { addItem, isInCart } = useCartStore();
+
+  const handleAddToCart = (course: CourseMetadata, e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    if (isInCart(course.id)) {
+      toast.info('Este curso ya esta en tu carrito');
+      return;
+    }
+    addItem(course);
+    toast.success(`${course.titulo} agregado al carrito`);
+  };
 
   const categorias = useMemo(
     () => Array.from(new Set(courses.map((c) => c.categoria))),
@@ -434,12 +447,22 @@ export default function CatalogoDashboard({ courses }: CatalogoDashboardProps) {
                     <Button variant="outline" onClick={() => setSelectedCourse(null)}>
                       Cerrar
                     </Button>
-                    <Link href={`/es/cursos/${selectedCourse.slug}`}>
-                      <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+                    {isInCart(selectedCourse.id) ? (
+                      <Link href="/es/estudiante/carrito">
+                        <Button className="bg-green-600 hover:bg-green-700 text-white">
+                          <Check className="w-4 h-4 mr-2" />
+                          Ver Carrito
+                        </Button>
+                      </Link>
+                    ) : (
+                      <Button
+                        className="bg-blue-600 hover:bg-blue-700 text-white"
+                        onClick={() => handleAddToCart(selectedCourse)}
+                      >
                         <ShoppingCart className="w-4 h-4 mr-2" />
-                        Comprar Curso
+                        Agregar al Carrito
                       </Button>
-                    </Link>
+                    )}
                   </div>
                 </div>
               </div>
