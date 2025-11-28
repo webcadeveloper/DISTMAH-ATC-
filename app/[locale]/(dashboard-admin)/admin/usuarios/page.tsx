@@ -88,11 +88,11 @@ export default function UsersManagementPage() {
   };
 
   return (
-    <div className="p-8 max-w-7xl mx-auto">
+    <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-black">Gestión de Usuarios</h1>
-          <p className="text-neutral-600 mt-1">
+          <h1 className="text-3xl font-bold text-black dark:text-white">Gestión de Usuarios</h1>
+          <p className="text-neutral-600 dark:text-neutral-400 mt-1">
             Administra estudiantes, instructores y administradores
           </p>
         </div>
@@ -105,10 +105,10 @@ export default function UsersManagementPage() {
         </Button>
       </div>
 
-      <Card>
+      <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle>
+            <CardTitle className="text-black dark:text-white">
               Todos los Usuarios ({pagination.total})
             </CardTitle>
           </div>
@@ -116,7 +116,7 @@ export default function UsersManagementPage() {
         <CardContent>
           <div className="flex items-center gap-4 mb-6">
             <div className="flex items-center gap-2 flex-1 max-w-md">
-              <Search className="w-4 h-4 text-neutral-600" />
+              <Search className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
               <Input
                 placeholder="Buscar por nombre o email..."
                 value={search}
@@ -125,7 +125,7 @@ export default function UsersManagementPage() {
               />
             </div>
             <div className="flex items-center gap-2">
-              <Filter className="w-4 h-4 text-neutral-600" />
+              <Filter className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
               <Select value={roleFilter} onValueChange={handleRoleFilter}>
                 <SelectTrigger className="w-[180px]">
                   <SelectValue />
@@ -142,12 +142,12 @@ export default function UsersManagementPage() {
 
           {loading ? (
             <div className="text-center py-12">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 mx-auto mb-4"></div>
-              <p className="text-neutral-600">Cargando usuarios...</p>
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-900 dark:border-blue-400 mx-auto mb-4"></div>
+              <p className="text-neutral-600 dark:text-neutral-400">Cargando usuarios...</p>
             </div>
           ) : users.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-neutral-600">No se encontraron usuarios</p>
+              <p className="text-neutral-600 dark:text-neutral-400">No se encontraron usuarios</p>
             </div>
           ) : (
             <>
@@ -155,7 +155,7 @@ export default function UsersManagementPage() {
 
               {pagination.totalPages > 1 && (
                 <div className="flex items-center justify-between mt-6">
-                  <p className="text-sm text-neutral-600">
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">
                     Mostrando {(page - 1) * pagination.limit + 1} -{' '}
                     {Math.min(page * pagination.limit, pagination.total)} de{' '}
                     {pagination.total} usuarios
@@ -168,7 +168,7 @@ export default function UsersManagementPage() {
                     >
                       Anterior
                     </Button>
-                    <span className="text-sm text-neutral-600">
+                    <span className="text-sm text-neutral-600 dark:text-neutral-400">
                       Página {page} de {pagination.totalPages}
                     </span>
                     <Button

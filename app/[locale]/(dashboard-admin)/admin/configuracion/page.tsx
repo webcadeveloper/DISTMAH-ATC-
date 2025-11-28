@@ -132,16 +132,16 @@ export default function ConfigurationPage() {
   };
 
   return (
-    <div className="p-8 max-w-7xl mx-auto">
+    <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-black">Configuración del Sistema</h1>
-        <p className="text-neutral-600 mt-1">
+        <h1 className="text-3xl font-bold text-black dark:text-white">Configuración del Sistema</h1>
+        <p className="text-neutral-600 dark:text-neutral-400 mt-1">
           Gestiona roles, permisos y configuración general de DISTMAH ATC
         </p>
       </div>
 
       <Tabs defaultValue="roles" className="space-y-6">
-        <TabsList className="bg-neutral-100">
+        <TabsList className="bg-neutral-100 dark:bg-neutral-800">
           <TabsTrigger value="roles">
             <Shield className="w-4 h-4 mr-2" />
             Roles y Permisos
@@ -153,20 +153,20 @@ export default function ConfigurationPage() {
         </TabsList>
 
         <TabsContent value="roles">
-          <Card>
+          <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
             <CardHeader>
-              <CardTitle>Roles y Permisos del Sistema</CardTitle>
-              <CardDescription>
+              <CardTitle className="text-black dark:text-white">Roles y Permisos del Sistema</CardTitle>
+              <CardDescription className="dark:text-neutral-400">
                 Define qué acciones puede realizar cada tipo de usuario en la plataforma
               </CardDescription>
             </CardHeader>
             <CardContent>
               <Table>
                 <TableHeader>
-                  <TableRow>
-                    <TableHead className="w-[200px]">Rol</TableHead>
+                  <TableRow className="border-neutral-200 dark:border-neutral-700">
+                    <TableHead className="w-[200px] text-neutral-700 dark:text-neutral-300">Rol</TableHead>
                     {Object.entries(permissionLabels).map(([key, label]) => (
-                      <TableHead key={key} className="text-center">
+                      <TableHead key={key} className="text-center text-neutral-700 dark:text-neutral-300">
                         {label}
                       </TableHead>
                     ))}
@@ -174,16 +174,16 @@ export default function ConfigurationPage() {
                 </TableHeader>
                 <TableBody>
                   {roles.map((role) => (
-                    <TableRow key={role.name}>
+                    <TableRow key={role.name} className="border-neutral-200 dark:border-neutral-700">
                       <TableCell>
                         <div className="flex items-center gap-2">
                           <Badge
                             className={
                               role.name === 'ADMIN'
-                                ? 'bg-blue-100 text-blue-900'
+                                ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-900 dark:text-blue-300'
                                 : role.name === 'INSTRUCTOR'
-                                ? 'bg-green-100 text-green-800'
-                                : 'bg-neutral-100 text-neutral-800'
+                                ? 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300'
+                                : 'bg-neutral-100 dark:bg-neutral-700 text-neutral-800 dark:text-neutral-300'
                             }
                           >
                             {role.displayName}
@@ -193,9 +193,9 @@ export default function ConfigurationPage() {
                       {Object.keys(permissionLabels).map((permission) => (
                         <TableCell key={permission} className="text-center">
                           {role.permissions[permission] ? (
-                            <CheckCircle2 className="w-5 h-5 text-green-600 mx-auto" />
+                            <CheckCircle2 className="w-5 h-5 text-green-600 dark:text-green-400 mx-auto" />
                           ) : (
-                            <XCircle className="w-5 h-5 text-neutral-300 mx-auto" />
+                            <XCircle className="w-5 h-5 text-neutral-300 dark:text-neutral-600 mx-auto" />
                           )}
                         </TableCell>
                       ))}
@@ -204,8 +204,8 @@ export default function ConfigurationPage() {
                 </TableBody>
               </Table>
 
-              <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                <p className="text-sm text-blue-900">
+              <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                <p className="text-sm text-blue-900 dark:text-blue-300">
                   <strong>Nota:</strong> Los permisos son configurables a nivel de código. Para
                   modificar permisos, contacta al equipo de desarrollo o edita la configuración en
                   el archivo de roles del sistema.
@@ -215,19 +215,19 @@ export default function ConfigurationPage() {
           </Card>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-            <Card>
+            <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
               <CardHeader>
-                <CardTitle className="text-lg flex items-center gap-2">
-                  <Users className="w-5 h-5 text-blue-900" />
+                <CardTitle className="text-lg flex items-center gap-2 text-black dark:text-white">
+                  <Users className="w-5 h-5 text-blue-900 dark:text-blue-400" />
                   Administradores
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-neutral-600 mb-3">
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
                   Acceso completo al sistema. Pueden gestionar usuarios, cursos, pagos y
                   configuración.
                 </p>
-                <ul className="text-xs text-neutral-600 space-y-1">
+                <ul className="text-xs text-neutral-600 dark:text-neutral-400 space-y-1">
                   <li>• Gestión total de usuarios</li>
                   <li>• Publicar/archivar cursos</li>
                   <li>• Acceso a reportes financieros</li>
@@ -236,19 +236,19 @@ export default function ConfigurationPage() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
               <CardHeader>
-                <CardTitle className="text-lg flex items-center gap-2">
-                  <BookOpen className="w-5 h-5 text-green-700" />
+                <CardTitle className="text-lg flex items-center gap-2 text-black dark:text-white">
+                  <BookOpen className="w-5 h-5 text-green-700 dark:text-green-400" />
                   Instructores
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-neutral-600 mb-3">
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
                   Pueden crear y gestionar sus propios cursos. Acceso a estadísticas de sus
                   estudiantes.
                 </p>
-                <ul className="text-xs text-neutral-600 space-y-1">
+                <ul className="text-xs text-neutral-600 dark:text-neutral-400 space-y-1">
                   <li>• Crear y editar cursos propios</li>
                   <li>• Gestionar contenido y lecciones</li>
                   <li>• Ver progreso de estudiantes</li>
@@ -257,18 +257,18 @@ export default function ConfigurationPage() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
               <CardHeader>
-                <CardTitle className="text-lg flex items-center gap-2">
-                  <Users className="w-5 h-5 text-neutral-700" />
+                <CardTitle className="text-lg flex items-center gap-2 text-black dark:text-white">
+                  <Users className="w-5 h-5 text-neutral-700 dark:text-neutral-400" />
                   Estudiantes
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-neutral-600 mb-3">
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
                   Pueden inscribirse a cursos, acceder al contenido y obtener certificados.
                 </p>
-                <ul className="text-xs text-neutral-600 space-y-1">
+                <ul className="text-xs text-neutral-600 dark:text-neutral-400 space-y-1">
                   <li>• Inscribirse a cursos</li>
                   <li>• Acceder a lecciones y recursos</li>
                   <li>• Seguir progreso personal</li>
@@ -281,15 +281,15 @@ export default function ConfigurationPage() {
 
         <TabsContent value="general">
           <div className="space-y-6">
-            <Card>
+            <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
               <CardHeader>
-                <CardTitle>Información General del Sitio</CardTitle>
-                <CardDescription>Configuración básica de la plataforma</CardDescription>
+                <CardTitle className="text-black dark:text-white">Información General del Sitio</CardTitle>
+                <CardDescription className="dark:text-neutral-400">Configuración básica de la plataforma</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="siteName">Nombre del Sitio</Label>
+                    <Label htmlFor="siteName" className="text-neutral-700 dark:text-neutral-300">Nombre del Sitio</Label>
                     <Input
                       id="siteName"
                       value={settings.siteName}
@@ -297,7 +297,7 @@ export default function ConfigurationPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="contactEmail">Email de Contacto</Label>
+                    <Label htmlFor="contactEmail" className="text-neutral-700 dark:text-neutral-300">Email de Contacto</Label>
                     <Input
                       id="contactEmail"
                       type="email"
@@ -309,7 +309,7 @@ export default function ConfigurationPage() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="siteDescription">Descripción del Sitio</Label>
+                  <Label htmlFor="siteDescription" className="text-neutral-700 dark:text-neutral-300">Descripción del Sitio</Label>
                   <Input
                     id="siteDescription"
                     value={settings.siteDescription}
@@ -321,16 +321,16 @@ export default function ConfigurationPage() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
               <CardHeader>
-                <CardTitle>Configuración de Usuarios</CardTitle>
-                <CardDescription>Controla el registro y acceso de usuarios</CardDescription>
+                <CardTitle className="text-black dark:text-white">Configuración de Usuarios</CardTitle>
+                <CardDescription className="dark:text-neutral-400">Controla el registro y acceso de usuarios</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <Label>Permitir Auto-registro</Label>
-                    <p className="text-sm text-neutral-600">
+                    <Label className="text-neutral-700 dark:text-neutral-300">Permitir Auto-registro</Label>
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
                       Los usuarios pueden crear cuentas sin invitación
                     </p>
                   </div>
@@ -343,8 +343,8 @@ export default function ConfigurationPage() {
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <Label>Requerir Verificación de Email</Label>
-                    <p className="text-sm text-neutral-600">
+                    <Label className="text-neutral-700 dark:text-neutral-300">Requerir Verificación de Email</Label>
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
                       Los usuarios deben verificar su email antes de acceder
                     </p>
                   </div>
@@ -356,7 +356,7 @@ export default function ConfigurationPage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="maxEnrollments">Máximo de Inscripciones por Usuario</Label>
+                  <Label htmlFor="maxEnrollments" className="text-neutral-700 dark:text-neutral-300">Máximo de Inscripciones por Usuario</Label>
                   <Input
                     id="maxEnrollments"
                     type="number"
@@ -372,16 +372,16 @@ export default function ConfigurationPage() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
               <CardHeader>
-                <CardTitle>Configuración de Plataforma</CardTitle>
-                <CardDescription>Activa o desactiva funcionalidades del sistema</CardDescription>
+                <CardTitle className="text-black dark:text-white">Configuración de Plataforma</CardTitle>
+                <CardDescription className="dark:text-neutral-400">Activa o desactiva funcionalidades del sistema</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <Label>Certificados Habilitados</Label>
-                    <p className="text-sm text-neutral-600">
+                    <Label className="text-neutral-700 dark:text-neutral-300">Certificados Habilitados</Label>
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
                       Permitir generación de certificados al completar cursos
                     </p>
                   </div>
@@ -394,8 +394,8 @@ export default function ConfigurationPage() {
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <Label>Pagos Habilitados</Label>
-                    <p className="text-sm text-neutral-600">
+                    <Label className="text-neutral-700 dark:text-neutral-300">Pagos Habilitados</Label>
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
                       Permitir procesamiento de pagos para inscripciones
                     </p>
                   </div>
@@ -407,7 +407,7 @@ export default function ConfigurationPage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="currency">Moneda por Defecto</Label>
+                  <Label htmlFor="currency" className="text-neutral-700 dark:text-neutral-300">Moneda por Defecto</Label>
                   <Input
                     id="currency"
                     value={settings.defaultCurrency}
@@ -421,18 +421,18 @@ export default function ConfigurationPage() {
               </CardContent>
             </Card>
 
-            <Card>
+            <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
               <CardHeader>
-                <CardTitle className="text-red-700">Modo Mantenimiento</CardTitle>
-                <CardDescription>
+                <CardTitle className="text-red-700 dark:text-red-400">Modo Mantenimiento</CardTitle>
+                <CardDescription className="dark:text-neutral-400">
                   Desactiva el acceso público al sitio para realizar mantenimiento
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex items-center justify-between">
                   <div className="space-y-0.5">
-                    <Label>Activar Modo Mantenimiento</Label>
-                    <p className="text-sm text-neutral-600">
+                    <Label className="text-neutral-700 dark:text-neutral-300">Activar Modo Mantenimiento</Label>
+                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
                       Solo los administradores podrán acceder al sitio
                     </p>
                   </div>

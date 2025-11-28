@@ -42,17 +42,17 @@ export default function CertificadosPage() {
 
   if (mockCertificados.length === 0) {
     return (
-      <div className="p-8 max-w-7xl mx-auto">
+      <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
         <div className="mb-8">
-          <h1 className="text-2xl font-bold text-neutral-900">Mis Certificados</h1>
-          <p className="text-neutral-600">Aquí encontrarás todos tus certificados obtenidos</p>
+          <h1 className="text-2xl font-bold text-neutral-900 dark:text-white">Mis Certificados</h1>
+          <p className="text-neutral-600 dark:text-neutral-400">Aquí encontrarás todos tus certificados obtenidos</p>
         </div>
 
-        <Card>
+        <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
           <CardContent className="p-12 text-center">
-            <Award className="w-16 h-16 text-neutral-300 mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-neutral-900 mb-2">Aún no tienes certificados</h3>
-            <p className="text-neutral-600 mb-6">Completa tus cursos para obtener certificados oficiales</p>
+            <Award className="w-16 h-16 text-neutral-300 dark:text-neutral-600 mx-auto mb-4" />
+            <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">Aún no tienes certificados</h3>
+            <p className="text-neutral-600 dark:text-neutral-400 mb-6">Completa tus cursos para obtener certificados oficiales</p>
             <Button className="bg-blue-600 hover:bg-blue-700">Ver Mis Cursos</Button>
           </CardContent>
         </Card>
@@ -61,18 +61,18 @@ export default function CertificadosPage() {
   }
 
   return (
-    <div className="p-8 max-w-7xl mx-auto">
+    <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-neutral-900">Mis Certificados</h1>
-        <p className="text-neutral-600">Aquí encontrarás todos tus certificados obtenidos</p>
+        <h1 className="text-2xl font-bold text-neutral-900 dark:text-white">Mis Certificados</h1>
+        <p className="text-neutral-600 dark:text-neutral-400">Aquí encontrarás todos tus certificados obtenidos</p>
       </div>
 
-      <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+      <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-900 rounded-xl">
         <div className="flex items-start gap-3">
-          <Award className="w-5 h-5 text-blue-600 mt-0.5" />
+          <Award className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5" />
           <div>
-            <h3 className="font-semibold text-blue-900 mb-1">Certificados Oficiales DISTMAH</h3>
-            <p className="text-sm text-blue-700">
+            <h3 className="font-semibold text-blue-900 dark:text-blue-100 mb-1">Certificados Oficiales DISTMAH</h3>
+            <p className="text-sm text-blue-700 dark:text-blue-300">
               Todos nuestros certificados son verificables y cuentan con validez oficial como Authorized Training Center de Autodesk.
             </p>
           </div>
@@ -81,9 +81,9 @@ export default function CertificadosPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {mockCertificados.map((certificado) => (
-          <Card key={certificado.id} className="hover:shadow-lg transition-all border border-neutral-200">
+          <Card key={certificado.id} className="hover:shadow-lg transition-all border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800">
             <CardContent className="p-0">
-              <div className="h-48 bg-gradient-to-br from-blue-900 to-neutral-900 relative flex items-center justify-center">
+              <div className="h-48 bg-gradient-to-br from-blue-900 to-neutral-900 dark:from-blue-950 dark:to-neutral-950 relative flex items-center justify-center">
                 {certificado.thumbnail ? (
                   <img src={certificado.thumbnail} alt={certificado.cursoTitle} className="w-full h-full object-cover" />
                 ) : (
@@ -96,9 +96,9 @@ export default function CertificadosPage() {
               </div>
 
               <div className="p-6">
-                <h3 className="text-lg font-bold text-neutral-900 mb-3">{certificado.cursoTitle}</h3>
+                <h3 className="text-lg font-bold text-neutral-900 dark:text-white mb-3">{certificado.cursoTitle}</h3>
 
-                <div className="space-y-2 mb-4 text-sm text-neutral-600">
+                <div className="space-y-2 mb-4 text-sm text-neutral-600 dark:text-neutral-400">
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4" />
                     <span>Obtenido: {new Date(certificado.fechaObtencion).toLocaleDateString('es-ES', {
@@ -140,12 +140,12 @@ export default function CertificadosPage() {
         ))}
       </div>
 
-      <div className="mt-8 p-6 bg-white rounded-xl border border-neutral-200">
-        <h3 className="font-semibold text-neutral-900 mb-2">¿Necesitas verificar un certificado?</h3>
-        <p className="text-sm text-neutral-600 mb-4">
+      <div className="mt-8 p-6 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700">
+        <h3 className="font-semibold text-neutral-900 dark:text-white mb-2">¿Necesitas verificar un certificado?</h3>
+        <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">
           Cada certificado incluye un código único de verificación. Puedes validar su autenticidad en nuestro portal de verificación.
         </p>
-        <Button variant="outline" size="sm">
+        <Button variant="outline" size="sm" className="border-neutral-300 dark:border-neutral-600">
           Ir a Verificación de Certificados
         </Button>
       </div>

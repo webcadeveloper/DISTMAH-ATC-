@@ -200,15 +200,15 @@ export default function PerfilPage() {
 
   if (loading) {
     return (
-      <div className="p-8 max-w-5xl mx-auto">
+      <div className="p-8 max-w-5xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
         <div className="mb-8">
-          <h1 className="text-2xl font-bold text-neutral-900">Mi Perfil</h1>
-          <p className="text-neutral-600">Gestiona tu información personal y configuración de cuenta</p>
+          <h1 className="text-2xl font-bold text-neutral-900 dark:text-white">Mi Perfil</h1>
+          <p className="text-neutral-600 dark:text-neutral-400">Gestiona tu información personal y configuración de cuenta</p>
         </div>
-        <Card>
+        <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
           <CardContent className="p-12 text-center">
             <Loader2 className="w-12 h-12 text-blue-600 mx-auto mb-4 animate-spin" />
-            <p className="text-neutral-600">Cargando perfil...</p>
+            <p className="text-neutral-600 dark:text-neutral-400">Cargando perfil...</p>
           </CardContent>
         </Card>
       </div>
@@ -216,15 +216,15 @@ export default function PerfilPage() {
   }
 
   return (
-    <div className="p-8 max-w-5xl mx-auto">
+    <div className="p-8 max-w-5xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-neutral-900">Mi Perfil</h1>
-        <p className="text-neutral-600">Gestiona tu información personal y configuración de cuenta</p>
+        <h1 className="text-2xl font-bold text-neutral-900 dark:text-white">Mi Perfil</h1>
+        <p className="text-neutral-600 dark:text-neutral-400">Gestiona tu información personal y configuración de cuenta</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div>
-          <Card className="border border-neutral-200">
+          <Card className="border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800">
             <CardContent className="p-6">
               <div className="text-center">
                 <div className="relative inline-block mb-4">
@@ -252,19 +252,19 @@ export default function PerfilPage() {
                   <button
                     onClick={handleAvatarClick}
                     disabled={uploadingAvatar}
-                    className="absolute bottom-0 right-0 w-10 h-10 rounded-full bg-white border-2 border-neutral-200 flex items-center justify-center hover:bg-neutral-50 transition-colors disabled:opacity-50"
+                    className="absolute bottom-0 right-0 w-10 h-10 rounded-full bg-white dark:bg-neutral-700 border-2 border-neutral-200 dark:border-neutral-600 flex items-center justify-center hover:bg-neutral-50 dark:hover:bg-neutral-600 transition-colors disabled:opacity-50"
                   >
                     {uploadingAvatar ? (
-                      <Loader2 className="w-5 h-5 text-neutral-600 animate-spin" />
+                      <Loader2 className="w-5 h-5 text-neutral-600 dark:text-neutral-400 animate-spin" />
                     ) : (
-                      <Camera className="w-5 h-5 text-neutral-600" />
+                      <Camera className="w-5 h-5 text-neutral-600 dark:text-neutral-400" />
                     )}
                   </button>
                 </div>
-                <h2 className="text-xl font-bold text-neutral-900 mb-1">{profile?.name}</h2>
-                <p className="text-sm text-neutral-600 mb-4">{formData.profession || 'Sin profesión'}</p>
+                <h2 className="text-xl font-bold text-neutral-900 dark:text-white mb-1">{profile?.name}</h2>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-4">{formData.profession || 'Sin profesión'}</p>
 
-                <div className="space-y-2 text-sm text-neutral-600">
+                <div className="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
                   {(formData.city || formData.country) && (
                     <div className="flex items-center justify-center gap-2">
                       <MapPin className="w-4 h-4" />
@@ -278,16 +278,16 @@ export default function PerfilPage() {
                 </div>
               </div>
 
-              <div className="mt-6 pt-6 border-t border-neutral-200">
-                <h3 className="font-semibold text-neutral-900 mb-3">Estadísticas</h3>
+              <div className="mt-6 pt-6 border-t border-neutral-200 dark:border-neutral-700">
+                <h3 className="font-semibold text-neutral-900 dark:text-white mb-3">Estadísticas</h3>
                 <div className="space-y-3">
                   <div className="flex justify-between text-sm">
-                    <span className="text-neutral-600">Cursos inscritos</span>
-                    <span className="font-semibold text-neutral-900">{profile?._count?.enrollments || 0}</span>
+                    <span className="text-neutral-600 dark:text-neutral-400">Cursos inscritos</span>
+                    <span className="font-semibold text-neutral-900 dark:text-white">{profile?._count?.enrollments || 0}</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-neutral-600">Certificados</span>
-                    <span className="font-semibold text-neutral-900">{profile?._count?.certificates || 0}</span>
+                    <span className="text-neutral-600 dark:text-neutral-400">Certificados</span>
+                    <span className="font-semibold text-neutral-900 dark:text-white">{profile?._count?.certificates || 0}</span>
                   </div>
                 </div>
               </div>
@@ -296,10 +296,10 @@ export default function PerfilPage() {
         </div>
 
         <div className="lg:col-span-2 space-y-6">
-          <Card className="border border-neutral-200">
+          <Card className="border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800">
             <CardContent className="p-6">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-xl font-bold text-neutral-900">Información Personal</h3>
+                <h3 className="text-xl font-bold text-neutral-900 dark:text-white">Información Personal</h3>
                 {!isEditing ? (
                   <Button variant="outline" onClick={() => setIsEditing(true)}>
                     Editar
@@ -323,7 +323,7 @@ export default function PerfilPage() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <Label htmlFor="name" className="text-neutral-700 mb-2 block">
+                  <Label htmlFor="name" className="text-neutral-700 dark:text-neutral-300 mb-2 block">
                     Nombre Completo
                   </Label>
                   <div className="relative">
@@ -334,13 +334,13 @@ export default function PerfilPage() {
                       value={formData.name}
                       onChange={handleInputChange}
                       disabled={!isEditing}
-                      className="pl-10 border-neutral-200"
+                      className="pl-10 border-neutral-200 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <Label htmlFor="email" className="text-neutral-700 mb-2 block">
+                  <Label htmlFor="email" className="text-neutral-700 dark:text-neutral-300 mb-2 block">
                     Correo Electrónico
                   </Label>
                   <div className="relative">
@@ -351,14 +351,14 @@ export default function PerfilPage() {
                       type="email"
                       value={formData.email}
                       disabled
-                      className="pl-10 border-neutral-200 bg-neutral-50"
+                      className="pl-10 border-neutral-200 dark:border-neutral-600 bg-neutral-50 dark:bg-neutral-600 dark:text-neutral-400"
                     />
                   </div>
-                  <p className="text-xs text-neutral-500 mt-1">El email no se puede cambiar</p>
+                  <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">El email no se puede cambiar</p>
                 </div>
 
                 <div>
-                  <Label htmlFor="phoneNumber" className="text-neutral-700 mb-2 block">
+                  <Label htmlFor="phoneNumber" className="text-neutral-700 dark:text-neutral-300 mb-2 block">
                     Teléfono
                   </Label>
                   <div className="relative">
@@ -369,14 +369,14 @@ export default function PerfilPage() {
                       value={formData.phoneNumber}
                       onChange={handleInputChange}
                       disabled={!isEditing}
-                      className="pl-10 border-neutral-200"
+                      className="pl-10 border-neutral-200 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white"
                       placeholder="+52 123 456 7890"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <Label htmlFor="profession" className="text-neutral-700 mb-2 block">
+                  <Label htmlFor="profession" className="text-neutral-700 dark:text-neutral-300 mb-2 block">
                     Profesión
                   </Label>
                   <div className="relative">
@@ -387,14 +387,14 @@ export default function PerfilPage() {
                       value={formData.profession}
                       onChange={handleInputChange}
                       disabled={!isEditing}
-                      className="pl-10 border-neutral-200"
+                      className="pl-10 border-neutral-200 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white"
                       placeholder="Ingeniero Civil"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <Label htmlFor="country" className="text-neutral-700 mb-2 block">
+                  <Label htmlFor="country" className="text-neutral-700 dark:text-neutral-300 mb-2 block">
                     País
                   </Label>
                   <div className="relative">
@@ -405,14 +405,14 @@ export default function PerfilPage() {
                       value={formData.country}
                       onChange={handleInputChange}
                       disabled={!isEditing}
-                      className="pl-10 border-neutral-200"
+                      className="pl-10 border-neutral-200 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white"
                       placeholder="México"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <Label htmlFor="city" className="text-neutral-700 mb-2 block">
+                  <Label htmlFor="city" className="text-neutral-700 dark:text-neutral-300 mb-2 block">
                     Ciudad
                   </Label>
                   <Input
@@ -421,13 +421,13 @@ export default function PerfilPage() {
                     value={formData.city}
                     onChange={handleInputChange}
                     disabled={!isEditing}
-                    className="border-neutral-200"
+                    className="border-neutral-200 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white"
                     placeholder="Ciudad de México"
                   />
                 </div>
 
                 <div className="md:col-span-2">
-                  <Label htmlFor="institution" className="text-neutral-700 mb-2 block">
+                  <Label htmlFor="institution" className="text-neutral-700 dark:text-neutral-300 mb-2 block">
                     Institución / Empresa
                   </Label>
                   <div className="relative">
@@ -438,7 +438,7 @@ export default function PerfilPage() {
                       value={formData.institution}
                       onChange={handleInputChange}
                       disabled={!isEditing}
-                      className="pl-10 border-neutral-200"
+                      className="pl-10 border-neutral-200 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white"
                       placeholder="Universidad / Empresa"
                     />
                   </div>
@@ -447,13 +447,13 @@ export default function PerfilPage() {
             </CardContent>
           </Card>
 
-          <Card className="border border-neutral-200">
+          <Card className="border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800">
             <CardContent className="p-6">
-              <h3 className="text-xl font-bold text-neutral-900 mb-6">Cambiar Contraseña</h3>
+              <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-6">Cambiar Contraseña</h3>
 
               <div className="space-y-4">
                 <div>
-                  <Label htmlFor="currentPassword" className="text-neutral-700 mb-2 block">
+                  <Label htmlFor="currentPassword" className="text-neutral-700 dark:text-neutral-300 mb-2 block">
                     Contraseña Actual
                   </Label>
                   <div className="relative">
@@ -464,14 +464,14 @@ export default function PerfilPage() {
                       type="password"
                       value={passwordData.currentPassword}
                       onChange={handlePasswordChange}
-                      className="pl-10 border-neutral-200"
+                      className="pl-10 border-neutral-200 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white"
                       placeholder="Ingresa tu contraseña actual"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <Label htmlFor="newPassword" className="text-neutral-700 mb-2 block">
+                  <Label htmlFor="newPassword" className="text-neutral-700 dark:text-neutral-300 mb-2 block">
                     Nueva Contraseña
                   </Label>
                   <div className="relative">
@@ -482,14 +482,14 @@ export default function PerfilPage() {
                       type="password"
                       value={passwordData.newPassword}
                       onChange={handlePasswordChange}
-                      className="pl-10 border-neutral-200"
+                      className="pl-10 border-neutral-200 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white"
                       placeholder="Mínimo 8 caracteres"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <Label htmlFor="confirmPassword" className="text-neutral-700 mb-2 block">
+                  <Label htmlFor="confirmPassword" className="text-neutral-700 dark:text-neutral-300 mb-2 block">
                     Confirmar Nueva Contraseña
                   </Label>
                   <div className="relative">
@@ -500,7 +500,7 @@ export default function PerfilPage() {
                       type="password"
                       value={passwordData.confirmPassword}
                       onChange={handlePasswordChange}
-                      className="pl-10 border-neutral-200"
+                      className="pl-10 border-neutral-200 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white"
                       placeholder="Confirma tu nueva contraseña"
                     />
                   </div>
@@ -522,13 +522,13 @@ export default function PerfilPage() {
             </CardContent>
           </Card>
 
-          <Card className="border border-red-200 bg-red-50">
+          <Card className="border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950">
             <CardContent className="p-6">
-              <h3 className="font-semibold text-red-900 mb-2">Zona de Peligro</h3>
-              <p className="text-sm text-red-700 mb-4">
+              <h3 className="font-semibold text-red-900 dark:text-red-100 mb-2">Zona de Peligro</h3>
+              <p className="text-sm text-red-700 dark:text-red-200 mb-4">
                 Una vez que elimines tu cuenta, no hay vuelta atrás. Por favor, ten en cuenta esto.
               </p>
-              <Button variant="outline" className="border-red-300 text-red-700 hover:bg-red-100">
+              <Button variant="outline" className="border-red-300 dark:border-red-700 text-red-700 dark:text-red-300 hover:bg-red-100 dark:hover:bg-red-900">
                 Eliminar Cuenta
               </Button>
             </CardContent>

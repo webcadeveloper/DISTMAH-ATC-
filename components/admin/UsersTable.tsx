@@ -141,9 +141,9 @@ export function UsersTable({ users, onUpdate }: UsersTableProps) {
 
   const getRoleBadge = (role: string) => {
     const variants: Record<string, { className: string; label: string }> = {
-      ADMIN: { className: 'bg-red-100 text-red-800 hover:bg-red-100', label: 'Admin' },
-      INSTRUCTOR: { className: 'bg-blue-100 text-blue-900 hover:bg-blue-100', label: 'Instructor' },
-      STUDENT: { className: 'bg-green-100 text-green-800 hover:bg-green-100', label: 'Estudiante' },
+      ADMIN: { className: 'bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300 hover:bg-red-100 dark:hover:bg-red-900/40', label: 'Admin' },
+      INSTRUCTOR: { className: 'bg-blue-100 dark:bg-blue-900/30 text-blue-900 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/40', label: 'Instructor' },
+      STUDENT: { className: 'bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 hover:bg-green-100 dark:hover:bg-green-900/40', label: 'Estudiante' },
     };
     const variant = variants[role] || variants.STUDENT;
     return <Badge className={variant.className}>{variant.label}</Badge>;
@@ -167,15 +167,15 @@ export function UsersTable({ users, onUpdate }: UsersTableProps) {
         <TableBody>
           {users.map((user) => (
             <TableRow key={user.id}>
-              <TableCell className="font-medium text-black">{user.name}</TableCell>
-              <TableCell className="text-neutral-600">{user.email}</TableCell>
+              <TableCell className="font-medium text-black dark:text-white">{user.name}</TableCell>
+              <TableCell className="text-neutral-600 dark:text-neutral-400">{user.email}</TableCell>
               <TableCell>{getRoleBadge(user.role)}</TableCell>
               <TableCell>
                 <StatusBadge status={user.status} />
               </TableCell>
-              <TableCell className="text-neutral-700">{user.enrollmentsCount}</TableCell>
-              <TableCell className="text-neutral-700">{user.coursesCount}</TableCell>
-              <TableCell className="text-neutral-600 text-sm">
+              <TableCell className="text-neutral-700 dark:text-neutral-300">{user.enrollmentsCount}</TableCell>
+              <TableCell className="text-neutral-700 dark:text-neutral-300">{user.coursesCount}</TableCell>
+              <TableCell className="text-neutral-600 dark:text-neutral-400 text-sm">
                 {user.lastLoginAt
                   ? new Date(user.lastLoginAt).toLocaleDateString('es-ES')
                   : 'Nunca'}
