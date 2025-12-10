@@ -1,16 +1,22 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { COURSES_2026 } from '@/lib/courses-catalog-2026';
 
 export default function CheckoutCancelPage() {
   const searchParams = useSearchParams();
   const courseId = searchParams.get('course_id');
+  const [course, setCourse] = useState<any>(null);
 
-  const course = courseId
-    ? COURSES_2026.find((c) => c.id === courseId)
-    : null;
+  useEffect(() => {
+    if (courseId) {
+      fetch(`/api/courses/by-slug/${courseId}`)
+        .then(res => res.ok ? res.json() : null)
+        .then(data => setCourse(data))
+        .catch(() => setCourse(null));
+    }
+  }, [courseId]);
 
   return (
     <div className="min-h-screen bg-neutral-50 py-12">

@@ -67,19 +67,19 @@ export default function NotFound() {
                 <div className="mt-12">
                     <p className="text-sm text-neutral-600 mb-4">Cursos populares:</p>
                     <div className="flex flex-wrap gap-2 justify-center">
-                        <Link href="/es/cursos/autocad-basico-2d-2026/overview">
+                        <Link href="/es/cursos/autocad-basico-2d/overview">
                             <span className="inline-block px-4 py-2 bg-neutral-100 hover:bg-neutral-200 rounded-full text-sm text-neutral-700 transition-colors">
-                                AutoCAD Básico 2D 2026
+                                AutoCAD Básico 2D
                             </span>
                         </Link>
-                        <Link href="/es/cursos/revit-2026-architecture/overview">
+                        <Link href="/es/cursos/revit-architecture/overview">
                             <span className="inline-block px-4 py-2 bg-neutral-100 hover:bg-neutral-200 rounded-full text-sm text-neutral-700 transition-colors">
-                                Revit Architecture 2026
+                                Revit Architecture
                             </span>
                         </Link>
-                        <Link href="/es/cursos/civil3d-2026/overview">
+                        <Link href="/es/cursos/civil3d/overview">
                             <span className="inline-block px-4 py-2 bg-neutral-100 hover:bg-neutral-200 rounded-full text-sm text-neutral-700 transition-colors">
-                                Civil 3D 2026
+                                Civil 3D
                             </span>
                         </Link>
                     </div>

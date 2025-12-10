@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { COURSES_2026 } from '@/lib/courses-catalog-2026';
 import { validateCoupon, calculateDiscount } from '@/lib/stripe';
 import { Course } from '@/lib/types';
 
@@ -30,12 +29,21 @@ export default function CheckoutPage() {
   } | null>(null);
 
   useEffect(() => {
-    const foundCourse = COURSES_2026.find((c) => c.id === cursoId);
-    if (foundCourse) {
-      setCourse(foundCourse);
-    } else {
-      router.push('/');
+    async function loadCourse() {
+      try {
+        const res = await fetch(`/api/courses/by-slug/${cursoId}`);
+        if (res.ok) {
+          const data = await res.json();
+          setCourse(data);
+        } else {
+          router.push('/');
+        }
+      } catch (error) {
+        console.error('Error loading course:', error);
+        router.push('/');
+      }
     }
+    loadCourse();
   }, [cursoId, router]);
 
   const handleCouponValidation = () => {

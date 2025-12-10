@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createCheckoutSession } from '@/lib/stripe';
-import { COURSES_2026 } from '@/lib/courses-catalog-2026';
 import { paymentLimiter, getClientIp } from '@/lib/rate-limit';
+import { prisma } from '@/lib/prisma';
 
 export async function POST(request: NextRequest) {
   const ip = getClientIp(request);
@@ -20,7 +20,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const course = COURSES_2026.find((c) => c.id === courseId);
+    const course = await prisma.course.findFirst({
+      where: {
+        OR: [
+          { id: courseId },
+          { slug: courseId }
+        ]
+      }
+    });
 
     if (!course) {
       return NextResponse.json(
@@ -40,7 +47,7 @@ export async function POST(request: NextRequest) {
     const session = await createCheckoutSession({
       courseId: course.id,
       courseName: course.title,
-      price: course.price,
+      price: Number(course.price),
       userId,
       email,
       couponCode,
