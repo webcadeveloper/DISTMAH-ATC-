@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@microsoft/microsoft-graph-client": "^3.0.7",
+    "@microsoft/microsoft-graph-types": "^2.40.0",
+    "@azure/identity": "^4.0.0",
+    "isomorphic-fetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/microsoft-graph": "^2.40.0"
+  }
+}

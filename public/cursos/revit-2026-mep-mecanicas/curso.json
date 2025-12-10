@@ -1,0 +1,180 @@
+{
+  "id": "revit-2026-mep-mecanicas",
+  "titulo": "Revit MEP 2026 - Instalaciones Mecánicas (HVAC)",
+  "descripcionCorta": "Curso especializado en sistemas mecánicos (HVAC) con Revit MEP 2026. Incluye Enhanced System Zones, HVAC Zones mejoradas, análisis de cargas térmicas y coordinación MEP.",
+  "descripcionLarga": "Curso profesional especializado en sistemas mecánicos (HVAC) con Revit MEP 2026. Cubre climatización, ventilación, análisis de cargas térmicas y coordinación MEP. Aprende a diseñar sistemas de climatización completos, realizar análisis de cargas térmicas, dimensionar ductos, y coordinar con otras disciplinas MEP. Incluye sistemas de difusores, rejillas, UMA, cajas VAV, y fundamentos de fabricación MEP.",
+  "version": "2026",
+  "precio": {
+    "valor": 415,
+    "moneda": "USD",
+    "descuento": 0
+  },
+  "duracion": {
+    "horas": 24,
+    "formato": "24 horas de video + ejercicios prácticos"
+  },
+  "nivel": "Intermedio a Avanzado",
+  "idioma": "Español",
+  "categoria": "BIM",
+  "subcategoria": "MEP Mecánicas",
+  "instructor": {
+    "nombre": "A definir",
+    "titulo": "Ing. MEP - Especialista en Sistemas Mecánicos",
+    "experiencia": "12+ años en diseño de sistemas HVAC",
+    "certificaciones": ["Autodesk Certified Professional MEP", "HVAC Systems Specialist"]
+  },
+  "imagenPortada": "./imagenes/portada-mep-mecanicas.png",
+  "imagenPromocion": "./imagenes/promo-mep-mecanicas.png",
+  "video": {
+    "intro": "./videos/intro-curso-mecanicas.mp4",
+    "demo": "./videos/demo-hvac-2026.mp4"
+  },
+  "certificacion": {
+    "disponible": true,
+    "tipo": "Certificado Digital - Revit MEP Mechanical Systems 2026 Specialist",
+    "requisitos": "Completar todos los módulos y aprobar evaluaciones finales"
+  },
+  "publicoObjetivo": [
+    "Ingenieros mecánicos",
+    "Diseñadores de sistemas HVAC",
+    "Coordinadores MEP",
+    "Estudiantes de ingeniería mecánica",
+    "Técnicos en climatización",
+    "Profesionales BIM especializados en MEP"
+  ],
+  "prerrequisitos": [
+    "Revit Architecture 2026 (recomendado)",
+    "Conocimientos básicos de HVAC",
+    "Comprensión de sistemas mecánicos",
+    "Windows 10/11 con mínimo 16GB RAM",
+    "Conceptos de termodinámica básica"
+  ],
+  "objetivosAprendizaje": [
+    "Dominar la interfaz MEP para sistemas mecánicos",
+    "Diseñar sistemas de climatización (HVAC) completos",
+    "Realizar análisis de cargas térmicas con System Zones",
+    "Dimensionar ductos y seleccionar equipos",
+    "Diseñar sistemas de ventilación mecánica",
+    "Coordinar instalaciones mecánicas con otras disciplinas",
+    "Generar documentación técnica de sistemas HVAC",
+    "Aplicar fundamentos de fabricación MEP"
+  ],
+  "caracteristicas2026": [
+    {
+      "nombre": "Enhanced System Zones",
+      "tipo": "Análisis",
+      "descripcion": "Límites por sketch o espacios con mejores controles"
+    },
+    {
+      "nombre": "HVAC Zones mejoradas",
+      "tipo": "Diseño",
+      "descripcion": "Fusión con System Zones para análisis integrado"
+    },
+    {
+      "nombre": "Color schemes para zonas",
+      "tipo": "Visualización",
+      "descripcion": "Esquemas de color y scheduling para zonas térmicas"
+    },
+    {
+      "nombre": "Coordination Model improvements",
+      "tipo": "Colaboración",
+      "descripcion": "Modelos de coordinación mejorados con otras disciplinas"
+    },
+    {
+      "nombre": "Analytical Model enhancements",
+      "tipo": "Análisis",
+      "descripcion": "Mejores capacidades de modelo analítico para cargas"
+    }
+  ],
+  "modulos": [
+    {
+      "numero": 1,
+      "id": "modulo-1-introduccion-mep-mecanico",
+      "titulo": "Introducción a Revit MEP Mecánico",
+      "duracion": 4,
+      "descripcion": "Interface MEP, configuración de proyectos mecánicos, familias MEP básicas y settings mecánicos.",
+      "lecciones": 4,
+      "ejercicios": 6
+    },
+    {
+      "numero": 2,
+      "id": "modulo-2-sistemas-climatizacion",
+      "titulo": "Sistemas de Climatización (HVAC)",
+      "duracion": 6,
+      "descripcion": "Difusores, rejillas, ductos, conexiones, accesorios, UMA, cajas VAV y Enhanced System Zones.",
+      "lecciones": 7,
+      "ejercicios": 10
+    },
+    {
+      "numero": 3,
+      "id": "modulo-3-analisis-cargas-termicas",
+      "titulo": "Análisis de Cargas Térmicas",
+      "duracion": 5,
+      "descripcion": "Espacios, zonas, HVAC Zone improvements, cálculo de cargas, análisis energético y color schemes.",
+      "lecciones": 6,
+      "ejercicios": 8
+    },
+    {
+      "numero": 4,
+      "id": "modulo-4-sistemas-ventilacion",
+      "titulo": "Sistemas de Ventilación",
+      "duracion": 5,
+      "descripcion": "Extracción, aire fresco, ventilación mecánica, dimensionamiento de ductos y selección de ventiladores.",
+      "lecciones": 5,
+      "ejercicios": 7
+    },
+    {
+      "numero": 5,
+      "id": "modulo-5-documentacion-coordinacion",
+      "titulo": "Documentación y Coordinación MEP",
+      "duracion": 4,
+      "descripcion": "Tablas de equipos, etiquetado, coordinación con arquitectura, coordination models, clash detection y fabricación MEP.",
+      "lecciones": 6,
+      "ejercicios": 9
+    }
+  ],
+  "requisitosTecnicos": {
+    "hardware": {
+      "procesador": "Intel i5 / AMD Ryzen 5 o superior",
+      "ram": "16 GB mínimo (32 GB recomendado)",
+      "gpu": "4 GB VRAM, DirectX 11 compatible",
+      "almacenamiento": "30 GB libres en SSD"
+    },
+    "software": {
+      "so": "Windows 10/11 64-bit",
+      "revit": "Autodesk Revit 2026",
+      "adicional": ["Navegador web moderno", "Visor de PDF"]
+    }
+  },
+  "incluyeCurso": [
+    "24 horas de video lecciones",
+    "Archivos de ejercicios descargables",
+    "Proyectos HVAC completos de ejemplo",
+    "Tablas de cálculo de cargas térmicas",
+    "Guías de dimensionamiento de ductos",
+    "Acceso de por vida",
+    "Actualizaciones incluidas",
+    "Certificado digital",
+    "Soporte en foro de estudiantes"
+  ],
+  "garantia": {
+    "dias": 30,
+    "descripcion": "Garantía de devolución de dinero"
+  },
+  "fechaCreacion": "2025-11-22",
+  "fechaActualizacion": "2025-11-22",
+  "estado": "activo",
+  "destacado": true,
+  "tags": [
+    "revit",
+    "revit-2026",
+    "mep",
+    "hvac",
+    "climatizacion",
+    "ventilacion",
+    "ductos",
+    "system-zones",
+    "cargas-termicas",
+    "coordinacion-mep"
+  ]
+}

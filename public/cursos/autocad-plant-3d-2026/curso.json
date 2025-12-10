@@ -1,0 +1,257 @@
+{
+  "id": "autocad-plant-3d-2026",
+  "titulo": "AutoCAD Plant 3D 2026 - Curso Avanzado",
+  "descripcion": "Curso profesional completo de AutoCAD Plant 3D 2026 para diseño de plantas industriales. Aprenda a crear diagramas P&ID, modelado 3D de tuberías, estructuras de acero, generación de isométricos y gestión de proyectos industriales con los estándares ASME, API e ISO.",
+  "precio": 585,
+  "moneda": "USD",
+  "duracion": "30 horas",
+  "nivel": "Avanzado",
+  "categoria": "Industrial",
+  "subcategoria": "Plant Design",
+  "version": "2026",
+  "software": "AutoCAD Plant 3D 2026",
+  "fabricante": "Autodesk",
+  "instructor": "EDITABLE_POR_PROFESOR",
+  "centro": "DISTMAH ATC - Authorized Training Center",
+  "idioma": "Español",
+  "fecha_creacion": "2025-11-23",
+  "ultima_actualizacion": "2025-11-23",
+  "prerequisitos": [
+    "AutoCAD 2D/3D nivel intermedio o superior",
+    "Conocimientos de procesos industriales y plantas de proceso",
+    "Lectura e interpretación de P&ID (recomendado)",
+    "Comprensión básica de normas de tuberías industriales"
+  ],
+  "objetivos_generales": [
+    "Dominar la interfaz y configuración de proyectos en AutoCAD Plant 3D 2026",
+    "Crear y gestionar diagramas P&ID con símbolos y especificaciones industriales",
+    "Modelar sistemas de tuberías 3D completos con equipos, válvulas y accesorios",
+    "Diseñar estructuras de acero, plataformas y escaleras industriales",
+    "Generar isométricos, planos ortogonales y documentación técnica completa",
+    "Gestionar proyectos colaborativos con Vault y detección de interferencias"
+  ],
+  "competencias_adquiridas": [
+    "Configuración profesional de proyectos Plant 3D con especificaciones industriales",
+    "Creación de P&ID siguiendo estándares ISA S5.1 y validación de datos",
+    "Modelado 3D de plantas industriales completas con routing inteligente",
+    "Generación automática de isométricos y listas de materiales (BOM)",
+    "Colaboración en equipo con Vault y Navisworks para revisión 3D",
+    "Aplicación de normas ASME B31.3, API y estándares ISO en diseños"
+  ],
+  "certificacion": {
+    "incluida": true,
+    "tipo": "Certificado de Finalización DISTMAH ATC",
+    "requisitos": "Completar todos los módulos y aprobar evaluaciones con 80% mínimo",
+    "validez": "Permanente"
+  },
+  "modulos": [
+    {
+      "numero": 1,
+      "id": "modulo-1-introduccion-plant3d",
+      "titulo": "Introducción a AutoCAD Plant 3D 2026",
+      "descripcion": "Fundamentos de Plant 3D, configuración de proyectos, Spec Editor y gestión de estándares industriales",
+      "duracion": "5 horas",
+      "lecciones": 5,
+      "objetivos": [
+        "Conocer la interfaz y herramientas principales de Plant 3D 2026",
+        "Configurar proyectos industriales con Plant Project Manager",
+        "Gestionar especificaciones de tuberías con Spec Editor",
+        "Personalizar propiedades y datos con Data Manager",
+        "Establecer estándares y configuraciones completas de proyecto"
+      ]
+    },
+    {
+      "numero": 2,
+      "id": "modulo-2-pid-diagramas",
+      "titulo": "P&ID (Process & Instrumentation Diagrams)",
+      "descripcion": "Creación de diagramas de instrumentación y proceso, simbología, etiquetado automático y validación de datos",
+      "duracion": "5 horas",
+      "lecciones": 5,
+      "objetivos": [
+        "Crear esquemas de instrumentación P&ID profesionales",
+        "Utilizar símbolos y grupos de líneas siguiendo ISA S5.1",
+        "Implementar tagging y numeración automática de instrumentos",
+        "Generar reportes de validación de P&ID",
+        "Vincular datos P&ID con modelos 3D"
+      ]
+    },
+    {
+      "numero": 3,
+      "id": "modulo-3-piping-3d",
+      "titulo": "Diseño de Piping 3D",
+      "descripcion": "Modelado 3D de sistemas de tuberías, equipos, válvulas, accesorios y soportería industrial",
+      "duracion": "5 horas",
+      "lecciones": 5,
+      "objetivos": [
+        "Colocar y modelar equipos industriales en 3D",
+        "Crear routing de tuberías con Pipe Routing inteligente",
+        "Agregar fittings, válvulas y componentes especializados",
+        "Diseñar soportería de tubería con Pipe Supports",
+        "Aplicar routing ortogonal y técnicas avanzadas"
+      ]
+    },
+    {
+      "numero": 4,
+      "id": "modulo-4-structural-equipment",
+      "titulo": "Structural Steel y Equipment",
+      "descripcion": "Diseño de estructuras de acero, plataformas, escaleras, barandas y equipos personalizados",
+      "duracion": "5 horas",
+      "lecciones": 5,
+      "objetivos": [
+        "Modelar perfiles de acero estructural con Structural Members",
+        "Crear plataformas y escaleras industriales",
+        "Diseñar handrails y barandas de seguridad",
+        "Desarrollar equipos personalizados con modelado paramétrico",
+        "Configurar nozzles y conexiones de equipos"
+      ]
+    },
+    {
+      "numero": 5,
+      "id": "modulo-5-isometricos-documentacion",
+      "titulo": "Isométricos y Documentación",
+      "descripcion": "Generación de isométricos, configuración de estilos, BOM, planos ortogonales y anotaciones",
+      "duracion": "5 horas",
+      "lecciones": 5,
+      "objetivos": [
+        "Generar isométricos automáticos con Iso Generation",
+        "Configurar plantillas y estilos de isométricos",
+        "Crear listas de materiales (BOM) detalladas",
+        "Producir planos ortogonales profesionales",
+        "Aplicar anotaciones y dimensionamiento técnico"
+      ]
+    },
+    {
+      "numero": 6,
+      "id": "modulo-6-collaboration-gestion",
+      "titulo": "Collaboration y Gestión de Proyectos",
+      "descripcion": "Integración con Vault, detección de interferencias, Navisworks, reportes y entrega de proyectos",
+      "duracion": "5 horas",
+      "lecciones": 5,
+      "objetivos": [
+        "Integrar proyectos con Vault para gestión documental",
+        "Realizar detección de interferencias (Clash Detection)",
+        "Utilizar Navisworks para revisión 3D colaborativa",
+        "Generar reportes personalizados con Reports Manager",
+        "Completar y entregar proyectos industriales profesionales"
+      ]
+    }
+  ],
+  "novedades_2026": [
+    "Enhanced P&ID Editor con interfaz mejorada y nuevos símbolos industriales",
+    "Improved Spec Editor con navegación más intuitiva y búsqueda avanzada",
+    "AI-assisted pipe routing para sugerencias automáticas de rutas óptimas",
+    "Enhanced isometric generation con mayor velocidad y personalización",
+    "Cloud collaboration tools mejoradas para trabajo en equipo remoto",
+    "Integration with AutoCAD 2026 toolsets y nuevas funciones de dibujo",
+    "Performance improvements en proyectos grandes (50%+ más rápido)",
+    "New equipment templates para componentes industriales comunes"
+  ],
+  "herramientas_principales": [
+    "Project Manager",
+    "Spec Editor",
+    "Data Manager",
+    "P&ID Editor",
+    "Equipment Modeling",
+    "Pipe Routing",
+    "Structural Members",
+    "Iso Generation",
+    "Reports Manager",
+    "Clash Detection"
+  ],
+  "estandares_industriales": [
+    "ASME B31.3 - Process Piping",
+    "ASME B31.1 - Power Piping",
+    "API 650 - Storage Tanks",
+    "API 610 - Centrifugal Pumps",
+    "ISA S5.1 - Instrumentation Symbols",
+    "ISO 15926 - Plant Data Integration",
+    "ISO 14617 - Graphical Symbols",
+    "ANSI/ASME Y14.5 - Dimensioning and Tolerancing"
+  ],
+  "aplicaciones_industria": [
+    "Plantas petroquímicas y refinerías",
+    "Plantas de generación de energía",
+    "Plantas de tratamiento de agua",
+    "Industria farmacéutica y alimentaria",
+    "Plantas químicas y de proceso",
+    "Instalaciones offshore y onshore"
+  ],
+  "software_complementario": [
+    "AutoCAD 2026",
+    "Autodesk Vault Professional",
+    "Navisworks Manage",
+    "AutoCAD Raster Design",
+    "Recap Pro (Point Cloud)"
+  ],
+  "requisitos_sistema": {
+    "sistema_operativo": "Windows 10/11 64-bit",
+    "procesador": "Intel Core i7 o superior (recomendado)",
+    "ram": "16 GB mínimo, 32 GB recomendado",
+    "tarjeta_grafica": "4 GB GPU DirectX 12 compatible",
+    "disco": "30 GB espacio libre SSD",
+    "resolucion": "1920x1080 mínimo",
+    "internet": "Requerida para activación y cloud features"
+  },
+  "metodologia": {
+    "tipo": "Teórico-Práctico",
+    "teoria_porcentaje": 30,
+    "practica_porcentaje": 70,
+    "proyectos_reales": true,
+    "evaluaciones": "Por módulo + proyecto final",
+    "material_descargable": true,
+    "archivos_practica": true
+  },
+  "evaluacion": {
+    "tipo": "Continua y sumativa",
+    "criterios": [
+      "Evaluaciones teóricas al final de cada lección (5 preguntas)",
+      "Ejercicios prácticos por módulo (5 ejercicios completos)",
+      "Proyecto integrador final de planta industrial completa",
+      "Participación y resolución de casos prácticos",
+      "Calidad técnica de entregables y documentación"
+    ],
+    "aprobacion": "80% mínimo en promedio general",
+    "recuperacion": "Disponible para módulos con calificación inferior a 80%"
+  },
+  "soporte": {
+    "durante_curso": true,
+    "post_curso": "30 días",
+    "canales": ["Email", "Chat", "Sesiones Q&A"],
+    "materiales_actualizados": true
+  },
+  "incluye": [
+    "30 lecciones completas con contenido profesional (1,200+ palabras cada una)",
+    "30 ejercicios prácticos basados en casos reales de industria",
+    "Archivos de proyecto Plant 3D editables para práctica",
+    "Especificaciones de tuberías industriales predefinidas",
+    "Bibliotecas de símbolos P&ID siguiendo ISA S5.1",
+    "Plantillas de isométricos y planos ortogonales",
+    "Guías de referencia rápida de comandos y herramientas",
+    "Certificado de finalización DISTMAH ATC",
+    "Acceso a materiales actualizados durante 12 meses"
+  ],
+  "audiencia_objetivo": [
+    "Ingenieros de proceso y piping",
+    "Diseñadores de plantas industriales",
+    "Proyectistas de tuberías",
+    "Ingenieros mecánicos en sector industrial",
+    "Gerentes de proyectos de plantas industriales",
+    "Profesionales CAD que desean especializarse en Plant Design"
+  ],
+  "beneficios_profesionales": [
+    "Certificación reconocida por Autodesk ATC",
+    "Habilidades demandadas en industria petroquímica y energética",
+    "Capacidad de gestionar proyectos Plant 3D completos",
+    "Conocimiento de estándares industriales internacionales",
+    "Portfolio de proyectos industriales reales",
+    "Ventaja competitiva en mercado laboral especializado"
+  ],
+  "politica_actualizacion": "Este curso se actualiza anualmente con nuevas versiones de AutoCAD Plant 3D",
+  "garantia": "Satisfacción garantizada o devolución en primeros 7 días",
+  "contacto": {
+    "centro": "DISTMAH ATC",
+    "web": "EDITABLE_POR_CENTRO",
+    "email": "EDITABLE_POR_CENTRO",
+    "telefono": "EDITABLE_POR_CENTRO"
+  }
+}

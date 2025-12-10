@@ -1,0 +1,212 @@
+{
+  "id": "revit-2026-architecture",
+  "titulo": "Revit Architecture 2026 - Curso Completo Profesional",
+  "descripcionCorta": "Domina Autodesk Revit Architecture 2026 desde cero hasta nivel avanzado. Incluye todas las nuevas caracteristicas: Accelerated Graphics, creacion automatica de muros, Toposolid mejorado, integracion Twinmotion y Reality Capture.",
+  "descripcionLarga": "Curso profesional completo de Autodesk Revit Architecture 2026 que cubre desde los fundamentos hasta tecnicas avanzadas de modelado BIM. Aprende a crear proyectos arquitectonicos completos, generar documentacion tecnica profesional, y dominar todas las nuevas herramientas de la version 2026. Incluye modelado 3D, visualizacion con Twinmotion, coordinacion BIM, familias parametricas y flujos de trabajo colaborativos.",
+  "version": "2026",
+  "precio": {
+    "valor": 390,
+    "moneda": "USD",
+    "descuento": 0
+  },
+  "duracion": {
+    "horas": 30,
+    "formato": "30 horas de video + ejercicios practicos"
+  },
+  "nivel": "Principiante a Avanzado",
+  "idioma": "Espanol",
+  "categoria": "BIM",
+  "subcategoria": "Arquitectura",
+  "instructor": {
+    "nombre": "A definir",
+    "titulo": "Arquitecto BIM Manager",
+    "experiencia": "15+ anos en proyectos BIM",
+    "certificaciones": ["Autodesk Certified Professional", "BIM Manager"]
+  },
+  "imagenPortada": "./imagenes/portada-revit-2026.png",
+  "imagenPromocion": "./imagenes/promo-revit-2026.png",
+  "video": {
+    "intro": "./videos/intro-curso.mp4",
+    "demo": "./videos/demo-revit-2026.mp4"
+  },
+  "certificacion": {
+    "disponible": true,
+    "tipo": "Certificado Digital",
+    "requisitos": "Completar todos los modulos y aprobar evaluaciones finales"
+  },
+  "publicoObjetivo": [
+    "Arquitectos profesionales",
+    "Estudiantes de arquitectura",
+    "Disenadores que desean migrar a BIM",
+    "Profesionales BIM",
+    "Ingenieros civiles en proyectos arquitectonicos",
+    "Coordinadores BIM"
+  ],
+  "prerrequisitos": [
+    "Conocimientos basicos de AutoCAD (recomendado)",
+    "Computadora con Revit 2026 instalado",
+    "Conocimientos basicos de arquitectura",
+    "Windows 10/11 con minimo 16GB RAM",
+    "Tarjeta grafica DirectX 11 compatible"
+  ],
+  "objetivosAprendizaje": [
+    "Dominar la interfaz de Revit Architecture 2026",
+    "Crear modelos arquitectonicos completos en 3D",
+    "Utilizar herramientas de creacion automatica de muros",
+    "Trabajar con Toposolid para modelado de terrenos",
+    "Generar documentacion tecnica completa",
+    "Crear renderizados con Twinmotion",
+    "Trabajar con modelos de coordinacion",
+    "Integrar nubes de puntos y Reality Capture",
+    "Crear familias parametricas personalizadas",
+    "Implementar flujos de trabajo BIM colaborativos"
+  ],
+  "caracteristicas2026": [
+    {
+      "nombre": "Accelerated Graphics",
+      "tipo": "Tech Preview",
+      "descripcion": "Navegacion 3D mejorada con aceleracion GPU"
+    },
+    {
+      "nombre": "Wall Creation Enhancements",
+      "tipo": "Modelado",
+      "descripcion": "Creacion automatica de muros desde areas cerradas"
+    },
+    {
+      "nombre": "Save Position for Views on Sheets",
+      "tipo": "Documentacion",
+      "descripcion": "Guarda posiciones de vistas en laminas"
+    },
+    {
+      "nombre": "Toposolid Improvements",
+      "tipo": "Modelado",
+      "descripcion": "Subdivision, valores negativos para vialidades"
+    },
+    {
+      "nombre": "Coordination Model Enhancements",
+      "tipo": "Colaboracion",
+      "descripcion": "Mejoras en modelos de coordinacion"
+    },
+    {
+      "nombre": "Twinmotion Integration",
+      "tipo": "Visualizacion",
+      "descripcion": "Sustitucion automatica de assets"
+    },
+    {
+      "nombre": "Reality Capture Support",
+      "tipo": "Integracion",
+      "descripcion": "Integracion de nubes de puntos y mesh"
+    },
+    {
+      "nombre": "Duplicate Layers in Edit Assembly",
+      "tipo": "Edicion",
+      "descripcion": "Duplica capas en ensamblajes de muros"
+    },
+    {
+      "nombre": "Room Tags Auto-center",
+      "tipo": "Anotacion",
+      "descripcion": "Etiquetas de habitaciones auto-centradas"
+    }
+  ],
+  "modulos": [
+    {
+      "numero": 1,
+      "id": "modulo-1-introduccion",
+      "titulo": "Introduccion a Revit Architecture 2026",
+      "duracion": 5,
+      "descripcion": "Fundamentos de Revit 2026, interfaz, navegacion con Accelerated Graphics, configuracion de proyectos y herramientas basicas.",
+      "lecciones": 5,
+      "ejercicios": 8
+    },
+    {
+      "numero": 2,
+      "id": "modulo-2-elementos-basicos",
+      "titulo": "Modelado de Elementos Arquitectonicos Basicos",
+      "duracion": 6,
+      "descripcion": "Creacion de muros (tradicional y automatica), puertas, ventanas, pisos, techos y componentes arquitectonicos.",
+      "lecciones": 6,
+      "ejercicios": 12
+    },
+    {
+      "numero": 3,
+      "id": "modulo-3-modelado-avanzado",
+      "titulo": "Modelado Avanzado y Toposolid",
+      "duracion": 5,
+      "descripcion": "Escaleras, barandales, muros cortina, Toposolid con subdivision y valores negativos para modelado de terrenos.",
+      "lecciones": 6,
+      "ejercicios": 10
+    },
+    {
+      "numero": 4,
+      "id": "modulo-4-documentacion",
+      "titulo": "Documentacion y Anotacion",
+      "duracion": 6,
+      "descripcion": "Cotas, anotaciones, etiquetas auto-centradas, habitaciones, tablas, laminas y Save Position for Views.",
+      "lecciones": 7,
+      "ejercicios": 14
+    },
+    {
+      "numero": 5,
+      "id": "modulo-5-visualizacion",
+      "titulo": "Visualizacion y Coordinacion",
+      "duracion": 4,
+      "descripcion": "Materiales, renderizado, Twinmotion, modelos de coordinacion, Reality Capture y nubes de puntos.",
+      "lecciones": 6,
+      "ejercicios": 8
+    },
+    {
+      "numero": 6,
+      "id": "modulo-6-familias-bim",
+      "titulo": "Familias y BIM",
+      "duracion": 4,
+      "descripcion": "Editor de familias, familias parametricas, parametros compartidos y flujos de trabajo BIM colaborativos.",
+      "lecciones": 6,
+      "ejercicios": 10
+    }
+  ],
+  "requisitosTecnicos": {
+    "hardware": {
+      "procesador": "Intel i5 / AMD Ryzen 5 o superior",
+      "ram": "16 GB minimo (32 GB recomendado)",
+      "gpu": "4 GB VRAM, DirectX 11 compatible",
+      "almacenamiento": "30 GB libres en SSD"
+    },
+    "software": {
+      "so": "Windows 10/11 64-bit",
+      "revit": "Autodesk Revit 2026",
+      "adicional": ["Twinmotion 2024+ (opcional)", "Navegador web moderno"]
+    }
+  },
+  "incluyeCurso": [
+    "30 horas de video lecciones",
+    "Archivos de ejercicios descargables",
+    "Proyectos completos de ejemplo",
+    "Tablas de atajos y guias rapidas",
+    "Acceso de por vida",
+    "Actualizaciones incluidas",
+    "Certificado digital",
+    "Soporte en foro de estudiantes",
+    "Consultas con instructores"
+  ],
+  "garantia": {
+    "dias": 30,
+    "descripcion": "Garantia de devolucion de dinero"
+  },
+  "fechaCreacion": "2025-11-22",
+  "fechaActualizacion": "2025-11-22",
+  "estado": "activo",
+  "destacado": true,
+  "tags": [
+    "revit",
+    "revit-2026",
+    "bim",
+    "arquitectura",
+    "autodesk",
+    "modelado-3d",
+    "documentacion",
+    "twinmotion",
+    "toposolid",
+    "familias",
+    "reality-capture"
+  ]
+}

@@ -26,46 +26,46 @@ export default function TestLottiePage() {
   const [showSuccess, setShowSuccess] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-8">
+    <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800 p-8">
       <div className="max-w-7xl mx-auto space-y-16">
         {/* Header */}
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="text-4xl font-bold text-neutral-900 dark:text-white mb-4">
             Lottie Animations Test Page
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-neutral-600 dark:text-neutral-400">
             Testing all Lottie animations for DISTMAH Universidad Autodesk
           </p>
         </div>
 
         {/* 1. LoadingSpinner Component */}
-        <section className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+        <section className="bg-white dark:bg-neutral-800 rounded-xl p-8 shadow-lg">
+          <h2 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-white">
             1. LoadingSpinner Component
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <p className="text-sm text-gray-500 mb-2 text-center">Small</p>
+              <p className="text-sm text-neutral-500 mb-2 text-center">Small</p>
               <LoadingSpinner size="sm" message="Cargando..." centered />
             </div>
             <div>
-              <p className="text-sm text-gray-500 mb-2 text-center">Medium</p>
+              <p className="text-sm text-neutral-500 mb-2 text-center">Medium</p>
               <LoadingSpinner size="md" message="Procesando..." centered />
             </div>
             <div>
-              <p className="text-sm text-gray-500 mb-2 text-center">Large</p>
+              <p className="text-sm text-neutral-500 mb-2 text-center">Large</p>
               <LoadingSpinner size="lg" message="Espere..." centered />
             </div>
             <div>
-              <p className="text-sm text-gray-500 mb-2 text-center">XL</p>
+              <p className="text-sm text-neutral-500 mb-2 text-center">XL</p>
               <LoadingSpinner size="xl" centered />
             </div>
           </div>
         </section>
 
         {/* 2. SuccessAnimation Component */}
-        <section className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+        <section className="bg-white dark:bg-neutral-800 rounded-xl p-8 shadow-lg">
+          <h2 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-white">
             2. SuccessAnimation Component
           </h2>
           <div className="flex justify-center mb-6">
@@ -83,8 +83,8 @@ export default function TestLottiePage() {
         </section>
 
         {/* 3. EmptyState Component */}
-        <section className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+        <section className="bg-white dark:bg-neutral-800 rounded-xl p-8 shadow-lg">
+          <h2 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-white">
             3. EmptyState Component
           </h2>
           <EmptyState
@@ -98,8 +98,8 @@ export default function TestLottiePage() {
         </section>
 
         {/* 4. CelebrationConfetti Component */}
-        <section className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+        <section className="bg-white dark:bg-neutral-800 rounded-xl p-8 shadow-lg">
+          <h2 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-white">
             4. CelebrationConfetti Component
           </h2>
           <div className="text-center">
@@ -110,7 +110,7 @@ export default function TestLottiePage() {
             >
               🎉 Lanzar Confeti de Celebración
             </Button>
-            <p className="text-sm text-gray-500 mt-4">
+            <p className="text-sm text-neutral-500 mt-4">
               Click para celebrar completar un curso o logro importante
             </p>
           </div>
@@ -121,8 +121,8 @@ export default function TestLottiePage() {
         </section>
 
         {/* 5. Raw Lottie Animations - Loading */}
-        <section className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+        <section className="bg-white dark:bg-neutral-800 rounded-xl p-8 shadow-lg">
+          <h2 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-white">
             5. Loading Animations (Raw JSON)
           </h2>
           <div className="flex items-center justify-center gap-12">
@@ -134,14 +134,14 @@ export default function TestLottiePage() {
                 loop={true}
                 autoplay={true}
               />
-              <p className="text-sm text-gray-500 mt-2">Loading Dots</p>
+              <p className="text-sm text-neutral-500 mt-2">Loading Dots</p>
             </div>
           </div>
         </section>
 
         {/* 6. Success & Celebration */}
-        <section className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+        <section className="bg-white dark:bg-neutral-800 rounded-xl p-8 shadow-lg">
+          <h2 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-white">
             6. Success & Celebration Animations
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -153,7 +153,7 @@ export default function TestLottiePage() {
                 loop={false}
                 autoplay={true}
               />
-              <p className="text-sm text-gray-500 mt-2">Celebration Checkmark</p>
+              <p className="text-sm text-neutral-500 mt-2">Celebration Checkmark</p>
             </div>
             <div className="text-center">
               <LottieAnimation
@@ -163,14 +163,14 @@ export default function TestLottiePage() {
                 loop={false}
                 autoplay={true}
               />
-              <p className="text-sm text-gray-500 mt-2">Confetti Celebration</p>
+              <p className="text-sm text-neutral-500 mt-2">Confetti Celebration</p>
             </div>
           </div>
         </section>
 
         {/* 7. Certificate & Awards */}
-        <section className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+        <section className="bg-white dark:bg-neutral-800 rounded-xl p-8 shadow-lg">
+          <h2 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-white">
             7. Certificate & Award Animations
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -182,7 +182,7 @@ export default function TestLottiePage() {
                 loop={true}
                 autoplay={true}
               />
-              <p className="text-sm text-gray-500 mt-2">Award Badge</p>
+              <p className="text-sm text-neutral-500 mt-2">Award Badge</p>
             </div>
             <div className="text-center">
               <LottieAnimation
@@ -192,14 +192,14 @@ export default function TestLottiePage() {
                 loop={true}
                 autoplay={true}
               />
-              <p className="text-sm text-gray-500 mt-2">Diploma Certificate</p>
+              <p className="text-sm text-neutral-500 mt-2">Diploma Certificate</p>
             </div>
           </div>
         </section>
 
         {/* 8. Empty State */}
-        <section className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+        <section className="bg-white dark:bg-neutral-800 rounded-xl p-8 shadow-lg">
+          <h2 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-white">
             8. Empty State Animation
           </h2>
           <div className="flex justify-center">
@@ -211,12 +211,12 @@ export default function TestLottiePage() {
               autoplay={true}
             />
           </div>
-          <p className="text-sm text-gray-500 mt-4 text-center">Empty Data Animation</p>
+          <p className="text-sm text-neutral-500 mt-4 text-center">Empty Data Animation</p>
         </section>
 
         {/* 9. Animated Icons */}
-        <section className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+        <section className="bg-white dark:bg-neutral-800 rounded-xl p-8 shadow-lg">
+          <h2 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-white">
             9. Animated Icons (Hover to Play)
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
@@ -229,7 +229,7 @@ export default function TestLottiePage() {
                 autoplay={false}
                 playOnHover={true}
               />
-              <p className="text-xs text-gray-500 mt-2">Book Reading</p>
+              <p className="text-xs text-neutral-500 mt-2">Book Reading</p>
             </div>
 
             <div className="text-center">
@@ -241,7 +241,7 @@ export default function TestLottiePage() {
                 autoplay={false}
                 playOnHover={true}
               />
-              <p className="text-xs text-gray-500 mt-2">Video Icon</p>
+              <p className="text-xs text-neutral-500 mt-2">Video Icon</p>
             </div>
 
             <div className="text-center">
@@ -253,7 +253,7 @@ export default function TestLottiePage() {
                 autoplay={false}
                 playOnHover={true}
               />
-              <p className="text-xs text-gray-500 mt-2">User Profile</p>
+              <p className="text-xs text-neutral-500 mt-2">User Profile</p>
             </div>
 
             <div className="text-center">
@@ -265,7 +265,7 @@ export default function TestLottiePage() {
                 autoplay={false}
                 playOnHover={true}
               />
-              <p className="text-xs text-gray-500 mt-2">Settings Gear</p>
+              <p className="text-xs text-neutral-500 mt-2">Settings Gear</p>
             </div>
 
             <div className="text-center">
@@ -277,17 +277,17 @@ export default function TestLottiePage() {
                 autoplay={false}
                 playOnHover={true}
               />
-              <p className="text-xs text-gray-500 mt-2">Document File</p>
+              <p className="text-xs text-neutral-500 mt-2">Document File</p>
             </div>
           </div>
         </section>
 
         {/* 10. Scroll Trigger Test */}
-        <section className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+        <section className="bg-white dark:bg-neutral-800 rounded-xl p-8 shadow-lg">
+          <h2 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-white">
             10. Scroll Trigger Animations
           </h2>
-          <p className="text-gray-500 mb-8 text-center">
+          <p className="text-neutral-500 mb-8 text-center">
             Scroll down to see these animations activate
           </p>
 
@@ -314,7 +314,7 @@ export default function TestLottiePage() {
         <div className="h-64"></div>
 
         {/* Footer */}
-        <footer className="text-center text-gray-500 dark:text-gray-400 pb-8">
+        <footer className="text-center text-neutral-500 dark:text-neutral-400 pb-8">
           <p>
             ✅ 12 animaciones JSON descargadas • 5 componentes UI creados • lottie-react v2.4.1
           </p>

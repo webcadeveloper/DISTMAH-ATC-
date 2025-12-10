@@ -1,0 +1,45 @@
+{
+  "id": "actualizacion-autocad-2026",
+  "titulo": "Actualización a AutoCAD 2026",
+  "descripcion": "Curso enfocado en las novedades y mejoras de AutoCAD 2026 para profesionales que trabajan con versiones anteriores. Aprende las nuevas herramientas, mejoras de rendimiento y funciones impulsadas por IA.",
+  "version": "2026",
+  "nivel": "Actualización",
+  "duracion": "8 horas",
+  "precio": 85,
+  "categoria": "CAD",
+  "software": "AutoCAD",
+  "instructor": "DISTMAH ATC",
+  "objetivos": [
+    "Dominar las nuevas herramientas de dibujo y edición de AutoCAD 2026",
+    "Implementar funciones impulsadas por inteligencia artificial",
+    "Aprovechar las mejoras de colaboración y trabajo en la nube",
+    "Optimizar flujos de trabajo con nuevas herramientas de automatización",
+    "Migrar proyectos desde versiones anteriores eficientemente"
+  ],
+  "requisitos": [
+    "Conocimiento sólido de AutoCAD (versiones 2020-2025)",
+    "Experiencia práctica con proyectos CAD 2D y 3D",
+    "Computadora con AutoCAD 2026 instalado",
+    "16 GB RAM mínimo (recomendado 32 GB)",
+    "Tarjeta gráfica compatible con DirectX 11"
+  ],
+  "modulos": [
+    {
+      "id": "modulo-1-novedades-2026",
+      "titulo": "Novedades AutoCAD 2026",
+      "descripcion": "Explora las características completamente nuevas introducidas en AutoCAD 2026, incluyendo mejoras de interfaz, herramientas impulsadas por IA y nuevas capacidades de colaboración.",
+      "duracion": "4 horas",
+      "lecciones": 4
+    },
+    {
+      "id": "modulo-2-mejoras-productividad",
+      "titulo": "Mejoras de Productividad 2026",
+      "descripcion": "Aprende a maximizar tu productividad con las optimizaciones de rendimiento, integraciones en la nube mejoradas y nuevas herramientas de automatización de AutoCAD 2026.",
+      "duracion": "4 horas",
+      "lecciones": 4
+    }
+  ],
+  "certificacion": true,
+  "actualizaciones": true,
+  "soporte": true
+}

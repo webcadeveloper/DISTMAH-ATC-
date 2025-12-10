@@ -44,79 +44,544 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --radius: 0.25rem;
+  /* Autodesk Brand Colors */
+  --background: #ffffff;
+  --foreground: #000000;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --popover: #ffffff;
+  --popover-foreground: #000000;
+  /* Primary - Black */
+  --primary: #000000;
+  --primary-foreground: #ffffff;
+  /* Secondary - Slate */
+  --secondary: #666666;
+  --secondary-foreground: #ffffff;
+  /* Accent - Hello Yellow */
+  --accent-yellow: #FFFF00;
+  --accent-yellow-alt: #D7CB1D;
+  /* Autodesk Secondary Palette */
+  --twilight: #1D91D0;
+  --morning: #2AD0A9;
+  --dawn: #F09D4F;
+  --dusk: #F2520A;
+  /* Neutrals */
+  --muted: #f5f5f5;
+  --muted-foreground: #666666;
+  --accent: #f5f5f5;
+  --accent-foreground: #000000;
+  --destructive: #F2520A;
+  --destructive-foreground: #ffffff;
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #1D91D0;
+  /* Charts using Autodesk palette */
+  --chart-1: #1D91D0;
+  --chart-2: #2AD0A9;
+  --chart-3: #F09D4F;
+  --chart-4: #F2520A;
+  --chart-5: #666666;
+  /* Sidebar */
+  --sidebar: #fafafa;
+  --sidebar-foreground: #000000;
+  --sidebar-primary: #000000;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f5f5f5;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #e5e5e5;
+  --sidebar-ring: #1D91D0;
+}
+
+/* Text Selection - White text on blue background */
+::selection {
+  background-color: #1D91D0;
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background-color: #1D91D0;
+  color: #ffffff;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #171717;
+  --card-foreground: #ffffff;
+  --popover: #171717;
+  --popover-foreground: #ffffff;
+  --primary: #ffffff;
+  --primary-foreground: #000000;
+  --secondary: #666666;
+  --secondary-foreground: #ffffff;
+  --accent-yellow: #FFFF00;
+  --accent-yellow-alt: #D7CB1D;
+  --twilight: #1D91D0;
+  --morning: #2AD0A9;
+  --dawn: #F09D4F;
+  --dusk: #F2520A;
+  --muted: #262626;
+  --muted-foreground: #a3a3a3;
+  --accent: #262626;
+  --accent-foreground: #ffffff;
+  --destructive: #F2520A;
+  --destructive-foreground: #ffffff;
+  --border: #262626;
+  --input: #262626;
+  --ring: #1D91D0;
+  --chart-1: #1D91D0;
+  --chart-2: #2AD0A9;
+  --chart-3: #F09D4F;
+  --chart-4: #F2520A;
+  --chart-5: #666666;
+  --sidebar: #000000;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #262626;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #262626;
+  --sidebar-ring: #1D91D0;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.plyr {
+  --plyr-color-main: #1D91D0;
+  --plyr-video-background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.plyr__control--overlaid {
+  background: rgba(29, 145, 208, 0.9);
+}
+
+.plyr__control:hover {
+  background: var(--plyr-color-main);
+}
+
+.plyr__menu__container {
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 8px;
+}
+
+.plyr__captions {
+  font-size: 1.2em;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 0.5em 1em;
+  border-radius: 4px;
+}
+
+.plyr--video .plyr__control.plyr__tab-focus,
+.plyr--video .plyr__control:hover,
+.plyr--video .plyr__control[aria-expanded=true] {
+  background: var(--plyr-color-main);
+}
+
+.plyr__menu__container .plyr__control[role=menuitemradio][aria-checked=true]::before {
+  background: var(--plyr-color-main);
+}
+
+@property --gradient-color-1 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #1D91D0;
+}
+
+@property --gradient-color-2 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: #2AD0A9;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    --gradient-color-1: #1D91D0;
+    --gradient-color-2: #2AD0A9;
+  }
+  50% {
+    --gradient-color-1: #5BB4E5;
+    --gradient-color-2: #5EDFBF;
+  }
+}
+
+.text-animation {
+  animation: text-slide 8s cubic-bezier(0.83, 0, 0.17, 1) infinite;
+}
+
+@keyframes text-slide {
+  0% { margin-top: 0; }
+  10% { margin-top: 0; }
+  20% { margin-top: -5.62rem; }
+  30% { margin-top: -5.62rem; }
+  40% { margin-top: -11.24rem; }
+  60% { margin-top: -11.24rem; }
+  70% { margin-top: -5.62rem; }
+  80% { margin-top: -5.62rem; }
+  90% { margin-top: 0; }
+  100% { margin-top: 0; }
+}
+
+.text-shadow {
+  text-shadow: 0 0 7px rgba(255,255,255,.3), 0 0 3px rgba(255,255,255,.3);
+}
+
+.aurora-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  mix-blend-mode: darken;
+  pointer-events: none;
+}
+
+.aurora-item {
+  overflow: hidden;
+  position: absolute;
+  width: 60vw;
+  height: 60vw;
+  border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%;
+  filter: blur(1.5rem);
+  mix-blend-mode: overlay;
+}
+
+.aurora-item:nth-of-type(1) {
+  background-color: #1D91D0;
+  top: -50%;
+  animation: aurora-border 6s ease-in-out infinite,
+    aurora-1 12s ease-in-out infinite alternate;
+}
+
+.aurora-item:nth-of-type(2) {
+  background-color: #2AD0A9;
+  right: 0;
+  top: 0;
+  animation: aurora-border 6s ease-in-out infinite,
+    aurora-2 12s ease-in-out infinite alternate;
+}
+
+.aurora-item:nth-of-type(3) {
+  background-color: #5BB4E5;
+  left: 0;
+  bottom: 0;
+  animation: aurora-border 6s ease-in-out infinite,
+    aurora-3 8s ease-in-out infinite alternate;
+}
+
+.aurora-item:nth-of-type(4) {
+  background-color: #5EDFBF;
+  right: 0;
+  bottom: -50%;
+  animation: aurora-border 6s ease-in-out infinite,
+    aurora-4 24s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-1 {
+  0% { top: 0; right: 0; }
+  50% { top: 100%; right: 75%; }
+  75% { top: 100%; right: 25%; }
+  100% { top: 0; right: 0; }
+}
+
+@keyframes aurora-2 {
+  0% { top: -50%; left: 0%; }
+  60% { top: 100%; left: 75%; }
+  85% { top: 100%; left: 25%; }
+  100% { top: -50%; left: 0%; }
+}
+
+@keyframes aurora-3 {
+  0% { bottom: 0; left: 0; }
+  40% { bottom: 100%; left: 75%; }
+  65% { bottom: 40%; left: 50%; }
+  100% { bottom: 0; left: 0; }
+}
+
+@keyframes aurora-4 {
+  0% { bottom: -50%; right: 0; }
+  50% { bottom: 0%; right: 40%; }
+  90% { bottom: 50%; right: 25%; }
+  100% { bottom: -50%; right: 0; }
+}
+
+@keyframes aurora-border {
+  0% { border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%; }
+  25% { border-radius: 47% 29% 39% 49% / 61% 19% 66% 26%; }
+  50% { border-radius: 57% 23% 47% 72% / 63% 17% 66% 33%; }
+  75% { border-radius: 28% 49% 29% 100% / 93% 20% 64% 25%; }
+  100% { border-radius: 37% 29% 27% 27% / 28% 25% 41% 37%; }
+}
+
+.aurora-text {
+  position: relative;
+  background: linear-gradient(
+    120deg,
+    #1D91D0 0%,
+    #2AD0A9 25%,
+    #5BB4E5 50%,
+    #2AD0A9 75%,
+    #1D91D0 100%
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  animation: aurora-text-shift 12s ease-in-out infinite;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+@keyframes aurora-text-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ============================================
+   LESSON CONTENT STYLES - Professional Brochure
+   ============================================ */
+
+.lesson-content {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #374151;
+}
+
+.lesson-content > *:first-child {
+  margin-top: 0;
+}
+
+/* Headers */
+.lesson-content h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #000000;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid #1D91D0;
+}
+
+.lesson-content h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.lesson-content h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #374151;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.lesson-content h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #4b5563;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Paragraphs */
+.lesson-content p {
+  color: #4b5563;
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+
+/* Lists */
+.lesson-content ul,
+.lesson-content ol {
+  margin: 1.25rem 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.lesson-content li {
+  position: relative;
+  padding-left: 1.75rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.7;
+}
+
+.lesson-content ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6rem;
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(135deg, #1D91D0 0%, #2AD0A9 100%);
+  border-radius: 50%;
+}
+
+.lesson-content ol {
+  counter-reset: list-counter;
+}
+
+.lesson-content ol > li {
+  counter-increment: list-counter;
+}
+
+.lesson-content ol > li::before {
+  content: counter(list-counter);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: linear-gradient(135deg, #1D91D0 0%, #2AD0A9 100%);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tables */
+.lesson-content table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 2rem 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.lesson-content thead {
+  background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+}
+
+.lesson-content th {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  font-weight: 600;
+  color: white;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.lesson-content tbody tr {
+  background: white;
+  transition: background-color 0.15s ease;
+}
+
+.lesson-content tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+.lesson-content tbody tr:hover {
+  background: rgba(29, 145, 208, 0.08);
+}
+
+.lesson-content td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #e5e7eb;
+  color: #374151;
+}
+
+/* Code blocks */
+.lesson-content code {
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  color: #1f2937;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.875em;
+  border: 1px solid #d1d5db;
+}
+
+.lesson-content pre {
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
+  color: #e2e8f0;
+  padding: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 1.5rem 0;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.lesson-content pre code {
+  background: transparent;
+  border: none;
+  padding: 1.5rem;
+  display: block;
+  overflow-x: auto;
+  color: #e2e8f0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Blockquotes */
+.lesson-content blockquote {
+  background: linear-gradient(135deg, rgba(29, 145, 208, 0.08) 0%, rgba(42, 208, 169, 0.08) 100%);
+  border-left: 4px solid #1D91D0;
+  border-radius: 0 12px 12px 0;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: #0A6CA3;
+}
+
+.lesson-content blockquote p {
+  margin-bottom: 0;
+  color: inherit;
+}
+
+/* Horizontal rule */
+.lesson-content hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #d1d5db 20%, #9ca3af 50%, #d1d5db 80%, transparent 100%);
+  margin: 2.5rem 0;
+}
+
+/* Strong / Bold */
+.lesson-content strong {
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Links */
+.lesson-content a {
+  color: #1D91D0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s ease;
+}
+
+.lesson-content a:hover {
+  color: #0A6CA3;
+}
+
+/* Images placeholder */
+.lesson-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 1.5rem 0;
 }

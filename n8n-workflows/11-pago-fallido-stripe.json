@@ -1,0 +1,82 @@
+{
+  "name": "DISTMAH - Alerta Pago Fallido Stripe",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "payment-failed-webhook",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-failed",
+      "name": "Webhook Pago Fallido",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\"status\": \"received\"}"
+      },
+      "id": "response",
+      "name": "Responder OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@distmah.com.ve",
+        "toEmail": "={{ $json.customer.email }}",
+        "subject": "=Problema con tu pago - {{ $json.course.title }}",
+        "emailType": "html",
+        "html": "=<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f5f5f5; padding: 20px;\">\n  <div style=\"background: #dc3545; padding: 30px; text-align: center;\">\n    <h1 style=\"color: white; margin: 0;\">Problema con tu Pago</h1>\n  </div>\n  \n  <div style=\"background: white; padding: 30px;\">\n    <h2 style=\"color: #333;\">Hola {{ $json.customer.name }},</h2>\n    \n    <p style=\"color: #666; line-height: 1.6;\">Lamentamos informarte que hubo un problema al procesar tu pago para el curso:</p>\n    \n    <div style=\"background: #f8d7da; padding: 15px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #dc3545;\">\n      <p style=\"color: #721c24; margin: 0; font-weight: bold;\">{{ $json.course.title }}</p>\n      <p style=\"color: #721c24; margin: 5px 0 0 0;\">Monto: ${{ $json.payment.amount }} {{ $json.payment.currency }}</p>\n    </div>\n    \n    <p style=\"color: #666;\"><strong>Razón:</strong> {{ $json.payment.failureReason }}</p>\n    \n    <p style=\"color: #666; line-height: 1.6;\">Por favor, verifica los datos de tu tarjeta o intenta con otro método de pago.</p>\n    \n    <div style=\"text-align: center; margin: 30px 0;\">\n      <a href=\"https://edu.distmah.com/es/cursos/{{ $json.course.slug }}\" style=\"background: #1F4E79; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;\">Reintentar Pago</a>\n    </div>\n    \n    <p style=\"color: #999; font-size: 12px; text-align: center;\">Si necesitas ayuda, contáctanos a soporte@distmah.com.ve</p>\n  </div>\n</div>"
+      },
+      "id": "email-customer",
+      "name": "Notificar Cliente",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [650, 200],
+      "credentials": {
+        "smtp": {
+          "id": "1",
+          "name": "SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@distmah.com.ve",
+        "toEmail": "admin@distmah.com.ve",
+        "subject": "=Pago Fallido - {{ $json.customer.name }} - ${{ $json.payment.amount }}",
+        "emailType": "html",
+        "html": "=<div style=\"font-family: Arial, sans-serif;\">\n  <h2 style=\"color: #dc3545;\">Pago Fallido</h2>\n  <ul>\n    <li><strong>Cliente:</strong> {{ $json.customer.name }} ({{ $json.customer.email }})</li>\n    <li><strong>Curso:</strong> {{ $json.course.title }}</li>\n    <li><strong>Monto:</strong> ${{ $json.payment.amount }} {{ $json.payment.currency }}</li>\n    <li><strong>Stripe ID:</strong> {{ $json.payment.stripeId }}</li>\n    <li><strong>Razón:</strong> {{ $json.payment.failureReason }}</li>\n    <li><strong>Fecha:</strong> {{ $json.payment.failedAt }}</li>\n  </ul>\n</div>"
+      },
+      "id": "email-admin",
+      "name": "Notificar Admin",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [650, 400],
+      "credentials": {
+        "smtp": {
+          "id": "1",
+          "name": "SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Pago Fallido": {
+      "main": [
+        [
+          { "node": "Responder OK", "type": "main", "index": 0 },
+          { "node": "Notificar Cliente", "type": "main", "index": 0 },
+          { "node": "Notificar Admin", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "pagos" }, { "name": "stripe" }, { "name": "alertas" }]
+}

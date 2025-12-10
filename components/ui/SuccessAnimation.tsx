@@ -84,12 +84,12 @@ export function SuccessAnimation({
         onComplete={onComplete}
       />
       {title && (
-        <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+        <h3 className="text-2xl font-bold text-neutral-900 dark:text-white">
           {title}
         </h3>
       )}
       {message && (
-        <p className="text-base text-gray-600 dark:text-gray-400 max-w-md">
+        <p className="text-base text-neutral-600 dark:text-neutral-400 max-w-md">
           {message}
         </p>
       )}

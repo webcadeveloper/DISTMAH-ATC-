@@ -1,0 +1,38 @@
+ARCHIVOS CREADOS - DISTMAH ATC
+Fecha: 2025-11-24
+===============================
+
+## 1. B\u00daSQUEDA Y FILTROS DE CURSOS
+
+MODIFICADO:
+- app/[locale]/(public)/cursos/page.tsx
+
+NUEVO:
+- app/[locale]/(public)/cursos/CursosClientPage.tsx
+
+## 2. LIVE CLASSES - APIs
+
+NUEVO:
+- app/api/live-classes/route.ts
+- app/api/live-classes/[id]/route.ts
+
+## 3. LIVE CLASSES - P\u00c1GINAS
+
+NUEVO:
+- app/instructor/cursos/[id]/clases-en-vivo/page.tsx
+- app/estudiante/clases-en-vivo/page.tsx
+
+## 4. COMPONENTES UI
+
+NUEVO:
+- components/dashboard/NextLiveClass.tsx
+- components/ui/countdown.tsx
+
+## 5. DOCUMENTACI\u00d3N
+
+NUEVO:
+- TESTING-GUIDE.md
+- IMPLEMENTATION-SUMMARY.md
+- FILES-CREATED.txt
+
+TOTAL: 11 archivos (1 modificado, 10 nuevos)

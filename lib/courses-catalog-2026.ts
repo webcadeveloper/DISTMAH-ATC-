@@ -1,73 +1,4 @@
-export interface Course {
-  id: string;
-  slug: string;
-  version: string; // "2026", "2027", etc.
-  software: string; // "AutoCAD 2026", "Revit 2026", etc.
-  title: string;
-  subtitle: string;
-  category: 'AutoCAD' | 'Revit' | 'Civil3D' | 'Navisworks' | 'BIM360';
-  level: 'Básico' | 'Intermedio' | 'Avanzado';
-  duration: number; // horas totales
-  sessions: number; // número de sesiones
-  description: string;
-  objectives: string[];
-  prerequisites: string[];
-  certification: string;
-  price: number; // USD
-  priceVEF: number; // Bolívares
-  image: string;
-  thumbnail: string;
-  featured: boolean;
-  popular: boolean;
-  enrollmentCount: number;
-  rating: number;
-  reviewsCount: number;
-  instructor: string;
-  skills: string[];
-  tags: string[];
-  syllabus: Module[];
-  lastUpdated: string; // ISO date
-  releaseDate: string; // Fecha lanzamiento Autodesk
-}
-
-export interface Module {
-  id: string;
-  number: number;
-  title: string;
-  description: string;
-  duration: number; // horas
-  lessons: Lesson[];
-  order: number;
-}
-
-export interface Lesson {
-  id: string;
-  moduleId: string;
-  number: number;
-  title: string;
-  description: string;
-  duration: number; // minutos
-  type: 'video' | 'reading' | 'exercise' | 'live-class';
-  content: LessonContent;
-  resources: Resource[];
-  order: number;
-}
-
-export interface LessonContent {
-  videoUrl?: string; // Microsoft Stream URL
-  videoStreamId?: string;
-  richText?: string; // HTML del editor TipTap
-  embedCode?: string;
-  files?: string[]; // URLs archivos OneDrive/SharePoint
-}
-
-export interface Resource {
-  id: string;
-  title: string;
-  type: 'pdf' | 'dwg' | 'rvt' | 'zip' | 'image' | 'link';
-  url: string;
-  size?: number;
-}
+import { Course } from './types';
 
 // CATÁLOGO 2026
 export const COURSES_2026: Course[] = [
@@ -92,7 +23,7 @@ export const COURSES_2026: Course[] = [
     • Colaboración en tiempo real
     
     Certificación Autodesk oficial al finalizar.`,
-    
+
     objectives: [
       'Dominar la interfaz de AutoCAD 2026 y sus nuevas funcionalidades',
       'Crear dibujos 2D precisos con herramientas avanzadas',
@@ -101,40 +32,39 @@ export const COURSES_2026: Course[] = [
       'Utilizar las herramientas de colaboración de AutoCAD 2026',
       'Prepararse para certificación Autodesk Certified User',
     ],
-    
+
     prerequisites: [
       'Conocimientos básicos de Windows 10/11',
       'Conceptos fundamentales de dibujo técnico',
       'Computadora con 8GB RAM mínimo (AutoCAD 2026 requirements)',
     ],
-    
+
     certification: 'Autodesk Certified User - AutoCAD 2026',
     instructor: 'Ing. [Nombre] - Autodesk Certified Instructor',
-    
+
     price: 299,
     priceVEF: 11000,
-    
-    image: '/images/courses/autocad-2d-2026-hero.jpg',
-    thumbnail: '/images/courses/autocad-2d-2026-thumb.jpg',
-    
+
+    image: '/images/logodis.PNG',
+    thumbnail: '/images/logodis.PNG',
+
     featured: true,
     popular: true,
     enrollmentCount: 0, // Curso nuevo 2026
     rating: 0,
     reviewsCount: 0,
-    
+
     skills: ['AutoCAD 2D', 'Dibujo Técnico', 'CAD 2026', 'Planos', 'Drafting'],
     tags: ['AutoCAD', '2026', '2D', 'Diseño', 'Certificación', 'Básico', 'Nuevo'],
-    
+
     lastUpdated: '2026-01-15T00:00:00Z',
     releaseDate: '2025-11-01T00:00:00Z', // Fecha lanzamiento AutoCAD 2026
-    
     syllabus: [
       {
         id: 'mod-1',
         number: 1,
-        title: 'Introducción a AutoCAD 2026',
-        description: 'Conoce la nueva interfaz y configuración de AutoCAD 2026',
+        title: 'Módulo 1: Introducción e Interfaz 2026',
+        description: 'Navegación, gestión de archivos y novedades de la interfaz 2026.',
         duration: 3,
         order: 1,
         lessons: [
@@ -142,35 +72,28 @@ export const COURSES_2026: Course[] = [
             id: 'lec-1-1',
             moduleId: 'mod-1',
             number: 1,
-            title: 'Novedades AutoCAD 2026',
-            description: 'Qué hay de nuevo en AutoCAD 2026 vs versiones anteriores',
+            title: 'Interfaz y Espacio de Trabajo 2026',
+            description: 'Exploración de la nueva interfaz optimizada y personalización.',
             duration: 30,
             type: 'video',
             order: 1,
             content: {
-              richText: `<h2>Novedades AutoCAD 2026</h2>
-              <p>En esta lección exploraremos las nuevas funcionalidades de AutoCAD 2026:</p>
+              videoUrl: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+              richText: `<h2>Interfaz AutoCAD 2026</h2>
+              <p>La nueva interfaz de AutoCAD 2026 está diseñada para maximizar el área de dibujo y facilitar el acceso a herramientas inteligentes.</p>
               <ul>
-                <li>Interfaz rediseñada y más intuitiva</li>
-                <li>Smart Tools para dibujo inteligente</li>
-                <li>Colaboración en tiempo real mejorada</li>
-                <li>Performance optimizada (50% más rápido)</li>
-                <li>Integración nativa con AutoCAD Web y Mobile</li>
+                <li><strong>Start Tab:</strong> Acceso rápido a proyectos recientes y Docs.</li>
+                <li><strong>Ribbon Simplificado:</strong> Pestañas contextuales mejoradas.</li>
+                <li><strong>Dark Theme:</strong> Contraste optimizado para reducir fatiga visual.</li>
               </ul>`,
             },
             resources: [
               {
                 id: 'res-1',
-                title: 'Guía de Novedades AutoCAD 2026.pdf',
+                title: 'Guía de Interfaz 2026.pdf',
                 type: 'pdf',
-                url: '/resources/autocad-2026-whats-new.pdf',
-                size: 2500000,
-              },
-              {
-                id: 'res-2',
-                title: 'Shortcuts AutoCAD 2026.pdf',
-                type: 'pdf',
-                url: '/resources/autocad-2026-shortcuts.pdf',
+                url: '/resources/interface-guide-2026.pdf',
+                size: 1024000,
               },
             ],
           },
@@ -178,285 +101,214 @@ export const COURSES_2026: Course[] = [
             id: 'lec-1-2',
             moduleId: 'mod-1',
             number: 2,
-            title: 'Instalación y Configuración Inicial',
-            description: 'Cómo instalar y configurar AutoCAD 2026 correctamente',
-            duration: 45,
+            title: 'Gestión de Archivos y Nube',
+            description: 'Abrir, guardar y gestionar versiones con Autodesk Docs.',
+            duration: 25,
             type: 'video',
             order: 2,
             content: {
-              richText: `<h2>Instalación AutoCAD 2026</h2>
-              <p>Aprenderás a:</p>
-              <ol>
-                <li>Descargar AutoCAD 2026 desde Autodesk Account</li>
-                <li>Requisitos del sistema y compatibilidad</li>
-                <li>Proceso de instalación paso a paso</li>
-                <li>Activación de licencia educativa</li>
-                <li>Configuración inicial recomendada</li>
-                <li>Personalizar interfaz y workspace</li>
-              </ol>`,
+              richText: `<p>Aprende a conectar AutoCAD con la nube para trabajar desde cualquier lugar.</p>`,
             },
-            resources: [
-              {
-                id: 'res-3',
-                title: 'Plantilla Configuración DISTMAH.dwt',
-                type: 'dwg',
-                url: '/resources/distmah-template-2026.dwt',
-              },
-            ],
-          },
-          {
-            id: 'lec-1-3',
-            moduleId: 'mod-1',
-            number: 3,
-            title: 'Interfaz y Espacios de Trabajo',
-            description: 'Navegación por la interfaz de AutoCAD 2026',
-            duration: 45,
-            type: 'video',
-            order: 3,
-            content: {
-              richText: `<h2>Interfaz AutoCAD 2026</h2>
-              <p>Componentes principales:</p>
-              <ul>
-                <li><strong>Ribbon:</strong> Nuevo diseño contextual</li>
-                <li><strong>Quick Access Toolbar:</strong> Personalización</li>
-                <li><strong>Command Line:</strong> Uso eficiente</li>
-                <li><strong>ViewCube y Navigation Bar:</strong> Navegación 3D</li>
-                <li><strong>Status Bar:</strong> Herramientas de precisión</li>
-                <li><strong>Palettes:</strong> Properties, Layers, Tool Palettes</li>
-              </ul>`,
-            },
-            resources: [],
-          },
-          {
-            id: 'lec-1-4',
-            moduleId: 'mod-1',
-            number: 4,
-            title: 'Sistema de Coordenadas y Unidades',
-            description: 'Entender el sistema de coordenadas de AutoCAD',
-            duration: 30,
-            type: 'video',
-            order: 4,
-            content: {
-              richText: `<h2>Coordenadas en AutoCAD</h2>
-              <p>Tipos de coordenadas:</p>
-              <ul>
-                <li>Coordenadas Absolutas (X,Y)</li>
-                <li>Coordenadas Relativas (@X,Y)</li>
-                <li>Coordenadas Polares (distancia<ángulo)</li>
-                <li>Coordenadas Relativas Polares (@distancia<ángulo)</li>
-              </ul>
-              <p>Configuración de unidades de dibujo y precisión.</p>`,
-            },
-            resources: [
-              {
-                id: 'res-4',
-                title: 'Ejercicio Práctico - Coordenadas.dwg',
-                type: 'dwg',
-                url: '/resources/ejercicio-coordenadas.dwg',
-              },
-            ],
-          },
-          {
-            id: 'lec-1-5',
-            moduleId: 'mod-1',
-            number: 5,
-            title: 'Práctica en Vivo - Primeros Pasos',
-            description: 'Clase en vivo por Microsoft Teams',
-            duration: 60,
-            type: 'live-class',
-            order: 5,
-            content: {
-              richText: `<h2>Clase en Vivo</h2>
-              <p>En esta sesión sincrónica repasaremos:</p>
-              <ul>
-                <li>Dudas sobre instalación</li>
-                <li>Práctica con interfaz</li>
-                <li>Ejercicios de coordenadas en tiempo real</li>
-                <li>Q&A con el instructor</li>
-              </ul>
-              <p><strong>Importante:</strong> Tener AutoCAD 2026 instalado antes de la clase.</p>`,
-            },
-            resources: [],
           },
         ],
       },
-      
       {
         id: 'mod-2',
         number: 2,
-        title: 'Comandos de Dibujo Básicos',
-        description: 'Herramientas fundamentales para crear geometría en AutoCAD 2026',
-        duration: 3,
+        title: 'Módulo 2: Dibujo y Precisión',
+        description: 'Herramientas fundamentales de dibujo y ayudas de precisión.',
+        duration: 4,
         order: 2,
         lessons: [
           {
             id: 'lec-2-1',
             moduleId: 'mod-2',
             number: 1,
-            title: 'LINE, PLINE y CIRCLE',
-            description: 'Comandos básicos de dibujo lineal y circular',
+            title: 'Comandos de Dibujo Básicos',
+            description: 'Línea, Polilínea, Círculo, Arco y Rectángulo.',
             duration: 45,
             type: 'video',
             order: 1,
-            content: {
-              richText: `<h2>Comandos Básicos de Dibujo</h2>
-              <h3>LINE (Línea)</h3>
-              <p>Comando fundamental para dibujar líneas rectas. Métodos de uso:</p>
-              <ul>
-                <li>Two points</li>
-                <li>Orthogonal mode (F8)</li>
-                <li>Dynamic input</li>
-              </ul>
-              
-              <h3>PLINE (Polilínea)</h3>
-              <p>Líneas conectadas que forman un solo objeto. Ventajas:</p>
-              <ul>
-                <li>Objeto único editable</li>
-                <li>Grosor variable</li>
-                <li>Conversión a región</li>
-              </ul>
-              
-              <h3>CIRCLE (Círculo)</h3>
-              <p>Métodos de creación:</p>
-              <ul>
-                <li>Center, Radius</li>
-                <li>Center, Diameter</li>
-                <li>2 Points</li>
-                <li>3 Points</li>
-                <li>Tangent, Tangent, Radius (TTR)</li>
-              </ul>`,
-            },
-            resources: [
-              {
-                id: 'res-5',
-                title: 'Ejercicio LINE PLINE CIRCLE.dwg',
-                type: 'dwg',
-                url: '/resources/ejercicio-line-pline-circle.dwg',
-              },
-              {
-                id: 'res-6',
-                title: 'Guía Comandos de Dibujo.pdf',
-                type: 'pdf',
-                url: '/resources/guia-comandos-dibujo.pdf',
-              },
-            ],
+            content: { richText: '<p>Dominio de las entidades geométricas fundamentales.</p>' },
+          },
+          {
+            id: 'lec-2-2',
+            moduleId: 'mod-2',
+            number: 2,
+            title: 'Herramientas de Precisión',
+            description: 'Object Snaps, Polar Tracking y Grid Snap.',
+            duration: 40,
+            type: 'exercise',
+            order: 2,
+            content: { richText: '<p>Ejercicio práctico de precisión.</p>' },
           },
         ],
       },
-      
       {
         id: 'mod-3',
         number: 3,
-        title: 'Comandos de Modificación',
-        description: 'Herramientas para editar y transformar objetos',
-        duration: 3,
+        title: 'Módulo 3: Edición y Organización',
+        description: 'Modificación de geometría y organización por capas.',
+        duration: 5,
         order: 3,
-        lessons: [],
+        lessons: [
+          {
+            id: 'lec-3-1',
+            moduleId: 'mod-3',
+            number: 1,
+            title: 'Herramientas de Modificación',
+            description: 'Move, Copy, Rotate, Scale, Trim, Extend.',
+            duration: 50,
+            type: 'video',
+            order: 1,
+            content: { richText: '<p>Técnicas de edición eficiente.</p>' },
+          },
+          {
+            id: 'lec-3-2',
+            moduleId: 'mod-3',
+            number: 2,
+            title: 'Gestión de Capas (Layers)',
+            description: 'Creación, propiedades y estados de capas.',
+            duration: 45,
+            type: 'video',
+            order: 2,
+            content: { richText: '<p>Organización profesional de planos mediante capas.</p>' },
+          },
+        ],
       },
-      
       {
         id: 'mod-4',
         number: 4,
-        title: 'Layers y Propiedades',
-        description: 'Organización del dibujo con capas',
-        duration: 3,
+        title: 'Módulo 4: Bloques Inteligentes e IA',
+        description: 'Uso de Smart Blocks y asistentes de IA en AutoCAD 2026.',
+        duration: 4,
         order: 4,
-        lessons: [],
+        lessons: [
+          {
+            id: 'lec-4-1',
+            moduleId: 'mod-4',
+            number: 1,
+            title: 'Smart Blocks: Search & Convert',
+            description: 'Conversión automática de geometría repetitiva en bloques.',
+            duration: 35,
+            type: 'video',
+            order: 1,
+            content: {
+              richText: `<h2>Smart Blocks</h2>
+              <p>La función estrella de 2026. Selecciona geometría y deja que la IA encuentre patrones similares para convertirlos en bloques automáticamente.</p>`,
+            },
+          },
+          {
+            id: 'lec-4-2',
+            moduleId: 'mod-4',
+            number: 2,
+            title: 'Autodesk Assistant (IA)',
+            description: 'Uso del asistente generativo para consultas y ayuda.',
+            duration: 20,
+            type: 'video',
+            order: 2,
+            content: { richText: '<p>Cómo interactuar con el asistente de IA integrado.</p>' },
+          },
+        ],
       },
-      
       {
         id: 'mod-5',
         number: 5,
-        title: 'Bloques y Referencias',
-        description: 'Reutilización de elementos con bloques dinámicos',
-        duration: 3,
+        title: 'Módulo 5: Anotación y Documentación',
+        description: 'Textos, cotas, directrices y tablas.',
+        duration: 4,
         order: 5,
-        lessons: [],
+        lessons: [
+          {
+            id: 'lec-5-1',
+            moduleId: 'mod-5',
+            number: 1,
+            title: 'Textos y Estilos',
+            description: 'MText, Single Line Text y campos automáticos.',
+            duration: 40,
+            type: 'video',
+            order: 1,
+            content: { richText: '<p>Anotación profesional de planos.</p>' },
+          },
+          {
+            id: 'lec-5-2',
+            moduleId: 'mod-5',
+            number: 2,
+            title: 'Dimensionamiento Inteligente',
+            description: 'Cotas lineales, angulares y estilos anotativos.',
+            duration: 45,
+            type: 'exercise',
+            order: 2,
+            content: { richText: '<p>Ejercicio de acotado de planta arquitectónica.</p>' },
+          },
+        ],
       },
-      
       {
         id: 'mod-6',
         number: 6,
-        title: 'Dimensionamiento y Anotaciones',
-        description: 'Cotas, textos y tablas en AutoCAD 2026',
+        title: 'Módulo 6: Layouts e Impresión',
+        description: 'Espacio papel, viewports y publicación PDF.',
         duration: 3,
         order: 6,
-        lessons: [],
+        lessons: [
+          {
+            id: 'lec-6-1',
+            moduleId: 'mod-6',
+            number: 1,
+            title: 'Configuración de Layouts',
+            description: 'Page Setup Manager y escalas de viewport.',
+            duration: 40,
+            type: 'video',
+            order: 1,
+            content: { richText: '<p>Preparación de láminas para impresión.</p>' },
+          },
+          {
+            id: 'lec-6-2',
+            moduleId: 'mod-6',
+            number: 2,
+            title: 'Publicación y Trazado',
+            description: 'Plot to PDF y publicación por lotes.',
+            duration: 30,
+            type: 'video',
+            order: 2,
+            content: { richText: '<p>Generación de entregables finales.</p>' },
+          },
+        ],
       },
-      
       {
         id: 'mod-7',
         number: 7,
-        title: 'Layouts y Plotting',
-        description: 'Impresión profesional de planos',
+        title: 'Módulo 7: Colaboración y Flujos Web',
+        description: 'Activity Insights, Trace y AutoCAD Web.',
         duration: 3,
         order: 7,
-        lessons: [],
-      },
-      
-      {
-        id: 'mod-8',
-        number: 8,
-        title: 'Proyecto Final - Plano Arquitectónico',
-        description: 'Aplicación de todos los conocimientos en proyecto real',
-        duration: 3,
-        order: 8,
         lessons: [
           {
-            id: 'lec-8-1',
-            moduleId: 'mod-8',
+            id: 'lec-7-1',
+            moduleId: 'mod-7',
             number: 1,
-            title: 'Especificaciones del Proyecto',
-            description: 'Requisitos y entregables del proyecto final',
-            duration: 30,
-            type: 'reading',
+            title: 'Activity Insights',
+            description: 'Rastreo de cambios y actividad del dibujo.',
+            duration: 25,
+            type: 'video',
             order: 1,
-            content: {
-              richText: `<h2>Proyecto Final: Vivienda Unifamiliar</h2>
-              <p>Diseñarás un plano arquitectónico completo de una vivienda aplicando todos los conocimientos del curso.</p>
-              
-              <h3>Entregables:</h3>
-              <ol>
-                <li>Planta arquitectónica con dimensiones</li>
-                <li>Fachada principal</li>
-                <li>Corte transversal</li>
-                <li>Layout de impresión con cajetín</li>
-                <li>Memoria descriptiva</li>
-              </ol>
-              
-              <h3>Especificaciones técnicas:</h3>
-              <ul>
-                <li>Escala 1:50</li>
-                <li>Layers organizados según estándar AIA</li>
-                <li>Bloques dinámicos para puertas y ventanas</li>
-                <li>Dimensionamiento completo</li>
-                <li>Tabla de áreas</li>
-              </ul>
-              
-              <p><strong>Fecha de entrega:</strong> Fin de la sesión 8</p>
-              <p><strong>Calificación:</strong> 40% de la nota final</p>`,
-            },
-            resources: [
-              {
-                id: 'res-proyecto',
-                title: 'Plantilla Proyecto.dwg',
-                type: 'dwg',
-                url: '/resources/plantilla-proyecto-final.dwg',
-              },
-              {
-                id: 'res-rubrica',
-                title: 'Rúbrica de Evaluación.pdf',
-                type: 'pdf',
-                url: '/resources/rubrica-proyecto-final.pdf',
-              },
-            ],
+            content: { richText: '<p>Monitoreo de la evolución del proyecto.</p>' },
+          },
+          {
+            id: 'lec-7-2',
+            moduleId: 'mod-7',
+            number: 2,
+            title: 'AutoCAD Web & Mobile',
+            description: 'Edición de planos desde el navegador o tablet.',
+            duration: 30,
+            type: 'video',
+            order: 2,
+            content: { richText: '<p>Flujos de trabajo híbridos oficina-campo.</p>' },
           },
         ],
       },
     ],
   },
-  
-  // AUTOCAD 3D 2026
   {
     id: 'autocad-3d-2026',
     slug: 'autocad-3d-2026',
@@ -485,8 +337,8 @@ export const COURSES_2026: Course[] = [
     instructor: 'Ing. [Nombre] - ACI',
     price: 199,
     priceVEF: 7000,
-    image: '/images/courses/autocad-3d-2026.jpg',
-    thumbnail: '/images/courses/autocad-3d-2026-thumb.jpg',
+    image: '/images/logodis.PNG',
+    thumbnail: '/images/logodis.PNG',
     featured: true,
     popular: false,
     enrollmentCount: 0,
@@ -498,184 +350,498 @@ export const COURSES_2026: Course[] = [
     releaseDate: '2025-11-01T00:00:00Z',
     syllabus: [],
   },
-  
+
   // REVIT ARCHITECTURE 2026
   {
-    id: 'revit-architecture-2026',
-    slug: 'revit-architecture-2026',
+    id: 'revit-2026-architecture',
+    slug: 'revit-2026-architecture',
     version: '2026',
     software: 'Revit 2026',
-    title: 'Revit Architecture 2026 - BIM Avanzado',
-    subtitle: 'Metodología BIM con las últimas innovaciones de Revit 2026',
+    title: 'Revit Architecture 2026 - Curso Completo Profesional',
+    subtitle: 'Domina Autodesk Revit Architecture 2026 desde cero hasta nivel avanzado',
     category: 'Revit',
-    level: 'Intermedio',
+    level: 'Básico a Avanzado',
     duration: 30,
-    sessions: 10,
-    description: `Curso completo de Revit Architecture 2026. Novedades principales:
-    • Generative Design integrado
-    • Nuevas familias paramétricas inteligentes
-    • Colaboración en tiempo real mejorada
-    • Performance optimizada (2x más rápido)
-    • Integración nativa con ACC (Autodesk Construction Cloud)
-    • AI-powered automation tools
-    • Enhanced rendering con Autodesk Cloud`,
+    sessions: 6,
+    description: `Curso profesional completo de Autodesk Revit Architecture 2026 que cubre desde los fundamentos hasta técnicas avanzadas de modelado BIM. Aprende a crear proyectos arquitectónicos completos, generar documentación técnica profesional, y dominar todas las nuevas herramientas de la versión 2026.
+
+    Nuevas características 2026:
+    • Accelerated Graphics (Tech Preview) - Navegación 3D mejorada con aceleración GPU
+    • Wall Creation Enhancements - Creación automática de muros desde áreas cerradas
+    • Toposolid Improvements - Subdivisión y valores negativos para vialidades
+    • Save Position for Views on Sheets - Guarda posiciones de vistas en láminas
+    • Twinmotion Integration - Sustitución automática de assets
+    • Reality Capture Support - Integración de nubes de puntos y mesh
+    • Room Tags Auto-center - Etiquetas de habitaciones auto-centradas
+
+    Incluye modelado 3D, visualización con Twinmotion, coordinación BIM, familias paramétricas y flujos de trabajo colaborativos.`,
     objectives: [
-      'Dominar metodología BIM con Revit 2026',
-      'Utilizar nuevas herramientas de Generative Design',
-      'Crear familias paramétricas avanzadas',
-      'Colaborar en proyectos con Autodesk Construction Cloud',
-      'Producir documentación BIM completa',
-      'Prepararse para certificación Revit Architecture Professional',
+      'Dominar la interfaz de Revit Architecture 2026',
+      'Crear modelos arquitectónicos completos en 3D',
+      'Utilizar herramientas de creación automática de muros',
+      'Trabajar con Toposolid para modelado de terrenos',
+      'Generar documentación técnica completa',
+      'Crear renderizados con Twinmotion',
+      'Trabajar con modelos de coordinación',
+      'Integrar nubes de puntos y Reality Capture',
+      'Crear familias paramétricas personalizadas',
+      'Implementar flujos de trabajo BIM colaborativos',
     ],
     prerequisites: [
-      'Conocimientos de arquitectura',
-      'AutoCAD básico (recomendado)',
-      'Computadora con 16GB RAM mínimo',
+      'Conocimientos básicos de AutoCAD (recomendado)',
+      'Computadora con Revit 2026 instalado',
+      'Conocimientos básicos de arquitectura',
+      'Windows 10/11 con mínimo 16GB RAM',
+      'Tarjeta gráfica DirectX 11 compatible',
     ],
-    certification: 'Autodesk Certified Professional - Revit Architecture 2026',
-    instructor: 'Arq. [Nombre] - Revit Expert',
-    price: 499,
-    priceVEF: 18000,
-    image: '/images/courses/revit-2026-architecture.jpg',
-    thumbnail: '/images/courses/revit-2026-arch-thumb.jpg',
+    certification: 'Certificado Digital - Revit Architecture 2026',
+    instructor: 'A definir - Arquitecto BIM Manager',
+    price: 390,
+    priceVEF: 14300,
+    image: '/images/logodis.PNG',
+    thumbnail: '/images/logodis.PNG',
     featured: true,
     popular: true,
     enrollmentCount: 0,
     rating: 0,
     reviewsCount: 0,
-    skills: ['Revit', 'BIM', 'Arquitectura', 'Modelado BIM', 'ACC'],
-    tags: ['Revit', '2026', 'BIM', 'Arquitectura', 'Certificación', 'Nuevo'],
-    lastUpdated: '2026-01-15T00:00:00Z',
-    releaseDate: '2025-11-01T00:00:00Z',
-    syllabus: [
-      {
-        id: 'revit-mod-1',
-        number: 1,
-        title: 'Introducción a BIM y Revit 2026',
-        description: 'Conceptos BIM y novedades de Revit 2026',
-        duration: 3,
-        order: 1,
-        lessons: [
-          {
-            id: 'revit-lec-1-1',
-            moduleId: 'revit-mod-1',
-            number: 1,
-            title: 'Qué es BIM y por qué Revit',
-            description: 'Building Information Modeling explained',
-            duration: 45,
-            type: 'video',
-            order: 1,
-            content: {
-              richText: `<h2>Metodología BIM</h2>
-              <p>BIM (Building Information Modeling) es mucho más que un software...</p>
-              <h3>Beneficios BIM:</h3>
-              <ul>
-                <li>Detección de conflictos automática</li>
-                <li>Colaboración multidisciplinaria</li>
-                <li>Cuantificación automática</li>
-                <li>Visualización 4D/5D (tiempo y costos)</li>
-                <li>Menor tiempo de diseño</li>
-                <li>Menos errores en obra</li>
-              </ul>`,
-            },
-            resources: [
-              {
-                id: 'revit-res-1',
-                title: 'Guía BIM para Arquitectos.pdf',
-                type: 'pdf',
-                url: '/resources/guia-bim-arquitectos.pdf',
-              },
-            ],
-          },
-        ],
-      },
-    ],
+    skills: ['Revit', 'BIM', 'Arquitectura', 'Modelado BIM', 'Twinmotion', 'Toposolid', 'Reality Capture'],
+    tags: ['Revit', '2026', 'BIM', 'Arquitectura', 'Twinmotion', 'Toposolid', 'Familias', 'Nuevo'],
+    lastUpdated: '2025-11-22T00:00:00Z',
+    releaseDate: '2025-11-22T00:00:00Z',
+    syllabus: [],
   },
-  
-  // REVIT STRUCTURE 2026
+
+  // REVIT MEP - INSTALACIONES MECÁNICAS (HVAC) 2026
   {
-    id: 'revit-structure-2026',
-    slug: 'revit-structure-2026',
+    id: 'revit-2026-mep-mecanicas',
+    slug: 'revit-2026-mep-mecanicas',
     version: '2026',
     software: 'Revit 2026',
-    title: 'Revit Structure 2026 - BIM Estructural',
-    subtitle: 'Diseño estructural BIM con Revit 2026',
+    title: 'Revit MEP 2026 - Instalaciones Mecánicas (HVAC)',
+    subtitle: 'Especialización en sistemas mecánicos, climatización y ventilación',
     category: 'Revit',
-    level: 'Avanzado',
-    duration: 30,
-    sessions: 10,
-    description: `Modelado estructural con Revit 2026. Incluye:
-    • Nuevas herramientas de análisis estructural
-    • Integración directa con Robot Structural Analysis
-    • Detallado de conexiones mejorado
-    • Cuantificación automática de acero`,
+    level: 'Intermedio a Avanzado',
+    duration: 24,
+    sessions: 5,
+    description: `Curso especializado en sistemas mecánicos (HVAC) con Revit MEP 2026. Cubre climatización, ventilación, análisis de cargas térmicas y coordinación MEP.
+
+    Nuevas características 2026:
+    • Enhanced System Zones - Límites por sketch o espacios
+    • HVAC Zones mejoradas - Fusión con System Zones
+    • Color schemes y scheduling para zonas
+    • Modelos de coordinación mejorados
+    • Mejores capacidades de modelo analítico
+
+    Aprende a diseñar sistemas de climatización completos, realizar análisis de cargas térmicas, dimensionar ductos, y coordinar con otras disciplinas MEP. Incluye sistemas de difusores, rejillas, UMA, cajas VAV, y fundamentos de fabricación MEP.`,
     objectives: [
-      'Modelar sistemas estructurales completos',
-      'Analizar estructuras con herramientas integradas',
-      'Generar planos estructurales',
-      'Coordinar con modelo arquitectónico',
+      'Dominar la interfaz MEP para sistemas mecánicos',
+      'Diseñar sistemas de climatización (HVAC) completos',
+      'Realizar análisis de cargas térmicas con System Zones',
+      'Dimensionar ductos y seleccionar equipos',
+      'Diseñar sistemas de ventilación mecánica',
+      'Coordinar instalaciones mecánicas con otras disciplinas',
+      'Generar documentación técnica de sistemas HVAC',
+      'Aplicar fundamentos de fabricación MEP',
     ],
-    prerequisites: ['Conocimientos de ingeniería estructural', 'Revit básico'],
-    certification: 'Autodesk Certified Professional - Revit Structure',
-    instructor: 'Ing. [Nombre] - Structural Engineer',
-    price: 499,
-    priceVEF: 18000,
-    image: '/images/courses/revit-2026-structure.jpg',
-    thumbnail: '/images/courses/revit-2026-struct-thumb.jpg',
+    prerequisites: [
+      'Revit Architecture 2026 (recomendado)',
+      'Conocimientos básicos de HVAC',
+      'Comprensión de sistemas mecánicos',
+      'Windows 10/11 con mínimo 16GB RAM',
+    ],
+    certification: 'Certificado Digital - Revit MEP Mechanical Systems 2026 Specialist',
+    instructor: 'Ing. MEP - Especialista en Sistemas Mecánicos',
+    price: 415,
+    priceVEF: 15200,
+    image: '/images/logodis.PNG',
+    thumbnail: '/images/logodis.PNG',
     featured: true,
-    popular: false,
+    popular: true,
     enrollmentCount: 0,
     rating: 0,
     reviewsCount: 0,
-    skills: ['Revit', 'BIM', 'Estructuras', 'Ingeniería'],
-    tags: ['Revit', '2026', 'BIM', 'Estructuras', 'Ingeniería'],
-    lastUpdated: '2026-01-15T00:00:00Z',
-    releaseDate: '2025-11-01T00:00:00Z',
+    skills: ['Revit', 'BIM', 'MEP', 'HVAC', 'Climatización', 'System Zones', 'Ductos'],
+    tags: ['Revit', '2026', 'MEP', 'HVAC', 'Mecánicas', 'Climatización', 'Nuevo'],
+    lastUpdated: '2025-11-22T00:00:00Z',
+    releaseDate: '2025-11-22T00:00:00Z',
     syllabus: [],
   },
-  
-  // REVIT MEP 2026
+
+  // REVIT MEP - INSTALACIONES ELÉCTRICAS 2026
   {
-    id: 'revit-mep-2026',
-    slug: 'revit-mep-2026',
+    id: 'revit-2026-mep-electricas',
+    slug: 'revit-2026-mep-electricas',
     version: '2026',
     software: 'Revit 2026',
-    title: 'Revit MEP 2026 - Instalaciones BIM',
-    subtitle: 'Diseño de instalaciones mecánicas, eléctricas y sanitarias',
+    title: 'Revit MEP 2026 - Instalaciones Eléctricas',
+    subtitle: 'Especialización en sistemas eléctricos, circuitos y paneles',
     category: 'Revit',
-    level: 'Avanzado',
-    duration: 30,
-    sessions: 10,
-    description: `Instalaciones MEP con Revit 2026. Novedades:
-    • Cálculo hidráulico automatizado
-    • Routing de ductos inteligente
-    • Análisis energético mejorado
-    • Integración con fabricación (MEP Fabrication)`,
+    level: 'Intermedio',
+    duration: 16,
+    sessions: 4,
+    description: `Curso enfocado en sistemas eléctricos con Revit MEP 2026. Incluye circuitos, paneles, iluminación y todas las nuevas características eléctricas de 2026.
+
+    Nuevas características 2026:
+    • Conductores y cables personalizables - Materiales, diámetros, aislamiento
+    • Organización de Panel Schedules en Project Browser
+    • Routing mejorado de circuitos para sistemas complejos
+    • Nuevos campos en Equipment Schedules (Part Type, Distribution System)
+    • Mejor soporte internacional (no solo AWG)
+    • Modelado de distribución de carga mejorado
+
+    Aprende a diseñar instalaciones eléctricas completas, crear circuitos, balancear cargas, diseñar sistemas de iluminación y generar documentación técnica profesional.`,
     objectives: [
-      'Modelar sistemas MEP completos',
-      'Realizar cálculos de instalaciones',
-      'Coordinar sistemas con arquitectura y estructura',
-      'Generar documentación de construcción',
+      'Dominar electrical settings y configuraciones',
+      'Diseñar tableros y switchboards con panel schedules organizados',
+      'Crear y enrutar circuitos eléctricos complejos',
+      'Utilizar conductores personalizables',
+      'Diseñar sistemas de iluminación con análisis',
+      'Balancear cargas y calcular demandas',
+      'Generar diagramas unifilares y documentación',
+      'Coordinar instalaciones eléctricas con otras disciplinas',
     ],
-    prerequisites: ['Conocimientos de instalaciones', 'Revit básico'],
-    certification: 'Autodesk Certified Professional - Revit MEP',
-    instructor: 'Ing. [Nombre] - MEP Specialist',
-    price: 499,
-    priceVEF: 18000,
-    image: '/images/courses/revit-2026-mep.jpg',
-    thumbnail: '/images/courses/revit-2026-mep-thumb.jpg',
+    prerequisites: [
+      'Revit Architecture 2026 (recomendado)',
+      'Conocimientos básicos de electricidad',
+      'Comprensión de circuitos eléctricos',
+      'Windows 10/11 con mínimo 16GB RAM',
+    ],
+    certification: 'Certificado Digital - Revit MEP Electrical Systems 2026 Specialist',
+    instructor: 'Ing. Eléctrico - Especialista en Sistemas Eléctricos',
+    price: 225,
+    priceVEF: 8250,
+    image: '/images/logodis.PNG',
+    thumbnail: '/images/logodis.PNG',
     featured: false,
     popular: false,
     enrollmentCount: 0,
     rating: 0,
     reviewsCount: 0,
-    skills: ['Revit', 'BIM', 'MEP', 'Instalaciones'],
-    tags: ['Revit', '2026', 'MEP', 'Instalaciones'],
-    lastUpdated: '2026-01-15T00:00:00Z',
-    releaseDate: '2025-11-01T00:00:00Z',
+    skills: ['Revit', 'BIM', 'MEP', 'Eléctrico', 'Circuitos', 'Paneles', 'Iluminación'],
+    tags: ['Revit', '2026', 'MEP', 'Eléctrico', 'Circuitos', 'Paneles', 'Nuevo'],
+    lastUpdated: '2025-11-22T00:00:00Z',
+    releaseDate: '2025-11-22T00:00:00Z',
     syllabus: [],
   },
-  
+
+  // REVIT MEP - INSTALACIONES SANITARIAS 2026
+  {
+    id: 'revit-2026-mep-sanitarias',
+    slug: 'revit-2026-mep-sanitarias',
+    version: '2026',
+    software: 'Revit 2026',
+    title: 'Revit MEP 2026 - Instalaciones Sanitarias',
+    subtitle: 'Especialización en plomería, agua potable y drenaje',
+    category: 'Revit',
+    level: 'Intermedio',
+    duration: 16,
+    sessions: 4,
+    description: `Curso especializado en sistemas de plomería (sanitarios, agua potable, drenaje) con Revit MEP 2026. Incluye sistemas de agua, drenaje y protección contra incendios.
+
+    Características 2026:
+    • Accelerated Graphics para navegación rápida
+    • Controles mejorados de Coordination Model
+    • Routing mejorado de tuberías
+    • Mejores familias de fixtures
+    • Manejo mejorado de tuberías con pendiente
+    • Mejores capacidades analíticas
+
+    Aprende a diseñar sistemas de agua potable, drenaje sanitario, drenaje pluvial, sistemas contra incendios y coordinar con otras disciplinas MEP. Incluye dimensionamiento de tuberías, cálculos hidráulicos y generación de dibujos isométricos.`,
+    objectives: [
+      'Dominar plumbing settings y configuración de tuberías',
+      'Diseñar sistemas de agua potable (fría y caliente)',
+      'Diseñar sistemas de drenaje sanitario y pluvial',
+      'Dimensionar tuberías y calcular demandas hidráulicas',
+      'Diseñar sistemas contra incendios (sprinklers)',
+      'Trabajar con tuberías de gas y gases medicinales',
+      'Generar dibujos isométricos de plomería',
+      'Coordinar instalaciones sanitarias con otras disciplinas',
+    ],
+    prerequisites: [
+      'Revit Architecture 2026 (recomendado)',
+      'Conocimientos básicos de plomería',
+      'Comprensión de sistemas hidráulicos',
+      'Windows 10/11 con mínimo 16GB RAM',
+    ],
+    certification: 'Certificado Digital - Revit MEP Plumbing Systems 2026 Specialist',
+    instructor: 'Ing. Sanitario - Especialista en Sistemas de Plomería',
+    price: 225,
+    priceVEF: 8250,
+    image: '/images/logodis.PNG',
+    thumbnail: '/images/logodis.PNG',
+    featured: false,
+    popular: false,
+    enrollmentCount: 0,
+    rating: 0,
+    reviewsCount: 0,
+    skills: ['Revit', 'BIM', 'MEP', 'Plomería', 'Agua', 'Drenaje', 'Sprinklers'],
+    tags: ['Revit', '2026', 'MEP', 'Plomería', 'Sanitarias', 'Drenaje', 'Nuevo'],
+    lastUpdated: '2025-11-22T00:00:00Z',
+    releaseDate: '2025-11-22T00:00:00Z',
+    syllabus: [],
+  },
+
+  // AUTOCAD BÁSICO 2D 2026 (NUEVO - 30 HORAS)
+  {
+    id: 'autocad-basico-2d-2026',
+    slug: 'autocad-basico-2d-2026',
+    version: '2026',
+    software: 'AutoCAD 2026',
+    title: 'AutoCAD Básico 2D 2026',
+    subtitle: 'Curso completo de AutoCAD 2D desde cero - 30 horas',
+    category: 'AutoCAD',
+    level: 'Básico',
+    duration: 30,
+    sessions: 10,
+    description: `Curso completo de AutoCAD Básico 2D 2026 para principiantes. Aprende desde cero:
+    • Interfaz y configuración inicial de AutoCAD 2026
+    • Sistema de coordenadas y unidades
+    • Comandos de dibujo básico (líneas, círculos, arcos, polígonos)
+    • Comandos de edición (move, copy, rotate, scale, trim, extend)
+    • Sistema de capas y propiedades de objetos
+    • Textos, cotas y anotación
+    • Layouts e impresión profesional
+
+    Curso 100% práctico con ejercicios paso a paso. Certificación al finalizar.`,
+    objectives: [
+      'Dominar la interfaz de AutoCAD 2026',
+      'Crear dibujos 2D precisos con comandos básicos',
+      'Utilizar comandos de edición eficientemente',
+      'Organizar dibujos con capas profesionalmente',
+      'Anotar planos con textos y cotas',
+      'Imprimir y exportar planos a PDF',
+    ],
+    prerequisites: [
+      'Conocimientos básicos de Windows',
+      'Conceptos básicos de dibujo técnico',
+      'Computadora con 8GB RAM mínimo',
+    ],
+    certification: 'Certificado Digital - AutoCAD Básico 2D 2026',
+    instructor: 'Ing. [Nombre] - Autodesk Certified Instructor',
+    price: 290,
+    priceVEF: 10600,
+    image: '/images/logodis.PNG',
+    thumbnail: '/images/logodis.PNG',
+    featured: true,
+    popular: true,
+    enrollmentCount: 0,
+    rating: 0,
+    reviewsCount: 0,
+    skills: ['AutoCAD', 'Dibujo 2D', 'CAD', 'Planos', 'Drafting'],
+    tags: ['AutoCAD', '2026', '2D', 'Básico', 'Principiantes', 'Nuevo'],
+    lastUpdated: '2025-11-24T00:00:00Z',
+    releaseDate: '2025-11-24T00:00:00Z',
+    syllabus: [],
+  },
+
+  // AUTOCAD INTERMEDIO 2D 2026 (NUEVO - 24 HORAS)
+  {
+    id: 'autocad-intermedio-2d-2026',
+    slug: 'autocad-intermedio-2d-2026',
+    version: '2026',
+    software: 'AutoCAD 2026',
+    title: 'AutoCAD Intermedio 2D 2026',
+    subtitle: 'Técnicas avanzadas de productividad y personalización - 24 horas',
+    category: 'AutoCAD',
+    level: 'Intermedio',
+    duration: 24,
+    sessions: 8,
+    description: `Curso intermedio de AutoCAD 2026 para usuarios con experiencia básica. Incluye:
+    • Bloques dinámicos y atributos avanzados
+    • Referencias externas (Xrefs) y coordinación
+    • Anotación avanzada y objetos anotativos
+    • Productividad y personalización del workspace
+    • Action Recorder para automatización
+    • Standards CAD y batch processing
+
+    Eleva tu productividad en AutoCAD al siguiente nivel.`,
+    objectives: [
+      'Crear bloques dinámicos con parámetros y acciones',
+      'Trabajar con Xrefs y referencias externas',
+      'Dominar objetos anotativos y escalas',
+      'Automatizar tareas con Action Recorder',
+      'Personalizar workspace y tool palettes',
+      'Implementar CAD Standards en proyectos',
+    ],
+    prerequisites: [
+      'AutoCAD Básico 2D 2026 o experiencia equivalente',
+      'Manejo fluido de comandos básicos de AutoCAD',
+      'Computadora con AutoCAD 2026 instalado',
+    ],
+    certification: 'Certificado Digital - AutoCAD Intermedio 2D 2026',
+    instructor: 'Ing. [Nombre] - Autodesk Certified Instructor',
+    price: 245,
+    priceVEF: 9000,
+    image: '/images/logodis.PNG',
+    thumbnail: '/images/logodis.PNG',
+    featured: false,
+    popular: false,
+    enrollmentCount: 0,
+    rating: 0,
+    reviewsCount: 0,
+    skills: ['AutoCAD', 'Bloques Dinámicos', 'Xrefs', 'Productividad', 'Automatización'],
+    tags: ['AutoCAD', '2026', '2D', 'Intermedio', 'Productividad', 'Nuevo'],
+    lastUpdated: '2025-11-24T00:00:00Z',
+    releaseDate: '2025-11-24T00:00:00Z',
+    syllabus: [],
+  },
+
+  // AUTOCAD 3D 2026 (NUEVO - 24 HORAS)
+  {
+    id: 'autocad-3d-2026-completo',
+    slug: 'autocad-3d-2026-completo',
+    version: '2026',
+    software: 'AutoCAD 2026',
+    title: 'AutoCAD Tridimensional 3D 2026',
+    subtitle: 'Modelado 3D, sólidos, superficies y renderizado - 24 horas',
+    category: 'AutoCAD',
+    level: 'Intermedio',
+    duration: 24,
+    sessions: 8,
+    description: `Curso completo de modelado 3D con AutoCAD 2026. Aprende:
+    • Fundamentos de modelado 3D y sistema UCS
+    • Modelado de sólidos (Extrude, Revolve, Sweep, Loft)
+    • Modelado de superficies avanzadas
+    • Visualización 3D y estilos visuales
+    • Rendering con materiales y luces
+    • Cámaras y animaciones walkthrough
+
+    Del modelado básico al renderizado fotorrealista profesional.`,
+    objectives: [
+      'Dominar workspace 3D y sistema UCS',
+      'Crear sólidos 3D con operaciones booleanas',
+      'Modelar superficies complejas',
+      'Aplicar materiales y texturas realistas',
+      'Configurar iluminación y cámaras',
+      'Generar renders de presentación',
+    ],
+    prerequisites: [
+      'AutoCAD Básico 2D 2026 o experiencia equivalente',
+      'Comprensión de geometría tridimensional',
+      'Computadora con tarjeta gráfica compatible',
+    ],
+    certification: 'Certificado Digital - AutoCAD 3D 2026',
+    instructor: 'Ing. [Nombre] - Especialista en Modelado 3D',
+    price: 245,
+    priceVEF: 9000,
+    image: '/images/logodis.PNG',
+    thumbnail: '/images/logodis.PNG',
+    featured: true,
+    popular: false,
+    enrollmentCount: 0,
+    rating: 0,
+    reviewsCount: 0,
+    skills: ['AutoCAD 3D', 'Modelado 3D', 'Sólidos', 'Superficies', 'Rendering'],
+    tags: ['AutoCAD', '2026', '3D', 'Modelado', 'Rendering', 'Nuevo'],
+    lastUpdated: '2025-11-24T00:00:00Z',
+    releaseDate: '2025-11-24T00:00:00Z',
+    syllabus: [],
+  },
+
+  // ACTUALIZACIÓN AUTOCAD 2026 (NUEVO - 8 HORAS)
+  {
+    id: 'actualizacion-autocad-2026',
+    slug: 'actualizacion-autocad-2026',
+    version: '2026',
+    software: 'AutoCAD 2026',
+    title: 'Actualización a AutoCAD 2026',
+    subtitle: 'Novedades y mejoras de AutoCAD 2026 - 8 horas',
+    category: 'AutoCAD',
+    level: 'Actualización',
+    duration: 8,
+    sessions: 2,
+    description: `Curso de actualización para usuarios de versiones anteriores de AutoCAD. Cubre:
+    • Nuevas funciones impulsadas por IA
+    • Mejoras de interfaz y Dark Theme
+    • Herramientas de colaboración mejoradas
+    • Nuevos comandos de dibujo y edición
+    • Optimizaciones de rendimiento
+    • Integración mejorada con la nube
+    • Nuevas herramientas de automatización
+
+    Actualízate rápidamente a AutoCAD 2026 en solo 8 horas.`,
+    objectives: [
+      'Conocer todas las novedades de AutoCAD 2026',
+      'Aprovechar nuevas funciones de IA',
+      'Mejorar productividad con nuevas herramientas',
+      'Integrar workflows cloud modernos',
+      'Migrar proyectos de versiones anteriores',
+    ],
+    prerequisites: [
+      'Experiencia con AutoCAD 2020-2025',
+      'Manejo fluido de AutoCAD versiones anteriores',
+    ],
+    certification: 'Certificado Digital - Actualización AutoCAD 2026',
+    instructor: 'Ing. [Nombre] - Autodesk Certified Instructor',
+    price: 85,
+    priceVEF: 3100,
+    image: '/images/logodis.PNG',
+    thumbnail: '/images/logodis.PNG',
+    featured: false,
+    popular: false,
+    enrollmentCount: 0,
+    rating: 0,
+    reviewsCount: 0,
+    skills: ['AutoCAD', 'Actualización', 'Novedades 2026', 'IA', 'Cloud'],
+    tags: ['AutoCAD', '2026', 'Actualización', 'Novedades', 'Nuevo'],
+    lastUpdated: '2025-11-24T00:00:00Z',
+    releaseDate: '2025-11-24T00:00:00Z',
+    syllabus: [],
+  },
+
+  // AUTOCAD RASTER DESIGN 2026 (NUEVO - 16 HORAS)
+  {
+    id: 'autocad-raster-design-2026',
+    slug: 'autocad-raster-design-2026',
+    version: '2026',
+    software: 'AutoCAD Raster Design 2026',
+    title: 'AutoCAD Raster Design 2026',
+    subtitle: 'Vectorización de planos escaneados e imágenes - 16 horas',
+    category: 'AutoCAD',
+    level: 'Intermedio',
+    duration: 16,
+    sessions: 4,
+    description: `Curso especializado en Raster Design 2026 para trabajar con planos escaneados. Incluye:
+    • Inserción y gestión de imágenes raster
+    • Georeferencing y correlación de imágenes
+    • Vectorización manual y automática
+    • OCR (reconocimiento óptico de caracteres)
+    • Limpieza y mejora de imágenes
+    • Workflows híbridos raster-vector
+
+    Ideal para digitalización de planos legacy y proyectos GIS.`,
+    objectives: [
+      'Insertar y georeferenciar imágenes raster',
+      'Limpiar y mejorar calidad de scans',
+      'Vectorizar planos escaneados',
+      'Utilizar OCR para textos automáticos',
+      'Crear workflows de conversión batch',
+      'Integrar imágenes con datos vectoriales',
+    ],
+    prerequisites: [
+      'AutoCAD Básico 2D 2026 o experiencia equivalente',
+      'Comprensión de formatos de imagen',
+      'Computadora con AutoCAD Raster Design 2026',
+    ],
+    certification: 'Certificado Digital - Raster Design 2026 Specialist',
+    instructor: 'Ing. [Nombre] - Especialista en GIS y CAD',
+    price: 245,
+    priceVEF: 9000,
+    image: '/images/logodis.PNG',
+    thumbnail: '/images/logodis.PNG',
+    featured: false,
+    popular: false,
+    enrollmentCount: 0,
+    rating: 0,
+    reviewsCount: 0,
+    skills: ['Raster Design', 'Vectorización', 'OCR', 'GIS', 'Digitalización'],
+    tags: ['AutoCAD', '2026', 'Raster', 'Vectorización', 'GIS', 'Nuevo'],
+    lastUpdated: '2025-11-24T00:00:00Z',
+    releaseDate: '2025-11-24T00:00:00Z',
+    syllabus: [],
+  },
+
   // CIVIL 3D 2026
   {
     id: 'civil3d-2026',
@@ -706,8 +872,8 @@ export const COURSES_2026: Course[] = [
     instructor: 'Ing. [Nombre] - Civil Engineer',
     price: 499,
     priceVEF: 18000,
-    image: '/images/courses/civil3d-2026.jpg',
-    thumbnail: '/images/courses/civil3d-2026-thumb.jpg',
+    image: '/images/logodis.PNG',
+    thumbnail: '/images/logodis.PNG',
     featured: true,
     popular: true,
     enrollmentCount: 0,
@@ -719,7 +885,7 @@ export const COURSES_2026: Course[] = [
     releaseDate: '2025-11-01T00:00:00Z',
     syllabus: [],
   },
-  
+
   // NAVISWORKS 2026
   {
     id: 'navisworks-2026',
@@ -748,8 +914,8 @@ export const COURSES_2026: Course[] = [
     instructor: 'Ing. [Nombre] - BIM Coordinator',
     price: 299,
     priceVEF: 11000,
-    image: '/images/courses/navisworks-2026.jpg',
-    thumbnail: '/images/courses/navisworks-2026-thumb.jpg',
+    image: '/images/logodis.PNG',
+    thumbnail: '/images/logodis.PNG',
     featured: false,
     popular: false,
     enrollmentCount: 0,

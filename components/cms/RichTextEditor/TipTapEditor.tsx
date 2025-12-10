@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button';
 import {
     Bold, Italic, List, ListOrdered, Quote, Undo, Redo,
     Link as LinkIcon, Image as ImageIcon, Youtube as YoutubeIcon,
-    Heading1, Heading2, Code, Terminal, AlertCircle
+    Heading1, Heading2, Terminal
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -29,7 +29,6 @@ interface TipTapEditorProps {
 export function TipTapEditor({
     content,
     onChange,
-    placeholder,
     editable = true,
     className
 }: TipTapEditorProps) {

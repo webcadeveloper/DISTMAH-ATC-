@@ -1,0 +1,118 @@
+{
+  "id": "autocad-map-3d-2026",
+  "titulo": "AutoCAD Map 3D 2026",
+  "subtitulo": "Integración GIS y CAD para Profesionales",
+  "descripcion": "Domina el toolset GIS de Autodesk para integrar datos espaciales, análisis geoespacial y workflows CAD/GIS en proyectos de ingeniería civil, topografía y planificación urbana.",
+  "categoria": "Infraestructura y GIS",
+  "nivel": "Intermedio",
+  "duracion": "24 horas",
+  "precio": 385,
+  "version": "2026",
+  "imagen": "/images/cursos/autocad-map-3d-2026.jpg",
+  "video_intro": "https://www.youtube.com/embed/autocad-map-3d-intro",
+  "requisitos": [
+    "Conocimientos de AutoCAD básico (dibujo 2D/3D)",
+    "Comprensión básica de sistemas de coordenadas",
+    "Experiencia en proyectos de ingeniería civil o topografía (recomendado)",
+    "Computadora con AutoCAD 2026 (con Map 3D Toolset incluido)",
+    "16 GB RAM mínimo, 32 GB recomendado"
+  ],
+  "objetivos": [
+    "Integrar datos GIS (SHP, KML, GeoJSON) en proyectos AutoCAD",
+    "Configurar y trabajar con sistemas de coordenadas y proyecciones",
+    "Realizar análisis espacial (buffers, overlays, proximity analysis)",
+    "Conectar a bases de datos espaciales (Oracle Spatial, PostGIS)",
+    "Crear mapas temáticos y cartografía profesional",
+    "Implementar workflows GIS/CAD en proyectos de infraestructura"
+  ],
+  "audiencia": [
+    "Ingenieros civiles que trabajan con datos GIS",
+    "Topógrafos y geodestas",
+    "Planificadores urbanos y territoriales",
+    "Especialistas en SIG que necesitan CAD",
+    "Profesionales de infraestructura y utilities",
+    "Consultores ambientales"
+  ],
+  "herramientas": [
+    "AutoCAD Map 3D 2026",
+    "FDO Data Access Technology",
+    "Coordinate Systems Library",
+    "Datos GIS de muestra (incluidos)"
+  ],
+  "certificacion": {
+    "disponible": true,
+    "nombre": "Certificado DISTMAH ATC - AutoCAD Map 3D 2026",
+    "requisitos": "80% asistencia y aprobación de evaluaciones"
+  },
+  "instructor": {
+    "nombre": "Instructores Certificados DISTMAH",
+    "certificacion": "Autodesk Certified Instructors",
+    "experiencia": "10+ años en proyectos GIS/CAD"
+  },
+  "modalidades": [
+    {
+      "tipo": "Presencial",
+      "horarios": ["Mañanas (9:00 AM - 1:00 PM)", "Tardes (2:00 PM - 6:00 PM)", "Noches (6:00 PM - 10:00 PM)", "Sábados (9:00 AM - 5:00 PM)"],
+      "duracion": "6 sesiones de 4 horas",
+      "ubicacion": "DISTMAH ATC - Authorized Training Center"
+    },
+    {
+      "tipo": "Online en Vivo",
+      "horarios": ["Flexible según demanda"],
+      "duracion": "6 sesiones de 4 horas",
+      "plataforma": "Zoom + Escritorio Remoto"
+    }
+  ],
+  "modulos": [
+    {
+      "numero": 1,
+      "titulo": "Introducción a Map 3D y Datos GIS",
+      "descripcion": "Fundamentos de Map 3D, sistemas de coordenadas, conexión FDO y manejo de datos geoespaciales",
+      "duracion": "6 horas",
+      "lecciones": 6,
+      "ruta": "modulo-1-introduccion-map3d-gis"
+    },
+    {
+      "numero": 2,
+      "titulo": "Análisis Espacial y Consultas",
+      "descripcion": "Object Data, conexiones a bases de datos, consultas espaciales, topología y análisis de red",
+      "duracion": "6 horas",
+      "lecciones": 6,
+      "ruta": "modulo-2-analisis-espacial-consultas"
+    },
+    {
+      "numero": 3,
+      "titulo": "Workflows Profesionales GIS/CAD",
+      "descripcion": "Integración con ArcGIS, MapInfo, edición de features, transformación de datos y topologías",
+      "duracion": "6 horas",
+      "lecciones": 6,
+      "ruta": "modulo-3-workflows-gis-cad"
+    },
+    {
+      "numero": 4,
+      "titulo": "Cartografía y Documentación",
+      "descripcion": "Map Books, leyendas, grids de coordenadas, estilos de plot y publicación georeferenciada",
+      "duracion": "6 horas",
+      "lecciones": 6,
+      "ruta": "modulo-4-cartografia-documentacion"
+    }
+  ],
+  "incluye": [
+    "24 horas de instrucción presencial u online",
+    "Material didáctico digital completo",
+    "Datos GIS de práctica (SHP, KML, geodatabases)",
+    "Ejercicios prácticos con proyectos reales",
+    "Certificado DISTMAH ATC al finalizar",
+    "Soporte post-curso por 30 días"
+  ],
+  "software_incluido": false,
+  "nota_software": "AutoCAD 2026 con Map 3D Toolset debe ser adquirido por el estudiante. Disponible como suscripción Autodesk o licencia educativa.",
+  "proximas_fechas": [
+    "Consultar calendario en www.distmah.com"
+  ],
+  "politicas": {
+    "cancelacion": "Reembolso 100% hasta 7 días antes del inicio",
+    "reprogramacion": "Permitida una vez sin costo adicional",
+    "materiales": "Acceso de por vida a materiales del curso"
+  }
+}

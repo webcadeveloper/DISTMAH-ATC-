@@ -1,0 +1,108 @@
+{
+  "name": "DISTMAH - Nuevo Comentario/Pregunta",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "comment-webhook",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-comment",
+      "name": "Webhook Comentario",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\"status\": \"received\"}"
+      },
+      "id": "response",
+      "name": "Responder OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.comment.type }}",
+              "value2": "question"
+            }
+          ]
+        }
+      },
+      "id": "check-type",
+      "name": "¿Es Pregunta?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@distmah.com.ve",
+        "toEmail": "={{ $json.comment.instructorEmail }}",
+        "subject": "=Nueva Pregunta en {{ $json.comment.courseName }} - {{ $json.comment.lessonTitle }}",
+        "emailType": "html",
+        "html": "=<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;\">\n  <div style=\"background: #17a2b8; padding: 20px; text-align: center;\">\n    <h1 style=\"color: white; margin: 0;\">Nueva Pregunta de Estudiante</h1>\n  </div>\n  \n  <div style=\"background: white; padding: 30px; border: 1px solid #ddd;\">\n    <p style=\"color: #666;\">Un estudiante tiene una pregunta en tu curso:</p>\n    \n    <div style=\"background: #e3f2fd; padding: 20px; border-radius: 5px; margin: 20px 0;\">\n      <p style=\"color: #1565c0; margin: 0; font-weight: bold;\">{{ $json.comment.studentName }} pregunta:</p>\n      <p style=\"color: #333; margin: 10px 0 0 0; font-style: italic;\">\"{{ $json.comment.content }}\"</p>\n    </div>\n    \n    <ul style=\"color: #666;\">\n      <li><strong>Curso:</strong> {{ $json.comment.courseName }}</li>\n      <li><strong>Lección:</strong> {{ $json.comment.lessonTitle }}</li>\n      <li><strong>Fecha:</strong> {{ $json.comment.createdAt }}</li>\n    </ul>\n    \n    <div style=\"text-align: center; margin: 30px 0;\">\n      <a href=\"https://edu.distmah.com/es/instructor/courses/{{ $json.comment.courseSlug }}/lessons/{{ $json.comment.lessonSlug }}#comments\" style=\"background: #1F4E79; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;\">Responder Pregunta</a>\n    </div>\n    \n    <p style=\"color: #999; font-size: 12px;\">Responder rápidamente mejora la satisfacción del estudiante.</p>\n  </div>\n</div>"
+      },
+      "id": "notify-instructor",
+      "name": "Notificar Instructor",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [850, 200],
+      "credentials": {
+        "smtp": {
+          "id": "1",
+          "name": "SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@distmah.com.ve",
+        "toEmail": "={{ $json.comment.instructorEmail }}",
+        "subject": "=Nuevo Comentario en {{ $json.comment.courseName }}",
+        "emailType": "html",
+        "html": "=<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;\">\n  <div style=\"background: #6c757d; padding: 20px; text-align: center;\">\n    <h1 style=\"color: white; margin: 0;\">Nuevo Comentario</h1>\n  </div>\n  \n  <div style=\"background: white; padding: 30px; border: 1px solid #ddd;\">\n    <p style=\"color: #666;\">{{ $json.comment.studentName }} dejó un comentario:</p>\n    \n    <blockquote style=\"background: #f9f9f9; padding: 15px; border-left: 4px solid #6c757d; margin: 20px 0;\">\n      \"{{ $json.comment.content }}\"\n    </blockquote>\n    \n    <ul style=\"color: #666;\">\n      <li><strong>Curso:</strong> {{ $json.comment.courseName }}</li>\n      <li><strong>Lección:</strong> {{ $json.comment.lessonTitle }}</li>\n    </ul>\n  </div>\n</div>"
+      },
+      "id": "notify-comment",
+      "name": "Notificar Comentario",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [850, 400],
+      "credentials": {
+        "smtp": {
+          "id": "1",
+          "name": "SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Comentario": {
+      "main": [
+        [
+          { "node": "Responder OK", "type": "main", "index": 0 },
+          { "node": "¿Es Pregunta?", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "¿Es Pregunta?": {
+      "main": [
+        [
+          { "node": "Notificar Instructor", "type": "main", "index": 0 }
+        ],
+        [
+          { "node": "Notificar Comentario", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "comentarios" }, { "name": "soporte" }]
+}

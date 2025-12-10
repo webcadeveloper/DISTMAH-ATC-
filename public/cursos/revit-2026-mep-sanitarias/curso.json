@@ -1,0 +1,188 @@
+{
+  "id": "revit-2026-mep-sanitarias",
+  "titulo": "Revit MEP 2026 - Instalaciones Sanitarias",
+  "descripcion": "Curso profesional especializado en sistemas de plomería (sanitarios, agua potable, drenaje y protección contra incendios) con Autodesk Revit MEP 2026. Aprende a diseñar sistemas hidráulicos completos con workflows profesionales.",
+  "instructor": "Ing. Carlos Mendoza",
+  "precio": 225,
+  "moneda": "USD",
+  "duracion": "16 horas",
+  "nivel": "Intermedio",
+  "categoria": "MEP",
+  "subcategoria": "Instalaciones Sanitarias",
+  "version": "2026",
+  "idioma": "Español",
+  "prerequisitos": [
+    "Revit Architecture 2026 (recomendado)",
+    "Conocimientos básicos de instalaciones sanitarias",
+    "Manejo básico de AutoCAD (deseable)"
+  ],
+  "objetivos": [
+    "Dominar la configuración de proyectos MEP para plomería",
+    "Modelar sistemas completos de agua potable (fría y caliente)",
+    "Diseñar sistemas de drenaje sanitario con pendientes correctas",
+    "Implementar sistemas contra incendios (sprinklers)",
+    "Dimensionar tuberías según normas internacionales",
+    "Generar documentación técnica profesional",
+    "Crear dibujos isométricos de instalaciones",
+    "Coordinar sistemas sanitarios con otras disciplinas MEP",
+    "Aplicar mejores prácticas de routing de tuberías 2026",
+    "Utilizar las nuevas herramientas de coordinación 2026"
+  ],
+  "incluye": [
+    "16 lecciones completas con contenido profesional",
+    "Ejercicios prácticos por módulo",
+    "Familias MEP de plomería (.rfa)",
+    "Plantillas de proyecto (.rte)",
+    "Material descargable en PDF",
+    "Acceso a plataforma LMS 24/7",
+    "Certificado digital al finalizar",
+    "Soporte por instructor",
+    "Acceso de por vida",
+    "Actualizaciones gratuitas"
+  ],
+  "modulos": [
+    {
+      "numero": 1,
+      "titulo": "Fundamentos de Plomería en Revit MEP",
+      "duracion": "4 horas",
+      "lecciones": 4,
+      "descripcion": "Introducción al modelado de instalaciones sanitarias. Interface MEP, configuración de proyectos, tipos de tuberías, familias de fixtures y colocación de muebles sanitarios.",
+      "temas": [
+        "Interface MEP para plomería",
+        "Plumbing Settings y configuración de proyecto",
+        "Tipos de tuberías y materiales (PVC, cobre, acero)",
+        "Familias de fixtures y muebles sanitarios",
+        "Colocación inteligente de fixtures",
+        "Conectores y sistemas MEP",
+        "Accelerated Graphics para navegación rápida"
+      ]
+    },
+    {
+      "numero": 2,
+      "titulo": "Sistemas de Agua Potable",
+      "duracion": "4 horas",
+      "lecciones": 4,
+      "descripcion": "Diseño completo de sistemas de distribución de agua fría y caliente. Dimensionamiento, bombas, presión y cálculos hidráulicos profesionales.",
+      "temas": [
+        "Distribución de agua fría",
+        "Sistemas de agua caliente y recirculación",
+        "Bombas y sistemas de presión constante",
+        "Dimensionamiento de tuberías según caudal",
+        "Cálculos de agua doméstica (fixture units)",
+        "Calentadores de agua y tanques",
+        "Routing automático de tuberías",
+        "Accesorios y fittings hidráulicos"
+      ]
+    },
+    {
+      "numero": 3,
+      "titulo": "Sistemas de Drenaje",
+      "duracion": "4 horas",
+      "lecciones": 4,
+      "descripcion": "Modelado de sistemas de drenaje sanitario y pluvial. Tuberías con pendiente, ventilación, trampas y cálculos de drenaje según normas.",
+      "temas": [
+        "Drenaje sanitario y aguas negras",
+        "Sistemas de ventilación (vent piping)",
+        "Drenaje pluvial (aguas de lluvia)",
+        "Tuberías con pendiente correcta",
+        "Trampas, sifones y registros",
+        "Cálculos de drenaje (drainage fixture units)",
+        "Bajadas pluviales y sistemas de recolección",
+        "Manejo de slopes en Revit 2026"
+      ]
+    },
+    {
+      "numero": 4,
+      "titulo": "Sistemas Especiales y Documentación",
+      "duracion": "4 horas",
+      "lecciones": 4,
+      "descripcion": "Sistemas contra incendios, tuberías de gas, documentación técnica completa y coordinación multidisciplinaria con las nuevas herramientas 2026.",
+      "temas": [
+        "Sistemas contra incendios (sprinklers)",
+        "Tuberías de gas LP y natural",
+        "Gases medicinales (hospitales)",
+        "Tablas de plomería (schedules)",
+        "Dibujos isométricos de instalaciones",
+        "Coordinación con arquitectura y otras disciplinas",
+        "Coordination Model improvements 2026",
+        "Detección de interferencias (clash detection)",
+        "Exportación a fabricación MEP"
+      ]
+    }
+  ],
+  "certificacion": {
+    "nombre": "Revit MEP Plumbing Systems 2026 Specialist",
+    "requisitos": [
+      "Completar las 16 lecciones",
+      "Aprobar ejercicios prácticos de cada módulo",
+      "Presentar proyecto final integrador",
+      "Mínimo 80% de asistencia (modalidad en vivo)"
+    ],
+    "validez": "Permanente",
+    "verificable": true
+  },
+  "requisitos_tecnicos": {
+    "software": [
+      "Autodesk Revit 2026 (licencia requerida)",
+      "Windows 10/11 de 64 bits"
+    ],
+    "hardware": {
+      "procesador": "Intel i7 o AMD Ryzen 7 (3+ GHz)",
+      "ram": "16 GB mínimo (32 GB recomendado)",
+      "grafica": "4 GB VRAM DirectX 11",
+      "disco": "50 GB espacio libre (SSD recomendado)",
+      "resolucion": "1920x1080 mínimo"
+    },
+    "conectividad": "Internet de banda ancha"
+  },
+  "novedades_2026": [
+    "Accelerated Graphics para navegación rápida en proyectos grandes",
+    "Coordination Model improvements (mejor control de vínculos)",
+    "Routing mejorado de tuberías con detección de obstáculos",
+    "Mejores familias de fixtures con parámetros avanzados",
+    "Manejo optimizado de tuberías con pendiente",
+    "Mejores capacidades analíticas para cálculos hidráulicos",
+    "Integración mejorada con Twinmotion para visualización",
+    "Soporte para Reality Capture (nubes de puntos)"
+  ],
+  "modalidades": [
+    "En vivo por videoconferencia",
+    "Acceso a grabaciones",
+    "Plataforma LMS con ejercicios",
+    "Soporte asíncrono"
+  ],
+  "horarios_disponibles": [
+    "Mañanas: 8:00 AM - 12:00 PM",
+    "Tardes: 2:00 PM - 6:00 PM",
+    "Noches: 6:00 PM - 10:00 PM",
+    "Sábados: 9:00 AM - 5:00 PM",
+    "Intensivo: Lunes a Viernes"
+  ],
+  "competencias_profesionales": [
+    "Modelado BIM de instalaciones sanitarias completas",
+    "Diseño de sistemas de agua potable (fría/caliente)",
+    "Diseño de sistemas de drenaje sanitario y pluvial",
+    "Diseño de sistemas contra incendios",
+    "Dimensionamiento de tuberías según normas",
+    "Generación de documentación técnica profesional",
+    "Coordinación multidisciplinaria MEP",
+    "Detección y resolución de interferencias",
+    "Preparación de modelos para construcción"
+  ],
+  "posiciones_laborales": [
+    "BIM Modeler MEP (Plumbing)",
+    "Ingeniero de Instalaciones Sanitarias",
+    "Diseñador MEP",
+    "Coordinador BIM MEP",
+    "Revit MEP Specialist (Plumbing)",
+    "MEP Engineer"
+  ],
+  "actualizacion": "2025-11-22",
+  "vigencia": "2026",
+  "contacto": {
+    "institucion": "DISTMAH Universidad Autodesk - ATC",
+    "web": "www.distmah.com.ve",
+    "email": "cursos@distmah.com.ve",
+    "whatsapp": "+58 XXX-XXXXXXX"
+  }
+}

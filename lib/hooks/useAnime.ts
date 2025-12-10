@@ -28,6 +28,7 @@ export function useAnime<T extends HTMLElement = HTMLDivElement>(
         scopeRef.current.revert();
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 
   return ref;

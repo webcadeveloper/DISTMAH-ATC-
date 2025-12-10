@@ -1,200 +1,292 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Edit, Users, Eye, MoreVertical, Plus } from 'lucide-react';
-import { prisma } from '@/lib/prisma';
+import { Edit, Users, Eye, MoreVertical, Plus, BookOpen, Loader2, Star } from 'lucide-react';
+import { toast } from 'sonner';
 
-async function getCourses() {
-  const courses = await prisma.course.findMany({
-    include: {
-      _count: {
-        select: {
-          modules: true,
-          enrollments: true,
-        },
-      },
-    },
-    orderBy: {
-      createdAt: 'desc',
-    },
-  });
-
-  return courses;
+interface Course {
+    courseId: string;
+    courseTitle: string;
+    courseSlug: string;
+    students: number;
+    completionRate: number;
+    rating: number;
+    reviewsCount: number;
 }
 
-export default async function InstructorCoursesPage() {
-    const courses = await getCourses();
+interface CourseDetails {
+    id: string;
+    title: string;
+    slug: string;
+    description: string;
+    thumbnail: string | null;
+    category: string;
+    level: string;
+    status: string;
+    price: number;
+    version: string;
+    enrollmentCount: number;
+    rating: number;
+    reviewsCount: number;
+}
+
+export default function InstructorCoursesPage() {
+    const [courses, setCourses] = useState<CourseDetails[]>([]);
+    const [analytics, setAnalytics] = useState<Course[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        loadCourses();
+    }, []);
+
+    const loadCourses = async () => {
+        try {
+            const [coursesRes, analyticsRes] = await Promise.all([
+                fetch('/api/instructor/courses'),
+                fetch('/api/instructor/courses/analytics')
+            ]);
+
+            if (coursesRes.ok) {
+                const data = await coursesRes.json();
+                setCourses(data.courses || []);
+            }
+
+            if (analyticsRes.ok) {
+                const data = await analyticsRes.json();
+                setAnalytics(data.courseAnalytics || []);
+            }
+        } catch {
+            toast.error('Error al cargar cursos');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const getCourseAnalytics = (courseId: string) => {
+        return analytics.find(a => a.courseId === courseId);
+    };
+
+    const getStatusBadge = (status: string) => {
+        switch (status) {
+            case 'PUBLISHED':
+                return <Badge className="bg-green-100 text-green-800 border-green-200">Publicado</Badge>;
+            case 'DRAFT':
+                return <Badge className="bg-yellow-100 text-yellow-800 border-yellow-200">Borrador</Badge>;
+            case 'ARCHIVED':
+                return <Badge className="bg-neutral-100 text-neutral-600 border-neutral-200">Archivado</Badge>;
+            default:
+                return <Badge variant="outline">{status}</Badge>;
+        }
+    };
+
+    const getLevelBadge = (level: string) => {
+        switch (level) {
+            case 'BEGINNER':
+                return 'Basico';
+            case 'INTERMEDIATE':
+                return 'Intermedio';
+            case 'ADVANCED':
+                return 'Avanzado';
+            default:
+                return level;
+        }
+    };
+
+    if (loading) {
+        return (
+            <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
+                <div className="mb-8">
+                    <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Mis Cursos</h1>
+                    <p className="text-neutral-600 dark:text-neutral-400">Gestiona tus cursos y contenido academico.</p>
+                </div>
+                <Card>
+                    <CardContent className="p-12 text-center">
+                        <Loader2 className="w-12 h-12 text-blue-600 mx-auto mb-4 animate-spin" />
+                        <p className="text-neutral-600 dark:text-neutral-400">Cargando cursos...</p>
+                    </CardContent>
+                </Card>
+            </div>
+        );
+    }
+
+    if (courses.length === 0) {
+        return (
+            <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
+                <div className="flex justify-between items-center mb-8">
+                    <div>
+                        <h1 className="text-3xl font-bold text-neutral-900">Mis Cursos</h1>
+                        <p className="text-neutral-600">Gestiona tus cursos y contenido academico.</p>
+                    </div>
+                    <Link href="/es/instructor/cursos/crear-curso">
+                        <Button className="bg-neutral-900 hover:bg-neutral-800">
+                            <Plus className="w-4 h-4 mr-2" /> Crear Nuevo Curso
+                        </Button>
+                    </Link>
+                </div>
+                <Card>
+                    <CardContent className="p-12 text-center">
+                        <BookOpen className="w-16 h-16 text-neutral-300 mx-auto mb-4" />
+                        <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">No tienes cursos creados</h3>
+                        <p className="text-neutral-600 dark:text-neutral-400 mb-6">Crea tu primer curso para comenzar a ensenar</p>
+                        <Link href="/es/instructor/cursos/crear-curso">
+                            <Button className="bg-blue-600 hover:bg-blue-700">
+                                <Plus className="w-4 h-4 mr-2" /> Crear Curso
+                            </Button>
+                        </Link>
+                    </CardContent>
+                </Card>
+            </div>
+        );
+    }
 
     return (
-        <div className="p-8 max-w-7xl mx-auto">
+        <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
             <div className="flex justify-between items-center mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-neutral-900">Mis Cursos</h1>
-                    <p className="text-neutral-600">Gestiona tus cursos y contenido académico.</p>
+                    <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Mis Cursos</h1>
+                    <p className="text-neutral-600 dark:text-neutral-400">Gestiona tus cursos y contenido academico.</p>
                 </div>
-                <Link href="/instructor/cursos/crear-curso">
-                    <Button className="bg-primary-600 hover:bg-primary-700">
+                <Link href="/es/instructor/cursos/crear-curso">
+                    <Button className="bg-neutral-900 hover:bg-neutral-800">
                         <Plus className="w-4 h-4 mr-2" /> Crear Nuevo Curso
                     </Button>
                 </Link>
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <Card>
+            <div className="grid md:grid-cols-3 gap-4 mb-8">
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-500 mb-1">Total Cursos</p>
-                                <h3 className="text-3xl font-bold text-neutral-900">{courses.length}</h3>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Total Cursos</p>
+                                <p className="text-2xl font-bold text-neutral-900 dark:text-white">{courses.length}</p>
                             </div>
-                            <div className="p-3 bg-primary-50 rounded-full">
-                                <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                                </svg>
-                            </div>
+                            <BookOpen className="w-8 h-8 text-blue-400" />
                         </div>
                     </CardContent>
                 </Card>
-
-                <Card>
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-500 mb-1">Publicados</p>
-                                <h3 className="text-3xl font-bold text-neutral-900">
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Publicados</p>
+                                <p className="text-2xl font-bold text-green-600">
                                     {courses.filter(c => c.status === 'PUBLISHED').length}
-                                </h3>
+                                </p>
                             </div>
-                            <div className="p-3 bg-green-50 rounded-full">
-                                <Eye className="w-6 h-6 text-green-600" />
-                            </div>
+                            <Eye className="w-8 h-8 text-green-400" />
                         </div>
                     </CardContent>
                 </Card>
-
-                <Card>
+                <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
                     <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                             <div>
-                                <p className="text-sm text-neutral-500 mb-1">Total Estudiantes</p>
-                                <h3 className="text-3xl font-bold text-neutral-900">
-                                    {courses.reduce((sum, c) => sum + c._count.enrollments, 0)}
-                                </h3>
+                                <p className="text-sm text-neutral-600 dark:text-neutral-400">Total Estudiantes</p>
+                                <p className="text-2xl font-bold text-neutral-900 dark:text-white">
+                                    {analytics.reduce((acc, c) => acc + c.students, 0)}
+                                </p>
                             </div>
-                            <div className="p-3 bg-blue-50 rounded-full">
-                                <Users className="w-6 h-6 text-blue-600" />
-                            </div>
+                            <Users className="w-8 h-8 text-neutral-400" />
                         </div>
                     </CardContent>
                 </Card>
             </div>
 
-            {/* Courses List */}
             <div className="grid gap-6">
-                {courses.map((course) => (
-                    <Card key={course.id} className="overflow-hidden hover:shadow-md transition-shadow">
-                        <div className="flex flex-col md:flex-row">
-                            <div className="w-full md:w-64 h-48 md:h-auto bg-neutral-200 relative">
-                                {/* Image placeholder */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center">
-                                    <span className="text-white text-4xl font-bold">
-                                        {course.title.substring(0, 2).toUpperCase()}
-                                    </span>
-                                </div>
-                                <div className="absolute top-2 left-2">
-                                    <Badge className="bg-white/90 text-neutral-900 hover:bg-white">
-                                        {course.software}
-                                    </Badge>
-                                </div>
-                                <div className="absolute top-2 right-2">
-                                    <Badge
-                                        className={
-                                            course.status === 'PUBLISHED'
-                                                ? 'bg-green-500 text-white'
-                                                : 'bg-yellow-500 text-white'
-                                        }
-                                    >
-                                        {course.status === 'PUBLISHED' ? 'Publicado' : 'Borrador'}
-                                    </Badge>
-                                </div>
-                            </div>
-
-                            <div className="flex-grow p-6 flex flex-col justify-between">
-                                <div>
-                                    <div className="flex justify-between items-start mb-2">
-                                        <Badge variant="outline" className="text-primary-600 border-primary-200 bg-primary-50">
-                                            {course.category}
+                {courses.map((course) => {
+                    const courseAnalytics = getCourseAnalytics(course.id);
+                    return (
+                        <Card key={course.id} className="overflow-hidden hover:shadow-md transition-shadow bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
+                            <div className="flex flex-col md:flex-row">
+                                <div className="w-full md:w-64 h-48 md:h-auto bg-neutral-200 relative">
+                                    {course.thumbnail ? (
+                                        <Image
+                                            src={course.thumbnail}
+                                            alt={course.title}
+                                            fill
+                                            className="object-cover"
+                                        />
+                                    ) : (
+                                        <div className="absolute inset-0 bg-neutral-300 flex items-center justify-center">
+                                            <BookOpen className="w-12 h-12 text-neutral-400" />
+                                        </div>
+                                    )}
+                                    <div className="absolute top-2 left-2">
+                                        <Badge className="bg-white/90 text-neutral-900 hover:bg-white">
+                                            {course.version || '2026'}
                                         </Badge>
-                                        <Button variant="ghost" size="icon" className="h-8 w-8">
-                                            <MoreVertical className="w-4 h-4 text-neutral-400" />
-                                        </Button>
-                                    </div>
-
-                                    <h3 className="text-xl font-bold text-neutral-900 mb-2">{course.title}</h3>
-                                    <p className="text-neutral-500 text-sm line-clamp-2 mb-4">{course.description}</p>
-
-                                    <div className="flex items-center gap-6 text-sm text-neutral-500">
-                                        <div className="flex items-center gap-2">
-                                            <Users className="w-4 h-4" />
-                                            <span>{course._count.enrollments} Estudiantes</span>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                                            </svg>
-                                            <span>{course._count.modules} Módulos</span>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                            </svg>
-                                            <span>{course.duration}h</span>
-                                        </div>
                                     </div>
                                 </div>
 
-                                <div className="flex items-center gap-3 mt-6 pt-4 border-t border-neutral-100">
-                                    <Link href={`/instructor/cursos/${course.id}/contenido`}>
-                                        <Button variant="default" size="sm" className="bg-neutral-900 hover:bg-neutral-800">
-                                            <Edit className="w-4 h-4 mr-2" /> Editar Contenido
-                                        </Button>
-                                    </Link>
-                                    <Link href={`/instructor/cursos/${course.id}/editar`}>
-                                        <Button variant="outline" size="sm">
-                                            Información
-                                        </Button>
-                                    </Link>
-                                    <Link href={`/cursos/${course.slug}`} target="_blank">
-                                        <Button variant="ghost" size="sm">
-                                            Ver Vista Previa
-                                        </Button>
-                                    </Link>
+                                <div className="flex-grow p-6 flex flex-col justify-between">
+                                    <div>
+                                        <div className="flex justify-between items-start mb-2">
+                                            <div className="flex items-center gap-2">
+                                                <Badge variant="outline" className="text-blue-600 border-blue-200 bg-blue-50">
+                                                    {course.category || 'Civil 3D'}
+                                                </Badge>
+                                                <Badge variant="outline" className="text-neutral-600 border-neutral-200">
+                                                    {getLevelBadge(course.level)}
+                                                </Badge>
+                                                {getStatusBadge(course.status)}
+                                            </div>
+                                            <Button variant="ghost" size="icon" className="h-8 w-8">
+                                                <MoreVertical className="w-4 h-4 text-neutral-400" />
+                                            </Button>
+                                        </div>
+
+                                        <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">{course.title}</h3>
+                                        <p className="text-neutral-500 dark:text-neutral-400 text-sm line-clamp-2 mb-4">{course.description}</p>
+
+                                        <div className="flex items-center gap-6 text-sm text-neutral-500 dark:text-neutral-400">
+                                            <div className="flex items-center gap-2">
+                                                <Users className="w-4 h-4" />
+                                                <span>{courseAnalytics?.students || course.enrollmentCount || 0} Estudiantes</span>
+                                            </div>
+                                            {(courseAnalytics?.rating || course.rating) > 0 && (
+                                                <div className="flex items-center gap-2">
+                                                    <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                                                    <span>{(courseAnalytics?.rating || course.rating).toFixed(1)} ({courseAnalytics?.reviewsCount || course.reviewsCount} reviews)</span>
+                                                </div>
+                                            )}
+                                            {courseAnalytics && (
+                                                <div className="flex items-center gap-2">
+                                                    <span className="text-green-600 font-medium">{courseAnalytics.completionRate}% completado</span>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-center gap-3 mt-6 pt-4 border-t border-neutral-100 dark:border-neutral-700">
+                                        <Link href={`/es/instructor/cursos/${course.slug}/contenido`}>
+                                            <Button variant="default" size="sm" className="bg-neutral-900 hover:bg-neutral-800">
+                                                <Edit className="w-4 h-4 mr-2" /> Editar Contenido
+                                            </Button>
+                                        </Link>
+                                        <Link href={`/es/instructor/cursos/${course.slug}/editar`}>
+                                            <Button variant="outline" size="sm">
+                                                Informacion
+                                            </Button>
+                                        </Link>
+                                        <Link href={`/es/cursos/${course.slug}`} target="_blank">
+                                            <Button variant="ghost" size="sm">
+                                                Ver Vista Previa
+                                            </Button>
+                                        </Link>
+                                        <div className="flex-grow" />
+                                        <span className="text-lg font-bold text-neutral-900 dark:text-white">${course.price} USD</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </Card>
-                ))}
-
-                {courses.length === 0 && (
-                    <Card className="p-12">
-                        <div className="text-center">
-                            <div className="w-16 h-16 bg-neutral-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg className="w-8 h-8 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                                </svg>
-                            </div>
-                            <h3 className="text-lg font-semibold text-neutral-900 mb-2">No tienes cursos creados</h3>
-                            <p className="text-neutral-600 mb-6">Comienza creando tu primer curso para compartir tu conocimiento.</p>
-                            <Link href="/instructor/cursos/crear-curso">
-                                <Button className="bg-primary-600 hover:bg-primary-700">
-                                    <Plus className="w-4 h-4 mr-2" /> Crear Mi Primer Curso
-                                </Button>
-                            </Link>
-                        </div>
-                    </Card>
-                )}
+                        </Card>
+                    );
+                })}
             </div>
         </div>
     );

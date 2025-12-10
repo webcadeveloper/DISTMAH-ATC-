@@ -1,0 +1,267 @@
+{
+  "id": "civil-3d-2026-avanzado",
+  "titulo": "Autodesk Civil 3D 2026 - Curso Avanzado",
+  "descripcion": "Curso avanzado profesional de Autodesk Civil 3D 2026 para diseño complejo de infraestructura civil. Domina corridors, assemblies, intersecciones, roundabouts, quantity takeoff avanzado, pressure networks, automatización con Dynamo, y workflows BIM colaborativos aplicados a proyectos de alta complejidad.",
+  "instructor": "Ing. Civil - Especialista en Infraestructura BIM",
+  "precio": 390,
+  "moneda": "USD",
+  "duracion": "30 horas",
+  "nivel": "Avanzado",
+  "categoria": "Civil",
+  "subcategoria": "Diseño de Infraestructura",
+  "version": "2026",
+  "idioma": "Español",
+  "prerequisitos": [
+    "Civil 3D 2026 Básico completado",
+    "Experiencia con superficies y alineamientos",
+    "Conocimiento de perfiles longitudinales",
+    "Comprensión de redes de tuberías básicas",
+    "Experiencia en proyectos de infraestructura"
+  ],
+  "objetivos": [
+    "Dominar corridors complejos con assemblies personalizados",
+    "Diseñar intersecciones y roundabouts profesionales",
+    "Crear assemblies y subassemblies avanzados",
+    "Generar quantity takeoff y mass haul diagrams",
+    "Optimizar movimientos de tierra y costos",
+    "Diseñar pressure networks (agua potable)",
+    "Automatizar workflows con Dynamo for Civil 3D",
+    "Desarrollar scripts Python para Civil 3D",
+    "Implementar workflows BIM colaborativos",
+    "Integrar con Autodesk Construction Cloud",
+    "Coordinar modelos con Navisworks",
+    "Exportar proyectos a IFC y LandXML",
+    "Aplicar análisis avanzados de drenaje y utilities",
+    "Crear herramientas personalizadas para productividad"
+  ],
+  "incluye": [
+    "30 lecciones avanzadas con proyectos complejos",
+    "Ejercicios de autopistas y urbanizaciones grandes",
+    "Archivos DWG de proyectos profesionales reales",
+    "Custom assemblies y subassemblies (.pkt)",
+    "Scripts de Dynamo y Python descargables",
+    "Templates avanzados de Civil 3D (.dwt)",
+    "Material técnico especializado en PDF",
+    "Acceso a plataforma LMS 24/7",
+    "Certificado avanzado digital al finalizar",
+    "Soporte por instructor especialista",
+    "Acceso de por vida",
+    "Actualizaciones gratuitas",
+    "Recursos BIM y estándares de industria"
+  ],
+  "modulos": [
+    {
+      "numero": 1,
+      "titulo": "Corridors y Assemblies Avanzados",
+      "duracion": "6 horas",
+      "lecciones": 6,
+      "descripcion": "Dominio completo de corridors y assemblies para diseño de autopistas, carreteras multicarril, y vías complejas. Creación de assemblies personalizados, targets, offset alignments, corridor surfaces, feature lines, y optimización de diseño.",
+      "temas": [
+        "Assemblies y subassemblies fundamentales",
+        "Subassembly Composer - creación personalizada",
+        "Corridor modeling multicarril (autopistas)",
+        "Targets complejos (surfaces, alignments, feature lines)",
+        "Offset alignments para carriles adicionales",
+        "Regions y transitions en corridors",
+        "Corridor surfaces (top, datum, baselines)",
+        "Feature lines extraction desde corridors",
+        "Frequency y station-based design",
+        "Corridor optimization para movimiento de tierras",
+        "Overrides y point codes",
+        "Daylight complex grading solutions"
+      ]
+    },
+    {
+      "numero": 2,
+      "titulo": "Intersecciones y Roundabouts",
+      "duracion": "5 horas",
+      "lecciones": 5,
+      "descripcion": "Diseño profesional de intersecciones complejas, roundabouts (glorietas), turn lanes, acceleration/deceleration lanes, y análisis de capacidad. Uso del Intersection Wizard y workflows manuales para control total.",
+      "temas": [
+        "Intersection design fundamentals",
+        "Intersection Wizard - diseño automático",
+        "Roundabout design según AASHTO/FHWA",
+        "Splitter islands y entry/exit geometry",
+        "Turn lanes (left-turn, right-turn)",
+        "Acceleration y deceleration lanes",
+        "Tapers y transiciones geométricas",
+        "Complex intersection assemblies",
+        "Intersection analysis y sight distance",
+        "Traffic capacity analysis integration",
+        "Pedestrian crossings y accessibility",
+        "Intersección manual vs wizard workflows"
+      ]
+    },
+    {
+      "numero": 3,
+      "titulo": "Quantity Takeoff y Mass Haul Avanzado",
+      "duracion": "5 horas",
+      "lecciones": 5,
+      "descripcion": "Análisis exhaustivo de movimiento de tierras, quantity takeoff profesional, mass haul diagrams, optimización de acarreos, cost estimation, pay items, y exportación a software de presupuesto. Workflows avanzados de Civil 3D 2026.",
+      "temas": [
+        "Material tables avanzadas (earthwork, pavement)",
+        "Quantity takeoff criteria y assembly codes",
+        "Mass haul diagrams fundamentals",
+        "Free haul, overhaul, y borrow/waste analysis",
+        "Mass haul optimization workflows",
+        "Pay items y cost databases",
+        "Cost estimation integration",
+        "Corridor quantity analysis",
+        "Export to estimating software (Excel, QTO tools)",
+        "Earthwork balancing optimization",
+        "Shrinkage y swell factors",
+        "Reports y documentation professional"
+      ]
+    },
+    {
+      "numero": 4,
+      "titulo": "Pressure Networks y Utilities Avanzadas",
+      "duracion": "5 horas",
+      "lecciones": 5,
+      "descripcion": "Diseño completo de pressure pipe networks para sistemas de agua potable, análisis hidráulico, pump stations, multi-utility coordination, clash detection, y workflows profesionales de utilities.",
+      "temas": [
+        "Pressure pipe networks fundamentals (agua potable)",
+        "Pressure analysis y hydraulic grade line",
+        "Fittings, valves, appurtenances",
+        "Pump stations y booster systems",
+        "Multi-utility coordination workflows",
+        "Interference checking (clash detection)",
+        "Gravity vs pressure networks comparison",
+        "Utility networks en 3D (electric, telecom, gas)",
+        "Depth management y cover analysis",
+        "Pipe sizing según demanda y presión",
+        "Export to hydraulic analysis software",
+        "As-built utilities documentation"
+      ]
+    },
+    {
+      "numero": 5,
+      "titulo": "Dynamo for Civil 3D y Automation",
+      "duracion": "5 horas",
+      "lecciones": 5,
+      "descripcion": "Automatización de workflows con Dynamo for Civil 3D, visual scripting, creación de herramientas personalizadas, Python scripting para Civil 3D, y desarrollo de soluciones BIM automatizadas para productividad extrema.",
+      "temas": [
+        "Dynamo for Civil 3D basics y interface",
+        "Automated design workflows con Dynamo",
+        "Civil 3D nodes (surfaces, alignments, corridors)",
+        "Data extraction automatizada",
+        "Python scripting for Civil 3D (.NET API)",
+        "Custom tools y scripts reutilizables",
+        "Batch processing de proyectos",
+        "BIM automation workflows",
+        "Dynamo packages para Civil 3D",
+        "Integration con Excel y databases",
+        "Automated reporting y documentation",
+        "Deployment de scripts en equipos"
+      ]
+    },
+    {
+      "numero": 6,
+      "titulo": "Collaboration y BIM Integration",
+      "duracion": "4 horas",
+      "lecciones": 4,
+      "descripcion": "Workflows BIM colaborativos profesionales con Autodesk Construction Cloud (ACC), BIM 360, coordinación de modelos con Navisworks, data shortcuts avanzados, exportación IFC/LandXML, y estándares de industria para entrega de proyectos.",
+      "temas": [
+        "Autodesk Construction Cloud (ACC) workflows",
+        "BIM 360 Design integration",
+        "Data shortcuts avanzados (xrefs dinámicos)",
+        "Model coordination con Navisworks",
+        "Clash detection multidisciplinar",
+        "IFC export para OpenBIM workflows",
+        "LandXML export/import avanzado",
+        "Collaboration for Civil 3D workflows",
+        "Data management y vault strategies",
+        "Project templates y standards enforcement",
+        "Deliverables profesionales (BEP, EIR)",
+        "ISO 19650 y BIM Level 2 compliance"
+      ]
+    }
+  ],
+  "certificacion": {
+    "nombre": "Civil 3D 2026 Advanced Infrastructure Design Specialist",
+    "requisitos": [
+      "Completar las 30 lecciones",
+      "Aprobar ejercicios avanzados de cada módulo",
+      "Presentar proyecto final de autopista con intersecciones",
+      "Demostrar automatización con Dynamo",
+      "Mínimo 80% de asistencia (modalidad en vivo)"
+    ],
+    "validez": "Permanente",
+    "verificable": true
+  },
+  "requisitos_tecnicos": {
+    "software": [
+      "Autodesk Civil 3D 2026 (licencia requerida)",
+      "Dynamo for Civil 3D 2026",
+      "Windows 10/11 de 64 bits",
+      "Navisworks Manage 2026 (recomendado)",
+      "Autodesk Construction Cloud account (trial disponible)"
+    ],
+    "hardware": {
+      "procesador": "Intel i7/i9 o AMD Ryzen 7/9 (3.5+ GHz)",
+      "ram": "32 GB mínimo (64 GB recomendado para proyectos grandes)",
+      "grafica": "8 GB VRAM DirectX 11 compatible (RTX/Quadro)",
+      "disco": "100 GB espacio libre SSD NVMe",
+      "resolucion": "1920x1080 mínimo (dual monitor 2560x1440 recomendado)"
+    },
+    "conectividad": "Internet de banda ancha (para ACC/BIM 360)"
+  },
+  "novedades_2026": [
+    "Corridor optimization tools mejorados - balanceo automático",
+    "Dynamo for Civil 3D actualizado - más nodes nativos",
+    "Pressure networks analysis integrado - sin external tools",
+    "Mass haul diagram automation - workflows optimizados",
+    "Autodesk Construction Cloud deep integration",
+    "Intersection Wizard mejorado - roundabouts complejos",
+    "Python scripting API expandido - más automation",
+    "IFC export mejorado - mejor compatibilidad OpenBIM",
+    "My Insights analytics - métricas de corridors y QTO",
+    "Subassembly Composer 2026 - nuevos parameters"
+  ],
+  "modalidades": [
+    "En vivo por videoconferencia",
+    "Acceso a grabaciones",
+    "Plataforma LMS con ejercicios avanzados",
+    "Soporte asíncrono especializado",
+    "Sesiones de Q&A con expertos"
+  ],
+  "horarios_disponibles": [
+    "Mañanas: 8:00 AM - 12:00 PM",
+    "Tardes: 2:00 PM - 6:00 PM",
+    "Noches: 6:00 PM - 10:00 PM",
+    "Sábados: 9:00 AM - 5:00 PM",
+    "Intensivo: Lunes a Viernes"
+  ],
+  "competencias_profesionales": [
+    "Diseño BIM avanzado de autopistas y vialidades complejas",
+    "Modelado de corridors multicarril con assemblies personalizados",
+    "Diseño de intersecciones y roundabouts profesionales",
+    "Quantity takeoff y estimación de costos",
+    "Mass haul optimization y earthwork balancing",
+    "Diseño de pressure networks (agua potable)",
+    "Automatización con Dynamo y Python scripting",
+    "Workflows BIM colaborativos (ACC, BIM 360)",
+    "Coordinación multidisciplinar con Navisworks",
+    "Exportación OpenBIM (IFC, LandXML)",
+    "Aplicación de normas AASHTO/FHWA/ISO 19650",
+    "Gestión de proyectos de infraestructura BIM"
+  ],
+  "posiciones_laborales": [
+    "BIM Manager Civil",
+    "Ingeniero Civil Senior",
+    "Diseñador de Autopistas",
+    "BIM Coordinator Infraestructura",
+    "Civil 3D Specialist",
+    "Consultor BIM Civil",
+    "Project Engineer - Vialidad",
+    "Infrastructure Design Lead"
+  ],
+  "actualizacion": "2025-11-23",
+  "vigencia": "2026",
+  "contacto": {
+    "institucion": "DISTMAH Universidad Autodesk - ATC",
+    "web": "www.distmah.com.ve",
+    "email": "cursos@distmah.com.ve",
+    "whatsapp": "+58 XXX-XXXXXXX"
+  }
+}

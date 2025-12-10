@@ -1,0 +1,150 @@
+{
+  "name": "DISTMAH - Reporte Semanal de Ventas",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [1],
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "id": "schedule",
+      "name": "Cada Lunes 8AM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT COUNT(*) as total_ventas, SUM(amount) as ingresos_totales, c.title as curso, COUNT(e.id) as inscripciones FROM enrollments e JOIN courses c ON e.\"courseId\" = c.id WHERE e.\"enrolledAt\" >= NOW() - INTERVAL '7 days' GROUP BY c.id, c.title ORDER BY inscripciones DESC",
+        "options": {}
+      },
+      "id": "get-sales",
+      "name": "Obtener Ventas Semana",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [450, 300],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "Neon PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT COUNT(*) as nuevos_usuarios FROM users WHERE \"createdAt\" >= NOW() - INTERVAL '7 days'",
+        "options": {}
+      },
+      "id": "get-users",
+      "name": "Nuevos Usuarios",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [450, 500],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "Neon PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT COUNT(*) as certificados_emitidos FROM certificates WHERE \"completionDate\" >= NOW() - INTERVAL '7 days'",
+        "options": {}
+      },
+      "id": "get-certs",
+      "name": "Certificados Emitidos",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [450, 700],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "Neon PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combinationMode": "mergeByPosition",
+        "options": {}
+      },
+      "id": "merge",
+      "name": "Combinar Datos",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [700, 500]
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@distmah.com.ve",
+        "toEmail": "admin@distmah.com.ve",
+        "subject": "=Reporte Semanal DISTMAH - {{ $now.format('dd/MM/yyyy') }}",
+        "emailType": "html",
+        "html": "=<div style=\"font-family: Arial, sans-serif; max-width: 700px; margin: 0 auto; background: #f5f5f5; padding: 20px;\">\n  <div style=\"background: #1F4E79; padding: 30px; text-align: center;\">\n    <h1 style=\"color: white; margin: 0;\">Reporte Semanal</h1>\n    <p style=\"color: #ccc; margin: 5px 0 0 0;\">DISTMAH ATC - Semana del {{ $now.minus({days: 7}).format('dd/MM') }} al {{ $now.format('dd/MM/yyyy') }}</p>\n  </div>\n  \n  <div style=\"background: white; padding: 30px;\">\n    <div style=\"display: flex; justify-content: space-around; margin-bottom: 30px;\">\n      <div style=\"text-align: center; padding: 20px; background: #f9f9f9; border-radius: 10px; flex: 1; margin: 0 10px;\">\n        <h2 style=\"color: #1F4E79; margin: 0; font-size: 36px;\">{{ $json.total_ventas || 0 }}</h2>\n        <p style=\"color: #666; margin: 5px 0 0 0;\">Ventas</p>\n      </div>\n      <div style=\"text-align: center; padding: 20px; background: #f9f9f9; border-radius: 10px; flex: 1; margin: 0 10px;\">\n        <h2 style=\"color: #28a745; margin: 0; font-size: 36px;\">${{ $json.ingresos_totales || 0 }}</h2>\n        <p style=\"color: #666; margin: 5px 0 0 0;\">Ingresos</p>\n      </div>\n      <div style=\"text-align: center; padding: 20px; background: #f9f9f9; border-radius: 10px; flex: 1; margin: 0 10px;\">\n        <h2 style=\"color: #1F4E79; margin: 0; font-size: 36px;\">{{ $json.nuevos_usuarios || 0 }}</h2>\n        <p style=\"color: #666; margin: 5px 0 0 0;\">Nuevos Usuarios</p>\n      </div>\n      <div style=\"text-align: center; padding: 20px; background: #f9f9f9; border-radius: 10px; flex: 1; margin: 0 10px;\">\n        <h2 style=\"color: #1F4E79; margin: 0; font-size: 36px;\">{{ $json.certificados_emitidos || 0 }}</h2>\n        <p style=\"color: #666; margin: 5px 0 0 0;\">Certificados</p>\n      </div>\n    </div>\n    \n    <h3 style=\"color: #333; border-bottom: 2px solid #1F4E79; padding-bottom: 10px;\">Ventas por Curso</h3>\n    <table style=\"width: 100%; border-collapse: collapse;\">\n      <tr style=\"background: #f0f0f0;\">\n        <th style=\"padding: 10px; text-align: left;\">Curso</th>\n        <th style=\"padding: 10px; text-align: center;\">Inscripciones</th>\n      </tr>\n      {{ $json.cursos }}\n    </table>\n  </div>\n  \n  <div style=\"text-align: center; padding: 20px; color: #999; font-size: 12px;\">\n    <p>DISTMAH ATC - Centro de Entrenamiento Autorizado Autodesk</p>\n    <p>Reporte generado automáticamente</p>\n  </div>\n</div>"
+      },
+      "id": "send-report",
+      "name": "Enviar Reporte",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [900, 500],
+      "credentials": {
+        "smtp": {
+          "id": "1",
+          "name": "SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Cada Lunes 8AM": {
+      "main": [
+        [
+          { "node": "Obtener Ventas Semana", "type": "main", "index": 0 },
+          { "node": "Nuevos Usuarios", "type": "main", "index": 0 },
+          { "node": "Certificados Emitidos", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Obtener Ventas Semana": {
+      "main": [
+        [
+          { "node": "Combinar Datos", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Nuevos Usuarios": {
+      "main": [
+        [
+          { "node": "Combinar Datos", "type": "main", "index": 1 }
+        ]
+      ]
+    },
+    "Certificados Emitidos": {
+      "main": [
+        [
+          { "node": "Combinar Datos", "type": "main", "index": 2 }
+        ]
+      ]
+    },
+    "Combinar Datos": {
+      "main": [
+        [
+          { "node": "Enviar Reporte", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "reportes" }, { "name": "ventas" }, { "name": "cron" }]
+}

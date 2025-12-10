@@ -1,0 +1,32 @@
+{
+  "id": "civil3d-2026",
+  "titulo": "Civil 3D 2026 - Diseño de Infraestructura Civil",
+  "descripcion": "Civil 3D 2026 para ingeniería civil. Incluye nuevas herramientas de diseño vial, análisis hidrológico mejorado, integración con drones (Reality Capture), cuantificación automática de movimiento de tierras, integración con InfraWorks y BIM 360.",
+  "precio": 499,
+  "duracion": 30,
+  "nivel": "Avanzado",
+  "version": "2026",
+  "categoria": "Civil3D",
+  "idioma": "Español",
+  "instructor": "DISTMAH ATC",
+  "objetivos": [
+    "Diseñar carreteras y vialidades",
+    "Modelar terrenos y superficies",
+    "Diseñar redes sanitarias y pluviales",
+    "Generar perfiles y secciones",
+    "Cuantificar volúmenes de obra"
+  ],
+  "prerequisitos": [
+    "AutoCAD 2D nivel intermedio",
+    "Conocimientos de topografía",
+    "Fundamentos de ingeniería civil"
+  ],
+  "certificacion": {
+    "nombre": "Autodesk Certified Professional - Civil 3D",
+    "requisitos": ["Completar todas las lecciones", "Aprobar proyecto final"],
+    "validez": "2 años",
+    "verificable": true
+  },
+  "actualizacion": "Noviembre 2025",
+  "vigencia": "Hasta noviembre 2027"
+}

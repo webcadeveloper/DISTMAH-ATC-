@@ -1,0 +1,113 @@
+{
+  "id": "autocad-intermedio-2d-2026",
+  "nombre": "AutoCAD Intermedio 2D 2026",
+  "slug": "autocad-intermedio-2d-2026",
+  "version": "2026",
+  "descripcion": "Domina técnicas intermedias de AutoCAD 2D: bloques dinámicos, referencias externas, anotación avanzada y herramientas de productividad profesional.",
+  "categoria": "autocad",
+  "nivel": "Intermedio",
+  "duracion": "24 horas",
+  "precio": 245,
+  "moneda": "USD",
+  "imagen": "/cursos/autocad-intermedio-2d-2026/portada.jpg",
+  "video_presentacion": "",
+  "objetivos": [
+    "Crear y gestionar bloques dinámicos con parámetros y acciones avanzadas",
+    "Trabajar eficientemente con referencias externas (Xrefs) y coordinación de archivos",
+    "Dominar objetos anotativos y estilos de anotación profesionales",
+    "Implementar herramientas de productividad y personalización del entorno",
+    "Extraer y gestionar datos de atributos para documentación inteligente",
+    "Aplicar constraints geométricos y dimensionales para diseño paramétrico",
+    "Configurar y utilizar Tool Palettes y workspaces personalizados",
+    "Automatizar tareas repetitivas con Action Recorder y macros"
+  ],
+  "requisitos": [
+    "Haber completado AutoCAD Básico 2D o tener conocimientos equivalentes",
+    "Dominio de comandos básicos de dibujo y modificación",
+    "Experiencia práctica creando planos 2D simples",
+    "Computadora con AutoCAD 2026 instalado",
+    "16 GB RAM mínimo recomendado",
+    "Conocimientos básicos de gestión de capas y estilos"
+  ],
+  "dirigido_a": [
+    "Dibujantes CAD que buscan aumentar su productividad",
+    "Técnicos en ingeniería y arquitectura con experiencia básica en AutoCAD",
+    "Profesionales que trabajan en equipos multidisciplinarios",
+    "Usuarios que necesitan coordinar múltiples archivos DWG",
+    "Diseñadores que requieren automatizar procesos repetitivos",
+    "Estudiantes de ingeniería y arquitectura en niveles intermedios"
+  ],
+  "instructor": {
+    "nombre": "Por asignar",
+    "titulo": "Autodesk Certified Professional",
+    "experiencia": "Instructor certificado por Autodesk",
+    "foto": "/instructores/placeholder.jpg"
+  },
+  "modulos": [
+    {
+      "numero": 1,
+      "titulo": "Bloques y Atributos Avanzados",
+      "duracion": "6 horas",
+      "descripcion": "Domina la creación de bloques dinámicos, gestión de atributos y bibliotecas de bloques para maximizar la reutilización y eficiencia.",
+      "lecciones": 6,
+      "carpeta": "modulo-1-bloques-atributos-avanzados"
+    },
+    {
+      "numero": 2,
+      "titulo": "Referencias Externas y Coordinación",
+      "duracion": "6 horas",
+      "descripcion": "Aprende a gestionar referencias externas, coordinar múltiples archivos y trabajar eficientemente en proyectos colaborativos.",
+      "lecciones": 6,
+      "carpeta": "modulo-2-referencias-externas"
+    },
+    {
+      "numero": 3,
+      "titulo": "Anotación Avanzada",
+      "duracion": "6 horas",
+      "descripcion": "Implementa objetos anotativos, estilos de acotación avanzados, tablas dinámicas y constraints para documentación profesional.",
+      "lecciones": 6,
+      "carpeta": "modulo-3-anotacion-avanzada"
+    },
+    {
+      "numero": 4,
+      "titulo": "Productividad y Personalización",
+      "duracion": "6 horas",
+      "descripcion": "Optimiza tu flujo de trabajo con herramientas de selección avanzada, macros, personalización del entorno y estándares CAD.",
+      "lecciones": 6,
+      "carpeta": "modulo-4-productividad-personalizacion"
+    }
+  ],
+  "certificacion": {
+    "disponible": true,
+    "nombre": "Certificado de Finalización - AutoCAD Intermedio 2D 2026",
+    "requisitos": "Completar todas las lecciones y aprobar ejercicios prácticos con mínimo 80%"
+  },
+  "material_incluido": [
+    "24 lecciones en video de 1 hora cada una",
+    "Archivos DWG de práctica para cada módulo",
+    "Bibliotecas de bloques dinámicos de ejemplo",
+    "Plantillas de Tool Palettes personalizadas",
+    "Guías PDF de referencia rápida",
+    "Scripts y macros de ejemplo",
+    "Archivos DWS de estándares CAD",
+    "Ejercicios prácticos con soluciones"
+  ],
+  "tags": [
+    "AutoCAD",
+    "2026",
+    "Intermedio",
+    "2D",
+    "Bloques Dinámicos",
+    "Xrefs",
+    "Anotación",
+    "Productividad",
+    "CAD",
+    "Autodesk"
+  ],
+  "fecha_creacion": "2025-01-24",
+  "ultima_actualizacion": "2025-01-24",
+  "idioma": "es",
+  "subtitulos": ["es"],
+  "publicado": true,
+  "destacado": false
+}

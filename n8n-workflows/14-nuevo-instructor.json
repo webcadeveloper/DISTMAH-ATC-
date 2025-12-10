@@ -1,0 +1,82 @@
+{
+  "name": "DISTMAH - Bienvenida Nuevo Instructor",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "instructor-webhook",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-instructor",
+      "name": "Webhook Instructor",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\"status\": \"received\"}"
+      },
+      "id": "response",
+      "name": "Responder OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@distmah.com.ve",
+        "toEmail": "={{ $json.instructor.email }}",
+        "subject": "=Bienvenido al equipo DISTMAH ATC - {{ $json.instructor.name }}",
+        "emailType": "html",
+        "html": "=<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f5f5f5; padding: 20px;\">\n  <div style=\"background: #1F4E79; padding: 30px; text-align: center;\">\n    <h1 style=\"color: white; margin: 0;\">Bienvenido al Equipo</h1>\n    <p style=\"color: #ccc; margin: 5px 0 0 0;\">DISTMAH ATC - Centro de Entrenamiento Autorizado Autodesk</p>\n  </div>\n  \n  <div style=\"background: white; padding: 30px;\">\n    <h2 style=\"color: #333;\">Hola {{ $json.instructor.name }},</h2>\n    \n    <p style=\"color: #666; line-height: 1.6;\">Es un placer darte la bienvenida como instructor en DISTMAH ATC. Tu experiencia y conocimiento serán invaluables para nuestros estudiantes.</p>\n    \n    <div style=\"background: #f9f9f9; padding: 20px; border-radius: 5px; margin: 20px 0;\">\n      <h3 style=\"color: #1F4E79; margin-top: 0;\">Próximos pasos:</h3>\n      <ol style=\"color: #666;\">\n        <li>Accede al panel de instructor</li>\n        <li>Completa tu perfil profesional</li>\n        <li>Revisa los cursos asignados</li>\n        <li>Configura tu disponibilidad</li>\n      </ol>\n    </div>\n    \n    <div style=\"text-align: center; margin: 30px 0;\">\n      <a href=\"https://edu.distmah.com/es/instructor/dashboard\" style=\"background: #1F4E79; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;\">Ir al Panel de Instructor</a>\n    </div>\n    \n    <p style=\"color: #666;\">Si tienes preguntas, contacta a admin@distmah.com.ve</p>\n  </div>\n  \n  <div style=\"text-align: center; padding: 20px; color: #999; font-size: 12px;\">\n    <p>DISTMAH ATC - Centro de Entrenamiento Autorizado Autodesk</p>\n  </div>\n</div>"
+      },
+      "id": "email-instructor",
+      "name": "Email Bienvenida",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [650, 200],
+      "credentials": {
+        "smtp": {
+          "id": "1",
+          "name": "SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@distmah.com.ve",
+        "toEmail": "admin@distmah.com.ve",
+        "subject": "=Nuevo Instructor Registrado - {{ $json.instructor.name }}",
+        "emailType": "html",
+        "html": "=<div style=\"font-family: Arial, sans-serif;\">\n  <h2 style=\"color: #1F4E79;\">Nuevo Instructor Registrado</h2>\n  <ul>\n    <li><strong>Nombre:</strong> {{ $json.instructor.name }}</li>\n    <li><strong>Email:</strong> {{ $json.instructor.email }}</li>\n    <li><strong>Especialidad:</strong> {{ $json.instructor.specialty }}</li>\n    <li><strong>Fecha:</strong> {{ $json.instructor.registeredAt }}</li>\n  </ul>\n  <p>Por favor, asigna los cursos correspondientes.</p>\n</div>"
+      },
+      "id": "notify-admin",
+      "name": "Notificar Admin",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [650, 400],
+      "credentials": {
+        "smtp": {
+          "id": "1",
+          "name": "SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Instructor": {
+      "main": [
+        [
+          { "node": "Responder OK", "type": "main", "index": 0 },
+          { "node": "Email Bienvenida", "type": "main", "index": 0 },
+          { "node": "Notificar Admin", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "instructores" }, { "name": "bienvenida" }]
+}

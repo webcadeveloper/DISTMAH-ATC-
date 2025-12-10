@@ -1,0 +1,124 @@
+{
+  "name": "DISTMAH - Recordatorio de Inactividad",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "days",
+              "daysInterval": 1
+            }
+          ]
+        }
+      },
+      "id": "schedule",
+      "name": "Ejecutar Diariamente",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT u.id, u.name, u.email, c.title as course_title, c.slug as course_slug, e.\"lastAccessedAt\", e.progress FROM enrollments e JOIN users u ON e.\"userId\" = u.id JOIN courses c ON e.\"courseId\" = c.id WHERE e.progress < 100 AND e.\"lastAccessedAt\" < NOW() - INTERVAL '7 days' AND e.\"lastAccessedAt\" > NOW() - INTERVAL '8 days'",
+        "options": {}
+      },
+      "id": "get-inactive",
+      "name": "Obtener Inactivos (7 días)",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [450, 300],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "Neon PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@distmah.com.ve",
+        "toEmail": "={{ $json.email }}",
+        "subject": "=Te extrañamos - Continúa con {{ $json.course_title }}",
+        "emailType": "html",
+        "html": "=<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f5f5f5; padding: 20px;\">\n  <div style=\"background: #1F4E79; padding: 30px; text-align: center;\">\n    <h1 style=\"color: white; margin: 0;\">¡Te extrañamos!</h1>\n  </div>\n  \n  <div style=\"background: white; padding: 30px;\">\n    <h2 style=\"color: #333;\">Hola {{ $json.name }},</h2>\n    \n    <p style=\"color: #666; line-height: 1.6;\">Notamos que no has accedido a tu curso en los últimos 7 días. ¡No pierdas el impulso!</p>\n    \n    <div style=\"background: #f9f9f9; padding: 20px; border-radius: 5px; margin: 20px 0;\">\n      <h3 style=\"color: #1F4E79; margin-top: 0;\">{{ $json.course_title }}</h3>\n      <p style=\"color: #666; margin: 5px 0;\">Tu progreso actual: <strong>{{ $json.progress }}%</strong></p>\n      <div style=\"background: #e0e0e0; border-radius: 10px; padding: 3px; margin-top: 10px;\">\n        <div style=\"background: #1F4E79; height: 15px; border-radius: 8px; width: {{ $json.progress }}%;\"></div>\n      </div>\n    </div>\n    \n    <p style=\"color: #666;\">Cada pequeño paso te acerca a tu certificación. Dedica solo 15 minutos hoy para retomar tu aprendizaje.</p>\n    \n    <div style=\"text-align: center; margin: 30px 0;\">\n      <a href=\"https://edu.distmah.com/es/cursos/{{ $json.course_slug }}\" style=\"background: #1F4E79; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;\">Continuar Curso</a>\n    </div>\n    \n    <p style=\"color: #999; font-size: 12px; text-align: center;\">Si tienes alguna dificultad, responde a este correo y te ayudaremos.</p>\n  </div>\n  \n  <div style=\"text-align: center; padding: 20px; color: #999; font-size: 12px;\">\n    <p>DISTMAH ATC - Centro de Entrenamiento Autorizado Autodesk</p>\n  </div>\n</div>"
+      },
+      "id": "send-reminder",
+      "name": "Enviar Recordatorio",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [650, 300],
+      "credentials": {
+        "smtp": {
+          "id": "1",
+          "name": "SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT u.id, u.name, u.email, c.title as course_title, c.slug as course_slug, e.\"lastAccessedAt\", e.progress FROM enrollments e JOIN users u ON e.\"userId\" = u.id JOIN courses c ON e.\"courseId\" = c.id WHERE e.progress < 100 AND e.\"lastAccessedAt\" < NOW() - INTERVAL '30 days' AND e.\"lastAccessedAt\" > NOW() - INTERVAL '31 days'",
+        "options": {}
+      },
+      "id": "get-inactive-30",
+      "name": "Obtener Inactivos (30 días)",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [450, 500],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "Neon PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@distmah.com.ve",
+        "toEmail": "={{ $json.email }}",
+        "subject": "=Última oportunidad - {{ $json.course_title }} te espera",
+        "emailType": "html",
+        "html": "=<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f5f5f5; padding: 20px;\">\n  <div style=\"background: #8B0000; padding: 30px; text-align: center;\">\n    <h1 style=\"color: white; margin: 0;\">¡No abandones tu meta!</h1>\n  </div>\n  \n  <div style=\"background: white; padding: 30px;\">\n    <h2 style=\"color: #333;\">{{ $json.name }}, te extrañamos mucho</h2>\n    \n    <p style=\"color: #666; line-height: 1.6;\">Ha pasado un mes desde tu última visita. Tu progreso en <strong>{{ $json.course_title }}</strong> sigue guardado y listo para que continúes.</p>\n    \n    <div style=\"background: #fff3cd; padding: 15px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #ffc107;\">\n      <p style=\"color: #856404; margin: 0;\"><strong>Tu progreso:</strong> {{ $json.progress }}% completado</p>\n    </div>\n    \n    <p style=\"color: #666;\">¿Necesitas ayuda? Estamos aquí para ti. Contacta a tu instructor o escríbenos.</p>\n    \n    <div style=\"text-align: center; margin: 30px 0;\">\n      <a href=\"https://edu.distmah.com/es/cursos/{{ $json.course_slug }}\" style=\"background: #1F4E79; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;\">Retomar Mi Curso</a>\n    </div>\n  </div>\n</div>"
+      },
+      "id": "send-urgent-reminder",
+      "name": "Recordatorio Urgente",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [650, 500],
+      "credentials": {
+        "smtp": {
+          "id": "1",
+          "name": "SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Ejecutar Diariamente": {
+      "main": [
+        [
+          { "node": "Obtener Inactivos (7 días)", "type": "main", "index": 0 },
+          { "node": "Obtener Inactivos (30 días)", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Obtener Inactivos (7 días)": {
+      "main": [
+        [
+          { "node": "Enviar Recordatorio", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Obtener Inactivos (30 días)": {
+      "main": [
+        [
+          { "node": "Recordatorio Urgente", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "recordatorios" }, { "name": "inactividad" }, { "name": "cron" }]
+}

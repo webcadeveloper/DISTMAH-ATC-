@@ -5,38 +5,38 @@ import { AnimatedLogo } from '@/components/ui/AnimatedLogo';
 
 export default function TestAnimationsPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-8">
+    <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100 dark:from-neutral-900 dark:to-neutral-800 p-8">
       <div className="max-w-6xl mx-auto space-y-16">
         {/* Header */}
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="text-4xl font-bold text-neutral-900 dark:text-white mb-4">
             Anime.js Test Page
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-neutral-600 dark:text-neutral-400">
             Testing AnimatedElement triggers: mount, scroll, hover
           </p>
         </div>
 
         {/* 1. AnimatedLogo Test */}
-        <section className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+        <section className="bg-white dark:bg-neutral-800 rounded-xl p-8 shadow-lg">
+          <h2 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-white">
             1. AnimatedLogo - Logo Real DISTMAH (mount trigger)
           </h2>
           <div className="space-y-8">
             <div className="flex flex-col items-center gap-4">
-              <p className="text-sm text-gray-500">Variant: full (logo principal)</p>
+              <p className="text-sm text-neutral-500">Variant: full (logo principal)</p>
               <AnimatedLogo size="lg" animated={true} variant="full" />
             </div>
             <div className="flex flex-col items-center gap-4">
-              <p className="text-sm text-gray-500">Variant: footer (logo pie de página)</p>
+              <p className="text-sm text-neutral-500">Variant: footer (logo pie de página)</p>
               <AnimatedLogo size="md" animated={true} variant="footer" />
             </div>
           </div>
         </section>
 
         {/* 2. Mount Trigger Test */}
-        <section className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+        <section className="bg-white dark:bg-neutral-800 rounded-xl p-8 shadow-lg">
+          <h2 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-white">
             2. Mount Trigger (animates on page load)
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -63,8 +63,8 @@ export default function TestAnimationsPage() {
         </section>
 
         {/* 3. Scroll Trigger Test */}
-        <section className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+        <section className="bg-white dark:bg-neutral-800 rounded-xl p-8 shadow-lg">
+          <h2 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-white">
             3. Scroll Trigger (animates when scrolling into view)
           </h2>
           <div className="space-y-6">
@@ -105,8 +105,8 @@ export default function TestAnimationsPage() {
         </section>
 
         {/* 4. Hover Trigger Test */}
-        <section className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+        <section className="bg-white dark:bg-neutral-800 rounded-xl p-8 shadow-lg">
+          <h2 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-white">
             4. Hover Trigger (animates on mouse hover)
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -132,8 +132,8 @@ export default function TestAnimationsPage() {
         </section>
 
         {/* 5. Complex Animation Test */}
-        <section className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
+        <section className="bg-white dark:bg-neutral-800 rounded-xl p-8 shadow-lg">
+          <h2 className="text-2xl font-bold mb-6 text-neutral-900 dark:text-white">
             5. Complex Animations (scroll trigger)
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -198,7 +198,7 @@ export default function TestAnimationsPage() {
         <div className="h-64"></div>
 
         {/* Footer */}
-        <footer className="text-center text-gray-500 dark:text-gray-400 pb-8">
+        <footer className="text-center text-neutral-500 dark:text-neutral-400 pb-8">
           <p>
             Scroll down to see scroll-triggered animations • Hover over hover
             cards

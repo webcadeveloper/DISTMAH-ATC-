@@ -1,0 +1,145 @@
+{
+  "id": "autocad-2026-avanzado",
+  "titulo": "AutoCAD 2026 Avanzado",
+  "descripcion": "Curso avanzado de AutoCAD 2026 que cubre técnicas de edición avanzada, bloques dinámicos, dimensionamiento profesional, layouts, plotting y las nuevas características de IA de AutoCAD 2026.",
+  "duracion": "30 horas",
+  "nivel": "Avanzado",
+  "categoria": "CAD",
+  "software": "AutoCAD 2026",
+  "prerequisitos": [
+    "AutoCAD 2026 Básico completado",
+    "Experiencia con dibujo 2D en AutoCAD",
+    "Comprensión de capas y propiedades de objetos",
+    "Familiaridad con comandos básicos de edición"
+  ],
+  "objetivos": [
+    "Dominar técnicas de edición avanzada con arrays y modificadores",
+    "Crear y gestionar bloques dinámicos con atributos",
+    "Aplicar dimensionamiento profesional con tolerancias GD&T",
+    "Configurar layouts profesionales y plotear correctamente",
+    "Utilizar características de IA de AutoCAD 2026 (Smart Blocks)",
+    "Colaborar eficientemente con Connected Support Files",
+    "Optimizar workflow con Autodesk Assistant",
+    "Integrar ArcGIS Basemaps en proyectos de ubicación"
+  ],
+  "publico_objetivo": [
+    "Usuarios con conocimientos básicos de AutoCAD",
+    "Profesionales que buscan mejorar productividad",
+    "Diseñadores CAD que necesitan certificación avanzada",
+    "Ingenieros y arquitectos que requieren técnicas profesionales"
+  ],
+  "modulos": [
+    {
+      "numero": 1,
+      "titulo": "Edición Avanzada de Objetos",
+      "duracion": "6-7 horas",
+      "carpeta": "modulo-1-edicion-avanzada",
+      "descripcion": "Arrays (rectangular, polar, path), OFFSET, FILLET, CHAMFER, STRETCH, LENGTHEN, JOIN y BREAK."
+    },
+    {
+      "numero": 2,
+      "titulo": "Bloques y Atributos",
+      "duracion": "6-7 horas",
+      "carpeta": "modulo-2-bloques-atributos",
+      "descripcion": "Creación de bloques, inserción, bloques externos, atributos, edición de atributos, bloques dinámicos y gestión avanzada."
+    },
+    {
+      "numero": 3,
+      "titulo": "Dimensionamiento Avanzado y Anotaciones",
+      "duracion": "5-6 horas",
+      "carpeta": "modulo-3-dimensionamiento-avanzado",
+      "descripcion": "Estilos de dimensión avanzados, dimensiones especiales, tolerancias GD&T, multileaders, tablas y campos variables."
+    },
+    {
+      "numero": 4,
+      "titulo": "Layouts, Paper Space y Plotting",
+      "duracion": "5-6 horas",
+      "carpeta": "modulo-4-layouts-plotting",
+      "descripcion": "Model Space vs Paper Space, configuración de layouts, viewports flotantes, estilos de plot (CTB/STB), impresión y Sheet Sets."
+    },
+    {
+      "numero": 5,
+      "titulo": "Características Avanzadas y AI de AutoCAD 2026",
+      "duracion": "7-8 horas",
+      "carpeta": "modulo-5-features-ai-2026",
+      "descripcion": "Smart Blocks (IA), Connected Support Files, Activity Insights, Markup Import/Assist, Autodesk Assistant, ArcGIS Basemaps y mejoras de rendimiento."
+    }
+  ],
+  "caracteristicas_2026": {
+    "smart_blocks": {
+      "detect_convert": "Detección automática de objetos repetitivos con IA",
+      "search_convert": "Búsqueda inteligente y conversión a bloques",
+      "replacement": "Reemplazo de bloques con sugerencias de IA",
+      "placement": "Colocación automática basada en patrones aprendidos"
+    },
+    "colaboracion": {
+      "connected_support_files": "Configuración centralizada para proyectos en Autodesk Docs",
+      "activity_insights": "Análisis detallado de cambios por sesión y usuario",
+      "markup_import": "Importación de markups JPG, PNG, PDF desde Autodesk Docs"
+    },
+    "ia_conversacional": {
+      "autodesk_assistant": "Asistente IA para ayuda contextual y aprendizaje"
+    },
+    "geolocalizacion": {
+      "arcgis_basemaps": "Mapas satelitales, aéreos, OpenStreetMaps integrados"
+    },
+    "mejoras": {
+      "hatch_improvements": "Patrones sin límites cerrados, mayor flexibilidad",
+      "performance": "Versión más rápida de AutoCAD hasta la fecha"
+    }
+  },
+  "certificacion": {
+    "disponible": true,
+    "nombre": "Certificado de Finalización: AutoCAD 2026 Avanzado",
+    "requisitos": [
+      "Completar AutoCAD 2026 Básico",
+      "Asistencia mínima del 85%",
+      "Completar todos los ejercicios avanzados",
+      "Aprobar evaluaciones con mínimo 75%",
+      "Presentar proyecto final integrador"
+    ]
+  },
+  "metodologia": {
+    "teoria": "35%",
+    "practica": "65%",
+    "evaluaciones": true,
+    "proyecto_final": true,
+    "casos_reales": true
+  },
+  "materiales": [
+    "Manual avanzado digital",
+    "Archivos de ejercicios complejos (.dwg)",
+    "Video tutoriales de características AI",
+    "Plantillas profesionales",
+    "Bloques dinámicos de ejemplo",
+    "Bibliotecas de símbolos",
+    "Guías de estándares (ISO, ANSI, DIN)"
+  ],
+  "preparacion_certificacion": [
+    "Certificación Autodesk AutoCAD Certified Professional",
+    "Especialización en AutoCAD Architecture",
+    "Especialización en AutoCAD Mechanical",
+    "AutoCAD 3D Modeling"
+  ],
+  "instructor": {
+    "certificacion": "Autodesk Certified Professional",
+    "experiencia": [
+      "Proyectos CAD profesionales de gran escala",
+      "Implementación de workflows con IA",
+      "Colaboración en Autodesk Docs",
+      "Enseñanza de técnicas avanzadas"
+    ]
+  },
+  "aplicaciones_industriales": [
+    "Arquitectura profesional",
+    "Ingeniería mecánica",
+    "Diseño eléctrico",
+    "Infraestructura civil",
+    "Manufactura",
+    "Diseño de plantas industriales"
+  ],
+  "nota_importante": "Este curso cubre características de IA y colaboración que requieren suscripción activa de AutoCAD 2026 y pueden evolucionar con actualizaciones del software.",
+  "version": "1.0",
+  "fecha_actualizacion": "2025-11-22",
+  "institucion": "DISTMAH Universidad Autodesk - ATC"
+}

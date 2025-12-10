@@ -1,0 +1,78 @@
+{
+  "name": "DISTMAH - Email de Cumpleaños",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "days",
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "id": "schedule",
+      "name": "Cada Día 8AM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT id, name, email, \"birthDate\" FROM users WHERE EXTRACT(MONTH FROM \"birthDate\") = EXTRACT(MONTH FROM CURRENT_DATE) AND EXTRACT(DAY FROM \"birthDate\") = EXTRACT(DAY FROM CURRENT_DATE) AND \"birthDate\" IS NOT NULL",
+        "options": {}
+      },
+      "id": "get-birthdays",
+      "name": "Obtener Cumpleañeros",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [450, 300],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "Neon PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@distmah.com.ve",
+        "toEmail": "={{ $json.email }}",
+        "subject": "=Feliz Cumpleaños {{ $json.name }}! - Regalo especial de DISTMAH",
+        "emailType": "html",
+        "html": "=<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f5f5f5; padding: 20px;\">\n  <div style=\"background: linear-gradient(135deg, #1F4E79 0%, #003366 100%); padding: 40px; text-align: center;\">\n    <h1 style=\"color: white; margin: 0; font-size: 32px;\">FELIZ CUMPLEAÑOS</h1>\n    <p style=\"color: #ccc; margin: 10px 0 0 0; font-size: 18px;\">{{ $json.name }}</p>\n  </div>\n  \n  <div style=\"background: white; padding: 30px;\">\n    <p style=\"color: #666; line-height: 1.6; text-align: center; font-size: 16px;\">En DISTMAH ATC queremos celebrar este día especial contigo.</p>\n    \n    <div style=\"background: #fff3cd; padding: 25px; border-radius: 10px; margin: 25px 0; text-align: center; border: 2px dashed #ffc107;\">\n      <p style=\"color: #856404; margin: 0; font-size: 14px;\">TU REGALO DE CUMPLEAÑOS</p>\n      <h2 style=\"color: #1F4E79; margin: 10px 0; font-size: 36px;\">20% OFF</h2>\n      <p style=\"color: #666; margin: 0;\">En cualquier curso de Autodesk</p>\n      <p style=\"font-family: monospace; font-size: 24px; color: #1F4E79; background: #f0f0f0; padding: 10px; border-radius: 5px; margin-top: 15px;\">CUMPLE20</p>\n      <p style=\"color: #999; font-size: 12px; margin-top: 10px;\">Válido por 7 días</p>\n    </div>\n    \n    <div style=\"text-align: center; margin: 30px 0;\">\n      <a href=\"https://edu.distmah.com/es/cursos\" style=\"background: #1F4E79; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;\">Ver Cursos Disponibles</a>\n    </div>\n    \n    <p style=\"color: #999; font-size: 12px; text-align: center;\">Que tengas un excelente día lleno de éxitos.</p>\n  </div>\n  \n  <div style=\"text-align: center; padding: 20px; color: #999; font-size: 12px;\">\n    <p>DISTMAH ATC - Centro de Entrenamiento Autorizado Autodesk</p>\n  </div>\n</div>"
+      },
+      "id": "send-birthday",
+      "name": "Enviar Felicitación",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [650, 300],
+      "credentials": {
+        "smtp": {
+          "id": "1",
+          "name": "SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Cada Día 8AM": {
+      "main": [
+        [
+          { "node": "Obtener Cumpleañeros", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Obtener Cumpleañeros": {
+      "main": [
+        [
+          { "node": "Enviar Felicitación", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "marketing" }, { "name": "cumpleaños" }, { "name": "cron" }]
+}

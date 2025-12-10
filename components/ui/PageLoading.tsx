@@ -39,7 +39,7 @@ export function PageLoading({
 }: PageLoadingProps) {
   if (fullScreen) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm">
         <div className="flex flex-col items-center gap-4">
           <LottieAnimation
             animationData={loadingDotsData}
@@ -48,7 +48,7 @@ export function PageLoading({
             loop={true}
             autoplay={true}
           />
-          <p className="text-lg text-gray-700 dark:text-gray-300 font-medium animate-pulse">
+          <p className="text-lg text-neutral-700 dark:text-neutral-300 font-medium animate-pulse">
             {message}
           </p>
         </div>
@@ -66,7 +66,7 @@ export function PageLoading({
           loop={true}
           autoplay={true}
         />
-        <p className="text-lg text-gray-700 dark:text-gray-300 font-medium animate-pulse">
+        <p className="text-lg text-neutral-700 dark:text-neutral-300 font-medium animate-pulse">
           {message}
         </p>
       </div>

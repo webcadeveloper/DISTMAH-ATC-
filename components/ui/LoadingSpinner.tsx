@@ -67,7 +67,7 @@ export function LoadingSpinner({
         autoplay={true}
       />
       {message && (
-        <p className="text-sm text-gray-600 dark:text-gray-400 font-medium animate-pulse">
+        <p className="text-sm text-neutral-600 dark:text-neutral-400 font-medium animate-pulse">
           {message}
         </p>
       )}

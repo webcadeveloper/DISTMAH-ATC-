@@ -1,0 +1,33 @@
+{
+  "id": "autocad-2d-2026",
+  "titulo": "AutoCAD 2D 2026 - Nivel Básico",
+  "descripcion": "Curso completo de AutoCAD 2D 2026 desde cero. Aprende todas las novedades de la versión 2026 incluyendo nuevas herramientas de dibujo inteligente, interfaz optimizada, integración mejorada con AutoCAD Web, nuevos comandos de productividad y colaboración en tiempo real.",
+  "precio": 299,
+  "duracion": 24,
+  "nivel": "Básico",
+  "version": "2026",
+  "categoria": "AutoCAD",
+  "idioma": "Español",
+  "instructor": "DISTMAH ATC",
+  "objetivos": [
+    "Dominar la interfaz de AutoCAD 2026 y sus nuevas funcionalidades",
+    "Crear dibujos 2D precisos con herramientas avanzadas",
+    "Aplicar las nuevas características de layers y bloques dinámicos",
+    "Generar layouts profesionales y plotear con calidad de impresión",
+    "Utilizar las herramientas de colaboración de AutoCAD 2026",
+    "Prepararse para certificación Autodesk Certified User"
+  ],
+  "prerequisitos": [
+    "Conocimientos básicos de Windows 10/11",
+    "Conceptos fundamentales de dibujo técnico",
+    "Computadora con 8GB RAM mínimo"
+  ],
+  "certificacion": {
+    "nombre": "Autodesk Certified User - AutoCAD 2026",
+    "requisitos": ["Completar todas las lecciones", "Aprobar ejercicios con 80%"],
+    "validez": "2 años",
+    "verificable": true
+  },
+  "actualizacion": "Noviembre 2025",
+  "vigencia": "Hasta noviembre 2027"
+}

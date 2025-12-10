@@ -1,0 +1,135 @@
+{
+  "name": "DISTMAH - Resumen Diario para Admin",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "days",
+              "triggerAtHour": 18
+            }
+          ]
+        }
+      },
+      "id": "schedule",
+      "name": "Cada Día 6PM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT COUNT(*) as nuevos_usuarios FROM users WHERE \"createdAt\" >= CURRENT_DATE",
+        "options": {}
+      },
+      "id": "get-users",
+      "name": "Nuevos Usuarios Hoy",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [450, 100],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "Neon PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT COUNT(*) as inscripciones, COALESCE(SUM(amount), 0) as ingresos FROM enrollments WHERE \"enrolledAt\" >= CURRENT_DATE",
+        "options": {}
+      },
+      "id": "get-enrollments",
+      "name": "Inscripciones Hoy",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [450, 300],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "Neon PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT COUNT(*) as certificados FROM certificates WHERE \"completionDate\" >= CURRENT_DATE",
+        "options": {}
+      },
+      "id": "get-certs",
+      "name": "Certificados Hoy",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [450, 500],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "Neon PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT c.title, COUNT(e.id) as ventas FROM enrollments e JOIN courses c ON e.\"courseId\" = c.id WHERE e.\"enrolledAt\" >= CURRENT_DATE GROUP BY c.id, c.title ORDER BY ventas DESC LIMIT 5",
+        "options": {}
+      },
+      "id": "get-top",
+      "name": "Top Cursos Hoy",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [450, 700],
+      "credentials": {
+        "postgres": {
+          "id": "3",
+          "name": "Neon PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@distmah.com.ve",
+        "toEmail": "admin@distmah.com.ve",
+        "subject": "=Resumen Diario DISTMAH - {{ $now.format('dd/MM/yyyy') }}",
+        "emailType": "html",
+        "html": "=<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f5f5f5; padding: 20px;\">\n  <div style=\"background: #1F4E79; padding: 20px; text-align: center;\">\n    <h1 style=\"color: white; margin: 0;\">Resumen del Día</h1>\n    <p style=\"color: #ccc; margin: 5px 0 0 0;\">{{ $now.format('EEEE, dd MMMM yyyy') }}</p>\n  </div>\n  \n  <div style=\"background: white; padding: 30px;\">\n    <div style=\"display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 30px;\">\n      <div style=\"background: #e3f2fd; padding: 15px; border-radius: 10px; text-align: center;\">\n        <h3 style=\"color: #1565c0; margin: 0; font-size: 28px;\">{{ $('Nuevos Usuarios Hoy').item.json.nuevos_usuarios }}</h3>\n        <p style=\"color: #666; margin: 5px 0 0 0; font-size: 12px;\">Nuevos Usuarios</p>\n      </div>\n      <div style=\"background: #e8f5e9; padding: 15px; border-radius: 10px; text-align: center;\">\n        <h3 style=\"color: #2e7d32; margin: 0; font-size: 28px;\">{{ $('Inscripciones Hoy').item.json.inscripciones }}</h3>\n        <p style=\"color: #666; margin: 5px 0 0 0; font-size: 12px;\">Inscripciones</p>\n      </div>\n      <div style=\"background: #fff3e0; padding: 15px; border-radius: 10px; text-align: center;\">\n        <h3 style=\"color: #e65100; margin: 0; font-size: 28px;\">{{ $('Certificados Hoy').item.json.certificados }}</h3>\n        <p style=\"color: #666; margin: 5px 0 0 0; font-size: 12px;\">Certificados</p>\n      </div>\n    </div>\n    \n    <div style=\"background: #f9f9f9; padding: 20px; border-radius: 10px; margin-bottom: 20px;\">\n      <h3 style=\"color: #333; margin: 0 0 10px 0;\">Ingresos del Día</h3>\n      <p style=\"color: #28a745; font-size: 32px; margin: 0; font-weight: bold;\">${{ $('Inscripciones Hoy').item.json.ingresos }}</p>\n    </div>\n    \n    <h3 style=\"color: #333;\">Cursos más vendidos hoy:</h3>\n    <ul style=\"color: #666;\">\n      {{ $('Top Cursos Hoy').all().map(item => `<li>${item.json.title}: ${item.json.ventas} ventas</li>`).join('') || '<li>Sin ventas hoy</li>' }}\n    </ul>\n  </div>\n  \n  <div style=\"text-align: center; padding: 20px; color: #999; font-size: 12px;\">\n    <p>DISTMAH ATC - Resumen automático</p>\n  </div>\n</div>"
+      },
+      "id": "send-summary",
+      "name": "Enviar Resumen",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [850, 400],
+      "credentials": {
+        "smtp": {
+          "id": "1",
+          "name": "SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Cada Día 6PM": {
+      "main": [
+        [
+          { "node": "Nuevos Usuarios Hoy", "type": "main", "index": 0 },
+          { "node": "Inscripciones Hoy", "type": "main", "index": 0 },
+          { "node": "Certificados Hoy", "type": "main", "index": 0 },
+          { "node": "Top Cursos Hoy", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Nuevos Usuarios Hoy": {
+      "main": [
+        [
+          { "node": "Enviar Resumen", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "reportes" }, { "name": "admin" }, { "name": "cron" }]
+}

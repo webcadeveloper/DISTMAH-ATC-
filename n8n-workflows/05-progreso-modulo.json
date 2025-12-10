@@ -1,0 +1,135 @@
+{
+  "name": "DISTMAH - Progreso de Módulo Completado",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "progress-webhook",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-progress",
+      "name": "Webhook Progreso",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\"status\": \"received\"}"
+      },
+      "id": "response",
+      "name": "Responder OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.progress.percentage }}",
+              "operation": "equal",
+              "value2": 100
+            }
+          ]
+        }
+      },
+      "id": "check-complete",
+      "name": "¿Curso Completo?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@distmah.com.ve",
+        "toEmail": "={{ $json.student.email }}",
+        "subject": "=🎉 ¡Curso Completado! - {{ $json.course.title }}",
+        "emailType": "html",
+        "html": "=<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f5f5f5; padding: 20px;\">\n  <div style=\"background: #1F4E79; padding: 30px; text-align: center;\">\n    <h1 style=\"color: white; margin: 0;\">¡FELICIDADES!</h1>\n  </div>\n  \n  <div style=\"background: white; padding: 30px;\">\n    <h2 style=\"color: #333; text-align: center;\">{{ $json.student.name }}, has completado el curso</h2>\n    \n    <div style=\"background: #f9f9f9; padding: 20px; border-radius: 5px; margin: 20px 0; text-align: center;\">\n      <h3 style=\"color: #1F4E79;\">{{ $json.course.title }}</h3>\n      <p style=\"color: #666;\">Progreso: <strong style=\"color: #28a745;\">100%</strong></p>\n    </div>\n    \n    <p style=\"color: #666; text-align: center;\">Tu certificado estará disponible pronto en tu perfil.</p>\n    \n    <div style=\"text-align: center; margin: 30px 0;\">\n      <a href=\"https://edu.distmah.com/es/estudiante/certificados\" style=\"background: #1F4E79; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;\">Ver Mis Certificados</a>\n    </div>\n  </div>\n</div>"
+      },
+      "id": "email-complete",
+      "name": "Email Curso Completo",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [850, 200],
+      "credentials": {
+        "smtp": {
+          "id": "1",
+          "name": "SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.progress.percentage }}",
+              "operation": "equal",
+              "value2": 50
+            }
+          ]
+        }
+      },
+      "id": "check-halfway",
+      "name": "¿Mitad del curso?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [850, 400]
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@distmah.com.ve",
+        "toEmail": "={{ $json.student.email }}",
+        "subject": "=👏 ¡Vas muy bien! 50% completado - {{ $json.course.title }}",
+        "emailType": "html",
+        "html": "=<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;\">\n  <div style=\"background: #1F4E79; padding: 20px; text-align: center;\">\n    <h1 style=\"color: white; margin: 0;\">¡Sigue así!</h1>\n  </div>\n  <div style=\"background: white; padding: 30px;\">\n    <p style=\"color: #666;\">Hola {{ $json.student.name }},</p>\n    <p style=\"color: #666;\">¡Ya completaste el 50% del curso <strong>{{ $json.course.title }}</strong>!</p>\n    <div style=\"background: #f0f0f0; border-radius: 10px; padding: 5px; margin: 20px 0;\">\n      <div style=\"background: #1F4E79; height: 20px; border-radius: 10px; width: 50%;\"></div>\n    </div>\n    <p style=\"color: #666;\">Continúa con el excelente trabajo. Estás a mitad de camino de obtener tu certificado.</p>\n    <div style=\"text-align: center; margin-top: 20px;\">\n      <a href=\"https://edu.distmah.com/es/cursos/{{ $json.course.slug }}\" style=\"background: #1F4E79; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px;\">Continuar Curso</a>\n    </div>\n  </div>\n</div>"
+      },
+      "id": "email-halfway",
+      "name": "Email Mitad Curso",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [1050, 400],
+      "credentials": {
+        "smtp": {
+          "id": "1",
+          "name": "SMTP"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Progreso": {
+      "main": [
+        [
+          { "node": "Responder OK", "type": "main", "index": 0 },
+          { "node": "¿Curso Completo?", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "¿Curso Completo?": {
+      "main": [
+        [
+          { "node": "Email Curso Completo", "type": "main", "index": 0 }
+        ],
+        [
+          { "node": "¿Mitad del curso?", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "¿Mitad del curso?": {
+      "main": [
+        [
+          { "node": "Email Mitad Curso", "type": "main", "index": 0 }
+        ],
+        []
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "tags": [{ "name": "progreso" }, { "name": "cursos" }]
+}
