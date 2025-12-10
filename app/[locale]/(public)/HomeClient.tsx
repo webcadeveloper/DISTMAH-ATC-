@@ -17,16 +17,18 @@ interface Course {
     title: string;
     slug: string;
     description: string;
-    imageUrl: string | null;
     price: number;
     duration: number;
     level: string;
     category: string;
     featured: boolean;
+    imageUrl?: string | null;
+    thumbnailUrl?: string | null;
     _count?: {
         enrollments: number;
         modules: number;
     };
+    [key: string]: any; // Allow additional Prisma fields
 }
 
 interface HomeClientProps {
