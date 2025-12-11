@@ -1,7 +1,5 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
+import { prisma } from '@/lib/prisma';
 
 // GET - Obtener contenido de lección para editar
 export async function GET(
@@ -9,29 +7,30 @@ export async function GET(
   { params }: { params: Promise<{ slug: string; moduleId: string; lessonSlug: string }> }
 ) {
   try {
-    const { slug, moduleId, lessonSlug } = await params;
+    const { moduleId, lessonSlug } = await params;
 
-    const lessonPath = path.join(
-      process.cwd(),
-      'public',
-      'cursos',
-      slug,
-      moduleId,
-      'lecciones',
-      `${lessonSlug}.md`
-    );
+    // Extraer número de lección de lessonSlug (ej: "leccion-1" -> 1)
+    const lessonNumber = parseInt(lessonSlug.replace('leccion-', ''));
 
-    if (!fs.existsSync(lessonPath)) {
+    const lesson = await prisma.lesson.findFirst({
+      where: {
+        moduleId,
+        order: lessonNumber
+      }
+    });
+
+    if (!lesson) {
       return NextResponse.json({ error: 'Lesson not found' }, { status: 404 });
     }
 
-    const fileContent = fs.readFileSync(lessonPath, 'utf-8');
-    const { data, content } = matter(fileContent);
-
     return NextResponse.json({
-      frontmatter: data,
-      content: content,
-      path: lessonPath,
+      frontmatter: {
+        titulo: lesson.title,
+        descripcion: lesson.description || '',
+        duracion: lesson.duration || 0
+      },
+      content: lesson.richText || '',
+      lessonId: lesson.id,
     });
   } catch (error) {
     console.error('Error reading lesson:', error);
@@ -48,35 +47,30 @@ export async function PUT(
   { params }: { params: Promise<{ slug: string; moduleId: string; lessonSlug: string }> }
 ) {
   try {
-    const { slug, moduleId, lessonSlug } = await params;
+    const { moduleId, lessonSlug } = await params;
     const body = await request.json();
     const { frontmatter, content } = body;
 
-    const lessonPath = path.join(
-      process.cwd(),
-      'public',
-      'cursos',
-      slug,
-      moduleId,
-      'lecciones',
-      `${lessonSlug}.md`
-    );
+    // Extraer número de lección
+    const lessonNumber = parseInt(lessonSlug.replace('leccion-', ''));
 
-    // Crear backup antes de editar
-    const backupPath = lessonPath + '.backup';
-    if (fs.existsSync(lessonPath)) {
-      fs.copyFileSync(lessonPath, backupPath);
-    }
+    // Actualizar lección en la base de datos
+    const lesson = await prisma.lesson.updateMany({
+      where: {
+        moduleId,
+        order: lessonNumber
+      },
+      data: {
+        title: frontmatter.titulo,
+        description: frontmatter.descripcion,
+        duration: frontmatter.duracion,
+        richText: content,
+        updatedAt: new Date()
+      }
+    });
 
-    // Generar nuevo archivo Markdown con frontmatter
-    const newFileContent = matter.stringify(content, frontmatter);
-
-    // Guardar archivo
-    fs.writeFileSync(lessonPath, newFileContent, 'utf-8');
-
-    // Eliminar backup si todo salió bien
-    if (fs.existsSync(backupPath)) {
-      fs.unlinkSync(backupPath);
+    if (lesson.count === 0) {
+      return NextResponse.json({ error: 'Lesson not found' }, { status: 404 });
     }
 
     return NextResponse.json({
@@ -85,25 +79,6 @@ export async function PUT(
     });
   } catch (error) {
     console.error('Error updating lesson:', error);
-
-    // Intentar restaurar backup si algo salió mal
-    const { slug, moduleId, lessonSlug } = await params;
-    const lessonPath = path.join(
-      process.cwd(),
-      'public',
-      'cursos',
-      slug,
-      moduleId,
-      'lecciones',
-      `${lessonSlug}.md`
-    );
-    const backupPath = lessonPath + '.backup';
-
-    if (fs.existsSync(backupPath)) {
-      fs.copyFileSync(backupPath, lessonPath);
-      fs.unlinkSync(backupPath);
-    }
-
     return NextResponse.json({
       error: 'Failed to update lesson',
       details: error instanceof Error ? error.message : 'Unknown error'
@@ -111,50 +86,36 @@ export async function PUT(
   }
 }
 
-// DELETE - Eliminar lección
+// DELETE - Eliminar lección (marcar como no publicada)
 export async function DELETE(
-  request: Request,
+  _request: Request,
   { params }: { params: Promise<{ slug: string; moduleId: string; lessonSlug: string }> }
 ) {
   try {
-    const { slug, moduleId, lessonSlug } = await params;
+    const { moduleId, lessonSlug } = await params;
 
-    const lessonPath = path.join(
-      process.cwd(),
-      'public',
-      'cursos',
-      slug,
-      moduleId,
-      'lecciones',
-      `${lessonSlug}.md`
-    );
+    // Extraer número de lección
+    const lessonNumber = parseInt(lessonSlug.replace('leccion-', ''));
 
-    if (!fs.existsSync(lessonPath)) {
+    // Marcar como no publicada en lugar de eliminar
+    const lesson = await prisma.lesson.updateMany({
+      where: {
+        moduleId,
+        order: lessonNumber
+      },
+      data: {
+        published: false,
+        updatedAt: new Date()
+      }
+    });
+
+    if (lesson.count === 0) {
       return NextResponse.json({ error: 'Lesson not found' }, { status: 404 });
     }
 
-    // Mover a papelera en lugar de eliminar permanentemente
-    const trashPath = path.join(
-      process.cwd(),
-      'public',
-      'cursos',
-      '.trash',
-      slug,
-      moduleId,
-      'lecciones'
-    );
-
-    fs.mkdirSync(trashPath, { recursive: true });
-
-    const timestamp = Date.now();
-    const targetPath = path.join(trashPath, `${timestamp}-${lessonSlug}.md`);
-
-    fs.renameSync(lessonPath, targetPath);
-
     return NextResponse.json({
       success: true,
-      message: 'Lección movida a papelera',
-      trashPath: targetPath
+      message: 'Lección marcada como no publicada'
     });
   } catch (error) {
     console.error('Error deleting lesson:', error);

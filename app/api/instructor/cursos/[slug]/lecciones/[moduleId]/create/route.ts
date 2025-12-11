@@ -1,7 +1,5 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
+import { prisma } from '@/lib/prisma';
 
 // POST - Crear nueva lección
 export async function POST(
@@ -9,112 +7,87 @@ export async function POST(
   { params }: { params: Promise<{ slug: string; moduleId: string }> }
 ) {
   try {
-    const { slug, moduleId } = await params;
+    const { moduleId } = await params;
     const body = await request.json();
-    const { lessonSlug, titulo, descripcion, duracion, tipo, orden } = body;
+    const { titulo, descripcion, duracion, orden } = body;
 
-    if (!lessonSlug) {
+    // Verificar que el módulo existe
+    const module = await prisma.module.findUnique({
+      where: { id: moduleId }
+    });
+
+    if (!module) {
       return NextResponse.json({
-        error: 'Missing lessonSlug'
-      }, { status: 400 });
+        error: 'Module not found'
+      }, { status: 404 });
     }
 
-    const leccionesPath = path.join(
-      process.cwd(),
-      'public',
-      'cursos',
-      slug,
-      moduleId,
-      'lecciones'
-    );
+    // Verificar que no exista una lección con el mismo orden
+    const existingLesson = await prisma.lesson.findFirst({
+      where: {
+        moduleId,
+        order: orden || 1
+      }
+    });
 
-    // Crear carpeta de lecciones si no existe
-    fs.mkdirSync(leccionesPath, { recursive: true });
-
-    const lessonPath = path.join(leccionesPath, `${lessonSlug}.md`);
-
-    // Verificar que la lección no exista
-    if (fs.existsSync(lessonPath)) {
+    if (existingLesson) {
       return NextResponse.json({
-        error: 'Lesson already exists',
-        details: `Lesson ${lessonSlug} already exists`
+        error: 'Lesson with this order already exists',
+        details: `Lesson order ${orden} already exists in this module`
       }, { status: 409 });
     }
 
-    // Crear frontmatter
-    const frontmatter = {
-      titulo: titulo || 'Nueva Lección',
-      descripcion: descripcion || '',
-      duracion: duracion || '',
-      tipo: tipo || 'lectura',
-      orden: orden || 1,
-      objetivos: []
-    };
-
     // Crear contenido inicial
-    const content = `# ${frontmatter.titulo}
+    const content = `<h2>Objetivos de Aprendizaje</h2>
+<ul>
+  <li>Objetivo 1</li>
+  <li>Objetivo 2</li>
+  <li>Objetivo 3</li>
+</ul>
 
-${frontmatter.descripcion}
+<h2>Contenido</h2>
+<p>Escribe aquí el contenido de la lección...</p>
 
-## Objetivos de Aprendizaje
+<h2>Ejercicios</h2>
+<ol>
+  <li>Ejercicio 1</li>
+  <li>Ejercicio 2</li>
+</ol>
 
-- Objetivo 1
-- Objetivo 2
-- Objetivo 3
+<h2>Recursos Adicionales</h2>
+<ul>
+  <li><a href="#">Recurso 1</a></li>
+  <li><a href="#">Recurso 2</a></li>
+</ul>`;
 
-## Contenido
-
-Escribe aquí el contenido de la lección...
-
-## Ejercicios
-
-1. Ejercicio 1
-2. Ejercicio 2
-
-## Recursos Adicionales
-
-- [Recurso 1](url)
-- [Recurso 2](url)
-`;
-
-    // Generar archivo Markdown
-    const fileContent = matter.stringify(content, frontmatter);
-    fs.writeFileSync(lessonPath, fileContent, 'utf-8');
-
-    // Log de creación para auditoría
-    const logPath = path.join(
-      process.cwd(),
-      'public',
-      'cursos',
-      slug,
-      '.changelog.json'
-    );
-
-    let changelog: any[] = [];
-    if (fs.existsSync(logPath)) {
-      changelog = JSON.parse(fs.readFileSync(logPath, 'utf-8'));
-    }
-
-    changelog.push({
-      timestamp: new Date().toISOString(),
-      action: 'create_lesson',
-      moduleId,
-      lessonSlug,
-      titulo
+    // Obtener el siguiente número de lección
+    const lastLesson = await prisma.lesson.findFirst({
+      where: { moduleId },
+      orderBy: { number: 'desc' }
     });
 
-    // Mantener solo los últimos 100 cambios
-    if (changelog.length > 100) {
-      changelog = changelog.slice(-100);
-    }
+    const nextNumber = (lastLesson?.number || 0) + 1;
 
-    fs.writeFileSync(logPath, JSON.stringify(changelog, null, 2), 'utf-8');
+    // Crear lección en la base de datos
+    const lesson = await prisma.lesson.create({
+      data: {
+        moduleId,
+        number: nextNumber,
+        title: titulo || 'Nueva Lección',
+        description: descripcion || '',
+        duration: duracion || 0,
+        order: orden || 1,
+        type: 'READING',
+        richText: content,
+        published: false
+      }
+    });
 
     return NextResponse.json({
       success: true,
       message: 'Lección creada exitosamente',
-      lessonSlug,
-      path: lessonPath
+      lessonId: lesson.id,
+      lessonSlug: `leccion-${lesson.order}`
     });
   } catch (error) {
     console.error('Error creating lesson:', error);
