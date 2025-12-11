@@ -18,7 +18,7 @@ export async function GET() {
 
     const [
       totalCourses,
-      totalStudents,
+      activeEnrollments,
       averageRating,
       totalRevenue
     ] = await Promise.all([
@@ -29,12 +29,15 @@ export async function GET() {
         }
       }),
 
-      (prisma.enrollment.count as any)({
+      prisma.enrollment.findMany({
         where: {
           course: {
             instructorId
           },
           status: 'ACTIVE'
+        },
+        select: {
+          userId: true
         },
         distinct: ['userId']
       }),
@@ -63,6 +66,8 @@ export async function GET() {
         }
       })
     ]);
+
+    const totalStudents = activeEnrollments.length;
 
     return NextResponse.json({
       totalCourses,

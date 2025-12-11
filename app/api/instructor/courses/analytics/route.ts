@@ -135,15 +135,20 @@ export async function GET() {
       ? Math.round(((thisMonthEnrollments - lastMonthEnrollments) / lastMonthEnrollments) * 100)
       : 100;
 
-    const totalActiveStudents = await (prisma.enrollment.count as any)({
+    const activeEnrollments = await prisma.enrollment.findMany({
       where: {
         course: {
           instructorId
         },
         status: 'ACTIVE'
       },
+      select: {
+        userId: true
+      },
       distinct: ['userId']
     });
+
+    const totalActiveStudents = activeEnrollments.length;
 
     return NextResponse.json({
       courseAnalytics,
