@@ -12,10 +12,10 @@ const SHIFT_TIMES = {
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ courseId: string }> }
 ) {
   try {
-    const { id: courseId } = await params;
+    const { courseId } = await params;
     const session = await auth();
 
     if (!session?.user) {
@@ -133,10 +133,10 @@ async function getCurrentModule(courseId: string, schedule: any) {
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ courseId: string }> }
 ) {
   try {
-    const { id: courseId } = await params;
+    const { courseId } = await params;
     const session = await auth();
 
     if (!session?.user || !['ADMIN', 'INSTRUCTOR'].includes(session.user.role)) {
@@ -184,10 +184,10 @@ export async function POST(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ courseId: string }> }
 ) {
   try {
-    const { id: courseId } = await params;
+    const { courseId } = await params;
     const session = await auth();
 
     if (!session?.user || !['ADMIN', 'INSTRUCTOR'].includes(session.user.role)) {

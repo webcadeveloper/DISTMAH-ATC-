@@ -8,10 +8,10 @@ const prisma = new PrismaClient();
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ courseId: string }> }
 ) {
   try {
-    const { id } = await params;
+    const { courseId: id } = await params;
     const { searchParams } = new URL(request.url);
 
     const limit = parseInt(searchParams.get('limit') || '10');
@@ -91,7 +91,7 @@ export async function GET(
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ courseId: string }> }
 ) {
   const ip = getClientIp(request);
   const rateLimitResult = apiLimiter.check(request, 10, ip);
@@ -107,7 +107,7 @@ export async function POST(
       );
     }
 
-    const { id } = await params;
+    const { courseId: id } = await params;
     const body = await request.json();
     const { rating, title, comment } = body;
 
