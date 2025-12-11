@@ -201,7 +201,7 @@ export default function StreamingControlPage() {
   return (
     <div className="p-8 max-w-6xl mx-auto">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-neutral-900">Centro de Control de Streaming</h1>
+        <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Centro de Control de Streaming</h1>
         <p className="text-neutral-500 mt-1">Monitorea y controla tus transmisiones en vivo</p>
       </div>
 

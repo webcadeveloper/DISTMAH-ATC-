@@ -131,7 +131,7 @@ export default function ClasesInstructorPage() {
                     <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Clases en Vivo</h1>
                     <p className="text-neutral-600 dark:text-neutral-400">Programa y gestiona tus sesiones en Microsoft Teams.</p>
                 </div>
-                <Button className="bg-neutral-900 hover:bg-neutral-800">
+                <Button className="bg-neutral-900 hover:bg-neutral-800 text-white">
                     <Plus className="w-4 h-4 mr-2" /> Programar Clase
                 </Button>
             </div>
@@ -189,7 +189,7 @@ export default function ClasesInstructorPage() {
                         <Video className="w-12 h-12 text-neutral-300 mx-auto mb-4" />
                         <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">No hay clases programadas</h3>
                         <p className="text-neutral-600 dark:text-neutral-400 mb-4">Programa tu primera clase en vivo con Microsoft Teams</p>
-                        <Button className="bg-neutral-900 hover:bg-neutral-800">
+                        <Button className="bg-neutral-900 hover:bg-neutral-800 text-white">
                             <Plus className="w-4 h-4 mr-2" /> Programar Clase
                         </Button>
                     </CardContent>

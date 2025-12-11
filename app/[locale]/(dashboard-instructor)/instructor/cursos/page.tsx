@@ -119,11 +119,11 @@ export default function InstructorCoursesPage() {
             <div className="p-8 max-w-7xl mx-auto bg-white dark:bg-neutral-900 min-h-screen">
                 <div className="flex justify-between items-center mb-8">
                     <div>
-                        <h1 className="text-3xl font-bold text-neutral-900">Mis Cursos</h1>
-                        <p className="text-neutral-600">Gestiona tus cursos y contenido academico.</p>
+                        <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Mis Cursos</h1>
+                        <p className="text-neutral-600 dark:text-neutral-400">Gestiona tus cursos y contenido academico.</p>
                     </div>
                     <Link href="/es/instructor/cursos/crear-curso">
-                        <Button className="bg-neutral-900 hover:bg-neutral-800">
+                        <Button className="bg-neutral-900 hover:bg-neutral-800 text-white">
                             <Plus className="w-4 h-4 mr-2" /> Crear Nuevo Curso
                         </Button>
                     </Link>
@@ -152,7 +152,7 @@ export default function InstructorCoursesPage() {
                     <p className="text-neutral-600 dark:text-neutral-400">Gestiona tus cursos y contenido academico.</p>
                 </div>
                 <Link href="/es/instructor/cursos/crear-curso">
-                    <Button className="bg-neutral-900 hover:bg-neutral-800">
+                    <Button className="bg-neutral-900 hover:bg-neutral-800 text-white">
                         <Plus className="w-4 h-4 mr-2" /> Crear Nuevo Curso
                     </Button>
                 </Link>
@@ -265,7 +265,7 @@ export default function InstructorCoursesPage() {
 
                                     <div className="flex items-center gap-3 mt-6 pt-4 border-t border-neutral-100 dark:border-neutral-700">
                                         <Link href={`/es/instructor/cursos/${course.slug}/contenido`}>
-                                            <Button variant="default" size="sm" className="bg-neutral-900 hover:bg-neutral-800">
+                                            <Button variant="default" size="sm" className="bg-neutral-900 hover:bg-neutral-800 text-white">
                                                 <Edit className="w-4 h-4 mr-2" /> Editar Contenido
                                             </Button>
                                         </Link>

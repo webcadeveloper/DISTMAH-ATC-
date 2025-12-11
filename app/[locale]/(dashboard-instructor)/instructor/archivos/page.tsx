@@ -230,7 +230,7 @@ export default function ArchivosInstructorPage() {
                         <h1 className="text-3xl font-bold text-neutral-900">Archivos</h1>
                         <p className="text-neutral-600">Gestiona los archivos y recursos de tus cursos.</p>
                     </div>
-                    <Button onClick={() => setShowUploadDialog(true)} className="bg-neutral-900 hover:bg-neutral-800">
+                    <Button onClick={() => setShowUploadDialog(true)} className="bg-neutral-900 hover:bg-neutral-800 text-white">
                         <Upload className="w-4 h-4 mr-2" /> Subir Archivo
                     </Button>
                 </div>
@@ -272,7 +272,7 @@ export default function ArchivosInstructorPage() {
                     <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Archivos</h1>
                     <p className="text-neutral-600 dark:text-neutral-400">Gestiona los archivos y recursos de tus cursos en OneDrive.</p>
                 </div>
-                <Button onClick={() => setShowUploadDialog(true)} className="bg-neutral-900 hover:bg-neutral-800">
+                <Button onClick={() => setShowUploadDialog(true)} className="bg-neutral-900 hover:bg-neutral-800 text-white">
                     <Upload className="w-4 h-4 mr-2" /> Subir Archivo
                 </Button>
             </div>
