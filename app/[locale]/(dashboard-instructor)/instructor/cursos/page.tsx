@@ -122,7 +122,7 @@ export default function InstructorCoursesPage() {
                         <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Mis Cursos</h1>
                         <p className="text-neutral-600 dark:text-neutral-400">Gestiona tus cursos y contenido academico.</p>
                     </div>
-                    <Link href="/es/instructor/cursos/crear-curso">
+                    <Link href="/es/instructor/cursos/crear">
                         <Button className="bg-neutral-900 hover:bg-neutral-800 text-white">
                             <Plus className="w-4 h-4 mr-2" /> Crear Nuevo Curso
                         </Button>
@@ -133,7 +133,7 @@ export default function InstructorCoursesPage() {
                         <BookOpen className="w-16 h-16 text-neutral-300 mx-auto mb-4" />
                         <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">No tienes cursos creados</h3>
                         <p className="text-neutral-600 dark:text-neutral-400 mb-6">Crea tu primer curso para comenzar a ensenar</p>
-                        <Link href="/es/instructor/cursos/crear-curso">
+                        <Link href="/es/instructor/cursos/crear">
                             <Button className="bg-blue-600 hover:bg-blue-700">
                                 <Plus className="w-4 h-4 mr-2" /> Crear Curso
                             </Button>
@@ -151,7 +151,7 @@ export default function InstructorCoursesPage() {
                     <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Mis Cursos</h1>
                     <p className="text-neutral-600 dark:text-neutral-400">Gestiona tus cursos y contenido academico.</p>
                 </div>
-                <Link href="/es/instructor/cursos/crear-curso">
+                <Link href="/es/instructor/cursos/crear">
                     <Button className="bg-neutral-900 hover:bg-neutral-800 text-white">
                         <Plus className="w-4 h-4 mr-2" /> Crear Nuevo Curso
                     </Button>
@@ -264,12 +264,12 @@ export default function InstructorCoursesPage() {
                                     </div>
 
                                     <div className="flex items-center gap-3 mt-6 pt-4 border-t border-neutral-100 dark:border-neutral-700">
-                                        <Link href={`/es/instructor/cursos/${course.slug}/contenido`}>
+                                        <Link href={`/es/instructor/cursos/${course.id}/contenido`}>
                                             <Button variant="default" size="sm" className="bg-neutral-900 hover:bg-neutral-800 text-white">
                                                 <Edit className="w-4 h-4 mr-2" /> Editar Contenido
                                             </Button>
                                         </Link>
-                                        <Link href={`/es/instructor/cursos/${course.slug}/editar`}>
+                                        <Link href={`/es/instructor/cursos/${course.id}/editar`}>
                                             <Button variant="outline" size="sm">
                                                 Informacion
                                             </Button>

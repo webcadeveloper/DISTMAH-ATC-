@@ -8,24 +8,50 @@ import {
     AccordionTrigger,
 } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
-import { getCourse } from '@/lib/course-loader';
+import { prisma } from '@/lib/prisma';
 
 export default async function CourseContentPage({ params }: { params: Promise<{ cursoId: string }> }) {
     const { cursoId } = await params;
 
-    const courseData = await getCourse(cursoId);
+    const course = await prisma.course.findUnique({
+        where: { id: cursoId },
+        include: {
+            modules: {
+                orderBy: { order: 'asc' },
+                include: {
+                    lessons: {
+                        orderBy: { order: 'asc' }
+                    }
+                }
+            }
+        }
+    });
 
-    if (!courseData) {
+    if (!course) {
         return (
             <div className="p-8 text-center">
                 <h2 className="text-xl font-bold text-neutral-900 mb-2">Curso no encontrado</h2>
-                <p className="text-neutral-600 mb-4">El curso "{cursoId}" no existe en /public/cursos/</p>
+                <p className="text-neutral-600 mb-4">El curso con ID "{cursoId}" no existe</p>
                 <Link href="/es/instructor/cursos">
                     <Button variant="outline">Volver a Mis Cursos</Button>
                 </Link>
             </div>
         );
     }
+
+    const courseData = {
+        titulo: course.title,
+        modules: course.modules.map(m => ({
+            id: m.id,
+            title: m.title,
+            lessons: m.lessons.map(l => ({
+                id: l.id,
+                title: l.title,
+                slug: `leccion-${l.order}`,
+                duration: l.duration
+            }))
+        }))
+    };
 
     const modules = courseData.modules || [];
 
