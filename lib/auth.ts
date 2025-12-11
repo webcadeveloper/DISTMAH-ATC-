@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
-import AzureADProvider from 'next-auth/providers/azure-ad';
+// import AzureADProvider from 'next-auth/providers/azure-ad'; // Comentado hasta comprar licencia A1
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { prisma } from '@/lib/prisma';
 import { authConfig } from '@/auth.config';
@@ -59,24 +59,25 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         };
       },
     }),
-    AzureADProvider({
-      clientId: process.env.AZURE_AD_CLIENT_ID ?? '',
-      clientSecret: process.env.AZURE_AD_CLIENT_SECRET ?? '',
-      authorization: {
-        params: {
-          scope: 'openid profile email User.Read',
-          tenant: process.env.AZURE_AD_TENANT_ID ?? 'common',
-        },
-      },
-      profile(profile) {
-        return {
-          id: profile.sub,
-          name: profile.name,
-          email: profile.email,
-          role: 'STUDENT',
-          azureAdId: profile.sub,
-        };
-      },
-    }),
+    // AzureADProvider - Comentado hasta comprar licencia A1
+    // AzureADProvider({
+    //   clientId: process.env.AZURE_AD_CLIENT_ID ?? '',
+    //   clientSecret: process.env.AZURE_AD_CLIENT_SECRET ?? '',
+    //   authorization: {
+    //     params: {
+    //       scope: 'openid profile email User.Read',
+    //       tenant: process.env.AZURE_AD_TENANT_ID ?? 'common',
+    //     },
+    //   },
+    //   profile(profile) {
+    //     return {
+    //       id: profile.sub,
+    //       name: profile.name,
+    //       email: profile.email,
+    //       role: 'STUDENT',
+    //       azureAdId: profile.sub,
+    //     };
+    //   },
+    // }),
   ],
 });
